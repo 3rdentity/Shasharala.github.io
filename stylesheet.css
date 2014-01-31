@@ -6,7 +6,7 @@ div {
 	border-radius: 5px;
 }
 
-#main {
+#welcome {
 	z-index: 1;
 	position: fixed;
 	width: 97.5%;
