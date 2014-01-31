@@ -8,17 +8,18 @@ body {
 	position: fixed;
 	width: 97.5%;
 	margin-top: -20px;
-	height: 800px;
+	height: 600px;
 	background-color: #3A00B8;
 	margin-bottom: 10px;
 	text-align: center;
-	color: #DEDEDE;
 }
 
 #welcome {
 	font-size: 3em;
+	color: #DEDEDE;
 }
 
 #courtesy {
 	font-size: 1em;
+	color: #DEDEDE;
 }
