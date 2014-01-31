@@ -1,3 +1,7 @@
+body {
+	background-color: #000000;
+}
+
 div {
 	border-radius: 5px;
 }
@@ -7,8 +11,8 @@ div {
 	position: fixed;
 	width: 97.5%;
 	margin-top: -20px;
-	height: 60px;
-	text-color: white;
-	background-color: #3D0AC2;
+	height: 300;
+	font-color: white;
+	background-color: #3A00B8;
 	margin-bottom: 10px;
 }
