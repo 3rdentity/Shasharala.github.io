@@ -2,7 +2,7 @@ body {
 	background-color: #000000;
 }
 
-#main {
+.main {
 	position: relative;
 	left: 800px;
 	border-radius: 5px;
@@ -10,6 +10,7 @@ body {
 	width: 400px;
 	background-color: #3A00B8;
 	text-align: center;
+	color: #DEDEDE;
 }
 
 #welcome {
@@ -19,5 +20,4 @@ body {
 
 #courtesy {
 	font-size: 1em;
-	color: #DEDEDE;
 }
