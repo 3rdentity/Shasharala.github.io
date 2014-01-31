@@ -6,13 +6,14 @@ div {
 	border-radius: 5px;
 }
 
-#header {
+#main {
 	z-index: 1;
 	position: fixed;
 	width: 97.5%;
 	margin-top: -20px;
 	height: 300px;
 	color: #DEDEDE;
+	font-size: 3em;
 	text-align: center;
 	background-color: #3A00B8;
 	margin-bottom: 10px;
