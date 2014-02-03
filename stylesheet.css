@@ -5,10 +5,10 @@ body {
 .main {
 	font-family: 'Ubuntu Mono', sans-serif;
 	position: relative;
-	left: 800px;
+	left: 700px;
 	border-radius: 5px;
 	height: 600px;
-	width: 400px;
+	width: 500px;
 	background-color: #272822;
 	text-align: center;
 	color: #DEDEDE;
