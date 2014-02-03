@@ -25,6 +25,15 @@ a {
 	color: #DEDEDE
 }
 
+#console {
+	margin: 0 auto;
+	border-radius: 5px;
+	height: 400px;
+	width: 950px;
+	background-color: #272822;
+	text-align: left;
+}
+
 #footer {
 	position: fixed;
 	bottom: 30px;
