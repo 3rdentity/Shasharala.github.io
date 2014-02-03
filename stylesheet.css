@@ -14,11 +14,11 @@ body {
 }
 
 #title {
-	font-size: 2em;
+	font-size: large;
 	color: #DEDEDE;
 }
 
 #content {
-	font-size: 1em;
+	font-size: medium;
 	text-align: left;
 }
