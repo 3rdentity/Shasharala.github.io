@@ -1,15 +1,26 @@
-body {
-	background-color: #171814;
-}
+/*UNIVERSAL*/
 
-.footer {
+#footer {
 	font-family: 'Ubuntu Mono', sans-serif;
 	font-size: small;
 	text-align: center;
 	color: #DEDEDE;
 }
 
-.main {
+/*INDEX*/
+
+#index {
+	background-color: #171814;
+}
+
+
+/*BLOG*/
+
+#blog {
+	background-color: #171814;
+}
+
+.blogPost {
 	font-family: 'Ubuntu Mono', sans-serif;
 	position: relative;
 	left: 700px;
@@ -23,6 +34,10 @@ body {
 
 .title {
 	font-size: x-large;
+}
+
+.titleTime {
+	font-size: small;
 }
 
 .content {
