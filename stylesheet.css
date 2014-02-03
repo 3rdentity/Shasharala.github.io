@@ -1,5 +1,5 @@
 body {
-	background-color: #000000;
+	background-color: #171814;
 }
 
 .main {
@@ -8,16 +8,17 @@ body {
 	border-radius: 5px;
 	height: 600px;
 	width: 400px;
-	background-color: #3A00B8;
+	background-color: #272822;
 	text-align: center;
 	color: #DEDEDE;
 }
 
-#welcome {
+#title {
 	font-size: 3em;
 	color: #DEDEDE;
 }
 
-#courtesy {
+#content {
 	font-size: 1em;
+	text-align: left;
 }
