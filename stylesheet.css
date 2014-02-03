@@ -11,8 +11,11 @@
 
 #index {
 	background-color: #171814;
+	text-align: center;
+	font-family: 'Ubuntu Mono', sans-serif;
+	font-size: medium;
+	color: #DEDEDE
 }
-
 
 /*BLOG*/
 
