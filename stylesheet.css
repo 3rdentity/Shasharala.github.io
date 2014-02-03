@@ -2,6 +2,12 @@ body {
 	background-color: #171814;
 }
 
+.footer {
+	font-family: 'Ubuntu Mono', sans-serif;
+	font-size: small;
+	text-align: center;
+}
+
 .main {
 	font-family: 'Ubuntu Mono', sans-serif;
 	position: relative;
@@ -14,12 +20,11 @@ body {
 	color: #DEDEDE;
 }
 
-#title {
+.title {
 	font-size: x-large;
-	color: #DEDEDE;
 }
 
-#content {
+.content {
 	font-size: medium;
 	text-align: left;
 }
