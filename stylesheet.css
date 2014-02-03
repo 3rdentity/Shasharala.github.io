@@ -1,5 +1,10 @@
 /*UNIVERSAL*/
 
+a {
+	text-decoration: none; 
+	color: #DEDEDE;
+}
+
 #footer {
 	font-family: 'Ubuntu Mono', sans-serif;
 	font-size: small;
@@ -25,8 +30,7 @@
 
 .blogPost {
 	font-family: 'Ubuntu Mono', sans-serif;
-	position: relative;
-	left: 700px;
+	margin: 0 auto;
 	border-radius: 5px;
 	height: 600px;
 	width: 500px;
