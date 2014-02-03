@@ -5,6 +5,16 @@ a {
 	color: #DEDEDE;
 }
 
+/*LICENSE*/
+
+#license {
+	background-color: #171814;
+	text-align: left;
+	font-family: 'Ubuntu Mono', sans-serif;
+	font-size: large;
+	color: #DEDEDE
+}
+
 /*INDEX*/
 
 #index {
