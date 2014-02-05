@@ -38,7 +38,7 @@ a {
 	text-align: left;
 }
 
-#index #footer {
+#footer {
 	position: fixed;
 	bottom: 10px;
 	right: 25px;
@@ -46,7 +46,7 @@ a {
 	color: #444444;
 }
 
-#index #footer a {
+#footerA {
 	color: #666666;
 }
 
