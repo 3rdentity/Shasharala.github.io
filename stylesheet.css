@@ -16,7 +16,7 @@ a {
 	text-align: left;
 	font-family: 'Ubuntu Mono', sans-serif;
 	font-size: large;
-	color: #DEDEDE
+	color: #DEDEDE;
 }
 
 /*INDEX_UNDER_CONSTRUCTION*/
@@ -32,7 +32,7 @@ a {
 	text-align: center;
 	font-family: 'Ubuntu Mono', sans-serif;
 	font-size: medium;
-	color: #DEDEDE
+	color: #DEDEDE;
 }
 
 .console {
@@ -52,7 +52,11 @@ a {
 	color: #444444;
 }
 
+<<<<<<< HEAD
 .footer a {
+=======
+#footerA {
+>>>>>>> d8f438f16a910d7dd1782e01b2cac8538ea2c525
 	color: #666666;
 }
 
