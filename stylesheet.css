@@ -1,7 +1,9 @@
 /*UNIVERSAL*/
 
-.backgroundColor_default {
+body {
 	background-color: #171814;
+	font-family: 'Ubuntu Mono', sans-serif;
+	color: #DEDEDE;
 }
 
 a {
@@ -12,11 +14,8 @@ a {
 /*LICENSE*/
 
 .license {
-	background-color: #171814;
 	text-align: left;
-	font-family: 'Ubuntu Mono', sans-serif;
 	font-size: large;
-	color: #DEDEDE;
 }
 
 /*INDEX_UNDER_CONSTRUCTION*/
@@ -28,11 +27,8 @@ a {
 /*INDEX*/
 
 .index {
-	background-color: #171814;
 	text-align: center;
-	font-family: 'Ubuntu Mono', sans-serif;
 	font-size: medium;
-	color: #DEDEDE;
 }
 
 .console {
@@ -59,13 +55,11 @@ a {
 /*BLOG*/
 
 .blogPost {
-	font-family: 'Ubuntu Mono', sans-serif;
 	margin: 0 auto;
 	border-radius: 5px;
 	width: 500px;
 	background-color: #272822;
 	text-align: center;
-	color: #DEDEDE;
 }
 
 .title {
