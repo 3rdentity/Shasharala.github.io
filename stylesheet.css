@@ -11,7 +11,7 @@ a {
 
 /*LICENSE*/
 
-#license {
+.license {
 	background-color: #171814;
 	text-align: left;
 	font-family: 'Ubuntu Mono', sans-serif;
@@ -21,7 +21,7 @@ a {
 
 /*INDEX*/
 
-#index {
+.index {
 	background-color: #171814;
 	text-align: center;
 	font-family: 'Ubuntu Mono', sans-serif;
@@ -29,7 +29,7 @@ a {
 	color: #DEDEDE
 }
 
-#console {
+.console {
 	margin: 0 auto;
 	border-radius: 5px;
 	height: 400px;
@@ -38,7 +38,7 @@ a {
 	text-align: left;
 }
 
-#footer {
+.footer {
 	position: fixed;
 	bottom: 10px;
 	right: 25px;
@@ -46,13 +46,13 @@ a {
 	color: #444444;
 }
 
-#footer a {
+.footer a {
 	color: #666666;
 }
 
 /*BLOG*/
 
-#blogPost {
+.blogPost {
 	font-family: 'Ubuntu Mono', sans-serif;
 	margin: 0 auto;
 	border-radius: 5px;
@@ -62,15 +62,15 @@ a {
 	color: #DEDEDE;
 }
 
-#title {
+.title {
 	font-size: x-large;
 }
 
-#titleTime {
+.titleTime {
 	font-size: small;
 }
 
-#content {
+.content {
 	font-size: medium;
 	text-align: left;
 }
