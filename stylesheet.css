@@ -4,6 +4,8 @@ body {
 	background-color: #171814;
 	font-family: 'Ubuntu Mono', sans-serif;
 	color: #DEDEDE;
+	text-align: center;
+	font-size: medium;
 }
 
 a {
@@ -26,16 +28,11 @@ a {
 
 /*INDEX*/
 
-.index {
-	text-align: center;
-	font-size: medium;
-}
-
 /*consider appearing/disappearing text and cleaner interface*/
 .console {
 	margin: 0 auto;
 	border-radius: 5px;
-	height: 400px;
+	height: 444px;
 	width: 950px;
 	background-color: #272822;
 	text-align: left;
