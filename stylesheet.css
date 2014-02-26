@@ -13,22 +13,6 @@ a {
 	color: #DEDEDE;
 }
 
-/*LICENSE*/
-
-.license {
-	text-align: left;
-	font-size: large;
-}
-
-/*INDEX_UNDER_CONSTRUCTION*/
-
-.construction {
-	font-size: xx-large;
-}
-
-/*INDEX*/
-
-/*consider appearing/disappearing text and cleaner interface*/
 .console {
 	margin: 0 auto;
 	padding: 24px;
@@ -37,6 +21,7 @@ a {
 	width: 888px;
 	background-color: #272822;
 	text-align: left;
+	overflow: scroll;
 }
 
 .footer {
@@ -45,10 +30,24 @@ a {
 	right: 25px;
 	font-size: small;
 	color: #444444;
+	overflow: hidden;
 }
 
 .footer a {
 	color: #666666;
+}
+
+/*LICENSE*/
+
+.license {
+	text-align: left;
+	font-size: large;
+}
+
+/*INDEX*/
+
+.construction {
+	font-size: xx-large;
 }
 
 /*BLOG*/
@@ -73,7 +72,3 @@ a {
 	font-size: medium;
 	text-align: left;
 }
-
-/*GAMES-LIST*/
-
-/*GAMES*/
