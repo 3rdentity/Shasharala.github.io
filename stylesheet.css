@@ -1,19 +1,25 @@
-/*UNIVERSAL*/
+/*###*/
+/*###*/
+/*###*/
+/*###HIGH RESOLUTION DISPLAYS###*/
+@media (min-width: 1281px) {
+	
+	/*UNIVERSAL*/
 
-body {
+	body {
 	background-color: #171814;
 	font-family: 'Ubuntu Mono', sans-serif;
 	color: #DEDEDE;
 	text-align: center;
 	font-size: medium;
-}
+	}
 
-a {
+	a {
 	text-decoration: none; 
 	color: #DEDEDE;
-}
+	}
 
-.console {
+	.console {
 	margin: 0 auto;
 	padding: 24px;
 	border-radius: 88px;
@@ -21,53 +27,54 @@ a {
 	width: 888px;
 	background-color: #272822;
 	text-align: left;
-}
+	}
 
-footer {
+	footer {
 	position: fixed;
 	bottom: 10px;
 	right: 25px;
 	font-size: small;
 	color: #444444;
 	overflow: hidden;
-}
+	}
 
-footer a {
+	footer a {
 	color: #666666;
-}
+	}
 
-/*LICENSE*/
+	/*LICENSE*/
 
-.license {
+	.license {
 	text-align: left;
 	font-size: large;
-}
+	}
 
-/*INDEX*/
+	/*INDEX*/
 
-.construction {
+	.construction {
 	font-size: xx-large;
-}
+	}
 
-/*BLOG*/
+	/*BLOG*/
 
-.blogPost {
+	.blogPost {
 	margin: 0 auto;
 	border-radius: 8px;
 	width: 500px;
 	background-color: #272822;
 	text-align: center;
-}
+	}
 
-.title {
+	.title {
 	font-size: x-large;
-}
+	}
 
-.titleTime {
+	.titleTime {
 	font-size: small;
-}
+	}
 
-.content {
+	.content {
 	font-size: medium;
 	text-align: left;
+	}
 }
