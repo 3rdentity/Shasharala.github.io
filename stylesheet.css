@@ -1,72 +1,72 @@
-
 /*------------1024 x 768------------*/
 @media only screen and (max-width: 1024px) {
 	
 	/*UNIVERSAL*/
 
 	body {
-	background-color: #171814;
-	font-family: 'Ubuntu Mono', sans-serif;
-	color: #DEDEDE;
-	text-align: center;
-	font-size: small;
+		background-color: #171814;
+		font-family: 'Ubuntu Mono', sans-serif;
+		color: #DEDEDE;
+		text-align: center;
+		font-size: small;
 	}
 
 	a {
-	text-decoration: none; 
-	color: #DEDEDE;
+		text-decoration: none; 
+		color: #DEDEDE;
 	}
 
 	.copyright {
-	width: 888px;
-	text-align: right;
-	font-size: x-small;
+		margin: 0 auto;
+		width: 777px;
+		text-align: right;
+		font-size: x-small;
 	}
 
 	.console {
-	margin: 0 auto;
-	padding: 24px;
-	border-radius: 88px;
-	height: 333px;
-	width: 777px;
-	background-color: #272822;
-	text-align: left;
+		margin: 0 auto;
+		padding: 24px;
+		border-radius: 88px;
+		height: 333px;
+		width: 777px;
+		background-color: #272822;
+		text-align: left;
 	}
 
 	/*LICENSE*/
 
 	.license {
-	text-align: left;
-	font-size: medium;
+		text-align: left;
+		font-size: medium;
 	}
 
 	/*INDEX*/
 
 	.construction {
-	font-size: large;
+		font-size: large;
 	}
 
 	/*BLOG*/
 
 	.blogPost {
-	margin: 0 auto;
-	border-radius: 8px;
-	width: 500px;
-	background-color: #272822;
-	text-align: center;
+		margin: 0 auto;
+		border-radius: 8px;
+		width: 500px;
+		background-color: #272822;
+		text-align: center;
 	}
 
 	.title {
-	font-size: large;
+		font-size: large;
 	}
 
 	.titleTime {
-	font-size: x-small;
+		font-size: x-small;
 	}
 
 	.content {
-	font-size: small;
-	text-align: left;
+		font-size: small;
+		text-align: left;
 	}
 }
 
@@ -76,67 +76,68 @@
 	/*UNIVERSAL*/
 
 	body {
-	background-color: #171814;
-	font-family: 'Ubuntu Mono', sans-serif;
-	color: #DEDEDE;
-	text-align: center;
-	font-size: medium;
+		background-color: #171814;
+		font-family: 'Ubuntu Mono', sans-serif;
+		color: #DEDEDE;
+		text-align: center;
+		font-size: medium;
 	}
 
 	a {
-	text-decoration: none; 
-	color: #DEDEDE;
+		text-decoration: none; 
+		color: #DEDEDE;
 	}
 
 	.copyright {
-	width: 1414px;
-	text-align: right;
-	font-size: small;
+		margin: 0 auto;
+		width: 888px;
+		text-align: right;
+		font-size: small;
 	}
 
 	.console {
-	margin: 0 auto;
-	padding: 24px;
-	border-radius: 88px;
-	height: 444px;
-	width: 888px;
-	background-color: #272822;
-	text-align: left;
+		margin: 0 auto;
+		padding: 24px;
+		border-radius: 88px;
+		height: 444px;
+		width: 888px;
+		background-color: #272822;
+		text-align: left;
 	}
 
 	/*LICENSE*/
 
 	.license {
-	text-align: left;
-	font-size: large;
+		text-align: left;
+		font-size: large;
 	}
 
 	/*INDEX*/
 
 	.construction {
-	font-size: xx-large;
+		font-size: xx-large;
 	}
 
 	/*BLOG*/
 
 	.blogPost {
-	margin: 0 auto;
-	border-radius: 8px;
-	width: 500px;
-	background-color: #272822;
-	text-align: center;
+		margin: 0 auto;
+		border-radius: 8px;
+		width: 500px;
+		background-color: #272822;
+		text-align: center;
 	}
 
 	.title {
-	font-size: x-large;
+		font-size: x-large;
 	}
 
 	.titleTime {
-	font-size: small;
+		font-size: small;
 	}
 
 	.content {
-	font-size: medium;
-	text-align: left;
+		font-size: medium;
+		text-align: left;
 	}
 }
