@@ -1,6 +1,6 @@
 
 /*------------1024 x 768------------*/
-@media only screen and (max-height: 768px) and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
 	
 	/*UNIVERSAL*/
 
@@ -18,9 +18,9 @@
 	}
 
 	.copyright {
-		width: 939px;
-		text-align: right;
-		font-size: x-small;
+	width: 888px;
+	text-align: right;
+	font-size: x-small;
 	}
 
 	.console {
@@ -28,95 +28,9 @@
 	padding: 24px;
 	border-radius: 88px;
 	height: 333px;
-	width: 888px;
+	width: 777px;
 	background-color: #272822;
 	text-align: left;
-	}
-
-	/*LICENSE*/
-
-	.license {
-	text-align: left;
-	font-size: medium;
-	}
-
-	/*INDEX*/
-
-	.construction {
-	font-size: large;
-	}
-
-	/*BLOG*/
-
-	.blogPost {
-	margin: 0 auto;
-	border-radius: 8px;
-	width: 500px;
-	background-color: #272822;
-	text-align: center;
-	}
-
-	.title {
-	font-size: large;
-	}
-
-	.titleTime {
-	font-size: x-small;
-	}
-
-	.content {
-	font-size: small;
-	text-align: left;
-	}
-}
-
-/*------------1024 x 769+------------*/
-@media only screen and (min-height: 769px) and (max-width: 1024px) {
-	
-	/*UNIVERSAL*/
-
-	.container {
-		min-height:100%;
-		position:relative;
-	}
-
-	body {
-	background-color: #171814;
-	font-family: 'Ubuntu Mono', sans-serif;
-	color: #DEDEDE;
-	text-align: center;
-	font-size: small;
-	}
-
-	a {
-	text-decoration: none; 
-	color: #DEDEDE;
-	}
-
-	.console {
-	margin: 0 auto;
-	padding: 24px;
-	border-radius: 88px;
-	height: 444px;
-	width: 888px;
-	background-color: #272822;
-	text-align: left;
-	padding-bottom: 24px;
-	}
-
-	footer div {
-	position: absolute;
-	bottom: 0;
-	right: 10px;
-	width: 100%;
-	text-align: right;
-	font-size: x-small;
-	height: 24px;
-	color: #444444;
-	}
-
-	footer div p a {
-	color: #666666;
 	}
 
 	/*LICENSE*/
@@ -157,7 +71,7 @@
 }
 
 /*------------HIGH RESOLUTION DISPLAYS------------*/
-@media only screen and (min-height: px) (min-width: 1025px) {
+@media only screen and (min-width: 1025px) {
 	
 	/*UNIVERSAL*/
 
@@ -174,6 +88,12 @@
 	color: #DEDEDE;
 	}
 
+	.copyright {
+	width: 1414px;
+	text-align: right;
+	font-size: small;
+	}
+
 	.console {
 	margin: 0 auto;
 	padding: 24px;
@@ -182,21 +102,6 @@
 	width: 888px;
 	background-color: #272822;
 	text-align: left;
-	}
-
-	footer div {
-		position: absolute;
-		bottom: 0;
-		right: 10px;
-		width: 100%;
-		text-align: right;
-		font-size: small;
-		height: 48px;
-		color: #444444;
-	}
-
-	footer div p a {
-	color: #666666;
 	}
 
 	/*LICENSE*/
