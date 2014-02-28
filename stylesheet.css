@@ -36,6 +36,8 @@
 	/*LICENSE*/
 
 	.license {
+		margin: 0 auto;
+		width: 888px;
 		text-align: left;
 		font-size: medium;
 	}
@@ -108,6 +110,8 @@
 	/*LICENSE*/
 
 	.license {
+		margin: 0 auto;
+		width: 1111px;
 		text-align: left;
 		font-size: large;
 	}
