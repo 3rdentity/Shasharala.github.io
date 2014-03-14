@@ -5,11 +5,14 @@
 
 	.post {
 		margin: 0 auto;
-		border-radius: 8px;
+		padding-top: 44px;
+		padding-bottom: 44px;
+		padding-left: 33px;
+		padding-right: 33px;
+		border-radius: 88px;
 		width: 600px;
-		background-color: #444444;
-		opacity: 0.7;
-		text-align: center;
+		background-color: #343434;
+		opacity: 0.8;
 	}
 
 	.content {
@@ -58,10 +61,6 @@
 
 	/*INDEX*/
 
-	.construction {
-		font-size: large;
-	}
-
 	.welcome {
 		font-size: large;
 	}
@@ -85,11 +84,14 @@
 
 	.post {
 		margin: 0 auto;
-		border-radius: 8px;
+		padding-top: 44px;
+		padding-bottom: 44px;
+		padding-left: 33px;
+		padding-right: 33px;
+		border-radius: 88px;
 		width: 800px;
-		background-color: #444444;
-		opacity: 0.7;
-		text-align: center;
+		background-color: #141414;
+		opacity: 0.4;
 	}
 
 	.content {
@@ -98,7 +100,7 @@
 	}
 
 	body {
-		background-color: #171814;
+		background-color: #111111;
 		font-family: 'Ubuntu Mono', sans-serif;
 		color: #DEDEDE;
 		text-align: center;
@@ -119,11 +121,14 @@
 
 	.console {
 		margin: 0 auto;
-		padding: 24px;
+		padding-top: 24px;
+		padding-bottom: 24px;
+		padding-left: 24px;
+		padding-right: 24px;
 		border-radius: 88px;
 		height: 444px;
 		width: 888px;
-		background-color: #272822;
+		background-color: #243444;
 		text-align: left;
 	}
 
@@ -137,10 +142,6 @@
 	}
 
 	/*INDEX*/
-
-	.construction {
-		font-size: xx-large;
-	}
 
 	.welcome {
 		font-size: x-large;
