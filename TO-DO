@@ -1,11 +1,9 @@
-- make sure that website appears appropriatly on tablets/consider making computer resolutions more responsive
+- make sure that website appears appropriatly on tablets/consider making computer resolutions more responsive ( AKA consider changing width from 'px' to '%' this may save on over-complicating things with @media)
 - add monster to website/find a way to present it
 - come up with way to present games on games.html
-- finish 1st blog post
 - finish personal license by combining cc by-nc 4.0 and aferro gpl license
 - meta, beta, theta, delta tags?
 - edit 404
-- cosider an outer/inner console or div inside a div to set up limits on size/shape of text in console
-- update content to have slight padding
-- create a specific content/container for index instead of using content mainly meant for blog?
 - change highlight color
+- consider making 'blog posts' seperate from other 'posts' with a different class name. mostly so that pages that are not /blog will be a familiar size ( AKA create a specific content/container for index instead of using content mainly meant for blog?)
+- consider making navigation with capital letters and centered. possibly bold?
