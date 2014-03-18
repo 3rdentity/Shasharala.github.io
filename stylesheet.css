@@ -4,20 +4,25 @@
 	/*UNIVERSAL*/
 
 	.post {
-		margin: 0 auto;
-		padding-top: 44px;
-		padding-bottom: 44px;
-		padding-left: 33px;
-		padding-right: 33px;
-		border-radius: 88px;
-		width: 600px;
+		margin-top: auto;
+		margin-bottom: 33px;
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 11px;
+		padding-bottom: 11px;
+		padding-left: 11px;
+		padding-right: 11px;
+		border-radius: 11px;
+		width: 666px;
 		background-color: #343434;
 		opacity: 0.8;
+		font-size: medium;
+		text-align: left;
 	}
 
 	.content {
-		font-size: small;
-		text-align: left;
+		padding-left:21px;
+		padding-right: 21px;
 	}
 	
 	body {
@@ -25,7 +30,7 @@
 		font-family: 'Ubuntu Mono', sans-serif;
 		color: #DEDEDE;
 		text-align: center;
-		font-size: small;
+		font-size: medium;
 	}
 
 	a {
@@ -34,17 +39,20 @@
 	}
 
 	.copyright {
-		margin: 0 auto;
+		margin: auto;
 		width: 777px;
 		text-align: right;
-		font-size: x-small;
+		font-size: small;
 	}
 
 	.console {
-		margin: 0 auto;
-		padding: 24px;
+		margin: auto;
+		padding-top: 24px;
+		padding-bottom: 24px;
+		padding-right: 24px;
+		padding-left: 24px;
 		border-radius: 88px;
-		height: 333px;
+		height: auto;
 		width: 777px;
 		background-color: #272822;
 		text-align: left;
@@ -53,26 +61,29 @@
 	/*LICENSE*/
 
 	.license {
-		margin: 0 auto;
+		margin: auto;
 		width: 888px;
 		text-align: left;
-		font-size: medium;
+		font-size: large;
 	}
 
 	/*INDEX*/
 
 	.welcome {
-		font-size: large;
+		font-size: x-large;
 	}
 
 	/*BLOG*/
 
 	.title {
-		font-size: large;
+		padding-left: 33px;
+		font-size: x-large;
 	}
 
 	.titleTime {
-		font-size: x-small;
+		padding-left: 48px;
+		font-size: small;
+		font-style: italic;
 	}
 
 }
@@ -83,20 +94,25 @@
 	/*UNIVERSAL*/
 
 	.post {
-		margin: 0 auto;
-		padding-top: 44px;
-		padding-bottom: 44px;
-		padding-left: 33px;
-		padding-right: 33px;
-		border-radius: 88px;
+		margin-top: auto;
+		margin-bottom: 33px;
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 11px;
+		padding-bottom: 11px;
+		padding-left: 11px;
+		padding-right: 11px;
+		border-radius: 11px;
 		width: 800px;
 		background-color: #141414;
-		opacity: 0.4;
+		opacity: 0.5;
+		font-size: medium;
+		text-align: left;
 	}
 
 	.content {
-		font-size: medium;
-		text-align: left;
+		padding-left:21px;
+		padding-right: 21px;
 	}
 
 	body {
@@ -113,20 +129,20 @@
 	}
 
 	.copyright {
-		margin: 0 auto;
+		margin: auto;
 		width: 888px;
 		text-align: right;
 		font-size: small;
 	}
 
 	.console {
-		margin: 0 auto;
+		margin: auto;
 		padding-top: 24px;
 		padding-bottom: 24px;
 		padding-left: 24px;
 		padding-right: 24px;
 		border-radius: 88px;
-		height: 444px;
+		height: auto;
 		width: 888px;
 		background-color: #243444;
 		text-align: left;
@@ -135,7 +151,7 @@
 	/*LICENSE*/
 
 	.license {
-		margin: 0 auto;
+		margin: auto;
 		width: 1111px;
 		text-align: left;
 		font-size: large;
@@ -150,11 +166,14 @@
 	/*BLOG*/
 
 	.title {
+		padding-left: 33px;
 		font-size: x-large;
 	}
 
 	.titleTime {
+		padding-left: 48px;
 		font-size: small;
+		font-style: italic;
 	}
 
 }
