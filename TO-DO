@@ -7,3 +7,4 @@
 - change highlight color
 - consider making 'blog posts' seperate from other 'posts' with a different class name. mostly so that pages that are not /blog will be a familiar size ( AKA create a specific content/container for index instead of using content mainly meant for blog?)
 - consider making navigation with capital letters and centered. possibly bold?
+- change a color
