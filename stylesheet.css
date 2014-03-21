@@ -176,4 +176,9 @@
 		font-style: italic;
 	}
 
+.editedOn {
+padding-left: 33px;
+font-style: italic;
+font-size: small;
+}
 }
