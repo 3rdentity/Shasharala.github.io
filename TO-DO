@@ -6,5 +6,7 @@
 - edit 404
 - change highlight color
 - consider making 'blog posts' seperate from other 'posts' with a different class name. mostly so that pages that are not /blog will be a familiar size ( AKA create a specific content/container for index instead of using content mainly meant for blog?)
+- fix each page using 'welcome' instead of their own class - related to 'blog posts' seperate from 'posts' issue
 - consider making navigation with capital letters and centered. possibly bold?
-- change a color
+- change .a color
+- edit about to be a tad more presentable?
