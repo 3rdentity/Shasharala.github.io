@@ -60,9 +60,21 @@
 
 	/*LICENSE*/
 
+	.license_container {
+		margin: auto;
+		padding-top: 24px;
+		padding-bottom: 24px;
+		padding-right: 24px;
+		padding-left: 24px;
+		border-radius: 88px;
+		height: auto;
+		width: 888px;
+		background-color: #272822;
+	}
+
 	.license {
 		margin: auto;
-		width: 888px;
+		width: 777px;
 		text-align: left;
 		font-size: large;
 	}
@@ -84,6 +96,12 @@
 		padding-left: 48px;
 		font-size: small;
 		font-style: italic;
+	}
+
+	.editedOn {
+		padding-left: 12px;
+		font-style: italic;
+		font-size: small;
 	}
 
 }
@@ -150,6 +168,18 @@
 
 	/*LICENSE*/
 
+	.license_container {
+		margin: auto;
+		padding-top: 24px;
+		padding-bottom: 24px;
+		padding-right: 24px;
+		padding-left: 24px;
+		border-radius: 88px;
+		height: auto;
+		width: 1212px;
+		background-color: #243444;
+	}
+
 	.license {
 		margin: auto;
 		width: 1111px;
@@ -176,9 +206,9 @@
 		font-style: italic;
 	}
 
-.editedOn {
-padding-left: 33px;
-font-style: italic;
-font-size: small;
-}
+	.editedOn {
+		padding-left: 12px;
+		font-style: italic;
+		font-size: small;
+	}
 }
