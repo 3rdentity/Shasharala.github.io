@@ -1,7 +1,6 @@
 - make sure that website appears appropriatly on tablets/consider making computer resolutions more responsive ( AKA consider changing width from 'px' to '%' this may save on over-complicating things with @media)
 - add monster to website/find a way to present it
 - come up with way to present games on games.html
-- finish personal license by combining cc by-nc 4.0 and aferro gpl license
 - meta, beta, theta, delta tags?
 - edit 404
 - change highlight color
@@ -10,6 +9,5 @@
 - consider making navigation with capital letters and centered. possibly bold?
 - change .a color
 - edit about to be a tad more presentable?
-- re-size images for license to be 25%. do not forget to put images in a div to make them resize more appropriately when accessing the website from different machines. give deep consideration to @media
-- consider an hr before banner or after banner
 - shame blog after running away from home
+- consider a contact page
