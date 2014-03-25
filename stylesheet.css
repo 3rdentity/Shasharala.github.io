@@ -38,6 +38,10 @@
 		color: #DEDEDE;
 	}
 
+	hr {
+		color: #DEDEDE;
+	}
+
 	.copyright {
 		margin: auto;
 		width: 777px;
@@ -77,6 +81,9 @@
 		width: 777px;
 		text-align: left;
 		font-size: large;
+	}
+
+	.terms {
 	}
 
 	/*INDEX*/
@@ -146,6 +153,10 @@
 		color: #DEDEDE;
 	}
 
+	hr {
+		color: #DEDEDE;
+	}
+
 	.copyright {
 		margin: auto;
 		width: 888px;
@@ -185,6 +196,9 @@
 		width: 1111px;
 		text-align: left;
 		font-size: large;
+	}
+
+	.terms {
 	}
 
 	/*INDEX*/
