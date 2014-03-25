@@ -73,21 +73,11 @@
 		height: auto;
 		width: 777px;
 		border-radius: 88px;
-		padding-top: 4px;
-		padding-bottom: 4px;
-		padding-left: 1px;
-		padding-right: 1px;
-		background-color: #243444;
-		text-align: left;
-		font-size: large;
-	}
-
-	.license div {
-		margin: auto;
-		width: 91%;
-		border-radius: 88px;
 		padding: 33px;
 		background-color: #181818;
+		border-style: solid;
+		border-color: #243444;
+		border-width: 4px;
 		font-size: large;
 		text-align: left;
 	}
@@ -147,6 +137,14 @@
 @media only screen and (min-width: 1025px) {
 	
 	/*UNIVERSAL*/
+
+	::selection {
+		color: #246988;
+	}
+
+	::-moz-selection {
+		color: #246988;	
+	}
 
 	.post {
 		margin-top: auto;
@@ -218,19 +216,11 @@
 		height: auto;
 		width: 888px;
 		border-radius: 88px;
-		padding-top: 4px;
-		padding-bottom: 4px;
-		padding-left: 1px;
-		padding-right: 1px;
-		background-color: #243444;
-	}
-
-	.license div {
-		margin: auto;
-		width: 92%;
-		border-radius: 88px;
 		padding: 33px;
 		background-color: #181818;
+		border-style: solid;
+		border-color: #243444;
+		border-width: 4px;
 		font-size: large;
 		text-align: left;
 	}
