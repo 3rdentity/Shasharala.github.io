@@ -3,6 +3,35 @@
 	
 	/*UNIVERSAL*/
 
+	a {
+		text-decoration: none; 
+		color: #DEDEDE;
+	}
+
+	a:hover {
+		background-color: #246988;
+	}
+
+	hr {
+		color: #DEDEDE;
+	}
+
+	body {
+		background-color: #111111;
+		font-family: 'Ubuntu Mono', sans-serif;
+		color: #DEDEDE;
+		text-align: center;
+		font-size: medium;
+	}
+
+	::selection {
+		color: #246988;
+	}
+
+	::-moz-selection {
+		color: #246988;	
+	}
+
 	.post {
 		margin-top: auto;
 		margin-bottom: 33px;
@@ -22,23 +51,6 @@
 	.content {
 		padding-left:21px;
 		padding-right: 21px;
-	}
-	
-	body {
-		background-color: #111111;
-		font-family: 'Ubuntu Mono', sans-serif;
-		color: #DEDEDE;
-		text-align: center;
-		font-size: medium;
-	}
-
-	a {
-		text-decoration: none; 
-		color: #DEDEDE;
-	}
-
-	hr {
-		color: #DEDEDE;
 	}
 
 	.copyright {
@@ -138,6 +150,27 @@
 	
 	/*UNIVERSAL*/
 
+	a {
+		text-decoration: none;
+		color: #DEDEDE;
+	}
+
+	a:hover {
+		background-color: #246988;
+	}
+
+	hr {
+		color: #DEDEDE;
+	}
+
+	body {
+		background-color: #111111;
+		font-family: 'Ubuntu Mono', sans-serif;
+		color: #DEDEDE;
+		text-align: center;
+		font-size: medium;
+	}
+
 	::selection {
 		color: #246988;
 	}
@@ -165,23 +198,6 @@
 	.content {
 		padding-left:21px;
 		padding-right: 21px;
-	}
-
-	body {
-		background-color: #111111;
-		font-family: 'Ubuntu Mono', sans-serif;
-		color: #DEDEDE;
-		text-align: center;
-		font-size: medium;
-	}
-
-	a {
-		text-decoration: none; 
-		color: #DEDEDE;
-	}
-
-	hr {
-		color: #DEDEDE;
 	}
 
 	.copyright {
