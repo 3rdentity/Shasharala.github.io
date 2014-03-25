@@ -10,3 +10,4 @@
 - consider making navigation with capital letters and centered. possibly bold?
 - change .a color
 - edit about to be a tad more presentable?
+- re-size images for license to be 25%. do not forget to put images in a div to make them resize more appropriately when accessing the website from different machines. give deep consideration to @media
