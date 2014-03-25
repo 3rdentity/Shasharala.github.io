@@ -14,8 +14,7 @@
 		padding-right: 11px;
 		border-radius: 11px;
 		width: 666px;
-		background-color: #343434;
-		opacity: 0.8;
+		background-color: #141414;
 		font-size: medium;
 		text-align: left;
 	}
@@ -26,7 +25,7 @@
 	}
 	
 	body {
-		background-color: #171814;
+		background-color: #111111;
 		font-family: 'Ubuntu Mono', sans-serif;
 		color: #DEDEDE;
 		text-align: center;
@@ -58,32 +57,63 @@
 		border-radius: 88px;
 		height: auto;
 		width: 777px;
-		background-color: #272822;
+		background-color: #243444;
 		text-align: left;
 	}
 
 	/*LICENSE*/
 
-	.license_container {
-		margin: auto;
-		padding-top: 24px;
-		padding-bottom: 24px;
-		padding-right: 24px;
-		padding-left: 24px;
-		border-radius: 88px;
-		height: auto;
-		width: 888px;
-		background-color: #272822;
+	.termsTitle {
+		padding-left: 33px;
+		font-size: xx-large;
 	}
 
 	.license {
 		margin: auto;
+		height: auto;
 		width: 777px;
+		border-radius: 88px;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		padding-left: 1px;
+		padding-right: 1px;
+		background-color: #243444;
 		text-align: left;
 		font-size: large;
 	}
 
+	.license div {
+		margin: auto;
+		width: 91%;
+		border-radius: 88px;
+		padding: 33px;
+		background-color: #181818;
+		font-size: large;
+		text-align: left;
+	}
+
 	.terms {
+		margin: auto;
+		width: 666px;
+		text-align: left;
+		font-size: large;
+	}
+
+	.terms ul {
+		list-style-type: none;
+		padding: 0px;
+		margin: 0px;
+	}
+	.terms ul li
+	{
+		background-repeat: no-repeat;
+		background-position: 0px 0px;
+		padding-left: 77px;
+		height: 66px;
+	}
+
+	.terms ul li span {
+		vertical-align: middle;
 	}
 
 	/*INDEX*/
@@ -130,7 +160,6 @@
 		border-radius: 11px;
 		width: 800px;
 		background-color: #141414;
-		opacity: 0.5;
 		font-size: medium;
 		text-align: left;
 	}
@@ -179,26 +208,55 @@
 
 	/*LICENSE*/
 
-	.license_container {
-		margin: auto;
-		padding-top: 24px;
-		padding-bottom: 24px;
-		padding-right: 24px;
-		padding-left: 24px;
-		border-radius: 88px;
-		height: auto;
-		width: 1212px;
-		background-color: #243444;
+	.termsTitle {
+		padding-left: 33px;
+		font-size: xx-large;
 	}
 
 	.license {
 		margin: auto;
-		width: 1111px;
+		height: auto;
+		width: 888px;
+		border-radius: 88px;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		padding-left: 1px;
+		padding-right: 1px;
+		background-color: #243444;
+	}
+
+	.license div {
+		margin: auto;
+		width: 92%;
+		border-radius: 88px;
+		padding: 33px;
+		background-color: #181818;
+		font-size: large;
+		text-align: left;
+	}
+
+	.terms {
+		margin: auto;
+		width: 777px;
 		text-align: left;
 		font-size: large;
 	}
 
-	.terms {
+	.terms ul {
+		list-style-type: none;
+		padding: 0px;
+		margin: 0px;
+	}
+	.terms ul li
+	{
+		background-repeat: no-repeat;
+		background-position: 0px 0px;
+		padding-left: 77px;
+		height: 66px;
+	}
+
+	.terms ul li span {
+		vertical-align: middle;
 	}
 
 	/*INDEX*/
@@ -225,4 +283,5 @@
 		font-style: italic;
 		font-size: small;
 	}
+
 }
