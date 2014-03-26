@@ -1,3 +1,60 @@
+/*UNIVERSAL/*
+
+.consoleHeader {
+		font-size: large;
+		text-align: center;
+	}
+
+/*LICENSE*/
+
+.termsTitle {
+		padding-left: 33px;
+		font-size: x-large;
+	}
+
+	.terms ul {
+		list-style-type: none;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	.terms ul li
+	{
+		background-repeat: no-repeat;
+		background-position: 0px 0px;
+		padding-left: 77px;
+		height: 66px;
+	}
+
+	.terms ul li span {
+		vertical-align: middle;
+	}
+
+/*INDEX*/
+
+	.welcome {
+		font-size: x-large;
+	}
+
+/*BLOG*/
+
+	.title {
+		padding-left: 33px;
+		font-size: x-large;
+	}
+
+	.titleTime {
+		padding-left: 48px;
+		font-size: small;
+		font-style: italic;
+	}
+
+	.editedOn {
+		padding-left: 12px;
+		font-style: italic;
+		font-size: small;
+	}
+
 /*------------1024 x 768------------*/
 @media only screen and (max-width: 1024px) {
 	
@@ -73,17 +130,7 @@
 		text-align: left;
 	}
 
-	.consoleHeader {
-		font-size: large;
-		text-align: center;
-	}
-
 	/*LICENSE*/
-
-	.termsTitle {
-		padding-left: 33px;
-		font-size: x-large;
-	}
 
 	.license {
 		margin: auto;
@@ -107,48 +154,6 @@
 		width: 666px;
 		text-align: left;
 		font-size: large;
-	}
-
-	.terms ul {
-		list-style-type: none;
-		padding: 0px;
-		margin: 0px;
-	}
-	.terms ul li
-	{
-		background-repeat: no-repeat;
-		background-position: 0px 0px;
-		padding-left: 77px;
-		height: 66px;
-	}
-
-	.terms ul li span {
-		vertical-align: middle;
-	}
-
-	/*INDEX*/
-
-	.welcome {
-		font-size: x-large;
-	}
-
-	/*BLOG*/
-
-	.title {
-		padding-left: 33px;
-		font-size: x-large;
-	}
-
-	.titleTime {
-		padding-left: 48px;
-		font-size: small;
-		font-style: italic;
-	}
-
-	.editedOn {
-		padding-left: 12px;
-		font-style: italic;
-		font-size: small;
 	}
 
 }
@@ -228,17 +233,7 @@
 		text-align: left;
 	}
 
-	.consoleHeader {
-		font-size: large;
-		text-align: center;
-	}
-
 	/*LICENSE*/
-
-	.termsTitle {
-		padding-left: 33px;
-		font-size: x-large;
-	}
 
 	.license {
 		margin: auto;
@@ -262,48 +257,6 @@
 		width: 777px;
 		text-align: left;
 		font-size: large;
-	}
-
-	.terms ul {
-		list-style-type: none;
-		padding: 0px;
-		margin: 0px;
-	}
-	.terms ul li
-	{
-		background-repeat: no-repeat;
-		background-position: 0px 0px;
-		padding-left: 77px;
-		height: 66px;
-	}
-
-	.terms ul li span {
-		vertical-align: middle;
-	}
-
-	/*INDEX*/
-
-	.welcome {
-		font-size: x-large;
-	}
-
-	/*BLOG*/
-
-	.title {
-		padding-left: 33px;
-		font-size: x-large;
-	}
-
-	.titleTime {
-		padding-left: 48px;
-		font-size: small;
-		font-style: italic;
-	}
-
-	.editedOn {
-		padding-left: 12px;
-		font-style: italic;
-		font-size: small;
 	}
 
 }
