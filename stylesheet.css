@@ -1,32 +1,32 @@
-/*UNIVERSAL/*
+/*------------UNIVERSAL------------*/
 
-	a {
-		text-decoration: none; 
-		color: #DEDEDE;
+a {
+	text-decoration: none; 
+	color: #DEDEDE;
+}
+
+a:hover {
+	background-color: #246988;
+}
+
+hr {
+	color: #DEDEDE;
 	}
 
-	a:hover {
-		background-color: #246988;
+body {
+	background-color: #111111;
+	font-family: 'Ubuntu Mono', sans-serif;
+	color: #DEDEDE;
+	text-align: center;
+	font-size: medium;
 	}
 
-	hr {
-		color: #DEDEDE;
+::selection {
+	color: #246988;
 	}
 
-	body {
-		background-color: #111111;
-		font-family: 'Ubuntu Mono', sans-serif;
-		color: #DEDEDE;
-		text-align: center;
-		font-size: medium;
-	}
-
-	::selection {
-		color: #246988;
-	}
-
-	::-moz-selection {
-		color: #246988;	
+::-moz-selection {
+	color: #246988;	
 	}
 
 .consoleHeader {
@@ -52,8 +52,7 @@
 		margin: 0px;
 	}
 
-	.terms ul li
-	{
+	.terms ul li {
 		background-repeat: no-repeat;
 		background-position: 0px 0px;
 		padding-left: 77px;
@@ -91,8 +90,6 @@
 
 /*------------1024 x 768------------*/
 @media only screen and (max-width: 1024px) {
-	
-	/*UNIVERSAL*/
 
 	.post {
 		margin-top: auto;
@@ -160,8 +157,6 @@
 
 /*------------HIGH RESOLUTION DISPLAYS------------*/
 @media only screen and (min-width: 1025px) {
-	
-	/*UNIVERSAL*
 
 	.post {
 		margin-top: auto;
