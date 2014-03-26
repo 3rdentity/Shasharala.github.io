@@ -73,11 +73,16 @@
 		text-align: left;
 	}
 
+	.consoleHeader {
+		font-size: large;
+		text-align: center;
+	}
+
 	/*LICENSE*/
 
 	.termsTitle {
 		padding-left: 33px;
-		font-size: xx-large;
+		font-size: x-large;
 	}
 
 	.license {
@@ -85,7 +90,10 @@
 		height: auto;
 		width: 777px;
 		border-radius: 88px;
-		padding: 33px;
+		padding-top: 16px;
+		padding-bottom: 33px;
+		padding-left: 33px;
+		padding-right: 33px;
 		background-color: #181818;
 		border-style: solid;
 		border-color: #243444;
@@ -220,11 +228,16 @@
 		text-align: left;
 	}
 
+	.consoleHeader {
+		font-size: large;
+		text-align: center;
+	}
+
 	/*LICENSE*/
 
 	.termsTitle {
 		padding-left: 33px;
-		font-size: xx-large;
+		font-size: x-large;
 	}
 
 	.license {
@@ -232,7 +245,10 @@
 		height: auto;
 		width: 888px;
 		border-radius: 88px;
-		padding: 33px;
+		padding-top: 16px;
+		padding-bottom: 33px;
+		padding-left: 33px;
+		padding-right: 33px;
 		background-color: #181818;
 		border-style: solid;
 		border-color: #243444;
