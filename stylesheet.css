@@ -15,6 +15,7 @@ hr {
 
 body {
 	background-color: #111111;
+	background-image: url("resources/bg.png");
 	font-family: 'Ubuntu Mono', sans-serif;
 	color: #DEDEDE;
 	text-align: center;
@@ -97,7 +98,7 @@ body {
 		padding-right: 33px;
 		background-color: #181818;
 		border-style: solid;
-		border-color: #243444;
+		border-color: #597695;
 		border-width: 4px;
 		font-size: large;
 		text-align: left;
@@ -153,7 +154,7 @@ body {
 		padding-right: 33px;
 		background-color: #181818;
 		border-style: solid;
-		border-color: #243444;
+		border-color: #597695;
 		border-width: 4px;
 		font-size: large;
 		text-align: left;
