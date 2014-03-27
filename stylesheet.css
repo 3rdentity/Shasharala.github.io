@@ -29,7 +29,7 @@ body {
 	color: #246988;	
 	}
 
-.consoleHeader {
+.header {
 		font-size: large;
 		text-align: center;
 	}
@@ -63,12 +63,6 @@ body {
 		vertical-align: middle;
 	}
 
-/*INDEX*/
-
-	.welcome {
-		font-size: x-large;
-	}
-
 /*BLOG*/
 
 	.title {
@@ -82,14 +76,34 @@ body {
 		font-style: italic;
 	}
 
-	.editedOn {
-		padding-left: 12px;
-		font-style: italic;
+/*------------1024 x 768------------*/
+@media only screen and (max-width: 1024px) {
+
+	.copyright {
+		margin: auto;
+		width: 777px;
+		text-align: right;
 		font-size: small;
 	}
 
-/*------------1024 x 768------------*/
-@media only screen and (max-width: 1024px) {
+	.container {
+		margin: auto;
+		height: auto;
+		width: 777px;
+		border-radius: 88px;
+		padding-top: 16px;
+		padding-bottom: 33px;
+		padding-left: 33px;
+		padding-right: 33px;
+		background-color: #181818;
+		border-style: solid;
+		border-color: #243444;
+		border-width: 4px;
+		font-size: large;
+		text-align: left;
+	}
+
+	/*BLOG*/
 
 	.post {
 		margin-top: auto;
@@ -107,32 +121,31 @@ body {
 		text-align: left;
 	}
 
+	/*LICENSE*/
+
+	.terms {
+		margin: auto;
+		width: 666px;
+		text-align: left;
+		font-size: large;
+	}
+
+}
+
+/*------------HIGH RESOLUTION DISPLAYS------------*/
+@media only screen and (min-width: 1025px) {
+
 	.copyright {
 		margin: auto;
-		width: 777px;
+		width: 888px;
 		text-align: right;
 		font-size: small;
 	}
 
-	.console {
-		margin: auto;
-		padding-top: 24px;
-		padding-bottom: 24px;
-		padding-right: 24px;
-		padding-left: 24px;
-		border-radius: 88px;
-		height: auto;
-		width: 777px;
-		background-color: #243444;
-		text-align: left;
-	}
-
-	/*LICENSE*/
-
-	.license {
+	.container {
 		margin: auto;
 		height: auto;
-		width: 777px;
+		width: 888px;
 		border-radius: 88px;
 		padding-top: 16px;
 		padding-bottom: 33px;
@@ -146,17 +159,7 @@ body {
 		text-align: left;
 	}
 
-	.terms {
-		margin: auto;
-		width: 666px;
-		text-align: left;
-		font-size: large;
-	}
-
-}
-
-/*------------HIGH RESOLUTION DISPLAYS------------*/
-@media only screen and (min-width: 1025px) {
+	/*BLOG*/
 
 	.post {
 		margin-top: auto;
@@ -174,44 +177,7 @@ body {
 		text-align: left;
 	}
 
-	.copyright {
-		margin: auto;
-		width: 888px;
-		text-align: right;
-		font-size: small;
-	}
-
-	.console {
-		margin: auto;
-		padding-top: 24px;
-		padding-bottom: 24px;
-		padding-left: 24px;
-		padding-right: 24px;
-		border-radius: 88px;
-		height: auto;
-		width: 888px;
-		background-color: #243444;
-		text-align: left;
-	}
-
 	/*LICENSE*/
-
-	.license {
-		margin: auto;
-		height: auto;
-		width: 888px;
-		border-radius: 88px;
-		padding-top: 16px;
-		padding-bottom: 33px;
-		padding-left: 33px;
-		padding-right: 33px;
-		background-color: #181818;
-		border-style: solid;
-		border-color: #243444;
-		border-width: 4px;
-		font-size: large;
-		text-align: left;
-	}
 
 	.terms {
 		margin: auto;

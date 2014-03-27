@@ -1,8 +1,5 @@
-- make sure that website appears appropriatly on tablets/consider making computer resolutions more responsive ( AKA consider changing width from 'px' to '%' this may save on over-complicating things with @media)
-- add monster to website/find a way to present it
-- come up with way to present games on games.html
-- meta, beta, theta, delta tags?
+- make sure that website appears appropriatly on tablets/phones
+- meta tags?
 - edit 404
-- make stylesheets more readable/less redundant
-- shame blog after running away from home
 - consider a contact page
+- consider a background image/color overhaul. also, consider recoloring bullets for license
