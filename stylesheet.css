@@ -15,7 +15,7 @@ hr {
 
 body {
 	background-color: #111111;
-	background-image: url("resources/bg3.png");
+	/*background-image: url("resources/bg3.png");*/
 	font-family: 'Ubuntu Mono', sans-serif;
 	color: #DEDEDE;
 	text-align: center;
