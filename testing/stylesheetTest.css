@@ -1,3 +1,7 @@
+body {
+	overflow: hidden;
+}
+
 #medicFace {
 	position: absolute;
 	bottom: -299px;
