@@ -2,32 +2,83 @@
 
 a {
 	text-decoration: none; 
-	color: #DEDEDE;
+	color: #888888;
+	background-color: #090909;
 }
 
 a:hover {
-	background-color: #246988;
+	animation-name: hoverColor;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	/*Safari & Chrome*/
+	-webkit-animation-name: hoverColor;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
 }
 
-hr {
-	color: #DEDEDE;
-	}
+@keyframes hoverColor {
+	0% {background-color: #090909;}
+	50% {background-color: #300949;}
+	100% {background-color: #090909;}
+}
+
+@-webkit-keyframes hoverColor {
+	0% {background-color: #090909;}
+	50% {background-color: #300949;}
+	100% {background-color: #090909;}
+}
+
+hr{
+   border: 1px solid #010101;
+}
 
 body {
 	background-color: #111111;
-	/*background-image: url("resources/bg3.png");*/
+	background-image: url("resources/background/bg4.png");
 	font-family: 'Ubuntu Mono', sans-serif;
-	color: #DEDEDE;
+	color: #888888;
 	text-align: center;
 	font-size: medium;
 	}
 
+#banner {
+	color: #888888;
+	position: absolute;
+	right: 0;
+	left: 0;
+	z-index: -1;
+	animation-name: bannerSlip;
+	animation-delay: 1s;
+	animation-duration: 8s;
+	animation-iteration-count: infinite;
+	/*Safari & Chrome*/
+	-webkit-animation-name: bannerSlip;
+	-webkit-animation-duration: 8s;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-iteration-count: infinite;
+}
+
+@keyframes bannerSlip {
+	0% {padding-top: 0px;}
+	50% {padding-top: 12px;}
+	100% {padding-top: 0px;}
+}
+
+/*Safari & Chrome*/
+@-webkit-keyframes bannerSlip {
+	0% {padding-top: 0px;}
+	50% {padding-top: 12px;}
+	100% {padding-top: 0px;}
+}
+
 ::selection {
-	color: #246988;
+	background-color: #050024;
+	color: #888888;
 	}
 
 ::-moz-selection {
-	color: #246988;	
+	background-color: #050024;
+	color: #888888;	
 	}
 
 .header {
@@ -61,6 +112,7 @@ body {
 	}
 
 	.terms ul li span {
+		background-color: #070707;
 		vertical-align: middle;
 	}
 
@@ -81,6 +133,7 @@ body {
 @media only screen and (max-width: 1024px) {
 
 	.copyright {
+		color: #888888;
 		margin: auto;
 		width: 777px;
 		text-align: right;
@@ -96,9 +149,9 @@ body {
 		padding-bottom: 33px;
 		padding-left: 33px;
 		padding-right: 33px;
-		background-color: #181818;
+		background-color: #101010;
 		border-style: solid;
-		border-color: #597695;
+		border-color: #010101;
 		border-width: 4px;
 		font-size: large;
 		text-align: left;
@@ -137,6 +190,7 @@ body {
 @media only screen and (min-width: 1025px) {
 
 	.copyright {
+		color: #888888;
 		margin: auto;
 		width: 888px;
 		text-align: right;
@@ -152,9 +206,9 @@ body {
 		padding-bottom: 33px;
 		padding-left: 33px;
 		padding-right: 33px;
-		background-color: #181818;
+		background-color: #101010;
 		border-style: solid;
-		border-color: #597695;
+		border-color: #010101;
 		border-width: 4px;
 		font-size: large;
 		text-align: left;
