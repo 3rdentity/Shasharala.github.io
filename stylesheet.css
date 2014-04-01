@@ -3,7 +3,6 @@
 a {
 	text-decoration: none; 
 	color: #888888;
-	background-color: #090909;
 }
 
 a:hover {
@@ -17,15 +16,15 @@ a:hover {
 }
 
 @keyframes hoverColor {
-	0% {background-color: #090909;}
+	0% {background-color: #0F0415;}
 	50% {background-color: #300949;}
-	100% {background-color: #090909;}
+	100% {background-color: #0F0415;}
 }
 
 @-webkit-keyframes hoverColor {
-	0% {background-color: #090909;}
+	0% {background-color: #0F0415;}
 	50% {background-color: #300949;}
-	100% {background-color: #090909;}
+	100% {background-color: #0F0415;}
 }
 
 hr{
@@ -33,8 +32,8 @@ hr{
 }
 
 body {
-	background-color: #111111;
-	background-image: url("resources/background/bg4.png");
+	background-color: #101010;
+	background-image: url("resources/background/purpleMonster.png");
 	font-family: 'Ubuntu Mono', sans-serif;
 	color: #888888;
 	text-align: center;
@@ -42,7 +41,7 @@ body {
 	}
 
 #banner {
-	color: #888888;
+	color: #AAAAAA;
 	position: absolute;
 	right: 0;
 	left: 0;
@@ -112,7 +111,7 @@ body {
 	}
 
 	.terms ul li span {
-		background-color: #070707;
+		
 		vertical-align: middle;
 	}
 
@@ -171,6 +170,8 @@ body {
 		border-radius: 11px;
 		width: 666px;
 		background-color: #141414;
+		border-style: dotted;
+		border-color: #010101;
 		font-size: medium;
 		text-align: left;
 	}
@@ -228,6 +229,8 @@ body {
 		border-radius: 11px;
 		width: 800px;
 		background-color: #141414;
+		border-style: dotted;
+		border-color: #010101;
 		font-size: medium;
 		text-align: left;
 	}
