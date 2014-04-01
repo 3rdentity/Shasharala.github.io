@@ -2,7 +2,7 @@
 
 a {
 	text-decoration: none; 
-	color: #888888;
+	color: #999999;
 }
 
 a:hover {
@@ -28,14 +28,14 @@ a:hover {
 }
 
 hr{
-   border: 1px solid #010101;
+   border: 1px solid #4A4B4C;
 }
 
 body {
 	background-color: #101010;
 	background-image: url("resources/background/purpleMonster.png");
 	font-family: 'Ubuntu Mono', sans-serif;
-	color: #888888;
+	color: #999999;
 	text-align: center;
 	font-size: medium;
 	}
@@ -71,13 +71,13 @@ body {
 }
 
 ::selection {
-	background-color: #050024;
-	color: #888888;
+	background-color: #060024;
+	color: #999999;
 	}
 
 ::-moz-selection {
-	background-color: #050024;
-	color: #888888;	
+	background-color: #060024;
+	color: #999999;	
 	}
 
 .header {
@@ -111,7 +111,7 @@ body {
 	}
 
 	.terms ul li span {
-		
+		color: #AAAAAA;
 		vertical-align: middle;
 	}
 
@@ -132,7 +132,7 @@ body {
 @media only screen and (max-width: 1024px) {
 
 	.copyright {
-		color: #888888;
+		color: #999999;
 		margin: auto;
 		width: 777px;
 		text-align: right;
@@ -169,7 +169,7 @@ body {
 		padding-right: 11px;
 		border-radius: 11px;
 		width: 666px;
-		background-color: #141414;
+		background-color: #101010;
 		border-style: dotted;
 		border-color: #010101;
 		font-size: medium;
@@ -191,7 +191,7 @@ body {
 @media only screen and (min-width: 1025px) {
 
 	.copyright {
-		color: #888888;
+		color: #999999;
 		margin: auto;
 		width: 888px;
 		text-align: right;
@@ -207,7 +207,7 @@ body {
 		padding-bottom: 33px;
 		padding-left: 33px;
 		padding-right: 33px;
-		background-color: #101010;
+		background-color: #111111;
 		border-style: solid;
 		border-color: #010101;
 		border-width: 4px;
@@ -228,7 +228,7 @@ body {
 		padding-right: 11px;
 		border-radius: 11px;
 		width: 800px;
-		background-color: #141414;
+		background-color: #101010;
 		border-style: dotted;
 		border-color: #010101;
 		font-size: medium;
