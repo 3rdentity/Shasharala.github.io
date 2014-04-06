@@ -5,6 +5,10 @@ a {
 	color: #999999;
 }
 
+.aLink {
+	text-decoration: underline;
+}
+
 a:hover {
 	animation-name: hoverColor;
 	animation-duration: 1s;
@@ -38,11 +42,12 @@ body {
 	color: #999999;
 	text-align: center;
 	font-size: medium;
-	}
+}
 
 #banner {
 	color: #AAAAAA;
 	position: absolute;
+	top: -1px;
 	right: 0;
 	left: 0;
 	z-index: -1;
@@ -73,60 +78,64 @@ body {
 ::selection {
 	background-color: #060024;
 	color: #999999;
-	}
+}
 
 ::-moz-selection {
 	background-color: #060024;
 	color: #999999;	
-	}
+}
 
 .header {
 		font-size: large;
 		text-align: center;
-	}
+}
+
+.intro {
+	text-align: center;
+}
 
 .content {
 		padding-left:21px;
 		padding-right: 21px;
-	}
+}
 
 /*LICENSE*/
 
 .termsTitle {
 		padding-left: 33px;
 		font-size: x-large;
-	}
+}
 
-	.terms ul {
+.terms ul {
 		list-style-type: none;
 		padding: 0px;
 		margin: 0px;
-	}
+}
 
-	.terms ul li {
+.terms ul li {
 		background-repeat: no-repeat;
 		background-position: 0px 0px;
 		padding-left: 77px;
 		height: 66px;
-	}
+}
 
-	.terms ul li span {
+.terms ul li span {
 		color: #AAAAAA;
 		vertical-align: middle;
-	}
+}
 
 /*BLOG*/
 
-	.title {
+.title {
 		padding-left: 33px;
 		font-size: x-large;
-	}
+}
 
-	.titleTime {
+.titleTime {
 		padding-left: 48px;
 		font-size: small;
 		font-style: italic;
-	}
+}
 
 /*------------1024 x 768------------*/
 @media only screen and (max-width: 1024px) {
