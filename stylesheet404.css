@@ -66,10 +66,12 @@ a {
 	}
 
 	.catGhost {
+		z-index: -1;
+		opacity: .6;
 		padding-top: 11px;
 		padding-left: 44px;
 		width: 484px;
-		height: 325px;
+		height: 484px;
 	}
 }
 
@@ -120,10 +122,12 @@ a {
 	}
 
 	.catGhost {
+		z-index: -1;
+		opacity: .6;
 		padding-top: 21px;
 		padding-left: 44px;
 		width: 616px;
-		height: 414px;
+		height: 616px;
 	}
 }
 
@@ -136,7 +140,7 @@ a {
 		opacity: 0;
 		text-decoration: underline;
 		font-size: 111px;
-		margin-top: -444px;
+		margin-top: -666px;
 		padding-left: 1313px;
 		animation-name: waitToAppear;
 		animation-delay: 3s;
@@ -174,9 +178,11 @@ a {
 	}
 
 	.catGhost {
+		z-index: -1;
+		opacity: .6;
 		padding-top: 33px;
 		padding-left: 88px;
 		width: 735px;
-		height: 494px;
+		height: 735px;
 	}
 }
