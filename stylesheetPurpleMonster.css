@@ -137,6 +137,12 @@ body {
 		font-style: italic;
 }
 
+.edited {
+	padding-left: 16px;
+	font-size: small;
+	font-style: italic;
+}
+
 /*------------1024 x 768------------*/
 @media only screen and (max-width: 1024px) {
 
