@@ -97,10 +97,6 @@ body {
 
 .header {
 	display: inline-block;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-right: 0px;
 	padding-top: 0px;
 	padding-bottom: 0px;
 	padding-left: 8px;
@@ -108,9 +104,9 @@ body {
 	font-size: large;
 	text-align: center;
 	border-style: solid;
-	border-color: #4A4B4C	;
+	border-color: #4A4B4C;
 	border-width: 1px;
-	border-radius: 88px;
+	border-radius: 3px;
 }
 
 .content {
