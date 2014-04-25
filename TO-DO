@@ -1,6 +1,5 @@
 - make sure that website appears appropriatly on tablets/phones
 - edit favicon
-- fix problem with divs in header not being full-on links
 - work on leviMonster & think of a proper color for .container bg
 - think of a better way to represent 404. include the fact that they are still on/have arrived at shasharala.tk and that it is a 404 page
 - php to store blog posts/comments/banner/header? SQL to create a database? Hosting website on server computer?
