@@ -3,3 +3,4 @@
 - work on leviMonster & think of a proper color for .container bg
 - think of a better way to represent 404. include the fact that they are still on/have arrived at shasharala.tk and that it is a 404 page
 - php to store blog posts/comments/banner/header? SQL to create a database? Hosting website on server computer?
+- think about making a multitude of links on the site target=_blank
