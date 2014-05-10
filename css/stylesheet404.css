@@ -30,6 +30,12 @@ a {
 		text-decoration: underline;
 		font-size: 44px;
 		margin-top: -234px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		padding-top: 0px;
+		padding-right: 0px;
+		padding-bottom: 0px;
 		padding-left: 666px;
 		animation-name: waitToAppear;
 		animation-delay: 3s;
@@ -59,9 +65,9 @@ a {
 		width: 444px;
 		height: 111px;
 		padding-top: 44px;
+		padding-right: 33px;
 		padding-bottom: 0px;
 		padding-left: 444px;
-		padding-right: 33px;
 		text-align: center;
 		font-size: 77px;
 	}
@@ -70,6 +76,8 @@ a {
 		z-index: -1;
 		opacity: .6;
 		padding-top: 11px;
+		padding-right: 0px;
+		padding-bottom: 0px;
 		padding-left: 44px;
 		width: 484px;
 		height: 484px;
@@ -86,6 +94,12 @@ a {
 		text-decoration: underline;
 		font-size: 111px;
 		margin-top: -444px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		padding-top: 0px;
+		padding-right: 0px;
+		padding-bottom: 0px;
 		padding-left: 999px;
 		animation-name: waitToAppear;
 		animation-delay: 3s;
@@ -115,9 +129,9 @@ a {
 		width: 777px;
 		height: 111px;
 		padding-top: 111px;
+		padding-right: 33px;
 		padding-bottom: 0px;
 		padding-left: 666px;
-		padding-right: 33px;
 		text-align: center;
 		font-size: 111px;
 	}
@@ -126,6 +140,8 @@ a {
 		z-index: -1;
 		opacity: .6;
 		padding-top: 21px;
+		padding-right: 0px;
+		padding-bottom: 0px;
 		padding-left: 44px;
 		width: 616px;
 		height: 616px;
@@ -142,6 +158,12 @@ a {
 		text-decoration: underline;
 		font-size: 111px;
 		margin-top: -666px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		padding-top: 0px;
+		padding-right: 0px;
+		padding-bottom: 0px;
 		padding-left: 1313px;
 		animation-name: waitToAppear;
 		animation-delay: 3s;
@@ -171,9 +193,9 @@ a {
 		width: 888px;
 		height: 111px;
 		padding-top: 111px;
+		padding-right: 33px;
 		padding-bottom: 0px;
 		padding-left: 919px;
-		padding-right: 33px;
 		text-align: center;
 		font-size: 131px;
 	}
@@ -182,6 +204,8 @@ a {
 		z-index: -1;
 		opacity: .6;
 		padding-top: 33px;
+		padding-right: 0px;
+		padding-bottom: 0px;
 		padding-left: 88px;
 		width: 735px;
 		height: 735px;

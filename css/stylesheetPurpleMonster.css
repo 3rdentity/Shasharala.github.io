@@ -142,9 +142,9 @@ body {
 .header {
 	display: inline-block;
 	padding-top: 0px;
+	padding-right: 8px;
 	padding-bottom: 0px;
 	padding-left: 8px;
-	padding-right: 8px;
 	font-size: large;
 	text-align: center;
 	border-style: solid;
@@ -154,13 +154,18 @@ body {
 }
 
 .content {
-	padding-left:21px;
+	padding-top: 0px;
 	padding-right: 21px;
+	padding-bottom: 0px;
+	padding-left:21px;
 }
 
 /*LICENSE*/
 
 .termsTitle {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
 	padding-left: 33px;
 	font-size: x-large;
 }
@@ -174,6 +179,9 @@ body {
 .terms ul li {
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
 	padding-left: 77px;
 	height: 66px;
 }
@@ -187,8 +195,8 @@ body {
 
 .contact {
 	padding-top: 33px;
-	padding-bottom: 0px;
 	padding-right: 0px;
+	padding-bottom: 0px;
 	padding-left: 33px;
 	font-style: italic;
 }
@@ -197,21 +205,33 @@ body {
 
 .intro {
 	text-align: center;
+	margin-top: 0px;
+	margin-right: 0px;
 	margin-bottom: 44px;
+	margin-left: 0px;
 }
 
 .title {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
 	padding-left: 33px;
 	font-size: x-large;
 }
 
 .titleTime {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
 	padding-left: 48px;
 	font-size: small;
 	font-style: italic;
 }
 
 .note {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
 	padding-left: 16px;
 	font-size: small;
 	font-style: italic;
@@ -224,6 +244,9 @@ body {
 		color: #999999;
 		margin: auto;
 		padding-top: 123px;
+		padding-right: 0px;
+		padding-bottom: 0px;
+		padding-left: 0px;
 		width: 777px;
 		text-align: right;
 		font-size: small;
@@ -231,15 +254,15 @@ body {
 
 	.container {
 		margin-top: auto;
+		margin-right: auto;
 		margin-bottom: 44px;
 		margin-left: auto;
-		margin-right: auto;
 		height: auto;
 		width: 777px;
 		padding-top: 16px;
+		padding-right: 33px;
 		padding-bottom: 33px;
 		padding-left: 33px;
-		padding-right: 33px;
 		background-color: #111111;
 		border-style: solid;
 		border-color: #010101;
@@ -253,13 +276,13 @@ body {
 
 	.post {
 		margin-top: auto;
+		margin-right: auto;
 		margin-bottom: 33px;
 		margin-left: auto;
-		margin-right: auto;
 		padding-top: 11px;
+		padding-right: 11px;
 		padding-bottom: 11px;
 		padding-left: 11px;
-		padding-right: 11px;
 		width: 666px;
 		font-size: medium;
 		text-align: left;
@@ -283,6 +306,9 @@ body {
 		color: #999999;
 		margin: auto;
 		padding-top: 123px;
+		padding-right: 0px;
+		padding-bottom: 0px;
+		padding-left: 0px;
 		width: 888px;
 		text-align: right;
 		font-size: small;
@@ -290,16 +316,16 @@ body {
 
 	.container {
 		margin-top: auto;
+		margin-right: auto;
 		margin-bottom: 44px;
 		margin-left: auto;
-		margin-right: auto;
 		height: auto;
 		width: 888px;
 		border-radius: 88px;
 		padding-top: 16px;
+		padding-right: 33px;
 		padding-bottom: 33px;
 		padding-left: 33px;
-		padding-right: 33px;
 		background-color: #101010;
 		border-style: solid;
 		border-color: #010101;
@@ -312,13 +338,13 @@ body {
 
 	.post {
 		margin-top: auto;
+		margin-right: auto;
 		margin-bottom: 33px;
 		margin-left: auto;
-		margin-right: auto;
 		padding-top: 11px;
+		padding-right: 11px;
 		padding-bottom: 11px;
 		padding-left: 11px;
-		padding-right: 11px;
 		width: 800px;
 		font-size: medium;
 		text-align: left;
