@@ -1,0 +1,343 @@
+/*------------ANIMATIONS------------*/
+
+@keyframes invisToVis {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+/*Safari & Chrome*/
+@-webkit-keyframes invisToVis {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes purpleTransition {
+	0% {background-color: #0F0415;}
+	50% {background-color: #300949;}
+	100% {background-color: #0F0415;}
+}
+/*Safari & Chrome*/
+@-webkit-keyframes purpleTransition {
+	0% {background-color: #0F0415;}
+	50% {background-color: #300949;}
+	100% {background-color: #0F0415;}
+}
+
+@keyframes randoRotate {
+	0% {transform: rotate(0deg);}
+	25% {transform: rotate(360deg);}
+	50% {transform: rotate(90deg);}
+	75% {transform: rotate(270deg);}
+	100% {transform: rotate(180deg);}
+}
+/*Safari & Chrome*/
+@-webkit-keyframes randoRotate {
+	0% {-webkit-transform: rotate(0deg);}
+	25% {-webkit-transform: rotate(360deg);}
+	50% {-webkit-transform: rotate(90deg);}
+	75% {-webkit-transform: rotate(270deg);}
+	100% {-webkit-transform: rotate(180deg);}
+}
+
+@keyframes slip {
+	0% {padding-top: 0px;}
+	50% {padding-top: 12px;}
+	100% {padding-top: 0px;}
+}
+/*Safari & Chrome*/
+@-webkit-keyframes slip {
+	0% {padding-top: 0px;}
+	50% {padding-top: 12px;}
+	100% {padding-top: 0px;}
+}
+
+.randoRotate {
+	animation-name: randoRotate;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	/*Safari & Chrome*/
+	-webkit-animation-name: randoRotate;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+}
+
+/*------------UNIVERSAL------------*/
+
+body {
+	background-color: #101010;
+	background-image: url("resources/background/purpleMonster.png");
+	font-family: 'Ubuntu Mono', sans-serif;
+	color: #999999;
+	text-align: center;
+	font-size: medium;
+}
+
+::selection {
+	background-color: #060024;
+	color: #999999;
+}
+
+::-moz-selection {
+	background-color: #060024;
+	color: #999999;	
+}
+
+a:hover {
+	animation-name: purpleTransition;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	/*Safari & Chrome*/
+	-webkit-animation-name: purpleTransition;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+}
+
+a {
+	text-decoration: none; 
+	color: #999999;
+}
+
+.aLink {
+	border-bottom: 1px dotted;
+}
+
+.banner {
+	color: #AAAAAA;
+	position: absolute;
+	top: -1px;
+	right: 0;
+	left: 0;
+	z-index: -1;
+	animation-name: slip;
+	animation-delay: 1s;
+	animation-duration: 8s;
+	animation-iteration-count: infinite;
+	/*Safari & Chrome*/
+	-webkit-animation-name: slip;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-duration: 8s;
+	-webkit-animation-iteration-count: infinite;
+}
+
+.outdatedBrowser {
+	margin: 123px auto -131px auto;
+	height: 55px;
+	width: 666px;
+	
+	background-color: #F4CA22;
+	color: #000000;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.outdatedBrowser .aLink{
+	
+	color: #000000;
+}
+
+.container {
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: 44px;
+	margin-left: auto;
+	height: auto;
+	width: 777px;
+	padding-top: 16px;
+	padding-right: 33px;
+	padding-bottom: 33px;
+	padding-left: 33px;
+	background-color: #111111;
+	border-style: solid;
+	border-color: #010101;
+	border-width: 4px;
+	border-radius: 88px;
+	font-size: large;
+	text-align: left;
+}
+
+hr{
+   border: 1px solid #4A4B4C;
+}
+
+.header {
+	display: inline-block;
+	padding-top: 0px;
+	padding-right: 8px;
+	padding-bottom: 0px;
+	padding-left: 8px;
+	font-size: large;
+	text-align: center;
+	border-style: solid;
+	border-color: #4A4B4C;
+	border-width: 1px;
+	border-radius: 3px;
+}
+
+.content {
+	padding-top: 0px;
+	padding-right: 21px;
+	padding-bottom: 0px;
+	padding-left:21px;
+}
+
+/*404*/
+
+.leavePrompt {
+	font-family: Special Elite;
+	width: 111px;
+	height: 111px;
+	opacity: 0;
+	text-decoration: underline;
+	font-size: 44px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 111px;
+	animation-name: invisToVis;
+	animation-delay: 3s;
+	animation-duration: 8s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	/*Safari & Chrome*/
+	-webkit-animation-name: invisToVis;
+	-webkit-animation-delay: 3s;
+	-webkit-animation-duration: 8s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.warning {
+	font-family: Special Elite;
+	width: 444px;
+	height: 234px;
+	margin-top: -111px;
+	padding-top: 0px;
+	padding-right: 33px;
+	padding-bottom: 0px;
+	padding-left: 333px;
+	text-align: center;
+	font-size: 77px;
+}
+
+.catGhost {
+	opacity: .6;
+	padding-top: 11px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	width: 484px;
+	height: 484px;
+}
+
+/*LICENSE*/
+
+.termsTitle {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 33px;
+	font-size: x-large;
+}
+
+.terms {
+	margin: auto;
+	width: 666px;
+	text-align: left;
+	font-size: large;
+}
+
+.terms ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.terms ul li {
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 77px;
+	height: 66px;
+}
+
+.terms ul li span {
+	color: #AAAAAA;
+}
+
+/*ABOUT*/
+
+.contact {
+	padding-top: 33px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 33px;
+	font-style: italic;
+}
+
+/*BLOG*/
+
+.intro {
+	text-align: center;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 44px;
+	margin-left: 0px;
+}
+
+.title {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 33px;
+	font-size: x-large;
+}
+
+.titleTime {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 48px;
+	font-size: small;
+	font-style: italic;
+}
+
+.note {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 16px;
+	font-size: small;
+	font-style: italic;
+}
+
+.copyright {
+	color: #999999;
+	margin: auto;
+	padding-top: 123px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	width: 777px;
+	text-align: right;
+	font-size: small;
+}
+
+.post {
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: 33px;
+	margin-left: auto;
+	padding-top: 11px;
+	padding-right: 11px;
+	padding-bottom: 11px;
+	padding-left: 11px;
+	width: 666px;
+	font-size: medium;
+	text-align: left;
+}
