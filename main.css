@@ -118,11 +118,10 @@ a {
 	-webkit-animation-iteration-count: infinite;
 }
 
-.outdatedBrowser {
+.notification {
 	margin: 123px auto -131px auto;
 	height: 55px;
 	width: 666px;
-	
 	background-color: #F4CA22;
 	color: #000000;
 	border-color: #000000;
@@ -130,7 +129,7 @@ a {
 	border-width: 1px;
 }
 
-.outdatedBrowser .aLink{
+.notification .aLink{
 	
 	color: #000000;
 }
