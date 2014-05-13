@@ -5,6 +5,7 @@
 		<meta name="description" content="main repository of Shasharala's thoughts">
 		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Special+Elite'>
 		<link rel='stylesheet' type='text/css' href='main.css'>
+		<script src="script.js"></script>
 		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -24,13 +25,14 @@
 	</head>
 	<body>
 		<div class="container">
+			<!--notify user that their IE browser is outdated and request that they update with an option to close notification-->
 			<!--[if lt IE 9]>
-				<div id="tempContainer0">
-					<div class="notification">
-						<button  onclick="remove(0)" style="float: right; background-color: #F4CA22; font-size: 8px;">X</button>This website uses HTML5 and CSS3 which your current browser does not appear to support. It is recommended to upgrade to the latest version of:<b><br><a class="aLink" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a>, <a class="aLink" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>, <a class="aLink" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a class="aLink" href="http://support.apple.com/downloads/#safari" target="_blank">Safari</a>, or <a class="aLink" href="http://www.opera.com/computer/windows" target="_blank">Opera</a></b>.
+				<div id="notifyContainer">
+					<div class="notify" style="margin: -8px auto auto auto; padding: 0px 0px 8px 0px; text-align: center">
+						<button  onclick="setCookie('oldIE', 'clicked'); hide('notifyContainer');" style="float: right; background-color: #F4CA22; font-size: 8px;">X</button>This website uses HTML5 and CSS3 which your current browser does not appear to support. It is recommended to upgrade to the latest version of:<b><br><a class="aLink" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a>, <a class="aLink" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>, <a class="aLink" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a class="aLink" href="http://support.apple.com/downloads/#safari" target="_blank">Safari</a>, or <a class="aLink" href="http://www.opera.com/computer/windows" target="_blank">Opera</a></b>.
 					</div>
 				</div>
-		<![endif]-->
+			<![endif]-->
 			<img class= "catGhost" src="resources/404/catGhost.gif">
 			<div class="leavePrompt">
 					<a href="index.html">Leave?</a>
@@ -39,5 +41,11 @@
 				You really should not be here
 			</div>
 		</div>
+		<script>
+			//test if oldIE notification has been closed
+			if (checkCookie("oldIE", "clicked") == true) {
+				hide("notifyContainer");
+			}
+		</script>
 	</body> 
 </html>

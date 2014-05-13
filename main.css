@@ -118,7 +118,7 @@ a {
 	-webkit-animation-iteration-count: infinite;
 }
 
-.notification {
+.notify {
 	margin: 123px auto -131px auto;
 	height: 55px;
 	width: 666px;
@@ -129,7 +129,7 @@ a {
 	border-width: 1px;
 }
 
-.notification .aLink{
+.notify .aLink{
 	
 	color: #000000;
 }

@@ -5,6 +5,7 @@
 		<meta name="description" content="main repository of shasharala's thoughts">
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu+Mono">
 		<link rel="stylesheet" type="text/css" href="main.css">
+		<script src="script.js"></script>
 		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -32,12 +33,13 @@
 		\/\____/&nbsp;\&nbsp;\_\&nbsp;\_\&nbsp;\__/.\_\/\____/&nbsp;\&nbsp;\_\&nbsp;\_\&nbsp;\__/.\_\\&nbsp;\_\\&nbsp;\__/.\_\/\____\&nbsp;\__/.\_\<br>
 		&nbsp;\/___/&nbsp;&nbsp;&nbsp;\/_/\/_/\/__/\/_/\/___/&nbsp;&nbsp;&nbsp;\/_/\/_/\/__/\/_/&nbsp;\/_/&nbsp;\/__/\/_/\/____/\/__/\/_/
 		</div>
+		<!--notify user that their IE browser is outdated and request that they update with an option to close notification-->
 		<!--[if lt IE 9]>
-				<div id="tempContainer0">
-					<div class="notification">
-						<button  onclick="remove(0)" style="float: right; background-color: #F4CA22; font-size: 8px;">X</button>This website uses HTML5 and CSS3 which your current browser does not appear to support. It is recommended to upgrade to the latest version of:<b><br><a class="aLink" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a>, <a class="aLink" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>, <a class="aLink" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a class="aLink" href="http://support.apple.com/downloads/#safari" target="_blank">Safari</a>, or <a class="aLink" href="http://www.opera.com/computer/windows" target="_blank">Opera</a></b>.
-					</div>
+			<div id="notifyContainer">
+				<div class="notify">
+					<button  onclick="setCookie('oldIE', 'clicked'); hide('notifyContainer');" style="float: right; background-color: #F4CA22; font-size: 8px;">X</button>This website uses HTML5 and CSS3 which your current browser does not appear to support. It is recommended to upgrade to the latest version of:<b><br><a class="aLink" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a>, <a class="aLink" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>, <a class="aLink" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a class="aLink" href="http://support.apple.com/downloads/#safari" target="_blank">Safari</a>, or <a class="aLink" href="http://www.opera.com/computer/windows" target="_blank">Opera</a></b>.
 				</div>
+			</div>
 		<![endif]-->
 		<div class="copyright">
 				<a href="license.html">&copy; <span class="aLink">2014</a></span>
@@ -71,5 +73,11 @@
 				</p>
 			</div>
 		</div>
+		<script>
+			//test if oldIE notification has been closed
+			if (checkCookie("oldIE", "clicked") == true) {
+				hide("notifyContainer");
+			}
+		</script>
 	</body>
 </html>
