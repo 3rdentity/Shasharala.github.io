@@ -35,6 +35,15 @@ function setCookie(name, value, expires) {
 }
 
 //UNIVERSAL
+//anything that needs to be hidden outside of the user clicking a button will use hide()
 function hide(name) {
 	document.getElementById(name).style.display = "none";
+}
+//buttons will use hideParent(this). see hide() for anything that needs to be hidden outside of the user clicking a button
+function hideParent(name) {
+	name.parentNode.style.display = "none";
+}
+
+function clickBtn(name) {
+	name.style.border= "1px inset #4A4B4C";
 }

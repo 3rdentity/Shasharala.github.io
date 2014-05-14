@@ -33,38 +33,45 @@
 		\/\____/&nbsp;\&nbsp;\_\&nbsp;\_\&nbsp;\__/.\_\/\____/&nbsp;\&nbsp;\_\&nbsp;\_\&nbsp;\__/.\_\\&nbsp;\_\\&nbsp;\__/.\_\/\____\&nbsp;\__/.\_\<br>
 		&nbsp;\/___/&nbsp;&nbsp;&nbsp;\/_/\/_/\/__/\/_/\/___/&nbsp;&nbsp;&nbsp;\/_/\/_/\/__/\/_/&nbsp;\/_/&nbsp;\/__/\/_/\/____/\/__/\/_/
 		</div>
-		<!--notify user that their IE browser is outdated and request that they update with an option to close notification-->
-		<!--[if lt IE 9]>
-			<div id="notifyContainer">
-				<div class="notify">
-					<button  onclick="setCookie('oldIE', 'clicked'); hide('notifyContainer');" style="float: right; background-color: #F4CA22; font-size: 8px;">X</button>This website uses HTML5 and CSS3 which your current browser does not appear to support. It is recommended to upgrade to the latest version of:<b><br><a class="aLink" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a>, <a class="aLink" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>, <a class="aLink" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a class="aLink" href="http://support.apple.com/downloads/#safari" target="_blank">Safari</a>, or <a class="aLink" href="http://www.opera.com/computer/windows" target="_blank">Opera</a></b>.
-				</div>
-			</div>
-		<![endif]-->
 		<div class="copyright">
 				<a href="license.html">&copy; <span class="aLink">2014</a></span>
 		</div>
 		<div class="container">
+			<!--notify user that javascript is not enabled-->
+			<noscript>
+				<div class="noJavaNotify">
+					<b>It appears that Javascript is not enabled on your browser.</b><br>
+					This website utilizes javascript to function correctly. Please enable Javascript &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;before continuing.
+					<a href="noScript.html"><div id="notifyBtn" style="background-color: #D36B69">learn more</div></a>
+				</div>
+			</noscript>
+			<!--notify user that their IE browser is outdated and request that they update with an option to close the notification-->
+			<!--[if lt IE 9]>
+				<div id="oldIENotify">
+					<button onclick="setCookie('oldIE', 'clicked'); hideParent(this);" style="float: right; background-color: #F8D86A; font-size: 8px;">X</button>This website uses HTML5 and CSS3 which your current browser does not appear to support. It is recommended to upgrade to the latest version of:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a class="aLink" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a>, <a class="aLink" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>, <a class="aLink" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a class="aLink" href="http://support.apple.com/downloads/#safari" target="_blank">Safari</a>, or <a class="aLink" href="http://www.opera.com/computer/windows" target="_blank">Opera</a></b>.
+					<a href="oldIE.html"><div id="notifyBtn" style="background-color: #F8D86A">learn more</div></a>
+				</div>
+			<![endif]-->
 			<hr>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="index.html">
-				<div class="header">
-					BLOG
+				<div id="headerBtn" onMouseDown="clickBtn(this)">
+					blog
 				</div></a>
 			&nbsp;
 			<a href="about.html">
-				<div class="header">
-					ABOUT
+				<div id="headerBtn" onMouseDown="clickBtn(this)">
+					about
 				</div></a>
 			&nbsp;
 			<a href="games.html">
-				<div class="header">
-					GAMES
+				<div id="headerBtn" onMouseDown="clickBtn(this)">
+					games
 				</div></a>
 			&nbsp;
 			<a href="servers.html">
-				<div class="header">
-					SERVERS
+				<div id="headerBtn" onMouseDown="clickBtn(this)">
+					servers
 				</div></a>
 			<hr>
 			<div class="intro">
@@ -254,10 +261,12 @@
 			</div>
 		</div>
 		<script>
-			//test if oldIE notification has been closed
-			if (checkCookie("oldIE", "clicked") == true) {
-				hide("notifyContainer");
-			}
+			<!--
+				//test if oldIE notification has been closed earlier during this session and close it if it has
+				if (checkCookie("oldIE", "clicked") == true) {
+					hide("oldIENotify");
+				}
+			//-->
 		</script>
 	</body>
 </html>
