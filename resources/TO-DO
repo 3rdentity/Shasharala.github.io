@@ -1,8 +1,8 @@
 - make sure that website appears appropriatly on tablets/phones
-- edit favicon/make sure it displays on all devices properly
+- new favicon?
 - think of a better way to represent 404. include the fact that they are still on/have arrived at shasharala.tk and that it is a 404 page
 - consider overhauling color scheme
 - php to store blog posts/comments/banner/header? SQL to create a database? Hosting website on server computer?
-- add IE9 issues with compatibility mode to IE8Notify under a learn more button
-- add a learn more button to noscript with instructions to allow script
-- some elements may be margin auto when they should be margin 0px
+- gradient for container background?
+- finish oldIE and noScript pages
+- make shasarala clickable with a href to blog.html
