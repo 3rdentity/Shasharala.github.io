@@ -1,5 +1,5 @@
 //COOKIES
-//all cookies from shasharala.tk begin with "shasha_ automagically"
+//all cookies from shasharala.tk begin with "shasha_" automagically
 function checkCookie(name, value) {
 	if(getCookie(name) == value) {
 		return true;
@@ -9,7 +9,7 @@ function checkCookie(name, value) {
 	}
 }
 
-//all cookies from shasharala.tk begin with "shasha_ automagically"
+//all cookies from shasharala.tk begin with "shasha_" automagically
 function getCookie(name) {
 	var cookieStr = document.cookie;
 	var returnValue = "";
@@ -26,7 +26,7 @@ function getCookie(name) {
   	return returnValue;
 }
 
-//all cookies from shasharala.tk begin with "shasha_ automagically"
+//all cookies from shasharala.tk begin with "shasha_" automagically
 function setCookie(name, value, expires) {
 	var d = new Date();
 	d.setTime(d.getTime() + (expires*24*60*60*1000));
