@@ -1,10 +1,7 @@
 - make sure that website appears appropriatly on tablets/phones
-- new favicon?
+- new favicon? :p is boring
 - think of a better way to represent 404. include the fact that they are still on/have arrived at shasharala.tk and that it is a 404 page
 - consider overhauling color scheme
 - php to store blog posts/comments/banner/header? SQL to create a database? Hosting website on server computer?
 - gradient for container background?
-- finish oldIE page
-- make shasarala clickable with a href to blog.html
-- change 'utilizes' to 'uses' or something else in the noScript banner
-- clear out extra xcf files that are totally unecessary (don't contain layers or anything)
+- finish oldIE and noScript page
