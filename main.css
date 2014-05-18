@@ -286,6 +286,11 @@ hr{
 	padding-bottom: 3px;
 }
 
+.screenshots {
+	text-align: center;
+	padding-top:12px;
+}
+
 /*------------404------------*/
 
 .leavePrompt {
