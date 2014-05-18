@@ -4,5 +4,7 @@
 - consider overhauling color scheme
 - php to store blog posts/comments/banner/header? SQL to create a database? Hosting website on server computer?
 - gradient for container background?
-- finish oldIE and noScript pages
+- finish oldIE page
 - make shasarala clickable with a href to blog.html
+- change 'utilizes' to 'uses' or something else in the noScript banner
+- clear out extra xcf files that are totally unecessary (don't contain layers or anything)
