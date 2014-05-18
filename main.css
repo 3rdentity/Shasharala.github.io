@@ -134,7 +134,7 @@ a {
 	background-image: url("resources/background/clear.png");
 	border-style: solid;
 	border-color: #010101;
-	border-width: 4px;
+	border-width: 1px;
 	border-radius: 88px;
 	font-size: large;
 	text-align: left;
@@ -200,7 +200,8 @@ hr{
 	padding-left:21px;
 }
 
-/*NOTIFICATIONS*/
+/*------------NOTIFICATIONS------------*/
+
 .noJavaNotify {
 	margin: -8px auto 8px auto;
 	padding-top: 0px;
@@ -239,7 +240,47 @@ hr{
 	color: #000000;
 }
 
-/*404*/
+/*------------NOSCRIPT------------*/
+
+.sectionBorder {
+	width: 282px;
+	background-image: url("resources/background/clear.png");
+	border-color: #4A4B4C;
+	border-radius: 33px;
+	border-width: 1px;
+	border-top-style: transparent;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: transparent;
+}
+
+.sectionTitle {
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 12px;
+	font-size: x-large;
+}
+
+.instructions {
+	margin-top: 3px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 44px;
+	font-size: medium;
+}
+
+.instructions li {
+	padding-bottom: 3px;
+}
+
+/*------------404------------*/
 
 .leavePrompt {
 	font-family: Special Elite;
@@ -292,7 +333,7 @@ hr{
 	height: 484px;
 }
 
-/*LICENSE*/
+/*------------LICENSE------------*/
 
 .termsTitle {
 	padding-top: 0px;
@@ -329,7 +370,7 @@ hr{
 	color: #AAAAAA;
 }
 
-/*ABOUT*/
+/*------------ABOUT------------*/
 
 .contact {
 	padding-top: 33px;
@@ -339,7 +380,7 @@ hr{
 	font-style: italic;
 }
 
-/*BLOG*/
+/*------------BLOG------------*/
 
 .intro {
 	text-align: center;
