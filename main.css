@@ -64,7 +64,7 @@
 
 body {
 	background-color: #101010;
-	background-image: url("resources/background/purpleMonster.png");
+	background-image: url("resources/backgrounds/purpleMonster.png");
 	font-family: 'Ubuntu Mono', sans-serif;
 	color: #999999;
 	text-align: center;
@@ -137,7 +137,7 @@ a {
 	padding-bottom: 33px;
 	padding-left: 33px;
 	/*background-color: #111111;*/
-	background-image: url("resources/background/clear.png");
+	background-image: url("resources/backgrounds/clear.png");
 	border-style: solid;
 	border-color: #010101;
 	border-width: 1px;
@@ -250,7 +250,7 @@ hr{
 
 .sectionBorder {
 	width: 282px;
-	background-image: url("resources/background/clear.png");
+	background-image: url("resources/backgrounds/clear.png");
 	border-color: #4A4B4C;
 	border-radius: 33px;
 	border-width: 1px;
