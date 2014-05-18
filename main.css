@@ -119,6 +119,12 @@ a {
 	-webkit-animation-iteration-count: infinite;
 }
 
+.bannerBoard {
+	margin: auto;
+	height: 123px;
+	width: 666px;
+}
+
 .container {
 	margin-top: auto;
 	margin-right: auto;
@@ -419,10 +425,6 @@ hr{
 .copyright {
 	color: #999999;
 	margin: auto;
-	padding-top: 123px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 0px;
 	width: 777px;
 	text-align: right;
 	font-size: small;
