@@ -117,6 +117,7 @@ a {
 	-webkit-animation-delay: 1s;
 	-webkit-animation-duration: 8s;
 	-webkit-animation-iteration-count: infinite;
+	/*text-shadow: 8px 8px 8px color?;*/
 }
 
 .bannerBoard {
@@ -136,6 +137,7 @@ a {
 	padding-right: 33px;
 	padding-bottom: 33px;
 	padding-left: 33px;
+	box-shadow: 8px 8px 8px #000000;
 	/*background-color: #111111;*/
 	background-image: url("resources/backgrounds/clear.png");
 	border-style: solid;
@@ -286,9 +288,21 @@ hr{
 	padding-bottom: 3px;
 }
 
-.screenshots {
+.screenshotLink {
 	text-align: center;
 	padding-top:12px;
+}
+
+.screenshots li {
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 464px;
+	padding-top: 12px;
+	padding-right: 0px;
+	padding-bottom: 16px;
+	padding-left: 0px;
+	font-size: xx-large;
 }
 
 /*------------404------------*/
