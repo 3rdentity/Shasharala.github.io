@@ -117,7 +117,6 @@ a {
 	-webkit-animation-delay: 1s;
 	-webkit-animation-duration: 8s;
 	-webkit-animation-iteration-count: infinite;
-	/*text-shadow: 8px 8px 8px color?;*/
 }
 
 .bannerBoard {
@@ -333,7 +332,7 @@ hr{
 	padding-bottom: 0px;
 	padding-left: 333px;
 	text-align: center;
-	font-size: 77px;
+	font-size: 66px;
 }
 
 .catGhost {
@@ -341,7 +340,7 @@ hr{
 	padding-top: 11px;
 	padding-right: 0px;
 	padding-bottom: 0px;
-	padding-left: 0px;
+	padding-left: 88px;
 	width: 484px;
 	height: 484px;
 }
