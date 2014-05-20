@@ -151,25 +151,14 @@ hr{
    border: 1px solid #4A4B4C;
 }
 
-#notifyBtn {
-	display: inline-block;
-	float: right;
-	margin-top: 1px;
-	margin-right: -1px;
-	margin-bottom: 0px;
-	margin-left: 0px;
+.content {
 	padding-top: 0px;
-	padding-right: 4px;
-	padding-bottom: 1px;
-	padding-left: 4px;
-	border-style: outset;
-	border-color: #4A4B4C;
-	border-width: 1px;
-	border-radius: 3px;
-	text-align: center;
-	font-size: medium;
-	color: #000000;
+	padding-right: 21px;
+	padding-bottom: 0px;
+	padding-left:21px;
 }
+
+/*------------HEADER------------*/
 
 #headerBtn {
 	display: inline-block;
@@ -198,13 +187,6 @@ hr{
 	-webkit-animation-name: purpleTransition;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
-}
-
-.content {
-	padding-top: 0px;
-	padding-right: 21px;
-	padding-bottom: 0px;
-	padding-left:21px;
 }
 
 /*------------NOTIFICATIONS------------*/
@@ -244,6 +226,26 @@ hr{
 }
 
 #oldIENotify .aLink{
+	color: #000000;
+}
+
+#notifyBtn {
+	display: inline-block;
+	float: right;
+	margin-top: 1px;
+	margin-right: -1px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 0px;
+	padding-right: 4px;
+	padding-bottom: 1px;
+	padding-left: 4px;
+	border-style: outset;
+	border-color: #4A4B4C;
+	border-width: 1px;
+	border-radius: 3px;
+	text-align: center;
+	font-size: medium;
 	color: #000000;
 }
 
