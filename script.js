@@ -1,4 +1,4 @@
-//COOKIES
+//------------COOKIES------------
 //all cookies from shasharala.tk begin with "shasha_" automagically
 function checkCookie(name, value) {
 	if(getCookie(name) == value) {
@@ -34,7 +34,7 @@ function setCookie(name, value, expires) {
 	document.cookie = "shasha_" + name + "=" + value + "; " + e;
 }
 
-//UNIVERSAL
+//------------UNIVERSAL------------
 //anything that needs to be hidden outside of the user clicking a button will use hide()
 function hide(name) {
 	document.getElementById(name).style.display = "none";
