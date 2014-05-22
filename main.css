@@ -249,7 +249,12 @@ hr{
 	color: #000000;
 }
 
-/*------------NOSCRIPT------------*/
+/*------------NOSCRIPT&OLDBROWSER------------*/
+
+.browserIcons {
+	text-align: center;
+	font-size: medium;"
+}
 
 .sectionBorder {
 	width: 282px;
