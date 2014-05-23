@@ -120,6 +120,7 @@ a {
 }
 
 .bannerBoard {
+	display: inline-block;
 	margin: auto;
 	height: 123px;
 	width: 666px;
