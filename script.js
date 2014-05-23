@@ -14,13 +14,13 @@ function getCookie(name) {
 	var cookieStr = document.cookie;
 	var returnValue = "";
 	var searchFor = "shasha_" + name + "=";
-	var startIndex = cookieStr.indexOf(searchFor)
+	var startIndex = cookieStr.indexOf(searchFor);
 	if(startIndex != -1) {
 		startIndex += searchFor.length;
-		endIndex = cookieStr.indexOf(";", startIndex)
+		endIndex = cookieStr.indexOf(";", startIndex);
 		if (endIndex == -1) {
 			endIndex = cookieStr.length;
-  			returnValue = cookieStr.substring(startIndex, endIndex)
+  			returnValue = cookieStr.substring(startIndex, endIndex);
   		}
   	}
   	return returnValue;
