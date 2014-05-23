@@ -37,11 +37,15 @@ function setCookie(name, value, expires) {
 //------------UNIVERSAL------------
 
 function hide(name) {
-	document.getElementById(name).style.display = "none";
-}
-
-function hideParent(name) {
-	name.parentNode.style.display = "none";
+	var nameStr = name + "";
+	var searchFor = "object";
+	var test = nameStr.indexOf(searchFor);
+	if (test != -1) {
+		name.parentNode.style.display = "none";
+	}
+	else {
+		document.getElementById(name).style.display = "none";
+	}
 }
 
 function clickBtn(name) {
