@@ -5,4 +5,6 @@
 - filler art on short pages?
 - consider an opt-in to cookies button? (though, consider further, wouldn't it be similar to opt-inning to use Javascript? kinda silly, no?)
 - consider a "turn on cookies for a good user experience page w/ instructions to turn them on"?
-- put fonts into a folder with website and set fonts to px not general sizes
+- set fonts to px not general sizes
+update html license/consider more plain license page. tie this into overhauling the site/simpler webpage look
+- update animations to follow animation template
