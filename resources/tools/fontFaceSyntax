@@ -1,13 +1,5 @@
 @font-face {
 	font-family: 'MyWebFont';
-	/*
-	compatability listed in order:
-	IE9 Compat Modes
-	IE6-IE8
-	Modern Browsers
-	Safari, Android, iOS
-	Legacy iOS
-	*/
 	src: url('webfont.eot');
 	src: url('webfont.eot?#iefix') format('embedded-opentype'), 
 		 url('webfont.woff') format('woff'), 
