@@ -87,7 +87,7 @@
 
 .randoRotate {
 	animation-name: randoRotate;
-	animation-duration: 3s;
+	animation-duration: 1s;
 	animation-iteration-count: infinite;
 	/*Safari & Chrome*/
 	-webkit-animation-name: randoRotate;
@@ -103,7 +103,7 @@ body {
 	font-family: 'ubuntu_mono';
 	color: #999999;
 	text-align: center;
-	font-size: medium;
+	font-size: 16px;
 }
 
 ::selection {
@@ -144,13 +144,13 @@ a {
 	left: 0;
 	z-index: -1;
 	animation-name: slip;
-	animation-delay: 1s;
 	animation-duration: 8s;
+	animation-delay: 1s;
 	animation-iteration-count: infinite;
 	/*Safari & Chrome*/
 	-webkit-animation-name: slip;
-	-webkit-animation-delay: 1s;
 	-webkit-animation-duration: 8s;
+	-webkit-animation-delay: 1s;
 	-webkit-animation-iteration-count: infinite;
 }
 
@@ -179,7 +179,7 @@ a {
 	border-color: #010101;
 	border-width: 1px;
 	border-radius: 88px;
-	font-size: large;
+	font-size: 18px;
 	text-align: left;
 }
 
@@ -211,7 +211,7 @@ hr{
 	border-width: 1px;
 	border-radius: 3px;
 	text-align: center;
-	font-size: large;
+	font-size: 18px;
 }
 
 /*necessary, because a:hover does not cover entire div*/
@@ -241,7 +241,7 @@ hr{
 	border-style: ridge;
 	border-width: 3px;
 	text-align: center;
-	font-size: medium;
+	font-size: 16px;
 }
 
 #oldIENotify {
@@ -258,7 +258,7 @@ hr{
 	border-style: ridge;
 	border-width: 3px;
 	text-align: center;
-	font-size: medium;
+	font-size: 16px;
 }
 
 #oldIENotify .aLink{
@@ -281,7 +281,7 @@ hr{
 	border-width: 1px;
 	border-radius: 3px;
 	text-align: center;
-	font-size: medium;
+	font-size: 16px;
 	color: #000000;
 }
 
@@ -289,7 +289,7 @@ hr{
 
 .browserIcons {
 	text-align: center;
-	font-size: medium;"
+	font-size: 16px;"
 }
 
 .sectionBorder {
@@ -311,7 +311,7 @@ hr{
 	margin-right: 0px;
 	margin-bottom: 0px;
 	margin-left: 12px;
-	font-size: x-large;
+	font-size: 24px;
 }
 
 .instructions {
@@ -323,7 +323,7 @@ hr{
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 44px;
-	font-size: medium;
+	font-size: 16px;
 }
 
 .instructions li {
@@ -352,14 +352,14 @@ hr{
 	padding-bottom: 0px;
 	padding-left: 111px;
 	animation-name: invisToVis;
-	animation-delay: 3s;
 	animation-duration: 8s;
+	animation-delay: 3s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 	/*Safari & Chrome*/
 	-webkit-animation-name: invisToVis;
-	-webkit-animation-delay: 3s;
 	-webkit-animation-duration: 8s;
+	-webkit-animation-delay: 3s;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-fill-mode: forwards;
 }
@@ -393,14 +393,14 @@ hr{
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 33px;
-	font-size: x-large;
+	font-size: 21px;
 }
 
 .terms {
 	margin: auto;
 	width: 666px;
 	text-align: left;
-	font-size: large;
+	font-size: 18px;
 }
 
 .terms ul {
@@ -448,7 +448,7 @@ hr{
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 33px;
-	font-size: x-large;
+	font-size: 21px;
 }
 
 .titleTime {
@@ -456,7 +456,7 @@ hr{
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 48px;
-	font-size: small;
+	font-size: 12px;
 	font-style: italic;
 }
 
@@ -465,7 +465,7 @@ hr{
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 16px;
-	font-size: small;
+	font-size: 12px;
 	font-style: italic;
 }
 
@@ -474,7 +474,7 @@ hr{
 	margin: auto;
 	width: 777px;
 	text-align: right;
-	font-size: small;
+	font-size: 12px;
 }
 
 .post {
@@ -487,6 +487,6 @@ hr{
 	padding-bottom: 11px;
 	padding-left: 11px;
 	width: 666px;
-	font-size: medium;
+	font-size: 16px;
 	text-align: left;
 }
