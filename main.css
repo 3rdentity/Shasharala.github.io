@@ -244,6 +244,27 @@ hr{
 	font-size: 16px;
 }
 
+#storageNotify {
+	margin: auto auto 8px auto;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 3px;
+	height: auto;
+	width: 666px;
+	background-color: #6F383A;
+	color: #000000;
+	border-color: #A6A6A6;
+	border-style: ridge;
+	border-width: 3px;
+	text-align: center;
+	font-size: 16px;
+}
+
+#storageNotify .aLink {
+	color: #000000;
+}
+
 #oldIENotify {
 	margin: auto;
 	padding-top: 0px;
@@ -261,7 +282,7 @@ hr{
 	font-size: 16px;
 }
 
-#oldIENotify .aLink{
+#oldIENotify .aLink {
 	color: #000000;
 }
 
