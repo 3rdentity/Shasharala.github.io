@@ -56,7 +56,7 @@
 			<!--notify user that their IE browser is outdated and request that they update with an option to close the notification-->
 			<!--[if lt IE 9]>
 				<div id="oldIENotify">
-					<button onclick="setCookie('oldIE', 'clicked'); hideParent(this);" style="float: right; background-color: #F8D86A; font-size: 8px;">X</button>This website uses HTML5 and CSS3 which your current browser does not appear to support. It is recommended to upgrade to the latest version of:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a class="aLink" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a>, <a class="aLink" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>, <a class="aLink" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a class="aLink" href="http://support.apple.com/downloads/#safari" target="_blank">Safari</a>, or <a class="aLink" href="http://www.opera.com/computer/windows" target="_blank">Opera</a></b>.
+					<button onClick="sessionStorage.setItem('oldIENotice', 'clicked'); hide(this);" style="float: right; background-color: #F8D86A; font-size: 8px;">X</button>This website uses HTML5 and CSS3 which your current browser does not appear to support. It is recommended to upgrade to the latest version of:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a class="aLink" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer</a>, <a class="aLink" href="https://www.google.com/chrome/browser/" target="_blank">Chrome</a>, <a class="aLink" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a class="aLink" href="http://support.apple.com/downloads/#safari" target="_blank">Safari</a>, or <a class="aLink" href="http://www.opera.com/computer/windows" target="_blank">Opera</a></b>.
 					<a href="oldBrowser.html"><div id="notifyBtn" style="background-color: #F8D86A" onMouseDown="clickBtn(this)">learn more</div></a>
 				</div>
 			<![endif]-->
@@ -88,12 +88,16 @@
 			</div>
 			<!--###BLOG POSTS###-->
 
+			<!--FEMALES IN GAMES-->
+
+			<!--STORY IN GAMES-->
+
 			<!--INTERESTING THOUGHT -- --/--/14-->
 			<!--<div class="post">
 				<span class="title">i can be anything</span><br><span class="titleTime">--/--/14</span><hr>
 				<div class="content">
 					<p>
-						you spent your youth drugged, hating yourself, playing video games and in search of knowledge. You're the same now.
+						you spent your youth drugged, hating yourself, playing video games and in search of knowledge. You're the same now?
 					</p>
 				</div>
 			</div>-->
@@ -271,7 +275,7 @@
 		<script>
 			<!--
 				//test if oldIE notification has been closed earlier during this session and close it if it has
-				if (checkCookie("oldIE", "clicked") == true) {
+				if (sessionStorage.getItem("oldIENotice") == "clicked") {
 					hide("oldIENotify");
 				}
 			//-->
