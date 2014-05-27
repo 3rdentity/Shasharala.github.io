@@ -17,7 +17,7 @@
 	0% {opacity: 0;}
 	100% {opacity: 1;}
 }
-/*Safari & Chrome*/
+/*Safari & Chromium*/
 @-webkit-keyframes invisToVis {
 	0% {opacity: 0;}
 	100% {opacity: 1;}
@@ -28,7 +28,7 @@
 	50% {background-color: #300949;}
 	100% {background-color: #0F0415;}
 }
-/*Safari & Chrome*/
+/*Safari & Chromium*/
 @-webkit-keyframes purpleTransition {
 	0% {background-color: #0F0415;}
 	50% {background-color: #300949;}
@@ -42,7 +42,7 @@
 	75% {transform: rotate(270deg);}
 	100% {transform: rotate(180deg);}
 }
-/*Safari & Chrome*/
+/*Safari & Chromium*/
 @-webkit-keyframes randoRotate {
 	0% {-webkit-transform: rotate(0deg);}
 	25% {-webkit-transform: rotate(360deg);}
@@ -56,7 +56,7 @@
 	50% {padding-top: 12px;}
 	100% {padding-top: 0px;}
 }
-/*Safari & Chrome*/
+/*Safari & Chromium*/
 @-webkit-keyframes slip {
 	0% {padding-top: 0px;}
 	50% {padding-top: 12px;}
@@ -67,7 +67,7 @@
 	animation-name: randoRotate;
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
-	/*Safari & Chrome*/
+	/*Safari & Chromium*/
 	-webkit-animation-name: randoRotate;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
@@ -108,7 +108,7 @@ a {
 	animation-name: purpleTransition;
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
-	/*Safari & Chrome*/
+	/*Safari & Chromium*/
 	-webkit-animation-name: purpleTransition;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
@@ -125,7 +125,7 @@ a {
 	animation-duration: 8s;
 	animation-delay: 1s;
 	animation-iteration-count: infinite;
-	/*Safari & Chrome*/
+	/*Safari & Chromium*/
 	-webkit-animation-name: slip;
 	-webkit-animation-duration: 8s;
 	-webkit-animation-delay: 1s;
@@ -197,7 +197,7 @@ hr{
 	animation-name: purpleTransition;
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
-	/*Safari & Chrome*/
+	/*Safari & Chromium*/
 	-webkit-animation-name: purpleTransition;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
@@ -355,7 +355,7 @@ hr{
 	animation-delay: 3s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
-	/*Safari & Chrome*/
+	/*Safari & Chromium*/
 	-webkit-animation-name: invisToVis;
 	-webkit-animation-duration: 8s;
 	-webkit-animation-delay: 3s;
