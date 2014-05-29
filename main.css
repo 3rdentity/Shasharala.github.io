@@ -127,12 +127,13 @@ a {
 }
 
 .banner {
-	color: #AAAAAA;
+	z-index: -1;
 	position: absolute;
 	top: -1px;
 	right: 0;
+	bottom: 0;
 	left: 0;
-	z-index: -1;
+	color: #AAAAAA;
 	animation-name: slip;
 	animation-duration: 8s;
 	animation-delay: 1s;
