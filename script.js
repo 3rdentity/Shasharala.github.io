@@ -1,9 +1,16 @@
-//------------BUTTONS------------
+/*
+###############################
+############BUTTONS############
+###############################
+*/
 function clickBtn(name) {
 	name.style.border= "1px inset #4A4B4C";
 }
-
-//------------INVIS&VIS------------
+/*
+#################################
+############INVIS&VIS############
+#################################
+*/
 function replace(name1, name2) {
 	hide(name1);
 	show(name2);
@@ -75,7 +82,11 @@ function show(name) {
 	
 }
 
-//------------TYPEWRITE------------
+/*
+#################################
+############TYPEWRITE############
+#################################
+*/
 //typewrite() variables
 var tw_array = "";
 var tw_id = "";
@@ -199,7 +210,11 @@ function tw_blinkIn() {
 	}
 }
 
-//------------COOKIES------------
+/*
+###############################
+############COOKIES############
+###############################
+*/
 //all cookies from shasharala.tk begin with "shasha_" automagically
 function checkCookie(name, value) {
 	if(getCookie(name) == value) {
