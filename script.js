@@ -100,6 +100,20 @@ function show(name) {
 #################################
 */
 
+var tw_randoArray = [
+	tw_0,
+	tw_1,
+	tw_2,
+	tw_3,
+	tw_4,
+	tw_5,
+	tw_6,
+	tw_7,
+	tw_8,
+	tw_9,
+	tw_10
+];
+
 //typewrite() variables
 var tw_array = "";
 var tw_id = "";
@@ -278,13 +292,3 @@ function remCookie(name) {
 	var modName = "shasha_" + name;
 	setCookie(modName, "", -1);
 }
-
-
-//NEW FUNCTION?
-/*function insert(name, value) {
-	var nameStr = name + "";
-	var searchFor = "object";
-	var t = nameStr.indexOf(searchFor);
-	if (t != -1) {
-	}
-}*/
