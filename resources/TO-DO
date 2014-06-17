@@ -6,5 +6,5 @@
 - consider more plain license page. tie this into overhauling the site/simpler webpage look
 - make a blow up everything button?
 - minify/minimize http req.?
-- turn pixels to %'s
+- turn pixels to %'s or vw/vh?
 - rename script.js to reflect personal library of js. consider copying to resources
