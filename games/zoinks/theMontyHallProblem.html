@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>zoink</title>
+		<style>
+		body {
+			text-align: center;
+			font-size: 33px;
+		}
+		button {
+			height: 100px;
+			width: 300px;
+			font-size: 33px;
+		}
+		span {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		</style>
+		<script type="text/javascript">
+			//door setup
+			var prize;
+			var firstChoice;
+			var newChoiceDoor;
+			var zoinkDoor;
+			var randDoor = Math.floor(Math.random() * 3);
+			var newBtn1;
+			var newBtn2;
+			if (randDoor == 0) {
+				prize = 1;
+			}
+			else if (randDoor == 1) {
+				prize = 2;
+			}
+			else {
+				prize = 3;
+			}
+			function finalChoice(c) {
+				if (c == 1) {
+					if (newBtn1 != prize) {
+						document.getElementById("demo").innerHTML = "<h3>You chose a Zoink!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span>";
+					}
+					else {
+						document.getElementById("demo").innerHTML = "<h3>You chose the winning door!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span>";
+					}
+				}
+				else if (c == 2) {
+					if (newBtn2 != prize) {
+						document.getElementById("demo").innerHTML = "<h3>You chose a Zoink!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span>";
+					}
+					else {
+						document.getElementById("demo").innerHTML = "<h3>You chose the winning door!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span>";
+					}
+				}
+			}
+			function pickDoor(d) {
+				firstChoice = d;
+				if (prize == 1) {
+					if (d == 1) {
+						zoinkDoor = Math.floor(Math.random() * 2);
+						if (zoinkDoor == 0) {
+							zoinkDoor = 2;
+							newChoiceDoor = 3;
+						}
+						else {
+							zoinkDoor = 3;
+							newChoiceDoor = 2;
+						}
+					}
+					if (d == 2) {
+						zoinkDoor = 3;
+						newChoiceDoor = 1;
+					}
+					if (d == 3) {
+						zoinkDoor = 2;
+						newChoiceDoor = 1;
+					}
+				}
+				if (prize == 2) {
+					if (d == 1) {
+						zoinkDoor = 3;
+						newChoiceDoor = 2;
+					}
+					if (d == 2) {
+						zoinkDoor = Math.floor(Math.random() * 2);
+						if (zoinkDoor == 0) {
+							zoinkDoor = 3;
+							newChoiceDoor = 1;
+						}
+						else {
+							zoinkDoor = 1;
+							newChoiceDoor = 3;
+						}
+					}
+					if (d == 3) {
+						zoinkDoor = 1;
+						newChoiceDoor = 2;
+					}
+				}
+				if (prize == 3) {
+					if (d == 1) {
+						zoinkDoor = 2;
+						newChoiceDoor = 3;
+					}
+					if (d == 2) {
+						zoinkDoor = 1;
+						newChoiceDoor = 3;
+					}
+					if (d == 3) {
+						zoinkDoor = Math.floor(Math.random() * 2);
+						if (zoinkDoor == 0) {
+							zoinkDoor = 2;
+							newChoiceDoor = 1;
+						}
+						if (zoinkDoor) {
+							zoinkDoor = 1;
+							newChoiceDoor = 2;
+						}
+					}
+				}
+				newBtnRand = Math.floor(Math.random() * 2);
+				if (newBtnRand == 0) {
+					newBtn1 = firstChoice;
+					newBtn2 = newChoiceDoor;
+				}
+				else {
+					newBtn2 = firstChoice;
+					newBtn1 = newChoiceDoor;
+				}
+
+				document.getElementById("demo").innerHTML = "<h3>You have chosen Door " + d + ".</h3>We'll change the wager a little:<br>If we open <b>Door " + zoinkDoor + "</b>...which has nothing behind it,<br> would you be interested in <b>Door " + newChoiceDoor + "</b> or will you stick with your current choice of <b>Door " + d + "</b>?<br><br>";
+				document.getElementById("demo").innerHTML += "<button onclick='finalChoice(1)'>Door " + newBtn1 + "</button>" + "&nbsp" + "<button onclick='finalChoice(2)'>Door " + newBtn2 + "</button>";
+			}
+		</script>
+	</head>
+	<body>
+		<div id="demo">
+			<a href="http://en.wikipedia.org/wiki/Monty_Hall_problem"><h2>The Monty Hall problem</h2></a>
+			One of these doors has a fabulous prize behind it.<br>Two of these doors has nothing behind them.<br>
+			Please choose wisely:<br><br>
+			<button onclick="pickDoor(1)">Door 1</button>
+			<button onclick="pickDoor(2)">Door 2</button>
+			<button onclick="pickDoor(3)">Door 3</button>
+		</div>
+	</body>
+</html>
