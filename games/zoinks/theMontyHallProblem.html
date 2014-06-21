@@ -2,9 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="author" content="Ryan Combes">
 		<title>zoink</title>
 		<style>
-		body {
+		body, h2{
 			text-align: center;
 			font-size: 33px;
 		}
@@ -17,16 +18,24 @@
 			text-decoration: underline;
 			cursor: pointer;
 		}
+		a {
+			font-size: 24px;
+		}
+		.runs {
+			font-size: 18px;
+			height: 80px;
+			width: 240px;
+		}
 		</style>
 		<script type="text/javascript">
-			//door setup
+			//variables to run normal game
 			var prize;
 			var firstChoice;
 			var newChoiceDoor;
 			var zoinkDoor;
-			var randDoor = Math.floor(Math.random() * 3);
 			var newBtn1;
 			var newBtn2;
+			var randDoor = Math.floor(Math.random() * 3);
 			if (randDoor == 0) {
 				prize = 1;
 			}
@@ -36,22 +45,223 @@
 			else {
 				prize = 3;
 			}
+			function thousandRunsSwitch() {
+				function pickDoor(d) {
+					if (prize == 1) {
+						if (d == 1) {
+							zoinkDoor = Math.floor(Math.random() * 2);
+							if (zoinkDoor == 0) {
+								zoinkDoor = 2;
+								newChoiceDoor = 3;
+							}
+							else {
+								zoinkDoor = 3;
+								newChoiceDoor = 2;
+							}
+						}
+						if (d == 2) {
+							zoinkDoor = 3;
+							newChoiceDoor = 1;
+						}
+						if (d == 3) {
+						zoinkDoor = 2;
+						newChoiceDoor = 1;
+						}
+					}
+					if (prize == 2) {
+						if (d == 1) {
+							zoinkDoor = 3;
+							newChoiceDoor = 2;
+						}
+						if (d == 2) {
+							zoinkDoor = Math.floor(Math.random() * 2);
+							if (zoinkDoor == 0) {
+								zoinkDoor = 3;
+								newChoiceDoor = 1;
+							}
+							else {
+								zoinkDoor = 1;
+								newChoiceDoor = 3;
+							}
+						}
+						if (d == 3) {
+							zoinkDoor = 1;
+							newChoiceDoor = 2;
+						}
+					}
+					if (prize == 3) {
+						if (d == 1) {
+							zoinkDoor = 2;
+							newChoiceDoor = 3;
+						}
+						if (d == 2) {
+							zoinkDoor = 1;
+							newChoiceDoor = 3;
+						}
+						if (d == 3) {
+							zoinkDoor = Math.floor(Math.random() * 2);
+							if (zoinkDoor == 0) {
+								zoinkDoor = 2;
+								newChoiceDoor = 1;
+							}
+							else {
+								zoinkDoor = 1;
+								newChoiceDoor = 2;
+							}
+						}
+					}
+					//switching doors every time
+					var finalAnswer = newChoiceDoor;
+					if (finalAnswer != prize) {
+						sessionStorage.losses = Number(sessionStorage.losses) + 1;
+					}
+					else {
+						sessionStorage.wins = Number(sessionStorage.wins) + 1;
+					}
+				}
+				for (i = 1; i < 1000; i++) {
+					randDoor = Math.floor(Math.random() * 3);
+					if (randDoor == 0) {
+						prize = 1;
+					}
+					else if (randDoor == 1) {
+						prize = 2;
+					}
+					else {
+						prize = 3;
+					}
+					var chosenDoor = Math.floor(Math.random() * 3) + 1;
+					pickDoor(chosenDoor);
+				}
+				location.reload();
+			}
+			function thousandRunsKeep() {
+				function pickDoor(d) {
+					var firstChoice = d;
+					if (prize == 1) {
+						if (d == 1) {
+							zoinkDoor = Math.floor(Math.random() * 2);
+							if (zoinkDoor == 0) {
+								zoinkDoor = 2;
+								newChoiceDoor = 3;
+							}
+							else {
+								zoinkDoor = 3;
+								newChoiceDoor = 2;
+							}
+						}
+						if (d == 2) {
+							zoinkDoor = 3;
+							newChoiceDoor = 1;
+						}
+						if (d == 3) {
+						zoinkDoor = 2;
+						newChoiceDoor = 1;
+						}
+					}
+					if (prize == 2) {
+						if (d == 1) {
+							zoinkDoor = 3;
+							newChoiceDoor = 2;
+						}
+						if (d == 2) {
+							zoinkDoor = Math.floor(Math.random() * 2);
+							if (zoinkDoor == 0) {
+								zoinkDoor = 3;
+								newChoiceDoor = 1;
+							}
+							else {
+								zoinkDoor = 1;
+								newChoiceDoor = 3;
+							}
+						}
+						if (d == 3) {
+							zoinkDoor = 1;
+							newChoiceDoor = 2;
+						}
+					}
+					if (prize == 3) {
+						if (d == 1) {
+							zoinkDoor = 2;
+							newChoiceDoor = 3;
+						}
+						if (d == 2) {
+							zoinkDoor = 1;
+							newChoiceDoor = 3;
+						}
+						if (d == 3) {
+							zoinkDoor = Math.floor(Math.random() * 2);
+							if (zoinkDoor == 0) {
+								zoinkDoor = 2;
+								newChoiceDoor = 1;
+							}
+							else {
+								zoinkDoor = 1;
+								newChoiceDoor = 2;
+							}
+						}
+					}
+					//switching doors every time
+					var finalAnswer = firstChoice;
+					if (finalAnswer != prize) {
+						sessionStorage.losses = Number(sessionStorage.losses) + 1;
+					}
+					else {
+						sessionStorage.wins = Number(sessionStorage.wins) + 1;
+					}
+				}
+				for (i = 1; i < 1000; i++) {
+					randDoor = Math.floor(Math.random() * 3);
+					if (randDoor == 0) {
+						prize = 1;
+					}
+					else if (randDoor == 1) {
+						prize = 2;
+					}
+					else {
+						prize = 3;
+					}
+					var chosenDoor = Math.floor(Math.random() * 3) + 1;
+					pickDoor(chosenDoor);
+				}
+				location.reload();
+			}
+			function reset() {
+				sessionStorage.wins = 0;
+				sessionStorage.losses = 0;
+				location.reload();
+			}
+			function stats() {
+				if (sessionStorage.wins == undefined) {
+					sessionStorage.wins = 0;
+				}
+				if (sessionStorage.losses == undefined) {
+					sessionStorage.losses = 0;
+				}
+				document.getElementById("demo").innerHTML += "<br><br><br>Lost: " + sessionStorage.losses + "&nbsp;&nbsp;&nbsp;&nbsp;Won: " + sessionStorage.wins + "<br>&nbsp;&nbsp;&nbsp;<span style='font-size:21px' onclick='reset()'>reset</span>";
+			}
 			function finalChoice(c) {
 				if (c == 1) {
 					if (newBtn1 != prize) {
-						document.getElementById("demo").innerHTML = "<h3>You chose a Zoink!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span>";
+						document.getElementById("demo").innerHTML = "<h3>You chose a door with nothing behind it!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span><br><br><a href='https://github.com/Shasharala/Shasharala.github.io/blob/master/games/zoinks/theMontyHallProblem.html' target='_blank'>source</a>";
+						sessionStorage.losses = Number(sessionStorage.losses) + 1;
 					}
 					else {
-						document.getElementById("demo").innerHTML = "<h3>You chose the winning door!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span>";
+						document.getElementById("demo").innerHTML = "<h3>You chose the winning door!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span><br><br><a href='https://github.com/Shasharala/Shasharala.github.io/blob/master/games/zoinks/theMontyHallProblem.html' target='_blank'>source</a>";
+						sessionStorage.wins = Number(sessionStorage.wins) + 1;
 					}
+					stats();
 				}
 				else if (c == 2) {
 					if (newBtn2 != prize) {
-						document.getElementById("demo").innerHTML = "<h3>You chose a Zoink!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span>";
+						document.getElementById("demo").innerHTML = "<h3>You chose a door with nothing behind it!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span><br><br><a href='https://github.com/Shasharala/Shasharala.github.io/blob/master/games/zoinks/theMontyHallProblem.html' target='_blank'>source</a>";
+						sessionStorage.losses = Number(sessionStorage.losses) + 1;
 					}
 					else {
-						document.getElementById("demo").innerHTML = "<h3>You chose the winning door!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span>";
+						document.getElementById("demo").innerHTML = "<h3>You chose the winning door!</h3><br><br>Would you like to try <span onclick='location.reload()'>again?</span><br><br><a href='https://github.com/Shasharala/Shasharala.github.io/blob/master/games/zoinks/theMontyHallProblem.html' target='_blank'>source</a>";
+						sessionStorage.wins = Number(sessionStorage.wins) + 1;
 					}
+					stats();
 				}
 			}
 			function pickDoor(d) {
@@ -113,7 +323,7 @@
 							zoinkDoor = 2;
 							newChoiceDoor = 1;
 						}
-						if (zoinkDoor) {
+						else {
 							zoinkDoor = 1;
 							newChoiceDoor = 2;
 						}
@@ -130,18 +340,22 @@
 				}
 
 				document.getElementById("demo").innerHTML = "<h3>You have chosen Door " + d + ".</h3>We'll change the wager a little:<br>If we open <b>Door " + zoinkDoor + "</b>...which has nothing behind it,<br> would you be interested in <b>Door " + newChoiceDoor + "</b> or will you stick with your current choice of <b>Door " + d + "</b>?<br><br>";
-				document.getElementById("demo").innerHTML += "<button onclick='finalChoice(1)'>Door " + newBtn1 + "</button>" + "&nbsp" + "<button onclick='finalChoice(2)'>Door " + newBtn2 + "</button>";
+				document.getElementById("demo").innerHTML += "<button onclick='finalChoice(1)'>Door " + newBtn1 + "</button>" + "&nbsp;" + "<button onclick='finalChoice(2)'>Door " + newBtn2 + "</button>";
+				stats();
 			}
 		</script>
 	</head>
-	<body>
+	<body onload="stats()">
 		<div id="demo">
-			<a href="http://en.wikipedia.org/wiki/Monty_Hall_problem"><h2>The Monty Hall problem</h2></a>
-			One of these doors has a fabulous prize behind it.<br>Two of these doors has nothing behind them.<br>
+			<a href="http://en.wikipedia.org/wiki/Monty_Hall_problem" target="_blank"><h1>The Monty Hall problem</h1></a>
+			One of these doors has a fabulous prize behind it.<br>Two of these doors have nothing behind them.<br>
 			Please choose wisely:<br><br>
 			<button onclick="pickDoor(1)">Door 1</button>
 			<button onclick="pickDoor(2)">Door 2</button>
 			<button onclick="pickDoor(3)">Door 3</button>
+			<br><br><br><br>
+			<button class="runs" onclick="thousandRunsKeep()">Run 1000 times:<br>keeping door</button>
+			<button class="runs" onclick="thousandRunsSwitch()">Run 1000 times:<br> switching door</button>
 		</div>
 	</body>
 </html>
