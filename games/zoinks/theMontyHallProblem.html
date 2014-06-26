@@ -35,7 +35,7 @@
 			var zoinkDoor;
 			var newBtn1;
 			var newBtn2;
-			var randDoor = Math.floor(Math.random() * 3);
+			var randDoor = ~~(Math.random() * 3);
 			if (randDoor == 0) {
 				prize = 1;
 			}
@@ -49,7 +49,7 @@
 				function pickDoor(d) {
 					if (prize == 1) {
 						if (d == 1) {
-							zoinkDoor = Math.floor(Math.random() * 2);
+							zoinkDoor = ~~(Math.random() * 2);
 							if (zoinkDoor == 0) {
 								zoinkDoor = 2;
 								newChoiceDoor = 3;
@@ -74,7 +74,7 @@
 							newChoiceDoor = 2;
 						}
 						if (d == 2) {
-							zoinkDoor = Math.floor(Math.random() * 2);
+							zoinkDoor = ~~(Math.random() * 2);
 							if (zoinkDoor == 0) {
 								zoinkDoor = 3;
 								newChoiceDoor = 1;
@@ -99,7 +99,7 @@
 							newChoiceDoor = 3;
 						}
 						if (d == 3) {
-							zoinkDoor = Math.floor(Math.random() * 2);
+							zoinkDoor = ~~(Math.random() * 2);
 							if (zoinkDoor == 0) {
 								zoinkDoor = 2;
 								newChoiceDoor = 1;
@@ -120,7 +120,7 @@
 					}
 				}
 				for (i = 1; i < 1000; i++) {
-					randDoor = Math.floor(Math.random() * 3);
+					randDoor = ~~(Math.random() * 3);
 					if (randDoor == 0) {
 						prize = 1;
 					}
@@ -130,7 +130,7 @@
 					else {
 						prize = 3;
 					}
-					var chosenDoor = Math.floor(Math.random() * 3) + 1;
+					var chosenDoor = ~~(Math.random() * 3) + 1;
 					pickDoor(chosenDoor);
 				}
 				location.reload();
@@ -140,7 +140,7 @@
 					var firstChoice = d;
 					if (prize == 1) {
 						if (d == 1) {
-							zoinkDoor = Math.floor(Math.random() * 2);
+							zoinkDoor = ~~(Math.random() * 2);
 							if (zoinkDoor == 0) {
 								zoinkDoor = 2;
 								newChoiceDoor = 3;
@@ -165,7 +165,7 @@
 							newChoiceDoor = 2;
 						}
 						if (d == 2) {
-							zoinkDoor = Math.floor(Math.random() * 2);
+							zoinkDoor = ~~(Math.random() * 2);
 							if (zoinkDoor == 0) {
 								zoinkDoor = 3;
 								newChoiceDoor = 1;
@@ -190,7 +190,7 @@
 							newChoiceDoor = 3;
 						}
 						if (d == 3) {
-							zoinkDoor = Math.floor(Math.random() * 2);
+							zoinkDoor = ~~(Math.random() * 2);
 							if (zoinkDoor == 0) {
 								zoinkDoor = 2;
 								newChoiceDoor = 1;
@@ -211,7 +211,7 @@
 					}
 				}
 				for (i = 1; i < 1000; i++) {
-					randDoor = Math.floor(Math.random() * 3);
+					randDoor = ~~(Math.random() * 3);
 					if (randDoor == 0) {
 						prize = 1;
 					}
@@ -221,7 +221,7 @@
 					else {
 						prize = 3;
 					}
-					var chosenDoor = Math.floor(Math.random() * 3) + 1;
+					var chosenDoor = ~~(Math.random() * 3) + 1;
 					pickDoor(chosenDoor);
 				}
 				location.reload();
@@ -268,7 +268,7 @@
 				firstChoice = d;
 				if (prize == 1) {
 					if (d == 1) {
-						zoinkDoor = Math.floor(Math.random() * 2);
+						zoinkDoor = ~~(Math.random() * 2);
 						if (zoinkDoor == 0) {
 							zoinkDoor = 2;
 							newChoiceDoor = 3;
@@ -293,7 +293,7 @@
 						newChoiceDoor = 2;
 					}
 					if (d == 2) {
-						zoinkDoor = Math.floor(Math.random() * 2);
+						zoinkDoor = ~~(Math.random() * 2);
 						if (zoinkDoor == 0) {
 							zoinkDoor = 3;
 							newChoiceDoor = 1;
@@ -318,7 +318,7 @@
 						newChoiceDoor = 3;
 					}
 					if (d == 3) {
-						zoinkDoor = Math.floor(Math.random() * 2);
+						zoinkDoor = ~~(Math.random() * 2);
 						if (zoinkDoor == 0) {
 							zoinkDoor = 2;
 							newChoiceDoor = 1;
@@ -329,7 +329,7 @@
 						}
 					}
 				}
-				newBtnRand = Math.floor(Math.random() * 2);
+				newBtnRand = ~~(Math.random() * 2);
 				if (newBtnRand == 0) {
 					newBtn1 = firstChoice;
 					newBtn2 = newChoiceDoor;
