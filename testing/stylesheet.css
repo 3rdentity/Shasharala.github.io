@@ -3,6 +3,10 @@
   -khtml-user-drag: element;
   -webkit-user-drag: element;
 }
+[draggable="false"] {
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+}
 
 body {
   background-color: #101010;
