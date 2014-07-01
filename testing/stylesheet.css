@@ -1,3 +1,9 @@
+/*Safari compatability w/ Drag and Drop*/
+[draggable="true"] {
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
 body {
   background-color: #101010;
   -webkit-touch-callout: none;
