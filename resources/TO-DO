@@ -8,3 +8,4 @@
 - minify/minimize http req.?
 - turn pixels to %'s or vw/vh?
 - rename script.js to reflect personal library of js. consider copying to resources
+-clean up code to xhtml standards
