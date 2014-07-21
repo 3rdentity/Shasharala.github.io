@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Ryan Combes -- Coder -- @shasharala
+
+# THANKS
+
+    The World Wide Web
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Javascript
