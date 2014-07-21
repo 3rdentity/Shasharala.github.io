@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <!--
   ###DEVELOPED BY RYAN COMBES###
-  ###PLEASE SEE LICENSE AND README###
--->
-<html>
+  ###PLEASE SEE www.shasharala.tk/LICENSE.md
+  AND www.shasharala.tk/README.md###
+
+  This page is presented as it is in order to retain some of its original form
+  from experiementing with gradients. While an image could achieve the same
+  goal this small project seems to have a bit of charm.
+  -->
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="author" content="Ryan Combes">
     <meta name="description" content="under construction">
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
-    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>shasharala > under construction</title>
     <style>
       /*
@@ -33,11 +24,11 @@
 
       @font-face {
           font-family: 'ubuntu_mono';
-          src: url('resources/fonts/ubuntu_mono/ubuntumono-regular_mod.eot');
-          src: url('resources/fonts/ubuntu_mono/ubuntumono-regular_mod.eot?#iefix') format('embedded-opentype'),
-               url('resources/fonts/ubuntu_mono/ubuntumono-regular_mod.woff') format('woff'),
-               url('resources/fonts/ubuntu_mono/ubuntumono-regular_mod.ttf') format('truetype'),
-               url('resources/fonts/ubuntu_mono/ubuntumono-regular_mod.svg#ubuntu_mono') format('svg');
+          src: url('res/font/ubuntu_mono/ubuntumono-regular_mod.eot');
+          src: url('res/font/ubuntu_mono/ubuntumono-regular_mod.eot?#iefix') format('embedded-opentype'),
+               url('res/font/ubuntu_mono/ubuntumono-regular_mod.woff') format('woff'),
+               url('res/font/ubuntu_mono/ubuntumono-regular_mod.ttf') format('truetype'),
+               url('res/font/ubuntu_mono/ubuntumono-regular_mod.svg#ubuntu_mono') format('svg');
           font-weight: normal;
           font-style: normal;
       }
@@ -48,15 +39,15 @@
       ##################################
       */
 
-      @keyframes colorTransition {
+      /*Safari & Chromium*/
+      @-webkit-keyframes colorTransition {
         0% {color: #800080;}
         25% {color: #004040;}
         50% {color: #804000;}
         75% {color: #004080;}
         100% {color: #800080;}
       }
-        /*Safari & Chromium*/
-      @-webkit-keyframes colorTransition {
+      @keyframes colorTransition {
         0% {color: #800080;}
         25% {color: #004040;}
         50% {color: #804000;}
@@ -74,6 +65,7 @@
         color: #333333;
         background-color: #1B1B1A;
         text-align: center;
+        /*covering all the prefix bases*/
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
@@ -83,6 +75,14 @@
         cursor: default;
       }
 
+      a {
+        color: #333333;
+      }
+
+      a:hover {
+        color: #333333;
+      }
+
       span {
         font-family: "ubuntu mono", sans-serif;
       }
@@ -90,17 +90,24 @@
       .title {
         font-size: 123px;
         text-align: center;
-        animation-name: colorTransitition;
-        animation-duration: 1s;
-        animation-iteration-count: infinite;
         /*Safari & Chromium*/
         -webkit-animation-name: colorTransition;
         -webkit-animation-duration: 1s;
         -webkit-animation-iteration-count: infinite;
+        animation-name: colorTransitition;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
       }
 
       .text {
         font-size: 88px;
+      }
+
+      .copyright {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 33px;
       }
 
       /*
@@ -121,7 +128,8 @@
         height: 150px;
         width: 200px;
         border-radius: 300px;
-        background: -webkit-radial-gradient(circle, black 8%, red 8%, red 30%, white 30%, black 300%); /*SAFARI*/
+        /*SAFARI*/
+        background: -webkit-radial-gradient(circle, black 8%, red 8%, red 30%, white 30%, black 300%);
         background: radial-gradient(circle, black 8%, red 8%, red 30%, white 30%, black 210%);
       }
 
@@ -135,9 +143,9 @@
         border-top-right-radius: 0px;
         border-bottom-right-radius: 300px;
         border-bottom-left-radius: 300px;
-        background: radial-gradient(circle, #BA2300 10%, #7F0000 160%);
         /*SAFARI*/
         background: -webkit-radial-gradient(circle, #BA2300 10%, #7F0000 160%);
+        background: radial-gradient(circle, #BA2300 10%, #7F0000 160%);
       }
 
       .teeth-top {
@@ -150,9 +158,9 @@
         border-top-right-radius: 0px;
         border-bottom-right-radius: 300%;
         border-bottom-left-radius: 300%;
-        background: radial-gradient(circle, white 40%, #1B1B1A 300%);
         /*SAFARI*/
         background: -webkit-radial-gradient(circle, white 40%, #1B1B1A 300%);
+        background: radial-gradient(circle, white 40%, #1B1B1A 300%);
       }
 
       .teeth-bottom {
@@ -164,9 +172,9 @@
         border-top-right-radius: 300%;
         border-bottom-right-radius: 0px;
         border-bottom-left-radius: 0px;
-        background: radial-gradient(circle, white 40%, #1B1B1A 300%);
         /*SAFARI*/
         background: -webkit-radial-gradient(circle, white 40%, #1B1B1A 300%);
+        background: radial-gradient(circle, white 40%, #1B1B1A 300%);
       }
 
       .tongue {
@@ -180,19 +188,23 @@
         border-top-right-radius: 0px;
         border-bottom-right-radius: 300%;
         border-bottom-left-radius: 300%;
-        background: linear-gradient(rgba(125, 0, 0, 0.8) 0%, rgba(71, 0, 0, 1) 40%);
         /*SAFARI*/
         background: -webkit-linear-gradient(rgba(125, 0, 0, 0.8) 0%, rgba(71, 0, 0, 1) 40%);
+        background: linear-gradient(rgba(125, 0, 0, 0.8) 0%, rgba(71, 0, 0, 1) 40%);
       }
 
     </style>
   </head>
   <body>
-    <br \>
-    <br \>
-    <br \>
-    <br \>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="container">
+      <!--IE8 fallback-->
+      <!--[if lt IE 9]>
+        <img src="res/img/underConstructionFace.png">
+      <![endif]-->
       <div class="eye"></div>
       &nbsp;
       &nbsp;
@@ -212,10 +224,10 @@
       &nbsp;
       &nbsp;
       <div class="eye"></div>
-      <br />
-      <br />
-      <br />
-      <br />
+      <br>
+      <br>
+      <br>
+      <br>
       <div class="mouth">
         <div class="teeth-top"></div>
         <div class="teeth-top"></div>
@@ -231,10 +243,11 @@
       </div>
       <div class="tongue"></div>
     </div>
-    <br \>
-    <br \>
+    <br>
+    <br>
     <span class="title">shasharala.tk</span>
-    <br \>
+    <br>
     <span class="text">will be back soon</span>
+    <a href="LICENSE.md"><span class="copyright">&#169;2014</span></a>
   </body>
 </html>
