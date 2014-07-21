@@ -11,6 +11,7 @@ is allowed or endorsed.
 #ONE# Everything posted, created, and/or displayed on this website, including
 games, assets, code, resources, and comments are the sole property of its
 author(s) and copyright holders.
+
 #TWO# Do not redistribute games, media, or any alteration thereof without
 express permission in license or from its author(s) and copyright holders.
 
