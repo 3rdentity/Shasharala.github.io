@@ -1,11 +1,10 @@
-- make sure that website appears appropriatly on tablets/phones
-- fiddle with wording on 404 page and make 404 cat's gameboy have speaker/flashing screen with "404" on it/ Or avatar claiming they have reached th wrong page, the 404 is in anotehr castle?
+- media queries
+- fiddle with wording on 404 page and make 404 cat's gameboy have
+  speaker/flashing screen with "404" on it/ Or avatar claiming they have reached
+  the wrong page, the 404 is in another castle?
 - filler art on short pages?
-- consider more plain license page. tie this into overhauling the site/simpler webpage look
 - make a blow up everything button?
-- turn pixels to %'s or vw/vh?
-- rename script.js to reflect personal library of js. consider copying to resources
-- clean up code to xhtml standards
+- clean up js. possibly put into separate files
 
 sexy colors:
 -FF0080
