@@ -1,4 +1,10 @@
 /*
+==============================================================================
+CSS FOR MOST OF SHASHARALA.TK
+==============================================================================
+*/
+
+/*
 #############################
 ############FONTS############
 #############################
@@ -16,84 +22,17 @@
 }
 
 /*
-##################################
-############ANIMATIONS############
-##################################
-*/
-
-@keyframes invisToVis {
-	0% {opacity: 0;}
-	100% {opacity: 1;}
-}
-/*Safari & Chromium*/
-@-webkit-keyframes invisToVis {
-	0% {opacity: 0;}
-	100% {opacity: 1;}
-}
-
-@keyframes purpleTransition {
-	0% {background-color: #0F0415;}
-	50% {background-color: #300949;}
-	100% {background-color: #0F0415;}
-}
-/*Safari & Chromium*/
-@-webkit-keyframes purpleTransition {
-	0% {background-color: #0F0415;}
-	50% {background-color: #300949;}
-	100% {background-color: #0F0415;}
-}
-
-@keyframes randoRotate {
-	0% {transform: rotate(0deg);}
-	25% {transform: rotate(360deg);}
-	50% {transform: rotate(90deg);}
-	75% {transform: rotate(270deg);}
-	100% {transform: rotate(180deg);}
-}
-/*Safari & Chromium*/
-@-webkit-keyframes randoRotate {
-	0% {-webkit-transform: rotate(0deg);}
-	25% {-webkit-transform: rotate(360deg);}
-	50% {-webkit-transform: rotate(90deg);}
-	75% {-webkit-transform: rotate(270deg);}
-	100% {-webkit-transform: rotate(180deg);}
-}
-
-@keyframes slip {
-	0% {padding-top: 0px;}
-	50% {padding-top: 12px;}
-	100% {padding-top: 0px;}
-}
-/*Safari & Chromium*/
-@-webkit-keyframes slip {
-	0% {padding-top: 0px;}
-	50% {padding-top: 12px;}
-	100% {padding-top: 0px;}
-}
-
-.randoRotate {
-	animation-name: randoRotate;
-	animation-duration: 1s;
-	animation-iteration-count: infinite;
-	/*Safari & Chromium*/
-	-webkit-animation-name: randoRotate;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-iteration-count: infinite;
-}
-
-/*
 #################################
 ############UNIVERSAL############
 #################################
 */
 
 body {
-	background-color: #101010;
-	background-image: url("../img/bg/purpleMonster.png");
-	font-family: 'ubuntu_mono';
-	color: #999999;
-	text-align: center;
-	font-size: 16px;
+  font-family: "ubuntu mono", sans-serif;
+  font-size: 16px;
+  color: #AAAAAA;
+  background-color: #1B1B1A;
+  text-align: center;
 }
 
 ::selection {
@@ -107,24 +46,27 @@ body {
 }
 
 a {
-	text-decoration: none;
-	color: #999999;
-	cursor: default;
+  color: #AAAAAA;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 .aLink {
-	border-bottom: 1px dotted;
+	text-decoration: solid;
 }
 
-.aLink:hover {
-	animation-name: purpleTransition;
-	animation-duration: 1s;
-	animation-iteration-count: infinite;
-	/*Safari & Chromium*/
-	-webkit-animation-name: purpleTransition;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-iteration-count: infinite;
+hr {
+  border-color: #AAAAAA;
 }
+
+
+
+
+
 
 .banner {
 	z-index: -1;
@@ -172,10 +114,6 @@ a {
 	border-radius: 88px;
 	font-size: 18px;
 	text-align: left;
-}
-
-hr{
-   border: 1px solid #4A4B4C;
 }
 
 .content {
@@ -273,47 +211,6 @@ hr{
 	padding-left: 88px;
 	width: 484px;
 	height: 484px;
-}
-
-/*
-###############################
-############LICENSE############
-###############################
-*/
-
-.termsTitle {
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 33px;
-	font-size: 21px;
-}
-
-.terms {
-	margin: auto;
-	width: 666px;
-	text-align: left;
-	font-size: 18px;
-}
-
-.terms ul {
-	list-style-type: none;
-	padding: 0px;
-	margin: 0px;
-}
-
-.terms ul li {
-	background-repeat: no-repeat;
-	background-position: 0px 0px;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 77px;
-	height: 66px;
-}
-
-.terms ul li span {
-	color: #AAAAAA;
 }
 
 /*
