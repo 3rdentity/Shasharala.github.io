@@ -1,17 +1,12 @@
 /*
 ==============================================================================
-CSS TO CONTROL LOOK OF NOTIFICATION BOXES AND RELATED PAGES
+CSS TO CONTROL LOOK OF NOTIFICATION BOXES
 ==============================================================================
-*/
-/*
-#####################################
-############NOTIFICATIONS############
-#####################################
 */
 
 .notifyBox {
   position: absolute;
-  top: 303px;
+  top: 30px;
   right: 0px;
   padding-top: 4px;
   padding-right: 4px;
@@ -19,9 +14,9 @@ CSS TO CONTROL LOOK OF NOTIFICATION BOXES AND RELATED PAGES
   padding-bottom: 4px;
   height: auto;
   width: 150px;
-  background-image:url("../img/bg/blackClear.png");
-  color: #666666;
-  border-color: #666666;
+  background-image: url("../img/bg/blackClear.png");
+  color: #AAAAAA;
+  border-color: #AAAAAA;
   border-style: solid;
   border-width: 2px;
   text-align: left;
@@ -36,76 +31,17 @@ CSS TO CONTROL LOOK OF NOTIFICATION BOXES AND RELATED PAGES
   padding-bottom: 1px;
   padding-left: 4px;
   border-style: outset;
-  border-color: #666666;
+  border-color: #AAAAAA;
   border-width: 2px;
   border-radius: 3px;
   text-align: center;
   font-size: 16px;
-  color: #666666;
+  color: #AAAAAA;
 }
 
 .notifyBtn:hover {
   cursor: pointer;
-  color: #333333;
-  border-color: #333333;
-  background-image:url("../img/bg/whiteClear.png");
-}
-
-#oldIENotify {
-  top: 30px;
-  right: 0px;
-}
-
-/*
-###########################################
-############NOSCRIPT&OLDBROWSER############
-###########################################
-*/
-
-.browserIcons {
-  text-align: center;
-  font-size: 16px;"
-}
-
-.sectionBorder {
-  width: 282px;
-  background-image: url("../img/bg/clear.png");
-  border-color: #4A4B4C;
-  border-radius: 33px;
-  border-width: 1px;
-  border-top-style: transparent;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: transparent;
-}
-
-.sectionTitle {
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 12px;
-  font-size: 24px;
-}
-
-.instructions {
-  margin-top: 3px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-left: 44px;
-  font-size: 16px;
-}
-
-.instructions li {
-  padding-bottom: 3px;
-}
-
-.centerLink {
-  text-align: center;
-  padding-top:12px;
+  color: #010101;
+  border-color: #CCCCCC;
+  background-image: url("../img/bg/whiteClear.png");
 }
