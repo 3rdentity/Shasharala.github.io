@@ -30,10 +30,20 @@ interact with the website.
 Please see https://www.google.com/policies/privacy/partners/ for more
 information on what this means for you.
 
-The Ubuntu Mono font is used under license.
-Please see www.shasharala.tk/res/font/UFL.txt
+===LICENSED SOFTWARE===
+HTML5Shiv -
+www.shasharala.tk/res/js/html5shiv/MIT and GPL2 licenses.md
+
+CSS3Pie -
+www.shasharala.tk/res/js/pie/LICENSE
+
+Respond.js -
+www.shasharala.tk/res/js/respond/LICENSE-MIT
+
+Ubuntu Mono -
+www.shasharala.tk/res/fonts/UFL.txt
 
 ==============================================================================
-07/20/2014 - This license may change at any time without prior notice. Please
+07/26/2014 - This license may change at any time without prior notice. Please
 check back regularly.
 ==============================================================================
