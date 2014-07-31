@@ -4,11 +4,7 @@ CSS FOR MOST OF SHASHARALA.TK
 ==============================================================================
 */
 
-/*
-#############################
-############FONTS############
-#############################
-*/
+/*############FONTS############*/
 
 @font-face {
     font-family: 'ubuntu_mono';
@@ -21,11 +17,7 @@ CSS FOR MOST OF SHASHARALA.TK
     font-style: normal;
 }
 
-/*
-#################################
-############UNIVERSAL############
-#################################
-*/
+/*############UNIVERSAL############*/
 
 body {
   font-family: "ubuntu mono", sans-serif;
@@ -36,13 +28,13 @@ body {
 }
 
 ::selection {
-	background-color: #060024;
-	color: #999999;
+	background-color: #888888;
+	color: #010101;
 }
 
 ::-moz-selection {
-	background-color: #060024;
-	color: #999999;
+	background-color: #888888;
+	color: #010101;
 }
 
 a {
