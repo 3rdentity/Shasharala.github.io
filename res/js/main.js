@@ -1,20 +1,13 @@
-/*
-###############################
-############BUTTONS############
-###############################
-*/
+/*############BUTTONS############*/
 
 function clickBtn(name) {
 	name.style.border= "1px inset #4A4B4C";
 }
 
-/*
-###############################
-############COOKIES############
-###############################
-*/
+/*############COOKIES############
 
-//all cookies begin with "sha" automagically
+all cookies begin with "sha" automagically*/
+
 function checkCookie(name, value) {
 	if(getCookie(name) == value) {
 		return true;
@@ -24,7 +17,6 @@ function checkCookie(name, value) {
 	}
 }
 
-//all cookies begin with "sha" automagically
 function getCookie(name) {
 	var modNameEQ = "sha" + name + "=";
 	var ca = document.cookie.split(';');
@@ -40,7 +32,6 @@ function getCookie(name) {
 	return null;
 }
 
-//all cookies begin with "sha" automagically
 function setCookie(name, value, days, domain, path) {
 	//check if domain is set and set it to null if not
 	if (domain) {
@@ -68,29 +59,21 @@ function setCookie(name, value, days, domain, path) {
 	document.cookie = "sha_" + name + "=" + value + "; " + e + "; domain=" + d + "; path=" + p;
 }
 
-//all cookies begin with "sha" automagically
 function remCookie(name) {
 	var modName = "sha" + name;
 	setCookie(modName, "", -1);
 }
 
-/*
-#################################
-############DETECTION############
-#################################
-*/
+/*############DETECTION############*/
 
 function isArray(obj) {
   return Object.prototype.toString.call(obj) === '[object Array]';
 }
 
-/*
-#################################
-############INJECTION############
-#################################
-*/
+/*############INJECTION############
 
-//function that injects data into an object
+function that injects data into an object*/
+
 function inject(name, content) {
 	nameStr = name + "";
 	searchFor = "object";
@@ -102,13 +85,10 @@ function inject(name, content) {
 	}
 }
 
-/*
-#################################
-############INVIS&VIS############
-#################################
-*/
+/*############INVIS&VIS############
 
-//functions that display, fade, and hide objects
+functions that display, fade, and hide objects*/
+
 function replace(name1, name2) {
 	hide(name1);
 	show(name2);
@@ -187,16 +167,12 @@ function show(name) {
 	}
 }
 
-/*
-#################################
-############TYPEWRITE############
-#################################
+/*############TYPEWRITE############
 
 'types' out a specified or random array/line, denoted by 'arr', to a specified object, denoted by 'obj'
 modifiers can be entered in any order
 - rand controls random array/line selection automatically. "randOn" to use
-- rowStat controls rows. "rowsOff" or set amount of rows with 'rows#'
-*/
+- rowStat controls rows. "rowsOff" or set amount of rows with 'rows#'*/
 
 var typewrite = function typewrite(obj, arr, name1, name2) {
 	//these speeds and settings can be changed by events to control how quickly typewrite 'types'. note that all current instances of typewrite will be affected
@@ -236,7 +212,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 	}
 	//consider changing to slide down alert
 	else if (rand != "randOn" && isArray(arr[0]) == true) {
-		console.error("Error: typewrite().\nAn array full of arrays has been passed. See documentation and pass 'randOn' or an array of text.");
+		//Error: An array full of arrays has been passed. See documentation and pass 'randOn' or an array of text.
 		return;
 	}
 	var ind = 0; //index
