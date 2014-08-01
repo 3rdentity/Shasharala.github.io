@@ -160,10 +160,10 @@ function show(name) {
 	var nameStr = name + "";
 	var searchFor = "object";
 	if (nameStr.indexOf(searchFor) != -1) {
-		name.parentNode.style.display = "initial";
+		name.parentNode.style.display = "inline";
 	}
 	else {
-		document.getElementById(name).style.display = "initial";
+		document.getElementById(name).style.display = "inline";
 	}
 }
 
