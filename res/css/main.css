@@ -4,6 +4,13 @@ CSS FOR MOST OF SHASHARALA.TK
 ==============================================================================
 */
 
+/*############ATTRIBUTES############*/
+
+[draggable="false"] {
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+}
+
 /*############FONTS############*/
 
 @font-face {
@@ -55,7 +62,26 @@ hr {
   border-color: #AAAAAA;
 }
 
+.unselectable {
+  /*set selection color to transparent*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /*default cursor for everything but link/special cases*/
+  cursor: default;
+}
 
+.copyright {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: auto;
+  width: auto;
+  font-size: 24px;
+}
 
 
 
@@ -257,14 +283,6 @@ hr {
 	padding-left: 16px;
 	font-size: 12px;
 	font-style: italic;
-}
-
-.copyright {
-	color: #999999;
-	margin: auto;
-	width: 777px;
-	text-align: right;
-	font-size: 12px;
 }
 
 .post {
