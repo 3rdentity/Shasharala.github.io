@@ -8,8 +8,34 @@
   -webkit-user-drag: none;
 }
 
+.backgroundCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("../../res/img/bg/blackClear.png");
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.centerBit {
+  font-family: sans-serif;
+  margin: -300px auto auto auto;
+  padding: 30px;
+  background-image: url("../../res/img/bg/blackClear.png");
+  width: 800px;
+  height: 400px;
+  color: #AAAAAA;
+  font-size: 44px;
+  border-color: #AAAAAA;
+  border-radius: 12px;
+  border-style: solid;
+  box-shadow: 1px 1px 24px #AAAAAA;
+}
+
 body {
   background-color: #101010;
+  background-image: url("test.gif");
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
