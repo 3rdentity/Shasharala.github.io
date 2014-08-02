@@ -19,22 +19,19 @@
 }
 
 .centerBit {
-  font-family: sans-serif;
+  font-family: "ubuntu mono", sans-serif;
   margin: -300px auto auto auto;
-  padding: 30px;
-  background-image: url("../../res/img/bg/blackClear.png");
-  width: 800px;
-  height: 400px;
+  padding: 10px;
+  width: 900px;
+  height: auto;
   color: #AAAAAA;
-  font-size: 44px;
-  border-color: #AAAAAA;
-  border-radius: 12px;
-  border-style: solid;
-  box-shadow: 1px 1px 24px #AAAAAA;
+  font-size: 16px;
+  text-shadow: -1px 1px 12px #1051b7;
+  text-align: center;
 }
 
 body {
-  background-color: #101010;
+  background-color: #3a3f4d;
   background-image: url("test.gif");
   -webkit-touch-callout: none;
   -webkit-user-select: none;
