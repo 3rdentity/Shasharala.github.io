@@ -31,11 +31,9 @@ Please see https://www.google.com/policies/privacy/partners/ for more
 information on what this means for you.
 
 ===LICENSED SOFTWARE===
-HTML5Shiv -
-www.shasharala.tk/res/js/html5shiv/MIT and GPL2 licenses.md
 
-CSS3Pie -
-www.shasharala.tk/res/js/pie/LICENSE
+Normalize -
+www.shasharala.tk/res/css/normalize/LICENSE.md
 
 Respond.js -
 www.shasharala.tk/res/js/respond/LICENSE-MIT
@@ -44,6 +42,6 @@ Ubuntu Mono -
 www.shasharala.tk/res/fonts/UFL.txt
 
 ==============================================================================
-07/26/2014 - This license may change at any time without notice. Please
+08/01/2014 - This license may change at any time without notice. Please
 check back regularly.
 ==============================================================================
