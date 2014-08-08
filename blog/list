@@ -1,9 +1,9 @@
 **Blogs will progress in descending order.
-For example: groundZero.html -> 0003.html -> 0002.html -> 0001.html
-  groundZero would be 0004.html when a new post is put on groundZero.html
+For example: groundZero.html -> 0002.html -> 0001.html -> 0000.html
+  groundZero would be 0003.html when a new post is put on groundZero.html
 ###############################################################################
 <<<INDEX>>>
 
-groundZero.html - HELLO WORLD 03/17/2014
-0002.html - HELLO WORLD 03/17/2014
-0001.html - HELLO WORLD 03/17/2014
+groundZero.html - HELLO WORLD XX/XX/XX
+0001.html - HELLO WORLD XX/XX/XX
+0000.html - HELLO WORLD XX/XX/XX
