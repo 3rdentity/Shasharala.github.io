@@ -11,5 +11,5 @@
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5, Javascript, PHP
+    CSS3, HTML5, Javascript
     Normalize, Respond.js, Ubuntu Mono
