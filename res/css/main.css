@@ -53,7 +53,6 @@ a {
 a:hover {
   color: #FFFFFF;
   text-decoration: none;
-  cursor: default;
 }
 
 .aLink {
@@ -72,21 +71,21 @@ hr {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /*default cursor for everything but link/special cases*/
-  cursor: default;
 }
 
 .bgCover {
-    z-index: -1;
+    z-index: -2;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
+    /*background-color: rgba(0, 44, 48, 0.63);*/
     background-image: url("../img/bg/clear/black.png");
 }
 
 .copyright {
+  z-index: 0;
   position: absolute;
   top: 0px;
   right: 0px;
@@ -107,12 +106,14 @@ hr {
 }
 
 .intro {
-  text-align: center;
-  margin: 0px 0px 0px 0px;
-  padding: 0px 10px 0px 10px;
+  display: inline-block;
+  margin: -3px;
+  font-size: 21px;
 }
 
-.textContainer {
+.container {
+  position: relative;
+  z-index: 5;
 	margin: auto;
   padding: 8px 0px 0px 0px;
 	height: 444px;
@@ -135,6 +136,64 @@ hr {
   overflow: scroll;
 }
 
+.scrollArrow {
+  position: fixed;
+  margin: 363px 0px 0px 676px;
+  width: 0px;
+  height: 0px;
+  font-size: 24px;
+  line-height: 8px;
+}
+
+.scrollArrow span {
+  font-size: 29px;
+  margin: 0px 0px 0px -.6px;
+}
+
+.content {
+  margin: -10px auto 100px auto;
+  padding: 0px 0px 11px 0px;
+  width: 600px;
+  font-size: 16px;
+  text-align: left;
+}
+
+/*############MENU############*/
+
+.menu {
+  margin: auto;
+  height: 0px;
+  width: 0px;
+}
+
+.menuBtn {
+  position: absolute;
+  z-index: 1;
+  margin: 80px 0px 0px -420px;
+  padding: 10px 10px 10px 3px;
+  background-color: #1B1B1B;
+  border-style: solid;
+  border-color: #4A4B4C transparent #4A4B4C #4A4B4C;
+  border-width: 1px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: 24px;
+}
+
+.menuBtn_curr {
+  z-index: 9;
+  margin: 80px 0px 0px -440px;
+  padding: 10px 30px 10px 3px;
+  background-color: #0B0B0B;
+  color: #DDDDDD;
+}
+
+.menuBtn:hover {
+  margin: 80px 0px 0px -440px;
+  padding: 10px 30px 10px 3px;
+  background-color: #0B0B0B;
+}
+
 /*############HEADER############*/
 
 .headL {
@@ -149,46 +208,58 @@ hr {
   padding: 0px 10px 0px 0px;
 }
 
-#headerBtn {
-	display: inline-block;
-	margin: -3px 0px -3px 0px;
-	padding: 0px 8px 0px 8px;
-	border-style: outset;
-	border-color: #4A4B4C;
-	border-width: 1px;
-	border-radius: 3px;
-	text-align: center;
-	font-size: 18px;
+.headerBtn {
+  display: inline-block;
+  margin: -3px 0px -3px 0px;
+  padding: 0px 8px 0px 8px;
+  border-style: outset;
+  border-color: #4A4B4C;
+  border-width: 1px;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 18px;
 }
 
 /*############ABOUT############*/
 
 .contact {
-	padding: 33px 0px 0px 33px;
+  text-align: center;
+  font-size: 18px;
 	font-style: italic;
+  vertical-align: middle;
+}
+
+.email {
+  display: inline-block;
+  background: url("../img/contact/email_mini.png");
+  background-repeat: no-repeat;
+  width: 240px;
+  height: 18px;
+  vertical-align: bottom;
+}
+
+.email:hover {
+ background: url("../img/contact/emailHover_mini.png");
+ background-repeat: no-repeat;
+}
+
+.twitter {
+  display: inline-block;
+  background: url("../img/contact/twitter_mini.png");
+  background-repeat: no-repeat;
+  width: 121px;
+  height: 18px;
+  vertical-align: bottom;
+}
+
+.twitter:hover {
+  background: url("../img/contact/twitterHover_mini.png");
+  background-repeat: no-repeat;
 }
 
 /*############BLOG############*/
 
-.post {
-  margin: auto auto 100px auto;
-  padding: 11px;
-	width: 666px;
-	font-size: 16px;
-	text-align: left;
-}
-
-.content {
-  padding: 0px 21px 0px 21px;
-}
-
-.title {
-  padding: 0px 0px 0px 33px;
-  font-size: 21px;
-}
-
 .titleTime {
-  padding: 0px 0px 0px 48px;
   font-size: 12px;
   font-style: italic;
 }

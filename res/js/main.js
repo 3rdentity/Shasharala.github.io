@@ -1,3 +1,9 @@
+/*
+==============================================================================
+JS FOR MOST OF SHASHARALA.TK
+==============================================================================
+*/
+
 /*############BUTTONS############*/
 
 function clickBtn(name) {
@@ -9,7 +15,7 @@ function clickBtn(name) {
 all cookies begin with "sha" automagically*/
 
 function checkCookie(name, value) {
-	if(getCookie(name) == value) {
+	if (getCookie(name) == value) {
 		return true;
 	}
 	else {
