@@ -1,15 +1,15 @@
-/*############BUTTONS############*/
-
-function clickBtn(name) {
-	name.style.border= "1px inset #4A4B4C";
-}
+/*
+==============================================================================
+JS FOR MOST OF SHASHARALA.TK
+==============================================================================
+*/
 
 /*############COOKIES############
 
 all cookies begin with "sha" automagically*/
 
 function checkCookie(name, value) {
-	if(getCookie(name) == value) {
+	if (getCookie(name) == value) {
 		return true;
 	}
 	else {
@@ -216,7 +216,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 		return;
 	}
 	var ind = 0; //index
-    var lineLength = arr[0].length;
+  var lineLength = arr[0].length;
 	var currPos = 1;
 	var currContents = "";
 	var contents = "";
@@ -336,7 +336,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 			lineLength = arr[ind].length;
 			return;
 		}
-		//the 'insertion point/cursor' will blink forever [should write in a form of stopping this entire function]
+		//the 'insertion point/cursor' will blink forever
 		else {
 			contents += arr[ind];
 			blinks = typewrite.blinksMax + 1;

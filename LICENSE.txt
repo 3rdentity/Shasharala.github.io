@@ -12,7 +12,7 @@ is allowed or endorsed.
 games, assets, code, resources, and comments are the sole property of its
 author(s) and copyright holders.
 
-#TWO# Do not redistribute games, media, or any alteration thereof without
+#TWO# Do not redistribute media or any alteration thereof without
 express permission in license or from its author(s) and copyright holders.
 
 NOTE: This website and its contents are provided "as is", without warranty of
@@ -20,8 +20,8 @@ any kind, express or implied, including but not limited to the warranties of
 merchantability, fitness for a particular purpose, and non-infringement. In no
 event shall the authors or copyright holders be liable for any claim, damages,
 or other liability, whether in an action of contract, tort or otherwise, arising
-from, out of or in connection with the with the software or the use or other
-dealings in the website or related services.
+from, out of or in connection with the website or the use of or other dealings
+in the website or related services and programs.
 ------------------------------------------------------------------------------
 
 ===THIS WEBSITE USES GOOGLE ANALYTICS===
@@ -31,11 +31,9 @@ Please see https://www.google.com/policies/privacy/partners/ for more
 information on what this means for you.
 
 ===LICENSED SOFTWARE===
-HTML5Shiv -
-www.shasharala.tk/res/js/html5shiv/MIT and GPL2 licenses.md
 
-CSS3Pie -
-www.shasharala.tk/res/js/pie/LICENSE
+Normalize -
+www.shasharala.tk/res/css/normalize/LICENSE.md
 
 Respond.js -
 www.shasharala.tk/res/js/respond/LICENSE-MIT
@@ -44,6 +42,6 @@ Ubuntu Mono -
 www.shasharala.tk/res/fonts/UFL.txt
 
 ==============================================================================
-07/26/2014 - This license may change at any time without notice. Please
+08/07/2014 - This license may change at any time without notice. Please
 check back regularly.
 ==============================================================================
