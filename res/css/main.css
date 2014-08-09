@@ -35,14 +35,14 @@ body {
   text-align: center;
 }
 
-::selection {
+::-moz-selection {
 	background-color: #888888;
 	color: #010101;
 }
 
-::-moz-selection {
-	background-color: #888888;
-	color: #010101;
+::selection {
+  background-color: #888888;
+  color: #010101;
 }
 
 a {
@@ -57,6 +57,10 @@ a:hover {
 
 .aLink {
 	text-decoration: underline;
+}
+
+.btn:active {
+  border-style: inset;
 }
 
 hr {
@@ -109,6 +113,10 @@ hr {
   display: inline-block;
   margin: -3px;
   font-size: 21px;
+}
+
+.offset {
+  padding: 0px 0px 0px 100px;
 }
 
 .container {
@@ -170,28 +178,30 @@ hr {
   position: absolute;
   z-index: 1;
   margin: 80px 0px 0px -420px;
-  padding: 10px 10px 10px 3px;
-  background-color: #1B1B1B;
+  padding: 30px 10px 30px 3px;
+  background-image: url("../img/bg/clear/grey.png");
   border-style: solid;
   border-color: #4A4B4C transparent #4A4B4C #4A4B4C;
   border-width: 1px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   font-size: 24px;
+  -webkit-transition: margin .5s, padding .5s;
+  transition: margin .5s, padding .5s;
 }
 
 .menuBtn_curr {
-  z-index: 9;
+  z-index: 1;
   margin: 80px 0px 0px -440px;
-  padding: 10px 30px 10px 3px;
-  background-color: #0B0B0B;
+  padding: 30px 27px 30px 3px;
+  background-image: url("../img/bg/clear/black.png");
   color: #DDDDDD;
 }
 
 .menuBtn:hover {
   margin: 80px 0px 0px -440px;
-  padding: 10px 30px 10px 3px;
-  background-color: #0B0B0B;
+  padding: 30px 27px 30px 3px;
+  background-image: url("../img/bg/clear/black.png");
 }
 
 /*############HEADER############*/
