@@ -28,7 +28,7 @@ CSS FOR MOST OF SHASHARALA.TK
 
 body {
   background-color: #3a3f4d;
-  background: url("../img/bg/sliders.gif");
+  background-image: url("../img/bg/sliders.gif");
   font-family: "ubuntu mono";
   font-size: 16px;
   color: #AAAAAA;
@@ -36,6 +36,7 @@ body {
 }
 
 .ie8 {
+  background-image: url()
 }
 
 ::-moz-selection {
