@@ -8,31 +8,8 @@
   -webkit-user-drag: none;
 }
 
-.backgroundCover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: url("../../res/img/bg/blackClear.png");
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-}
-
-.centerBit {
-  font-family: "ubuntu mono", sans-serif;
-  margin: -300px auto auto auto;
-  padding: 10px;
-  width: 900px;
-  height: auto;
-  color: #AAAAAA;
-  font-size: 16px;
-  text-shadow: -1px 1px 12px #1051b7;
-  text-align: center;
-}
-
 body {
   background-color: #3a3f4d;
-  background-image: url("test.gif");
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
