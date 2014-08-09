@@ -11,7 +11,6 @@
     <meta name="description" content="blog">
     <link rel="stylesheet" type="text/css" href="../res/css/normalize/normalize.css">
     <link rel="stylesheet" type="text/css" href="../res/css/main.css">
-    <script src="../res/js/main.js"></script>
     <title>shasharala > thoughts</title>
   </head>
   <body>
@@ -31,80 +30,107 @@
       &nbsp;&nbsp;&nbsp;|\_________\|__|\|__|\|__|\|__|\_________\|__|\|__|\|__|\|__|\|__|\|__|\|__|\|__|\|_______|\|__|\|__|<br>
       &nbsp;&nbsp;&nbsp;\|_________|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\|_________|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
-    <div class="container">
-      <!--###BEGIN BLOG POST###-->
-      <div class="headL">
-        <div class="intro">
-          <!--HELLO WORLD XX/XX/XX-->
-          &nbsp;&nbsp;&nbsp;Hello World&nbsp;<span class="titleTime">XX/XX/XX</span>
-        </div>
-      </div>
-      <div class="headR">
+    <div class="offset">
+      <div class="menu">
+        <a href="../about.html" draggable="false">
+          <div class="menuBtn">
+            About
+          </div>
+        </a>
+        <br>
+        <br>
+        <br>
+        <br>
         <a href="groundZero.html" draggable="false">
-          <div class="headerBtn" onMouseDown="clickBtn(this)">
-            &lt;&lt;
+          <div class="menuBtn menuBtn_curr">
+            Blog&nbsp;
           </div>
         </a>
-        <a href="groundZero.html" draggable="false">
-          <div class="headerBtn" onMouseDown="clickBtn(this)">
-            &lt;
-          </div>
-        </a>
-        <a href="0001.html" draggable="false">
-          <div class="headerBtn" onMouseDown="clickBtn(this)">
-            &gt;
-          </div>
-        </a>
-        <a href="0000.html" draggable="false">
-          <div class="headerBtn" onMouseDown="clickBtn(this)">
-            &gt;&gt;
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="../games.html" draggable="false">
+          <div class="menuBtn">
+            Games
           </div>
         </a>
       </div>
-      <br>
-      <hr>
-      <div class="scrollContainer">
-        <div class="scrollArrow">|<br>v</div>
-        <div class="content">
-          <p>
-            &nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            In nec arcu suscipit, porta tortor vel, ullamcorper felis.
-            Maecenas elit lectus, convallis vitae condimentum at, elementum
-            in massa. Cras convallis turpis lacus, in varius magna tempus ac.
-            Sed tempus rhoncus leo vitae tincidunt. Quisque iaculis sodales
-            justo et lobortis. Praesent auctor elementum diam, at elementum
-            metus interdum vel. Vivamus in commodo tellus.
-          </p>
-          <p>
-            &nbsp;&nbsp;Donec posuere mi nec vestibulum lobortis. Aenean consequat justo
-            vel porta rutrum. Praesent sollicitudin magna sit amet mattis
-            dictum. Integer placerat nibh urna, in consequat lorem tincidunt
-            ut. Duis sit amet lacus vitae lacus luctus pharetra. Aenean
-            turpis turpis, sodales vitae feugiat nec, feugiat et mauris.
-            Cras malesuada, sapien vitae dignissim interdum, nunc augue
-            volutpat diam, vitae ornare mi turpis ac velit. Curabitur
-            dignissim ipsum non fermentum viverra. Fusce euismod elit id
-            scelerisque lobortis. Morbi non leo sit amet ipsum dictum
-            blandit. Nam luctus, eros id cursus porttitor, felis tortor
-            viverra mi, quis eleifend erat sem nec ante. Integer viverra
-            velit id enim dictum pulvinar.
-          </p>
-          <p>
-            &nbsp;&nbsp;Vestibulum id rutrum metus. Phasellus at dolor vehicula mauris
-            adipiscing adipiscing. Etiam id purus mollis, dignissim justo
-            eget, ultricies lacus. Ut aliquam nibh metus, quis semper orci
-            lobortis non. Cras id purus vulputate, luctus ante sit amet,
-            ullamcorper nunc. Vivamus interdum, lectus ut auctor tempor,
-            tortor neque pulvinar nisi, vitae ultrices dolor velit a mauris.
-            Duis pellentesque pharetra vehicula. Donec vehicula vel orci
-            eget vehicula. Aliquam malesuada elit eleifend urna ultricies,
-            id vestibulum nibh hendrerit. Donec tempor orci non lectus
-            mollis, et suscipit tellus posuere. Integer neque dui, lobortis
-            non hendrerit vitae, ultricies vitae dolor.
-          </p>
+      <div class="container">
+        <!--###BEGIN BLOG POST###-->
+        <div class="headL">
+          <div class="intro">
+            <!--HELLO WORLD XX/XX/XX-->
+            &nbsp;&nbsp;&nbsp;Hello World&nbsp;<span class="titleTime">XX/XX/XX</span>
+          </div>
         </div>
+        <div class="headR">
+          <a href="groundZero.html" draggable="false">
+            <div class="headerBtn btn">
+              &lt;&lt;
+            </div>
+          </a>
+          <a href="groundZero.html" draggable="false">
+            <div class="headerBtn btn">
+              &lt;
+            </div>
+          </a>
+          <a href="0001.html" draggable="false">
+            <div class="headerBtn btn">
+              &gt;
+            </div>
+          </a>
+          <a href="0000.html" draggable="false">
+            <div class="headerBtn btn">
+              &gt;&gt;
+            </div>
+          </a>
+        </div>
+        <br>
+        <hr>
+        <div class="scrollContainer">
+          <div class="scrollArrow"><span>^</span><br>|<br>v</div>
+          <div class="content">
+            <p>
+              &nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              In nec arcu suscipit, porta tortor vel, ullamcorper felis.
+              Maecenas elit lectus, convallis vitae condimentum at, elementum
+              in massa. Cras convallis turpis lacus, in varius magna tempus ac.
+              Sed tempus rhoncus leo vitae tincidunt. Quisque iaculis sodales
+              justo et lobortis. Praesent auctor elementum diam, at elementum
+              metus interdum vel. Vivamus in commodo tellus.
+            </p>
+            <p>
+              &nbsp;&nbsp;Donec posuere mi nec vestibulum lobortis. Aenean consequat justo
+              vel porta rutrum. Praesent sollicitudin magna sit amet mattis
+              dictum. Integer placerat nibh urna, in consequat lorem tincidunt
+              ut. Duis sit amet lacus vitae lacus luctus pharetra. Aenean
+              turpis turpis, sodales vitae feugiat nec, feugiat et mauris.
+              Cras malesuada, sapien vitae dignissim interdum, nunc augue
+              volutpat diam, vitae ornare mi turpis ac velit. Curabitur
+              dignissim ipsum non fermentum viverra. Fusce euismod elit id
+              scelerisque lobortis. Morbi non leo sit amet ipsum dictum
+              blandit. Nam luctus, eros id cursus porttitor, felis tortor
+              viverra mi, quis eleifend erat sem nec ante. Integer viverra
+              velit id enim dictum pulvinar.
+            </p>
+            <p>
+              &nbsp;&nbsp;Vestibulum id rutrum metus. Phasellus at dolor vehicula mauris
+              adipiscing adipiscing. Etiam id purus mollis, dignissim justo
+              eget, ultricies lacus. Ut aliquam nibh metus, quis semper orci
+              lobortis non. Cras id purus vulputate, luctus ante sit amet,
+              ullamcorper nunc. Vivamus interdum, lectus ut auctor tempor,
+              tortor neque pulvinar nisi, vitae ultrices dolor velit a mauris.
+              Duis pellentesque pharetra vehicula. Donec vehicula vel orci
+              eget vehicula. Aliquam malesuada elit eleifend urna ultricies,
+              id vestibulum nibh hendrerit. Donec tempor orci non lectus
+              mollis, et suscipit tellus posuere. Integer neque dui, lobortis
+              non hendrerit vitae, ultricies vitae dolor.
+            </p>
+          </div>
+        </div>
+        <!--###END BLOG POST###-->
       </div>
-      <!--###END BLOG POST###-->
     </div>
     <!--<script>
       //google analytics
