@@ -1,9 +1,3 @@
-/*
-==============================================================================
-JS FOR MOST OF SHASHARALA.TK
-==============================================================================
-*/
-
 /*############COOKIES############
 
 all cookies begin with "sha" automagically*/
@@ -68,6 +62,10 @@ function remCookie(name) {
 
 function isArray(obj) {
   return Object.prototype.toString.call(obj) === '[object Array]';
+}
+
+function hasClass(name, cls) {
+		return (' ' + name.className + ' ').indexOf(' ' + cls + ' ') != -1;
 }
 
 /*############INJECTION############
@@ -167,18 +165,23 @@ function show(name) {
 	}
 }
 
-/*############TYPEWRITE############
+/*
+#################################
+############TYPEWRITE############
+#################################
 
 'types' out a specified or random array/line, denoted by 'arr', to a specified object, denoted by 'obj'
 modifiers can be entered in any order
 - rand controls random array/line selection automatically. "randOn" to use
-- rowStat controls rows. "rowsOff" or set amount of rows with 'rows#'*/
+- rowStat controls rows. "rowsOff" or set amount of rows with 'rows#'
+*/
 
 var typewrite = function typewrite(obj, arr, name1, name2) {
 	//these speeds and settings can be changed by events to control how quickly typewrite 'types'. note that all current instances of typewrite will be affected
 	typewrite.writeSpeed = 40; //will be used to control speed of text pushed to object/obj
 	typewrite.blinkSpeed = 400; //will be used by blinkIn() & blinkOut() to control the 'blinking' speed of the 'insertion point/cursor. if changing blinkSpeed, consider changing blinksMax. keep far below newlineSpeed
 	typewrite.blinksMax = 0; //will be used to limit blinkIn()'s' & blinkOut()'s number of 'blinks'. if changing blinksMax, consider changing blinkSpeed. keep far below typeW()'s newlineSpeed
+
 	//used to empty the current objct and pass a new arry. if using this, objct must be available to hide() without casing visual problems for user
 	typewrite.nxt = function twNext(objct, arry, name3, name4) {
 		hide(objct);
@@ -204,19 +207,17 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 	}
 
 	//test for rando settings and set variables accordingly
-  	if (rand == "randOn" && isArray(arr[0]) == true) {
+		if (rand == "randOn" && isArray(arr[0]) == true) {
 		arr = arr[Math.floor(Math.random() * arr.length)];
 	}
 	else if (rand == "randOn" && isArray(arr[0]) != true) {
 		var randLine = true;
 	}
-	//consider changing to slide down alert
 	else if (rand != "randOn" && isArray(arr[0]) == true) {
-		//Error: An array full of arrays has been passed. See documentation and pass 'randOn' or an array of text.
 		return;
 	}
 	var ind = 0; //index
-  var lineLength = arr[0].length;
+		var lineLength = arr[0].length;
 	var currPos = 1;
 	var currContents = "";
 	var contents = "";
@@ -230,7 +231,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 
 	function typeW() {
 		//tests if end conditions have been met and exits function gracefully
-		if (document.getElementById(obj).style.display == "none") {
+		if (document.getElementById(obj).hasAttribute("hidden") == true) {
 			contents = "";
 			document.getElementById(obj).innerHTML = contents;
 			return;
@@ -238,8 +239,8 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 
 		//removes 'insertion point/cursor' from end of contents before calling blinkOut(). runs till blinks == blinksMax
 		function blinkOut() {
-			//test if end conditions have been met and exits function gracefully
-			if (document.getElementById(obj).style.display == "none") {
+			//tests if end conditions have been met and exits function gracefully
+			if (document.getElementById(obj).hasAttribute("hidden") == true) {
 				contents = "";
 				document.getElementById(obj).innerHTML = contents;
 				return;
@@ -263,8 +264,8 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 		}
 		//adds 'insertion point/cursor' to end of contents before calling blinkOut(). runs till blinks == blinksMax
 		function blinkIn() {
-			//test if end conditions have been met and exits function gracefully
-			if (document.getElementById(obj).style.display == "none") {
+			//tests if end conditions have been met and exits function gracefully
+			if (document.getElementById(obj).hasAttribute("hidden") == true) {
 				contents = "";
 				document.getElementById(obj).innerHTML = contents;
 				return;
@@ -289,40 +290,40 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 
 		//puts a line return in contents at each start of a new row
 		if (row > 0 && currPos == 1) {
-    		contents += "<br>";
-  		}
+				contents += "<br>";
+			}
 
 		//checks current visible rows compared to max allowed rows
 		//only checks if rowStat is not set to 'disable'
 		if (rowStat != 'rowsOff') {
 			if (row > rowMax) {
-    			contents = "";
-    			var rowTest = row - rowMax; //rowTest is behind row by the max number of rows available.
-    			//while rowTest is smaller than row add index of rowTest to contents. this ensures contents only has as many rows as rowMax allows
-    			while (rowTest < row) {
-    				contents += arr[rowTest] + "<br>";
-    				rowTest++;
-    			}
-  			}
-  		}
+					contents = "";
+					var rowTest = row - rowMax; //rowTest is behind row by the max number of rows available.
+					//while rowTest is smaller than row add index of rowTest to contents. this ensures contents only has as many rows as rowMax allows
+					while (rowTest < row) {
+						contents += arr[rowTest] + "<br>";
+						rowTest++;
+					}
+				}
+			}
 
-    	//if randLine is enabled and the current line/row is to be started
-    	//set current index to a random row
-    	if (randLine == true && currPos == 1) {
-    		ind = Math.floor(Math.random() * arr.length);
-    	}
+			//if randLine is enabled and the current line/row is to be started
+			//set current index to a random row
+			if (randLine == true && currPos == 1) {
+				ind = Math.floor(Math.random() * arr.length);
+			}
 
 		currContents = arr[ind].substring(0, currPos);
-    	document.getElementById(obj).innerHTML = contents + currContents + "|";
-    	//checks if currPos is at the end of the current string/ind and moves currPos to the next character if not
-    	if (currPos != lineLength) {
-    		currPos++;
-    		if (randLine == true && currPos == lineLength) {
-    			contents = arr[ind].substring(0, currPos);
-    			blinks = typewrite.blinksMax + 1;
-    			blinkOut();
-    			return;
-    		}
+			document.getElementById(obj).innerHTML = contents + currContents + "|";
+			//checks if currPos is at the end of the current string/ind and moves currPos to the next character if not
+			if (currPos != lineLength) {
+				currPos++;
+				if (randLine == true && currPos == lineLength) {
+					contents = arr[ind].substring(0, currPos);
+					blinks = typewrite.blinksMax + 1;
+					blinkOut();
+					return;
+				}
 			setTimeout(typeW, typewrite.writeSpeed);
 			return;
 		}
@@ -344,5 +345,5 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 			return;
 		}
 	}
-    typeW();
+		typeW();
 };
