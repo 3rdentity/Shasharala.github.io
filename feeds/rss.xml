@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>shasharala's feed</title>
+    <description>shasharala's thoughts and games</description>
+    <link>http://www.shasharala.tk</link>
+    <lastBuildDate>2014 08 14 19:59 GMT-8</lastBuildDate>
+    <managingEditor>shasharala@outlook.com (Ryan Combes)</managingEditor>
+    <!--
+    EXAMPLE
+    <item>
+      <title>xxx</title>
+      <link>http://www.shasharala.tk/blog/XXXX.html</link>
+      <pubDate>YEAR MONTH DAY TIME GMT</pubDate>
+      <description>xxx</description>
+    </item>
+    -->
+  </channel>
+</rss>

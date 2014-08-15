@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>shasharala's feed</title>
+  <subtitle>shasharala's thoughts and games</subtitle>
+  <link href="http://www.shasharala.tk"/>
+  <updated>2014-08-14T19:59:33Z</updated>
+  <author>
+    <name>Ryan Combes</name>
+    <email>shasharala@outlook.com</email>
+  </author>
+  <!--
+  <entry>
+    <title>xxx</title>
+    <link href="http://www.shasharala.tk/blog/XXXX.html"/>
+    <updated>XXXX-XX-XXTXX:XX:XXZ</updated>
+    <summary>xxx</summary>
+  </entry>
+  -->
+</feed>
