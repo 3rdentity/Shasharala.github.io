@@ -1,9 +1,12 @@
-/*############COOKIES############
+/*
+###############################
+############COOKIES############
+###############################
+*/
 
-all cookies begin with "sha" automagically*/
-
+//all cookies begin with "sha" automagically
 function checkCookie(name, value) {
-	if (getCookie(name) == value) {
+	if(getCookie(name) == value) {
 		return true;
 	}
 	else {
@@ -11,21 +14,23 @@ function checkCookie(name, value) {
 	}
 }
 
+//all cookies begin with "sha" automagically
 function getCookie(name) {
-	var modNameEQ = "sha" + name + "=";
+	var modName = "sha" + name + "=";
 	var ca = document.cookie.split(';');
 	for(var i=0; i < ca.length; i++) {
 		var c = ca[i];
 		while (c.charAt(0)==' ') {
 			c = c.substring(1, c.length);
 		}
-		if (c.indexOf(modNameEQ) == 0) {
-			return c.substring(modNameEQ.length,c.length);
+		if (c.indexOf(modName) == 0) {
+			return c.substring(modName.length,c.length);
 		}
 	}
 	return null;
 }
 
+//all cookies begin with "sha" automagically
 function setCookie(name, value, days, domain, path) {
 	//check if domain is set and set it to null if not
 	if (domain) {
@@ -53,12 +58,17 @@ function setCookie(name, value, days, domain, path) {
 	document.cookie = "sha_" + name + "=" + value + "; " + e + "; domain=" + d + "; path=" + p;
 }
 
+//all cookies begin with "sha" automagically
 function remCookie(name) {
 	var modName = "sha" + name;
 	setCookie(modName, "", -1);
 }
 
-/*############DETECTION############*/
+/*
+#################################
+############DETECTION############
+#################################
+*/
 
 function isArray(obj) {
   return Object.prototype.toString.call(obj) === '[object Array]';
@@ -68,13 +78,16 @@ function hasClass(name, cls) {
 		return (' ' + name.className + ' ').indexOf(' ' + cls + ' ') != -1;
 }
 
-/*############INJECTION############
+/*
+#################################
+############INJECTION############
+#################################
+*/
 
-function that injects data into an object*/
-
+//function that injects data into an object
 function inject(name, content) {
-	nameStr = name + "";
-	searchFor = "object";
+	var nameStr = name + "";
+	var searchFor = "object";
 	if (nameStr.indexOf(searchFor) != -1) {
 		name.innerHTML = content;
 	}
@@ -83,10 +96,13 @@ function inject(name, content) {
 	}
 }
 
-/*############INVIS&VIS############
+/*
+#################################
+############INVIS&VIS############
+#################################
+*/
 
-functions that display, fade, and hide objects*/
-
+//functions that display, fade, and hide objects
 function replace(name1, name2) {
 	hide(name1);
 	show(name2);
@@ -147,10 +163,10 @@ function hide(name) {
 	var nameStr = name + "";
 	var searchFor = "object";
 	if (nameStr.indexOf(searchFor) != -1) {
-		name.parentNode.style.display = "none	";
+		name.parentNode.setAttribute("hidden", "true");
 	}
 	else {
-		document.getElementById(name).style.display = "none";
+		document.getElementById(name).setAttribute("hidden", "true");
 	}
 }
 
@@ -158,10 +174,10 @@ function show(name) {
 	var nameStr = name + "";
 	var searchFor = "object";
 	if (nameStr.indexOf(searchFor) != -1) {
-		name.parentNode.style.display = "inline";
+		name.parentNode.removeAttribute("hidden", "false");
 	}
 	else {
-		document.getElementById(name).style.display = "inline";
+		document.getElementById(name).removeAttribute("hidden", "false");
 	}
 }
 
@@ -207,7 +223,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 	}
 
 	//test for rando settings and set variables accordingly
-		if (rand == "randOn" && isArray(arr[0]) == true) {
+  	if (rand == "randOn" && isArray(arr[0]) == true) {
 		arr = arr[Math.floor(Math.random() * arr.length)];
 	}
 	else if (rand == "randOn" && isArray(arr[0]) != true) {
@@ -217,7 +233,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 		return;
 	}
 	var ind = 0; //index
-		var lineLength = arr[0].length;
+    var lineLength = arr[0].length;
 	var currPos = 1;
 	var currContents = "";
 	var contents = "";
@@ -290,40 +306,40 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 
 		//puts a line return in contents at each start of a new row
 		if (row > 0 && currPos == 1) {
-				contents += "<br>";
-			}
+    		contents += "<br>";
+  		}
 
 		//checks current visible rows compared to max allowed rows
 		//only checks if rowStat is not set to 'disable'
 		if (rowStat != 'rowsOff') {
 			if (row > rowMax) {
-					contents = "";
-					var rowTest = row - rowMax; //rowTest is behind row by the max number of rows available.
-					//while rowTest is smaller than row add index of rowTest to contents. this ensures contents only has as many rows as rowMax allows
-					while (rowTest < row) {
-						contents += arr[rowTest] + "<br>";
-						rowTest++;
-					}
-				}
-			}
+    			contents = "";
+    			var rowTest = row - rowMax; //rowTest is behind row by the max number of rows available.
+    			//while rowTest is smaller than row add index of rowTest to contents. this ensures contents only has as many rows as rowMax allows
+    			while (rowTest < row) {
+    				contents += arr[rowTest] + "<br>";
+    				rowTest++;
+    			}
+  			}
+  		}
 
-			//if randLine is enabled and the current line/row is to be started
-			//set current index to a random row
-			if (randLine == true && currPos == 1) {
-				ind = Math.floor(Math.random() * arr.length);
-			}
+    	//if randLine is enabled and the current line/row is to be started
+    	//set current index to a random row
+    	if (randLine == true && currPos == 1) {
+    		ind = Math.floor(Math.random() * arr.length);
+    	}
 
 		currContents = arr[ind].substring(0, currPos);
-			document.getElementById(obj).innerHTML = contents + currContents + "|";
-			//checks if currPos is at the end of the current string/ind and moves currPos to the next character if not
-			if (currPos != lineLength) {
-				currPos++;
-				if (randLine == true && currPos == lineLength) {
-					contents = arr[ind].substring(0, currPos);
-					blinks = typewrite.blinksMax + 1;
-					blinkOut();
-					return;
-				}
+    	document.getElementById(obj).innerHTML = contents + currContents + "|";
+    	//checks if currPos is at the end of the current string/ind and moves currPos to the next character if not
+    	if (currPos != lineLength) {
+    		currPos++;
+    		if (randLine == true && currPos == lineLength) {
+    			contents = arr[ind].substring(0, currPos);
+    			blinks = typewrite.blinksMax + 1;
+    			blinkOut();
+    			return;
+    		}
 			setTimeout(typeW, typewrite.writeSpeed);
 			return;
 		}
@@ -345,5 +361,5 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 			return;
 		}
 	}
-		typeW();
+    typeW();
 };
