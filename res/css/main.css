@@ -6,6 +6,12 @@ CSS FOR MOST OF SHASHARALA.TK
 
 /*############ATTRIBUTES############*/
 
+[hidden] {
+  display: none;
+}
+
+/*############ATTRIBUTES############*/
+
 [draggable="false"] {
   -khtml-user-drag: none;
   -webkit-user-drag: none;
