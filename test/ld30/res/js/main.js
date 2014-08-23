@@ -42,7 +42,7 @@ $(document).ready(function(){
             $("#introCont").animate({top: "300px"}, 3000);
             $("#intro3").fadeToggle(fadeTime, function showIntroTitle(){
               $("#introTitle").fadeToggle(1000);
-              //$("#mirrShade").fadeToggle(1000); TODO uncomment at release
+              $("#mirrShade").fadeToggle(1000);
             });
           });
         });
