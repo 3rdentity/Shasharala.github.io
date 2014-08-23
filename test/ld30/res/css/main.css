@@ -1,0 +1,123 @@
+[draggable="false"] {
+  -khtml-user-drag:none;
+  -webkit-user-drag:none;
+}
+
+html {
+  cursor: default;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+  background-color: #030c11;
+  color: #155768;
+  font-size: 40px;
+  text-align: center;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+  display: none;
+}
+
+.unselectable {
+  /*set selection color to transparent*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#introCont {
+  position: relative;
+  margin: 300px auto auto auto;
+  width: 666px;
+  opacity: .8;
+}
+
+#introTitle {
+  display: initial; /*TODO revert to none before release*/
+  font-size: 60px;
+  text-shadow: 4px 3px 3px #FFFFFF;
+}
+
+#introMirr {
+  margin: 0px 0px 0px -400px;
+  padding: 0px;
+  position: fixed;
+  z-index: -2;
+  top: 0px;
+  height: 800px;
+  width: 800px;
+}
+
+#mirrShade {
+    display: none;
+    margin: 0px 0px 0px -400px;
+    padding: 0px;
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    height: 800px;
+    width: 800px;
+}
+
+#firstMirr {
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -2;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
+
+#firstMirrCont {
+  display: none;
+  margin: 600px auto auto auto;
+  width: 600px;
+  text-align: left;
+}
+
+#firstMirrEye {
+  opacity: .4;
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -1;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
+
+#firstMirrMouth {
+  opacity: .4;
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -1;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
+
+#firstMirrMouthIni {
+  opacity: .4;
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -1;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
