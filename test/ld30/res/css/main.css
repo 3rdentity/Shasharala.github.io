@@ -50,7 +50,7 @@ p {
 }
 
 #introTitle {
-  display: initial; /*TODO revert to none before release*/
+  display: none;
   font-size: 60px;
   text-shadow: 4px 3px 3px #FFFFFF;
 }
