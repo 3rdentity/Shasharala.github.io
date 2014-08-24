@@ -95,24 +95,30 @@ modifiers can be entered in any order
 - rowStat controls rows. "rowsOff" or set amount of rows with 'rows#'
 */
 
-var typewrite = function typewrite(obj, arr, name1, name2) {
+var typewrite = function typewrite(obj, arr, name1, name2, name3) {
   //these speeds and settings can be changed by events to control how quickly typewrite 'types'. note that all current instances of typewrite will be affected
   typewrite.writeSpeed = 40; //will be used to control speed of text pushed to object/obj
   typewrite.blinkSpeed = 400; //will be used by blinkIn() & blinkOut() to control the 'blinking' speed of the 'insertion point/cursor. if changing blinkSpeed, consider changing blinksMax. keep far below newlineSpeed
-  typewrite.blinksMax = 4; //will be used to limit blinkIn()'s' & blinkOut()'s number of 'blinks'. if changing blinksMax, consider changing blinkSpeed. keep far below typeW()'s newlineSpeed
+  typewrite.blinksMax = 0; //will be used to limit blinkIn()'s' & blinkOut()'s number of 'blinks'. if changing blinksMax, consider changing blinkSpeed. keep far below typeW()'s newlineSpeed
 
   //used to empty the current objct and pass a new arry. if using this, objct must be available to hide() without casing visual problems for user
-  typewrite.nxt = function twNext(objct, arry, name3, name4) {
-    hide(objct);
-    setTimeout(function twNextShow(){show(objct);}, 404);
-    setTimeout(function twNextStartTypewrite(){typewrite(objct, arry, name3, name4);}, 444);
+  typewrite.nxt = function twNext(objct, arry, name4, name5) {
+    $("#"+objct).hide();
+    setTimeout(function twNextShow(){$("#"+objct).show();}, 404);
+    setTimeout(function twNextStartTypewrite(){
+      typewrite(objct, arry, name4, name5);
+      talk();
+      }, 444);
   };
   //tests variables passed to typewrite to assign them to the correct variables
-  if (name1) {
+  if(name1) {
     if (name1 == "randOn") {
       var rand = name1;
     }
-    else {
+    else if($.type(name1)==="string"){
+      var callback = name1;
+    }
+    else{
       var rowStat = name1;
     }
   }
@@ -120,8 +126,22 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
     if (name2 == "randOn") {
       var rand = name2;
     }
-    else {
+    else if($.type(name2)==="string"){
+      var callback = name2;
+    }
+    else{
       var rowStat = name2;
+    }
+  }
+  if(name3) {
+    if (name3 == "randOn") {
+      var rand = name3;
+    }
+    else if($.type(name3)==="string"){
+      var callback = name3;
+    }
+    else{
+      var rowStat = name3;
     }
   }
 
@@ -150,7 +170,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
 
   function typeW() {
     //tests if end conditions have been met and exits function gracefully
-    if (document.getElementById(obj).hasAttribute("hidden") == true) {
+    if (document.getElementById(obj).style.display == "none") {
       contents = "";
       document.getElementById(obj).innerHTML = contents;
       return;
@@ -159,7 +179,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
     //removes 'insertion point/cursor' from end of contents before calling blinkOut(). runs till blinks == blinksMax
     function blinkOut() {
       //tests if end conditions have been met and exits function gracefully
-      if (document.getElementById(obj).hasAttribute("hidden") == true) {
+      if (document.getElementById(obj).style.display == "none") {
         contents = "";
         document.getElementById(obj).innerHTML = contents;
         return;
@@ -185,7 +205,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
     //adds 'insertion point/cursor' to end of contents before calling blinkOut(). runs till blinks == blinksMax
     function blinkIn() {
       //tests if end conditions have been met and exits function gracefully
-      if (document.getElementById(obj).hasAttribute("hidden") == true) {
+      if (document.getElementById(obj).style.display == "none") {
         contents = "";
         document.getElementById(obj).innerHTML = contents;
         return;
@@ -261,7 +281,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
     }
     //the 'insertion point/cursor' will blink forever
     else {
-      talk();
+      talk(callback);
       contents += arr[ind];
       blinks = typewrite.blinksMax + 1;
       blinkOut();

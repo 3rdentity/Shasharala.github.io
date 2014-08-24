@@ -34,6 +34,14 @@ p {
   user-select: none;
 }
 
+#speakerIcon{
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
 #introCont {
   position: relative;
   margin: 300px auto auto auto;
@@ -42,7 +50,7 @@ p {
 }
 
 #introTitle {
-  display: none;
+  display: initial; /*TODO revert to none before release*/
   font-size: 60px;
   text-shadow: 4px 3px 3px #FFFFFF;
 }
@@ -81,7 +89,7 @@ p {
 
 #firstMirrCont {
   display: none;
-  margin: 600px auto auto auto;
+  margin: 25px auto auto auto;
   width: 600px;
   text-align: left;
 }
@@ -120,4 +128,25 @@ p {
   top: 0px;
   height: 600px;
   width: 600px;
+}
+
+#firstMirrOpt {
+  margin: 530px auto 0px auto;
+  font-size: 20px;
+  height: 50px;
+  width: 550px;
+}
+
+#firstMirrOpt p:hover, #firstMirrOpt div p:hover{
+  text-shadow: 3px 3px 3px #271f2b;
+}
+
+.optLeft{
+  display: inline;
+  float: left;
+}
+
+.optRight{
+  display: inline;
+  float: right;
 }
