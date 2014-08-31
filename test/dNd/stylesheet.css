@@ -22,7 +22,7 @@ body {
   border-style: solid;
   border-color: #DEDEDE;
   border-width: 2px;
-	cursor: move;
+  cursor: move;
   background-color: #272822;
   -webkit-transition: -webkit-transform 0.3s ease-out;
   -moz-transition: -moz-transform 0.3s ease-out;
@@ -30,9 +30,9 @@ body {
   -ms-transition: -ms-transform 0.3s ease-out;
 }
 #dragCon .dragItem.over {
-	border-style: dashed;
-	border-color: #DEDEDE;
-	border-width: 2px;
+  border-style: dashed;
+  border-color: #DEDEDE;
+  border-width: 2px;
 }
 #dragCon .dragItem.moving {
   opacity: 0.25;
