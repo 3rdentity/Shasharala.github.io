@@ -4,7 +4,7 @@
     <title>shasharala's feed</title>
     <description>shasharala's thoughts and games</description>
     <link>http://www.shasharala.tk</link>
-    <lastBuildDate>2014 08 14 19:59 GMT-8</lastBuildDate>
+    <lastBuildDate>2014 08 31 13:38 GMT-8</lastBuildDate>
     <managingEditor>shasharala@outlook.com (Ryan Combes)</managingEditor>
     <!--
     EXAMPLE
@@ -16,10 +16,28 @@
     </item>
     -->
     <item>
+      <title>Ludum Dare 30: Mirrors</title>
+      <link>http://www.shasharala.tk/games/ld30/mirrors.html</link>
+      <pubDate>2014 08 31 13:38 GMT-8</pubDate>
+      <description>xxx</description>
+    </item>
+    <item>
+      <title>The Monty Hall Problem</title>
+      <link>http://www.shasharalala.tk/games/zoinks/theMontyHallProblem.html</link>
+      <pubDate>2014 08 31 13:38 GMT-8</pubDate>
+      <description>A quick demonstration of the Monty Hall Problem</description>
+    </item>
+    <item>
       <title>The Monster Inside Me</title>
       <link>http://www.shasharala.tk/blog/0000.html</link>
       <pubDate>2014 08 18 00:00 GMT</pubDate>
       <description>A lengthy post regarding gender identity</description>
+    </item>
+    <item>
+      <title>Ludum Dare 29: Deeper</title>
+      <link>http://www.shasharala.tk/games/ld29/deeper.html</link>
+      <pubDate>2014 04 28 00:00 GMT</pubDate>
+      <description>First attempt at making a Ludum Dare entry. It was never finished and barely started.</description>
     </item>
   </channel>
 </rss>

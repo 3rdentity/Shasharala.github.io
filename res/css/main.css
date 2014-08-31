@@ -44,12 +44,12 @@ body {
 }
 
 ::-moz-selection {
-  background-color: #888888;
+  background-color: #DEDEDE;
   color: #010101;
 }
 
 ::selection {
-  background-color: #888888;
+  background-color: #DEDEDE;
   color: #010101;
 }
 
@@ -327,6 +327,13 @@ hr {
 .gameTitle{
   margin: -80px 0px 0px 100px;
   font-size: 30px;
+}
+
+.gameTitle span:nth-of-type(2){
+  padding: 10px;
+  font-style: italic;
+  vertical-align: middle;
+  font-size: 14px;
 }
 
 .gameCont{
