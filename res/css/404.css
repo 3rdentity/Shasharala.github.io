@@ -37,8 +37,8 @@ body {
 }
 
 ::-moz-selection {
-	background-color: transparent;
-	color: transparent;
+  background-color: transparent;
+  color: transparent;
 }
 
 ::selection {

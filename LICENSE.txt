@@ -35,13 +35,10 @@ information on what this means for you.
 Normalize -
 www.shasharala.tk/res/css/normalize/LICENSE.md
 
-Respond.js -
-www.shasharala.tk/res/js/respond/LICENSE-MIT
-
 Ubuntu Mono -
 www.shasharala.tk/res/fonts/UFL.txt
 
 ==============================================================================
-08/07/2014 - This license may change at any time without notice. Please
+08/31/2014 - This license may change at any time without notice. Please
 check back regularly.
 ==============================================================================
