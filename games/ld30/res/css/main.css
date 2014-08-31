@@ -1,0 +1,182 @@
+[draggable="false"] {
+  -khtml-user-drag:none;
+  -webkit-user-drag:none;
+}
+
+html {
+  cursor: default;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+  background-color: #030c11;
+  color: #155768;
+  font-size: 40px;
+  text-align: center;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+  display: none;
+}
+
+.unselectable {
+  /*set selection color to transparent*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#speakerIcon{
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+#ffIcon{
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 50px;
+  right: 0px;
+}
+
+#retry{
+  display: none;
+  height: 40px;
+  width: 60px;
+  position: absolute;
+  top: 100px;
+  right: 0px;
+  font-size: 30px;
+}
+
+#introCont {
+  position: relative;
+  margin: 300px auto auto auto;
+  width: 666px;
+  opacity: .8;
+}
+
+#introTitle {
+  display: none;
+  font-size: 60px;
+  text-shadow: 4px 3px 3px #FFFFFF;
+}
+
+#introMirr {
+  margin: 0px 0px 0px -400px;
+  padding: 0px;
+  position: fixed;
+  z-index: -2;
+  top: 0px;
+  height: 800px;
+  width: 800px;
+}
+
+#mirrShade {
+    display: none;
+    margin: 0px 0px 0px -400px;
+    padding: 0px;
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    height: 800px;
+    width: 800px;
+}
+
+#mirr {
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -2;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
+
+#mirrCont {
+  display: none;
+  margin: 25px auto auto auto;
+  width: 600px;
+  text-align: left;
+}
+
+#mirrEye {
+  opacity: .4;
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -1;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
+
+#mirrCracks{
+  opacity: .4;
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -1;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
+
+#mirrMouth {
+  opacity: .4;
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -1;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
+
+#mirrMouthIni {
+  opacity: .4;
+  display: none;
+  margin: 0px 0px 0px -300px;
+  padding: 0px;
+  position: fixed;
+  z-index: -1;
+  top: 0px;
+  height: 600px;
+  width: 600px;
+}
+
+#mirrOpt {
+  margin: 530px auto 0px auto;
+  font-size: 20px;
+  height: 50px;
+  width: 550px;
+}
+
+#mirrOpt p:hover, #mirrOpt div p:hover{
+  text-shadow: 3px 3px 3px #271f2b;
+}
+
+.optLeft{
+  display: inline;
+  float: left;
+}
+
+.optRight{
+  display: inline;
+  float: right;
+}
