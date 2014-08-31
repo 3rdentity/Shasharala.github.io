@@ -19,7 +19,6 @@ $(document).ready(function documentReady(){
 });
 $(window).resize(function windowResize() {
   windowHeight = $(window).height();
-  console.log(windowHeight);
   if(windowHeight < 800){
     $(".container").css("height","444px");
     $(".scrollArrow").css("margin","363px 0px 0px 676px");
