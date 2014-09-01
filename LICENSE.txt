@@ -32,6 +32,9 @@ information on what this means for you.
 
 ===LICENSED SOFTWARE===
 
+jQuery
+http://jquery.org/license
+
 Normalize -
 www.shasharala.tk/res/css/normalize/LICENSE.md
 
