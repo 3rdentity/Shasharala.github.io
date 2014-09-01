@@ -189,6 +189,56 @@ hr {
   text-align: left;
 }
 
+/*############INDEX############*/
+
+#aboutBtn{
+  display: inline-block;
+  margin: auto;
+  padding: 0px;
+  background-image:url("../img/icons/about.png");
+  background-size: 310px 110px;
+  height: 110px;
+  width: 310px;
+  -webkit-transition: background-image .5s;
+  transition: background-image .5s;
+}
+
+#aboutBtn:hover{
+  background-image:url("../img/icons/about_hi.png");
+}
+
+#blogBtn{
+  display: inline-block;
+  margin: auto;
+  padding: 0px;
+  background-image:url("../img/icons/blog.png");
+  background-size: 250px 110px;
+  height: 110px;
+  width: 250px;
+  -webkit-transition: background-image .5s;
+  transition: background-image .5s;
+}
+
+#blogBtn:hover{
+  background-image:url("../img/icons/blog_hi.png");
+}
+
+#gamesBtn{
+  display: inline-block;
+  margin: auto;
+  padding: 0px;
+  background-image:url("../img/icons/games.png");
+  background-size: 330px 110px;
+  height: 110px;
+  width: 330px;
+  -webkit-transition: background-image .5s;
+  transition: background-image .5s;
+}
+
+#gamesBtn:hover{
+  background-image:url("../img/icons/games_hi.png");
+}
+
 /*############MENU############*/
 
 .menu {
@@ -311,6 +361,7 @@ hr {
 }
 
 /*############GAMES############*/
+
 .gamePost {
   margin: 40px 0px 0px 0px;
   padding: 0px;
