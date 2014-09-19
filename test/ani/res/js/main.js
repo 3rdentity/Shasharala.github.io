@@ -1,81 +1,104 @@
-var reqAniFram = window.requestAnimationFrame || window.mozRequestAnimationFrame
-|| window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
+var reqAniFram = window.requestAnimationFrame;
 var canvas = document.getElementById("gameWin");
 var ctx = canvas.getContext("2d");
-var srcX = 0;
-var srcY = 0;
-var srcW = 16;
-var srcH = 25;
-var destX = 100;
-var destY = 100;
-var destW = 32;
-var destH = 50;
+var sx = 0,
+    sy = 0,
+    sw = 16,
+    sh = 25,
+    dx = 100,
+    dy = 100,
+    dw = 16,
+    dh = 25,
+    pdx = 0,
+    pdy = 0;
 var avatar = new Image();
 avatar.src = "res/img/rabbitLink.png";
 var stepSize = 10;
 function step(){
-	ctx.clearRect(0,0, canvas.width, canvas.height);
-	ctx.drawImage(avatar,srcX,srcY,srcW,srcH,destX,destY,destW,destH);
+  ctx.clearRect(pdx,pdy,dw,dh);
+  ctx.drawImage(avatar,sx,sy,sw,sh,dx,dy,dw,dh);
 }
 function stepL(){
-	if(destX<=0){
-		console.log("You cannot go left any more");
-	}
-	else{
-		destX -= stepSize;
-		srcX = 220;
-		reqAniFram(step);
-	}
+  if(dx<=0){
+    pdx = dx;
+    pdy = dy;
+    sx = 220;
+    reqAniFram(step);
+    console.log("You cannot go left any more");
+  }
+  else{
+
+    pdx = dx;
+    pdy = dy;
+    dx -= stepSize;
+    sx = 220;
+    reqAniFram(step);
+  }
 }
 function stepR(){
-	if(destX>=950){
-		console.log("You cannot go right any more");
-	}
-	else{
-		destX += stepSize;
-		srcX = 0;
-		reqAniFram(step);
-	}
+  if(dx>=280){
+    pdx = dx;
+    pdy = dy;
+    sx = 0;
+    reqAniFram(step);
+    console.log("You cannot go right any more");
+  }
+  else{
+    pdx = dx;
+    pdy = dy;
+    dx += stepSize;
+    sx = 0;
+    reqAniFram(step);
+  }
 }
 function stepU(){
-	var currStep = 0;
-	if(destY<=0){
-		console.log("You cannot go higher");
-	}
-	else{
-		if(currStep=0){
-			destY -= stepSize;
-			srcX = 121;
-			reqAniFram(step);
-		}
-	}
+  if(dy<=0){
+    pdx = dx;
+    pdy = dy;
+    sx = 121;
+    reqAniFram(step);
+    console.log("You cannot go higher");
+  }
+  else{
+    pdx = dx;
+    pdy = dy;
+    dy -= stepSize;
+    sx = 121;
+    reqAniFram(step);
+  }
 }
 function stepD(){
-	if(destY>=650){
-		console.log("You cannot go lower");
-	}
-	else{
-		destY += stepSize;
-		srcX = 48;
-		reqAniFram(step);
-	}
+  if(dy>=120){
+    pdx = dx;
+    pdy = dy;
+    sx = 48;
+    reqAniFram(step);
+    console.log("You cannot go lower");
+  }
+  else{
+    pdx = dx;
+    pdy = dy;
+    dy += stepSize;
+    sx = 48;
+    reqAniFram(step);
+  }
 }
 function onKeyDown(evt){
-	if(evt.keyCode==39){
-		stepR();
-	}
-	else if(evt.keyCode==37){
-		stepL();
-	}
-	else if(evt.keyCode==38){
-		stepU();
-	}
-	else if(evt.keyCode==40){
-		stepD();
-	}
+  if(evt.keyCode==39){
+    stepR();
+  }
+  else if(evt.keyCode==37){
+    stepL();
+  }
+  else if(evt.keyCode==38){
+    stepU();
+  }
+  else if(evt.keyCode==40){
+    stepD();
+  }
 }
-//ctx.drawImage(sprites,srcX,srcY,srcW,srcH,destX,destY,destW,destH);
+//ctx.drawImage(sprites,sx,sy,sw,sh,dx,dy,dw,dh);
 avatar.onload = function draw(){
-	ctx.drawImage(avatar,srcX,srcY,srcW,srcH,destX,destY,destW,destH);
+  ctx.drawImage(avatar,sx,sy,sw,sh,dx,dy,dw,dh);
 };
 document.addEventListener("keydown", onKeyDown, false);
