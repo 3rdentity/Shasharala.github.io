@@ -6,63 +6,47 @@
       canvas;
 
   function onKeyUp(evt) {
-    /*//left
+    //left
     if (evt.keyCode === 37) {
-      avatar.update();
-      avatar.srcY = 0;
-      avatar.destX -= avatar.stepSize;
+      avatar.updateFram("stop");
     }
     //up
     else if (evt.keyCode === 38) {
-      avatar.update();
-      avatar.srcY = 100;
-      avatar.destY -= avatar.stepSize;
+      avatar.updateFram("stop");
     }
     //right
     else if (evt.keyCode === 39) {
-      avatar.update();
-      avatar.srcY = 50;
-      avatar.destX += avatar.stepSize;
+      avatar.updateFram("stop");
     }
     //down
     else if (evt.keyCode === 40) {
-      avatar.update();
-      avatar.srcY = 150;
-      avatar.destY += avatar.stepSize;
-    }*/
+      avatar.updateFram("stop");
+    }
   }
 
   function onKeyDown(evt) {
     //left
     if (evt.keyCode === 37) {
-      avatar.srcY = 0;
-      avatar.update();
-      avatar.destX -= avatar.stepSize;
+      avatar.updatePos("l");
     }
     //up
     else if (evt.keyCode === 38) {
-      avatar.update();
-      avatar.srcY = 100;
-      avatar.destY -= avatar.stepSize;
+      avatar.updatePos("u");
     }
     //right
     else if (evt.keyCode === 39) {
-      avatar.update();
-      avatar.srcY = 50;
-      avatar.destX += avatar.stepSize;
+      avatar.updatePos("r");
     }
     //down
     else if (evt.keyCode === 40) {
-      avatar.update();
-      avatar.srcY = 150;
-      avatar.destY += avatar.stepSize;
+      avatar.updatePos("d");
     }
   }
 
   function gameLoop() {
     window.requestAnimationFrame(gameLoop);
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-    twinJacks.update();
+    twinJacks.updateFram();
     twinJacks.render();
     avatar.render();
   }
@@ -81,18 +65,51 @@
     that.width = options.width;
     that.height = options.height;
     that.image = options.image;
+    that.L = options.L || 0;
+    that.U = options.U || 0;
+    that.R = options.R || 0;
+    that.D = options.D || 0;
+    that.stills = options.stills || 0;
     that.stepSize = options.stepSize || 0;
 
-    that.update = function update() {
-      tickCount += 1;
-      if (tickCount > ticksPerFrame) {
-        tickCount = 0;
-        if (frameIndex < numberOfFrames - 1) {
-          frameIndex += 1;
+    that.updateFram = function updateFram(o) {
+      if (o === "stop") {
+        frameIndex = 0;
+      }
+      else {
+        tickCount += 1;
+        if (tickCount > ticksPerFrame) {
+          tickCount = 0;
+          if (frameIndex < numberOfFrames - 1) {
+            frameIndex += 1;
+          }
+          else {
+            frameIndex = 0;
+          }
         }
-        else {
-          frameIndex = 0;
-        }
+      }
+    };
+
+    that.updatePos = function updatePos(o) {
+      if (o === "l") {
+        that.srcY = that.L;
+        that.updateFram();
+        that.destX -= that.stepSize;
+      }
+      else if (o === "u") {
+        that.srcY = that.U;
+        that.updateFram();
+        that.destY -= that.stepSize;
+      }
+      else if (o === "r") {
+        that.srcY = that.R;
+        that.updateFram();
+        that.destX += that.stepSize;
+      }
+      else if (o === "d") {
+        that.srcY = that.D;
+        that.updateFram();
+        that.destY += that.stepSize;
       }
     };
 
@@ -127,8 +144,13 @@
     width: 36, //width of sprite
     height: 48, //height of sprite
     image: avatarImg,
+    L: 0,
+    U: 100,
+    R: 50,
+    D: 150,
+    stills: 200,
     numberOfFrames: 8,
-    ticksPerFrame: 2,
+    ticksPerFrame: 1,
     stepSize: 5
   });
 
