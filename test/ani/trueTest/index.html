@@ -12,7 +12,11 @@
     <title>Untitled</title>
   </head>
   <body>
-    <canvas id="gameWin"></canvas>
-    <script src="res/js/new_main.js"></script>
+    <canvas id="viewport"></canvas>
+    <script src="res/js/entities.js"></script>
+    <script src="res/js/game.js"></script>
+    <script>
+      game.init(game.loop);
+    </script>
   </body>
 </html>

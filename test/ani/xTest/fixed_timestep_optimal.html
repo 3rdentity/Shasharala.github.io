@@ -37,23 +37,29 @@
       while (i--) Game.addRect();
 
       Game.run = (function() {
+        console.log("game outer req");
         var loops = 0, skipTicks = 1000 / Game.fps,
             maxFrameSkip = 10,
+            firstRun = 0;
             nextGameTick = (new Date).getTime();
 
         return function() {
-          loops = 0;
+          if (firstRun == 0) {firstRun++;}
+          else {
+            console.log("inner game.run req");
+            loops = 0;
 
-          while ((new Date).getTime() > nextGameTick) {
-            updateStats.update();
-            Game.update();
-            nextGameTick += skipTicks;
-            loops++;
-          }
+            while ((new Date).getTime() > nextGameTick) {
+              updateStats.update();
+              Game.update();
+              nextGameTick += skipTicks;
+              loops++;
+            }
 
-          renderStats.update();
-          if (loops) {
-            Game.draw();
+            renderStats.update();
+            if (loops) {
+              Game.draw();
+            }
           }
         };
       })();
@@ -62,6 +68,7 @@
         var onEachFrame;
         if (window.webkitRequestAnimationFrame) {
           onEachFrame = function(cb) {
+            console.log("oneachframe req");
             var _cb = function() { cb(); webkitRequestAnimationFrame(_cb); }
             _cb();
           };
@@ -79,7 +86,7 @@
         window.onEachFrame = onEachFrame;
       })();
 
-      window.onEachFrame(Game.run);
+    window.onEachFrame(Game.run);
     </script>
   </body>
 </html>

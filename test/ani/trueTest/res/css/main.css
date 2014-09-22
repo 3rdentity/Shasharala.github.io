@@ -5,9 +5,9 @@ body {
   text-align: center;
 }
 
-#gameWin {
+#viewport {
   border-style:dotted;
   border-width:1px;
   border-color:#808080;
-  background-image: url("../../../../res/img/bg/clear/grey.png");
+  background-image: url("../img/grey.png");
 }
