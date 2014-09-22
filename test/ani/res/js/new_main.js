@@ -6,40 +6,36 @@
       canvas;
 
   function onKeyUp(evt) {
-    //left
-    if (evt.keyCode === 37) {
-      avatar.updateFram("stop");
-    }
-    //up
-    else if (evt.keyCode === 38) {
-      avatar.updateFram("stop");
-    }
-    //right
-    else if (evt.keyCode === 39) {
-      avatar.updateFram("stop");
-    }
-    //down
-    else if (evt.keyCode === 40) {
-      avatar.updateFram("stop");
+    switch (evt.keyCode) {
+      case 37:
+        avatar.updateFram("l");
+        break;
+      case 38:
+        avatar.updateFram("u");
+        break;
+      case 39:
+        avatar.updateFram("r");
+        break;
+      case 40:
+        avatar.updateFram("d");
+        break;
     }
   }
 
   function onKeyDown(evt) {
-    //left
-    if (evt.keyCode === 37) {
-      avatar.updatePos("l");
-    }
-    //up
-    else if (evt.keyCode === 38) {
-      avatar.updatePos("u");
-    }
-    //right
-    else if (evt.keyCode === 39) {
-      avatar.updatePos("r");
-    }
-    //down
-    else if (evt.keyCode === 40) {
-      avatar.updatePos("d");
+    switch (evt.keyCode) {
+      case 37:
+        avatar.updatePos("l");
+        break;
+      case 38:
+        avatar.updatePos("u");
+        break;
+      case 39:
+        avatar.updatePos("r");
+        break;
+      case 40:
+        avatar.updatePos("d");
+        break;
     }
   }
 
@@ -65,6 +61,7 @@
     that.width = options.width;
     that.height = options.height;
     that.image = options.image;
+    that.scale = options.scale || 1;
     that.L = options.L || 0;
     that.U = options.U || 0;
     that.R = options.R || 0;
@@ -73,8 +70,22 @@
     that.stepSize = options.stepSize || 0;
 
     that.updateFram = function updateFram(o) {
-      if (o === "stop") {
-        frameIndex = 0;
+      if (o) {
+        that.srcY = that.stills;
+        switch (o) {
+          case "l":
+            frameIndex = 3;
+            break;
+          case "u":
+            frameIndex = 2;
+            break;
+          case "r":
+            frameIndex = 1;
+            break;
+          case "d":
+            frameIndex = 0;
+            break;
+        }
       }
       else {
         tickCount += 1;
@@ -91,29 +102,32 @@
     };
 
     that.updatePos = function updatePos(o) {
-      if (o === "l") {
-        that.srcY = that.L;
-        that.updateFram();
-        that.destX -= that.stepSize;
-      }
-      else if (o === "u") {
-        that.srcY = that.U;
-        that.updateFram();
-        that.destY -= that.stepSize;
-      }
-      else if (o === "r") {
-        that.srcY = that.R;
-        that.updateFram();
-        that.destX += that.stepSize;
-      }
-      else if (o === "d") {
-        that.srcY = that.D;
-        that.updateFram();
-        that.destY += that.stepSize;
+      switch (o) {
+        case "l":
+          that.srcY = that.L;
+          that.updateFram();
+          that.destX -= that.stepSize;
+          break;
+        case "u":
+          that.srcY = that.U;
+          that.updateFram();
+          that.destY -= that.stepSize;
+          break;
+        case "r":
+          that.srcY = that.R;
+          that.updateFram();
+          that.destX += that.stepSize;
+          break;
+        case "d":
+          that.srcY = that.D;
+          that.updateFram();
+          that.destY += that.stepSize;
+          break;
       }
     };
 
     that.render = function render() {
+      that.context.imageSmoothingEnabled = false;
       that.context.drawImage(
       that.image,
       frameIndex * that.width,
@@ -122,8 +136,8 @@
       that.height,
       that.destX,
       that.destY,
-      that.width,
-      that.height);
+      that.width * that.scale,
+      that.height * that.scale);
     };
 
     return that;
@@ -141,14 +155,15 @@
     srcY: 0,
     destX: 250,
     destY: 250,
-    width: 36, //width of sprite
-    height: 48, //height of sprite
+    width: 18, //width of sprite
+    height: 24, //height of sprite
+    scale: 2,
     image: avatarImg,
     L: 0,
-    U: 100,
-    R: 50,
-    D: 150,
-    stills: 200,
+    U: 51,
+    R: 26,
+    D: 76,
+    stills: 101,
     numberOfFrames: 8,
     ticksPerFrame: 1,
     stepSize: 5
@@ -159,8 +174,9 @@
     srcY: 0,
     destX: 100,
     destY: 100,
-    width: 162, //width of sprite
-    height: 56, //height of sprite
+    width: 81, //width of sprite
+    height: 28, //height of sprite
+    scale: 2,
     image: twinJacksImg,
     numberOfFrames: 2,
     ticksPerFrame: 50,
