@@ -1,7 +1,7 @@
 var Game = {};
 Game.avatar;
 Game.end = false;
-Game.fps = 50;
+Game.tickRate = 60;
 
 Game.add = function gameAdd(Name) {
   this.entities.push(new Name());
@@ -15,13 +15,10 @@ Game.entityNameSearch = function gameEntityNameSearch(name) {
   }
 };
 
-Game.updateFrameDefault = function gameUpdateFrameDefault(option) {
-  if (this.stills === this.srcY && !option) {
-    return;
-  }
-  if (option) {
+Game.updateFrameDefault = function gameUpdateFrameDefault() {
+  if (this.velocity === 0) {
     this.srcY = this.stills;
-    switch (option) {
+    switch (this.dir) {
       case "l":
         this.frameIndex = 3;
         break;
@@ -33,10 +30,25 @@ Game.updateFrameDefault = function gameUpdateFrameDefault(option) {
         break;
       case "d":
         this.frameIndex = 0;
-        break;
     }
   }
   else {
+    switch (this.dir) {
+      case "l":
+        this.srcY = this.L;
+        break;
+      case "u":
+        this.srcY = this.U;
+        break;
+      case "r":
+        this.srcY = this.R;
+        break;
+      case "d":
+        this.srcY = this.D;
+        break;
+      default:
+        this.srcY = 0;
+    }
     this.tickCount++;
     if (this.tickCount > this.ticksPerFrame) {
       this.tickCount = 0;
@@ -50,26 +62,23 @@ Game.updateFrameDefault = function gameUpdateFrameDefault(option) {
   }
 };
 
-Game.updatePosDefault = function gameUpdatePosDefault(option) {
-  switch (option) {
-    case "l":
-      this.srcY = this.L;
-      this.destX -= this.stepSize;
-      break;
-    case "u":
-      this.srcY = this.U;
-      this.destY -= this.stepSize;
-      break;
-    case "r":
-      this.srcY = this.R;
-      this.destX += this.stepSize;
-      break;
-    case "d":
-      this.srcY = this.D;
-      this.destY += this.stepSize;
-      break;
+Game.updatePosDefault = function gameUpdatePosDefault() {
+  if (this.velocity !== 0) {
+    switch (this.dir) {
+      case "l":
+        this.destX -= this.velocity;
+        break;
+      case "u":
+        this.destY -= this.velocity;
+        break;
+      case "r":
+        this.destX += this.velocity;
+        break;
+      case "d":
+        this.destY += this.velocity;
+    }
   }
-}
+};
 
 Game.drawDefault = function gameDrawDefault(context) {
   context.drawImage(
@@ -91,9 +100,9 @@ Game.updateFrame = function gameUpdateFrame() {
   }
 };
 
-Game.updatePos = function gameUpdatePos(option) {
+Game.updatePos = function gameUpdatePos() {
   for (var i = 0; i < this.entities.length; i++) {
-    this.entities[i].updatePos(option);
+    this.entities[i].updatePos();
   }
 };
 
@@ -105,38 +114,17 @@ Game.draw = function gameDraw() {
   }
 };
 
-Game.run  = (function firstGameRun() {
-  var firstRun = true,
-      loops = 0,
-      maxLoops = 10,
-      skipTicks = 1000 / Game.fps,
-      nextGameTick = (new Date).getTime();
-  return function gameRun() {
-    if (firstRun) {
-      firstRun = false;
-    }
-    else{
-      loops = 0;
-
-      while ((new Date).getTime() > nextGameTick && loops < maxLoops) {
+Game.loop = function gameLoop() {
+  var cb = function gameLoop_cb() {
+    updateStats.update();
         Game.updateFrame();
         Game.updatePos();
-        nextGameTick += skipTicks;
-        loops++;
-      }
-      if (loops) {
-        Game.draw();
-      }
-    }
-  };
-})();
 
-Game.loop = function(cb) {
-  var _cb = function gameLoop_cb() {
-    cb();
-    requestAnimationFrame(_cb);
+        renderStats.update();
+        Game.draw();
+    requestAnimationFrame(cb);
   };
-  _cb();
+  cb();
 };
 
 Game.init = function gameInit(cb) {
@@ -147,46 +135,38 @@ Game.init = function gameInit(cb) {
   this.canvas.width = 500;
   this.context.imageSmoothingEnabled = false;
   // Load entities
-  var i = 10;
-  while (i--) {
-    Game.add(TwinJacks);
-  }
   Game.add(Avatar);
   Game.avatar = Game.entities[Game.entityNameSearch("avatar")];
-  cb(Game.run);
+  cb();
 };
 
 Game.onKeyUp = function gameOnKeyUp(evt) {
   switch (evt.keyCode) {
     case 37:
-      Game.avatar.updateFrame("l");
-      break;
     case 38:
-      Game.avatar.updateFrame("u");
-      break;
     case 39:
-      Game.avatar.updateFrame("r");
-      break;
     case 40:
-      Game.avatar.updateFrame("d");
-      break;
+      Game.avatar.velocity = 0;
   }
 }
 
 Game.onKeyDown = function gameOnKeyDown(evt) {
   switch (evt.keyCode) {
     case 37:
-      Game.avatar.updatePos("l");
+      Game.avatar.dir = "l";
+      Game.avatar.velocity = Game.avatar.velocityDefault;
       break;
     case 38:
-      Game.avatar.updatePos("u");
+      Game.avatar.dir = "u";
+      Game.avatar.velocity = Game.avatar.velocityDefault;
       break;
     case 39:
-      Game.avatar.updatePos("r");
+      Game.avatar.dir = "r";
+      Game.avatar.velocity = Game.avatar.velocityDefault;
       break;
     case 40:
-      Game.avatar.updatePos("d");
-      break;
+      Game.avatar.dir = "d";
+      Game.avatar.velocity = Game.avatar.velocityDefault;
   }
 }
 

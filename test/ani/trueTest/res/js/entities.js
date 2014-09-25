@@ -6,7 +6,7 @@
 
 function Avatar() {
   this.uuid = "avatar";
-  this.srcY = 101;
+  this.srcY = 100;
   this.destX = 250;
   this.destY = 250;
   this.width = 18;
@@ -14,15 +14,17 @@ function Avatar() {
   this.scale = 2;
   this.image = avatarImg;
   this.L = 0;
-  this.U = 51;
-  this.R = 26;
-  this.D = 76;
-  this.stills = 101;
+  this.U = 50;
+  this.R = 25;
+  this.D = 75;
+  this.stills = 100;
+  this.dir = "d";
   this.numberOfFrames = 8;
   this.ticksPerFrame = 2;
   this.frameIndex = 0;
   this.tickCount = 0;
-  this.stepSize = 5;
+  this.velocity = 0;
+  this.velocityDefault = 5;
 }
 
 Avatar.prototype.updateFrame = function avatarUpdateFrame(option) {
@@ -38,7 +40,7 @@ Avatar.prototype.draw = function avatarDraw(context) {
 };
 
 function TwinJacks() {
-  this.uuid =
+  this.uuid = "TwinJacks" + TwinJacks.quantity++;
   this.srcY = 0;
   this.destX = Math.floor(Math.random() * (500 - 30));
   this.destY = Math.floor(Math.random() * (500 - 30));
@@ -51,6 +53,8 @@ function TwinJacks() {
   this.frameIndex = 0;
   this.tickCount = 0;
 }
+
+TwinJacks.quantity = 0;
 
 TwinJacks.prototype.updateFrame = function twinJacksUpdateFrame() {
   Game.updateFrameDefault.bind(this)();
