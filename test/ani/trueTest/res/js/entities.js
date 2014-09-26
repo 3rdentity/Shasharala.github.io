@@ -1,8 +1,8 @@
 // entity src's
-  var avatarImg = new Image(),
+  var linkImg = new Image(),
       twinJacksImg = new Image();
   twinJacksImg.src = "res/img/twinJacks.png";
-  avatarImg.src = "res/img/link.png";
+  linkImg.src = "res/img/link.png";
 
 function Link() {
   this.uuid = "Link" + Link.quantity++;
@@ -12,7 +12,7 @@ function Link() {
   this.width = 18;
   this.height = 24;
   this.scale = 2;
-  this.image = avatarImg;
+  this.image = linkImg;
   this.L = 0;
   this.U = 50;
   this.R = 25;
@@ -25,22 +25,22 @@ function Link() {
   this.frameIndex = 0;
   this.tickCount = 0;
   this.velocity = 0;
-  this.velocityDefault = 5;
+  this.velocityDefault = 4;
 }
 
 Link.quantity = 0;
 
-Link.prototype.updateFrame = function avatarUpdateFrame() {
+Link.prototype.updateFrame = function linkUpdateFrame() {
   Game.calcDir.bind(this)();
   Game.updateFrameDefault.bind(this)();
 };
 
-Link.prototype.updatePos = function avatarUpdatePos() {
+Link.prototype.updatePos = function linkUpdatePos() {
   Game.calcDir.bind(this)();
   Game.updatePosDefault.bind(this)();
 };
 
-Link.prototype.draw = function avatarDraw(context) {
+Link.prototype.draw = function linkDraw(context) {
   Game.drawDefault.bind(this, context)();
 };
 

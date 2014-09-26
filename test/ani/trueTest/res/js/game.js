@@ -84,17 +84,41 @@ Game.updateFrameDefault = function gameUpdateFrameDefault() {
   else {
     switch (this.calcDir) {
       case "l":
-      case "ul":
-      case "dl":
         this.srcY = this.L;
+        break;
+      case "ul":
+        if (this.srcY === this.U) {
+        }
+        else {
+          this.srcY = this.L;
+        }
+        break;
+      case "dl":
+        if (this.srcY === this.D) {
+        }
+        else {
+          this.srcY = this.L;
+        }
         break;
       case "u":
         this.srcY = this.U;
         break;
       case "r":
-      case "ur":
-      case "dr":
         this.srcY = this.R;
+        break;
+      case "ur":
+        if (this.srcY === this.U) {
+        }
+        else {
+          this.srcY = this.R;
+        }
+        break;
+      case "dr":
+        if (this.srcY === this.D) {
+        }
+        else {
+          this.srcY = this.R;
+        }
         break;
       case "d":
         this.srcY = this.D;
