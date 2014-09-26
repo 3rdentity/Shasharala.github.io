@@ -4,8 +4,8 @@
   twinJacksImg.src = "res/img/twinJacks.png";
   avatarImg.src = "res/img/link.png";
 
-function Avatar() {
-  this.uuid = "avatar";
+function Link() {
+  this.uuid = "Link" + Link.quantity++;
   this.srcY = 100;
   this.destX = 250;
   this.destY = 250;
@@ -18,7 +18,8 @@ function Avatar() {
   this.R = 25;
   this.D = 75;
   this.stills = 100;
-  this.dir = "d";
+  this.dir = "0 0 0 0";
+  this.calcDir = "d";
   this.numberOfFrames = 8;
   this.ticksPerFrame = 2;
   this.frameIndex = 0;
@@ -27,15 +28,19 @@ function Avatar() {
   this.velocityDefault = 5;
 }
 
-Avatar.prototype.updateFrame = function avatarUpdateFrame(option) {
-  Game.updateFrameDefault.bind(this, option)();
+Link.quantity = 0;
+
+Link.prototype.updateFrame = function avatarUpdateFrame() {
+  Game.calcDir.bind(this)();
+  Game.updateFrameDefault.bind(this)();
 };
 
-Avatar.prototype.updatePos = function avatarUpdatePos(option) {
-  Game.updatePosDefault.bind(this, option)();
+Link.prototype.updatePos = function avatarUpdatePos() {
+  Game.calcDir.bind(this)();
+  Game.updatePosDefault.bind(this)();
 };
 
-Avatar.prototype.draw = function avatarDraw(context) {
+Link.prototype.draw = function avatarDraw(context) {
   Game.drawDefault.bind(this, context)();
 };
 

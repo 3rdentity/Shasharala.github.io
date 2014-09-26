@@ -1,7 +1,6 @@
 var Game = {};
 Game.avatar;
 Game.end = false;
-Game.tickRate = 60;
 
 Game.add = function gameAdd(Name) {
   this.entities.push(new Name());
@@ -15,17 +14,67 @@ Game.entityNameSearch = function gameEntityNameSearch(name) {
   }
 };
 
+Game.calcDir = function gameCalcDir() {
+  switch (this.dir) {
+    case "1 0 0 0":
+    case "1 1 0 1":
+      this.calcDir = "l";
+      this.velocity = this.velocityDefault;
+      break;
+    case "0 1 0 0":
+    case "1 1 1 0":
+      this.calcDir = "u";
+      this.velocity = this.velocityDefault;
+      break;
+    case "0 0 1 0":
+    case "0 1 1 1":
+      this.calcDir = "r";
+      this.velocity = this.velocityDefault;
+      break;
+    case "0 0 0 1":
+    case "1 0 1 1":
+      this.calcDir = "d";
+      this.velocity = this.velocityDefault;
+      break;
+    case "1 1 0 0":
+      this.calcDir = "ul";
+      this.velocity = this.velocityDefault;
+      break;
+    case "0 1 1 0":
+      this.calcDir = "ur";
+      this.velocity = this.velocityDefault;
+      break;
+    case "0 0 1 1":
+      this.calcDir = "dr";
+      this.velocity = this.velocityDefault;
+      break;
+    case "1 0 0 1":
+      this.calcDir = "dl";
+      this.velocity = this.velocityDefault;
+      break;
+    case "0 0 0 0":
+    case "0 1 0 1":
+    case "1 0 1 0":
+    case "1 1 1 1":
+      this.velocity = 0;
+  }
+};
+
 Game.updateFrameDefault = function gameUpdateFrameDefault() {
   if (this.velocity === 0) {
     this.srcY = this.stills;
-    switch (this.dir) {
+    switch (this.calcDir) {
       case "l":
+      case "ul":
+      case "dl":
         this.frameIndex = 3;
         break;
       case "u":
         this.frameIndex = 2;
         break;
       case "r":
+      case "ur":
+      case "dr":
         this.frameIndex = 1;
         break;
       case "d":
@@ -33,14 +82,18 @@ Game.updateFrameDefault = function gameUpdateFrameDefault() {
     }
   }
   else {
-    switch (this.dir) {
+    switch (this.calcDir) {
       case "l":
+      case "ul":
+      case "dl":
         this.srcY = this.L;
         break;
       case "u":
         this.srcY = this.U;
         break;
       case "r":
+      case "ur":
+      case "dr":
         this.srcY = this.R;
         break;
       case "d":
@@ -63,20 +116,34 @@ Game.updateFrameDefault = function gameUpdateFrameDefault() {
 };
 
 Game.updatePosDefault = function gameUpdatePosDefault() {
-  if (this.velocity !== 0) {
-    switch (this.dir) {
-      case "l":
-        this.destX -= this.velocity;
-        break;
-      case "u":
-        this.destY -= this.velocity;
-        break;
-      case "r":
-        this.destX += this.velocity;
-        break;
-      case "d":
-        this.destY += this.velocity;
-    }
+  switch (this.calcDir) {
+    case "l":
+      this.destX -= this.velocity;
+      break;
+    case "u":
+      this.destY -= this.velocity;
+      break;
+    case "r":
+      this.destX += this.velocity;
+      break;
+    case "d":
+      this.destY += this.velocity;
+      break;
+    case "ul":
+      this.destY -= this.velocity;
+      this.destX -= this.velocity;
+      break;
+    case "ur":
+      this.destY -= this.velocity;
+      this.destX += this.velocity;
+      break;
+    case "dr":
+      this.destY += this.velocity;
+      this.destX += this.velocity;
+      break;
+    case "dl":
+      this.destY += this.velocity;
+      this.destX -= this.velocity;
   }
 };
 
@@ -106,6 +173,14 @@ Game.updatePos = function gameUpdatePos() {
   }
 };
 
+Game.update = function gameUpdate() {
+  // Check and respond to any input from player
+  Game.avatar.dir = Player.input.arrowKeys;
+  // Update canvas
+  this.updateFrame();
+  this.updatePos();
+}
+
 Game.draw = function gameDraw() {
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -115,13 +190,13 @@ Game.draw = function gameDraw() {
 };
 
 Game.loop = function gameLoop() {
-  var cb = function gameLoop_cb() {
+  var cb = function gameLoopcb() {
     updateStats.update();
-        Game.updateFrame();
-        Game.updatePos();
+    Game.update();
 
-        renderStats.update();
-        Game.draw();
+    renderStats.update();
+    Game.draw();
+
     requestAnimationFrame(cb);
   };
   cb();
@@ -135,40 +210,8 @@ Game.init = function gameInit(cb) {
   this.canvas.width = 500;
   this.context.imageSmoothingEnabled = false;
   // Load entities
-  Game.add(Avatar);
-  Game.avatar = Game.entities[Game.entityNameSearch("avatar")];
+  Game.add(TwinJacks);
+  Game.add(Link);
+  Game.avatar = Game.entities[Game.entityNameSearch("Link0")];
   cb();
 };
-
-Game.onKeyUp = function gameOnKeyUp(evt) {
-  switch (evt.keyCode) {
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-      Game.avatar.velocity = 0;
-  }
-}
-
-Game.onKeyDown = function gameOnKeyDown(evt) {
-  switch (evt.keyCode) {
-    case 37:
-      Game.avatar.dir = "l";
-      Game.avatar.velocity = Game.avatar.velocityDefault;
-      break;
-    case 38:
-      Game.avatar.dir = "u";
-      Game.avatar.velocity = Game.avatar.velocityDefault;
-      break;
-    case 39:
-      Game.avatar.dir = "r";
-      Game.avatar.velocity = Game.avatar.velocityDefault;
-      break;
-    case 40:
-      Game.avatar.dir = "d";
-      Game.avatar.velocity = Game.avatar.velocityDefault;
-  }
-}
-
-document.addEventListener("keydown", Game.onKeyDown);
-document.addEventListener("keyup", Game.onKeyUp);
