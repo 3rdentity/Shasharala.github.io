@@ -1,3 +1,7 @@
+//think about walking Game.entities backwards in for loops.
+//entity removal should be handled by splice and handled in each object, as some objects may handle death differently, ie: slimes spawn smaller slimes on death.
+//all objects need a life property, but only killable npc's need a reaction function to decrement life and visually react
+
 var Game = {};
 Game.avatar;
 Game.end = false;
@@ -10,6 +14,7 @@ Game.entityNameSearch = function gameEntityNameSearch(name) {
   for (var i = 0; i < Game.entities.length; i++) {
     if (this.entities[i].uuid === name) {
       return i;
+      //does this actually break from loop upon discovery of i in this.entities?
     }
   }
 };
