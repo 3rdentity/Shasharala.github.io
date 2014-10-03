@@ -4,7 +4,7 @@
     <title>shasharala's feed</title>
     <description>shasharala's thoughts and games</description>
     <link>http://www.shasharala.tk</link>
-    <lastBuildDate>2014 08 31 13:38 GMT-8</lastBuildDate>
+    <lastBuildDate>2014 10 03 13:57 GMT-8</lastBuildDate>
     <managingEditor>shasharala@outlook.com (Ryan Combes)</managingEditor>
     <!--
     EXAMPLE
@@ -15,6 +15,12 @@
       <description>xxx</description>
     </item>
     -->
+    <item>
+      <title>Paint Me on Your Canvas</title>
+      <link>http://www.shasharala.tk/blog/0001.html</link>
+      <pubDate>2014 10 03 13:55 GMT-8</pubDate>
+      <description>A post about keeping up</description>
+    </item>
     <item>
       <title>Ludum Dare 30: Mirrors</title>
       <link>http://www.shasharala.tk/games/ld30/mirrors.html</link>

@@ -3,7 +3,7 @@
   <title>shasharala's feed</title>
   <subtitle>shasharala's thoughts and games</subtitle>
   <link href="http://www.shasharala.tk"/>
-  <updated>2014-08-31T12:57:33Z</updated>
+  <updated>2014-10-03T13:55:33Z</updated>
   <author>
     <name>Ryan Combes</name>
     <email>shasharala@outlook.com</email>
@@ -16,6 +16,12 @@
     <summary>xxx</summary>
   </entry>
 -->
+  <entry>
+    <title>Paint Me on Your Canvas</title>
+    <link href="http://www.shasharala.tk/blog/0001.html"/>
+    <updated>2014-10-03T13:55:33Z</updated>
+    <summary>A post about keeping up</summary>
+  </entry>
   <entry>
     <title>Ludum Dare 30: Mirrors</title>
     <link href="http://www.shasharala.tk/games/ld30/mirrors.html"/>
