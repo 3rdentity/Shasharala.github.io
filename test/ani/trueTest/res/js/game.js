@@ -1,246 +1,255 @@
-//think about walking Game.entities backwards in for loops.
-//entity removal should be handled by splice and handled in each object, as some objects may handle death differently, ie: slimes spawn smaller slimes on death.
-//all objects need a life property, but only killable npc's need a reaction function to decrement life and visually react
+//entity removal should be handled by splice/return to pool and handled in each object if that handling exists, as some objects may handle death differently, ie: slimes spawn smaller slimes on death.
+//all objects need a life property, but only killable npc's need a reaction function to decrement life and visually react?
+//add demo possibility. Something like if (object == avatar && demo == true) {ai} else {continue as normal};
+//consider a way to handle inactive objects. second canvas? Only push updates on changes/invalidation?
+//add a way for sprites to have "idle" frames
+//double buffer AI? This relates back to double buffering/using a second canvas
+//pre-allocate objects to a heap/pool?
+var Game = {
+  avatar: undefined,
+  end: false,
 
-var Game = {};
-Game.avatar;
-Game.end = false;
+  timestamp: function gameTimestamp() {
+    return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
+  },
 
-Game.add = function gameAdd(Name) {
-  this.entities.push(new Name());
-};
+  add: function gameAdd(Name) {
+    this.entities.push(new Name());
+  },
 
-Game.entityNameSearch = function gameEntityNameSearch(name) {
-  for (var i = 0; i < Game.entities.length; i++) {
-    if (this.entities[i].uuid === name) {
-      return i;
-      //does this actually break from loop upon discovery of i in this.entities?
+  entityNameSearch: function gameEntityNameSearch(name) {
+    for (var i = this.entities.length - 1; i >= 0; i--) {
+      if (this.entities[i].uuid === name) {
+        return i;
+      }
     }
-  }
-};
+  },
 
-Game.calcDir = function gameCalcDir() {
-  switch (this.dir) {
-    case "1 0 0 0":
-    case "1 1 0 1":
-      this.calcDir = "l";
-      this.velocity = this.velocityDefault;
-      break;
-    case "0 1 0 0":
-    case "1 1 1 0":
-      this.calcDir = "u";
-      this.velocity = this.velocityDefault;
-      break;
-    case "0 0 1 0":
-    case "0 1 1 1":
-      this.calcDir = "r";
-      this.velocity = this.velocityDefault;
-      break;
-    case "0 0 0 1":
-    case "1 0 1 1":
-      this.calcDir = "d";
-      this.velocity = this.velocityDefault;
-      break;
-    case "1 1 0 0":
-      this.calcDir = "ul";
-      this.velocity = this.velocityDefault;
-      break;
-    case "0 1 1 0":
-      this.calcDir = "ur";
-      this.velocity = this.velocityDefault;
-      break;
-    case "0 0 1 1":
-      this.calcDir = "dr";
-      this.velocity = this.velocityDefault;
-      break;
-    case "1 0 0 1":
-      this.calcDir = "dl";
-      this.velocity = this.velocityDefault;
-      break;
-    case "0 0 0 0":
-    case "0 1 0 1":
-    case "1 0 1 0":
-    case "1 1 1 1":
-      this.velocity = 0;
-  }
-};
+  update: function gameUpdate(dt) {
+    // check and respond to any input from player
+    Game.avatar.dir = Player.input.arrowKeys;
+    // update frames and position
 
-Game.updateFrameDefault = function gameUpdateFrameDefault() {
-  if (this.velocity === 0) {
-    this.srcY = this.stills;
-    switch (this.calcDir) {
-      case "l":
-      case "ul":
-      case "dl":
-        this.frameIndex = 3;
-        break;
-      case "u":
-        this.frameIndex = 2;
-        break;
-      case "r":
-      case "ur":
-      case "dr":
-        this.frameIndex = 1;
-        break;
-      case "d":
-        this.frameIndex = 0;
-    }
-  }
-  else {
-    switch (this.calcDir) {
-      case "l":
-        this.srcY = this.L;
-        break;
-      case "ul":
-        if (this.srcY === this.U) {
-        }
-        else {
-          this.srcY = this.L;
-        }
-        break;
-      case "dl":
-        if (this.srcY === this.D) {
-        }
-        else {
-          this.srcY = this.L;
-        }
-        break;
-      case "u":
-        this.srcY = this.U;
-        break;
-      case "r":
-        this.srcY = this.R;
-        break;
-      case "ur":
-        if (this.srcY === this.U) {
-        }
-        else {
-          this.srcY = this.R;
-        }
-        break;
-      case "dr":
-        if (this.srcY === this.D) {
-        }
-        else {
-          this.srcY = this.R;
-        }
-        break;
-      case "d":
-        this.srcY = this.D;
-        break;
-      default:
-        this.srcY = 0;
-    }
-    this.tickCount++;
-    if (this.tickCount > this.ticksPerFrame) {
-      this.tickCount = 0;
-      if (this.frameIndex < this.numberOfFrames - 1) {
-        this.frameIndex++;
+    for (var i = Game.entities.length - 1; i >= 0; i--) {
+      var currEntity = Game.entities[i];
+      if(currEntity.update) {
+        currEntity.update();
       }
       else {
-        this.frameIndex = 0;
+        // calculate direction and set velocity accordingly
+        switch (currEntity.dir) {
+          case "1 0 0 0":
+          case "1 1 0 1":
+            currEntity.calcDir = "l";
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            break;
+          case "0 1 0 0":
+          case "1 1 1 0":
+            currEntity.calcDir = "u";
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            break;
+          case "0 0 1 0":
+          case "0 1 1 1":
+            currEntity.calcDir = "r";
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            break;
+          case "0 0 0 1":
+          case "1 0 1 1":
+            currEntity.calcDir = "d";
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            break;
+          case "1 1 0 0":
+            currEntity.calcDir = "ul";
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            break;
+          case "0 1 1 0":
+            currEntity.calcDir = "ur";
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            break;
+          case "0 0 1 1":
+            currEntity.calcDir = "dr";
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            break;
+          case "1 0 0 1":
+            currEntity.calcDir = "dl";
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            break;
+          case "0 0 0 0":
+          case "0 1 0 1":
+          case "1 0 1 0":
+          case "1 1 1 1":
+            currEntity.vel = Physics.vel("-", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+        }
+        // update frames
+        if (currEntity.vel === 0) {
+          console.log(currEntity.vel);
+          currEntity.srcY = currEntity.stills;
+          switch (currEntity.calcDir) {
+            case "l":
+            case "ul":
+            case "dl":
+              currEntity.frameIndex = 3;
+              break;
+            case "u":
+              currEntity.frameIndex = 2;
+              break;
+            case "r":
+            case "ur":
+            case "dr":
+              currEntity.frameIndex = 1;
+              break;
+            case "d":
+              currEntity.frameIndex = 0;
+          }
+        }
+        else {
+          switch (currEntity.calcDir) {
+            case "l":
+              currEntity.srcY = currEntity.L;
+              break;
+            case "ul":
+              if (currEntity.srcY === currEntity.U) {
+              }
+              else {
+                currEntity.srcY = currEntity.L;
+              }
+              break;
+            case "dl":
+              if (currEntity.srcY === currEntity.D) {
+              }
+              else {
+                currEntity.srcY = currEntity.L;
+              }
+              break;
+            case "u":
+              currEntity.srcY = currEntity.U;
+              break;
+            case "r":
+              currEntity.srcY = currEntity.R;
+              break;
+            case "ur":
+              if (currEntity.srcY === currEntity.U) {
+              }
+              else {
+                currEntity.srcY = currEntity.R;
+              }
+              break;
+            case "dr":
+              if (currEntity.srcY === currEntity.D) {
+              }
+              else {
+                currEntity.srcY = currEntity.R;
+              }
+              break;
+            case "d":
+              currEntity.srcY = currEntity.D;
+              break;
+            default:
+              currEntity.srcY = 0;
+          }
+          currEntity.tickCount++;
+          if (currEntity.tickCount > currEntity.ticksPerFrame) {
+            currEntity.tickCount = 0;
+            if (currEntity.frameIndex < currEntity.numberOfFrames - 1) {
+              currEntity.frameIndex++;
+            }
+            else {
+              currEntity.frameIndex = 0;
+            }
+          }
+        }
+        // update position
+        switch (currEntity.calcDir) {
+          case "l":
+            currEntity.destX = Math.floor(currEntity.destX - (dt * currEntity.vel));
+            break;
+          case "u":
+            currEntity.destY = Math.floor(currEntity.destY - (dt * currEntity.vel));
+            break;
+          case "r":
+            currEntity.destX = Math.floor(currEntity.destX + (dt * currEntity.vel));
+            break;
+          case "d":
+            currEntity.destY = Math.floor(currEntity.destY + (dt * currEntity.vel));
+            break;
+          case "ul":
+            currEntity.destY = Math.floor(currEntity.destY - (dt * currEntity.vel));
+            currEntity.destX = Math.floor(currEntity.destX - (dt * currEntity.vel));
+            break;
+          case "ur":
+            currEntity.destY = Math.floor(currEntity.destY - (dt * currEntity.vel));
+            currEntity.destX = Math.floor(currEntity.destX + (dt * currEntity.vel));
+            break;
+          case "dr":
+            currEntity.destY = Math.floor(currEntity.destY + (dt * currEntity.vel));
+            currEntity.destX = Math.floor(currEntity.destX + (dt * currEntity.vel));
+            break;
+          case "dl":
+            currEntity.destY = Math.floor(currEntity.destY + (dt * currEntity.vel));
+            currEntity.destX = Math.floor(currEntity.destX - (dt * currEntity.vel));
+        }
       }
     }
+  },
+
+  render: function gameRender() {
+    // clear canvas
+    Game.context.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
+    //check if entity has its own render method. If not then render through default method
+    for (var i = Game.entities.length - 1; i >= 0; i--) {
+      var currEntity = Game.entities[i];
+      if (currEntity.render) {
+        currEntity.render(Game.context);
+      }
+      else {
+        Game.context.drawImage(
+          currEntity.image,
+          currEntity.frameIndex * currEntity.width,
+          currEntity.srcY || 0,
+          currEntity.width,
+          currEntity.height,
+          currEntity.destX || 0,
+          currEntity.destY || 0,
+          currEntity.width * currEntity.scale || currEntity.width,
+          currEntity.height * currEntity.scale || currEntity.height
+        );
+      }
+    }
+  },
+
+  run: function gameRun(options) {
+    // initialization
+    var nowStamp,
+        dt = 0,
+        lastStamp = Game.timestamp(),
+        slowScale = options.slowScale || 1, // slow motion scaling factor
+        step = 1/options.fps,
+        trueStep = slowScale * step,
+        update = options.update,
+        render = options.render;
+    this.entities = [];
+    this.canvas = document.getElementById("viewport");
+    this.context = this.canvas.getContext("2d");
+    this.canvas.height = 500;
+    this.canvas.width = 500;
+    this.context.imageSmoothingEnabled = false;
+    // load entities
+    Game.add(Link);
+    Game.add(TwinJacks); // for testing
+    Game.avatar = Game.entities[Game.entityNameSearch("Link0")];
+
+    // gameLoop
+    var gameLoop = function gameLoop() {
+      nowStamp = Game.timestamp();
+      dt = dt + Math.min(1, (nowStamp - lastStamp) / 1000);
+      while (dt > trueStep) {
+        dt = dt - trueStep;
+        update(step);
+      }
+      render(dt/slowScale);
+      lastStamp = nowStamp;
+      requestAnimationFrame(gameLoop);
+    };
+    requestAnimationFrame(gameLoop);
   }
-};
-
-Game.updatePosDefault = function gameUpdatePosDefault() {
-  switch (this.calcDir) {
-    case "l":
-      this.destX -= this.velocity;
-      break;
-    case "u":
-      this.destY -= this.velocity;
-      break;
-    case "r":
-      this.destX += this.velocity;
-      break;
-    case "d":
-      this.destY += this.velocity;
-      break;
-    case "ul":
-      this.destY -= this.velocity;
-      this.destX -= this.velocity;
-      break;
-    case "ur":
-      this.destY -= this.velocity;
-      this.destX += this.velocity;
-      break;
-    case "dr":
-      this.destY += this.velocity;
-      this.destX += this.velocity;
-      break;
-    case "dl":
-      this.destY += this.velocity;
-      this.destX -= this.velocity;
-  }
-};
-
-Game.drawDefault = function gameDrawDefault(context) {
-  context.drawImage(
-    this.image,
-    this.frameIndex * this.width,
-    this.srcY || 0,
-    this.width,
-    this.height,
-    this.destX || 0,
-    this.destY || 0,
-    this.width * this.scale || this.width,
-    this.height * this.scale || this.height
-  );
-};
-
-Game.updateFrame = function gameUpdateFrame() {
-  for (var i = 0; i < this.entities.length; i++) {
-    this.entities[i].updateFrame();
-  }
-};
-
-Game.updatePos = function gameUpdatePos() {
-  for (var i = 0; i < this.entities.length; i++) {
-    this.entities[i].updatePos();
-  }
-};
-
-Game.update = function gameUpdate() {
-  // Check and respond to any input from player
-  Game.avatar.dir = Player.input.arrowKeys;
-  // Update canvas
-  this.updateFrame();
-  this.updatePos();
-}
-
-Game.draw = function gameDraw() {
-  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-  for (var i=0; i < this.entities.length; i++) {
-    this.entities[i].draw(this.context);
-  }
-};
-
-Game.loop = function gameLoop() {
-  var cb = function gameLoopcb() {
-    updateStats.update();
-    Game.update();
-
-    renderStats.update();
-    Game.draw();
-
-    requestAnimationFrame(cb);
-  };
-  cb();
-};
-
-Game.init = function gameInit(cb) {
-  this.entities = [];
-  this.canvas = document.getElementById("viewport");
-  this.context = this.canvas.getContext("2d");
-  this.canvas.height = 500;
-  this.canvas.width = 500;
-  this.context.imageSmoothingEnabled = false;
-  // Load entities
-  Game.add(TwinJacks);
-  Game.add(Link);
-  Game.avatar = Game.entities[Game.entityNameSearch("Link0")];
-  cb();
 };

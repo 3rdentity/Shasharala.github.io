@@ -1,9 +1,6 @@
-// entity src's
-  var linkImg = new Image(),
-      twinJacksImg = new Image();
-  twinJacksImg.src = "res/img/twinJacks.png";
-  linkImg.src = "res/img/link.png";
-
+// link
+var linkImg = new Image();
+linkImg.src = "res/img/link.png";
 function Link() {
   this.uuid = "Link" + Link.quantity++;
   this.srcY = 100;
@@ -24,26 +21,15 @@ function Link() {
   this.ticksPerFrame = 2;
   this.frameIndex = 0;
   this.tickCount = 0;
-  this.velocity = 0;
-  this.velocityDefault = 4;
+  this.vel = 0;
+  this.velMax = 4;
+  this.accel = 1;
 }
-
 Link.quantity = 0;
 
-Link.prototype.updateFrame = function linkUpdateFrame() {
-  Game.calcDir.bind(this)();
-  Game.updateFrameDefault.bind(this)();
-};
-
-Link.prototype.updatePos = function linkUpdatePos() {
-  Game.calcDir.bind(this)();
-  Game.updatePosDefault.bind(this)();
-};
-
-Link.prototype.draw = function linkDraw(context) {
-  Game.drawDefault.bind(this, context)();
-};
-
+// twinJacks
+var twinJacksImg = new Image();
+twinJacksImg.src = "res/img/twinJacks.png";
 function TwinJacks() {
   this.uuid = "TwinJacks" + TwinJacks.quantity++;
   this.srcY = 0;
@@ -58,17 +44,4 @@ function TwinJacks() {
   this.frameIndex = 0;
   this.tickCount = 0;
 }
-
 TwinJacks.quantity = 0;
-
-TwinJacks.prototype.updateFrame = function twinJacksUpdateFrame() {
-  Game.updateFrameDefault.bind(this)();
-};
-
-TwinJacks.prototype.updatePos = function twinJacksUpdatePos(option) {
-  // this character does not change position
-};
-
-TwinJacks.prototype.draw = function twinJacksDraw(context) {
-  Game.drawDefault.bind(this, context)();
-};
