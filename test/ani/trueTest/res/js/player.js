@@ -32,6 +32,12 @@ Player.input.arrowKeys = "0 0 0 0";
 
 Player.onKey = function playerOnKey(evt, key, pressed) {
   switch (key) {
+    case Key.q:
+      Game.end = true;
+      break;
+    case Key.w:
+      Game.end = false;
+      break;
     case Key.left:
       Player.input.left = pressed;
       Player.input.arrowKeys = Player.input.left+ " " + Player.input.up+ " " + Player.input.right+ " " + Player.input.down;
@@ -58,5 +64,5 @@ document.addEventListener("keydown", function onKeyDown(evt) {Player.onKey(evt, 
 document.addEventListener("keyup", function onKeyUp(evt) {Player.onKey(evt, evt.keyCode, 0);});
 
 window.onblur = function windowOnBlur() {
-  console.log("Remember to write a blur event");
+  Game.pause = true;
 }

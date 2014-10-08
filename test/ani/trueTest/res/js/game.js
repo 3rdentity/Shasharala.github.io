@@ -1,13 +1,13 @@
 //entity removal should be handled by splice/return to pool and handled in each object if that handling exists, as some objects may handle death differently, ie: slimes spawn smaller slimes on death.
 //all objects need a life property, but only killable npc's need a reaction function to decrement life and visually react?
-//add demo possibility. Something like if (object == avatar && demo == true) {ai} else {continue as normal};
 //consider a way to handle inactive objects. second canvas? Only push updates on changes/invalidation?
 //add a way for sprites to have "idle" frames
 //double buffer AI? This relates back to double buffering/using a second canvas
 //pre-allocate objects to a heap/pool?
 var Game = {
   avatar: undefined,
-  end: false,
+  pause: false,
+  demo: false, // reading about state management before continuing implementing these
 
   timestamp: function gameTimestamp() {
     return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
@@ -25,64 +25,66 @@ var Game = {
     }
   },
 
-  update: function gameUpdate(dt) {
+  update: function gameUpdate(step) {
     // check and respond to any input from player
     Game.avatar.dir = Player.input.arrowKeys;
     // update frames and position
 
     for (var i = Game.entities.length - 1; i >= 0; i--) {
       var currEntity = Game.entities[i];
-      if(currEntity.update) {
-        currEntity.update();
+      // calculate direction and set velocity accordingly
+      if("update" in currEntity) {
+        currEntity.update(step);
       }
       else {
-        // calculate direction and set velocity accordingly
         switch (currEntity.dir) {
           case "1 0 0 0":
           case "1 1 0 1":
             currEntity.calcDir = "l";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 1 0 0":
           case "1 1 1 0":
             currEntity.calcDir = "u";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 0 1 0":
           case "0 1 1 1":
             currEntity.calcDir = "r";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 0 0 1":
           case "1 0 1 1":
             currEntity.calcDir = "d";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "1 1 0 0":
             currEntity.calcDir = "ul";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 1 1 0":
             currEntity.calcDir = "ur";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 0 1 1":
             currEntity.calcDir = "dr";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "1 0 0 1":
             currEntity.calcDir = "dl";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 0 0 0":
           case "0 1 0 1":
           case "1 0 1 0":
           case "1 1 1 1":
-            currEntity.vel = Physics.vel("-", currEntity.vel, currEntity.velMax, currEntity.accel, dt);
+            currEntity.vel = Physics.vel("-", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            break;
+          default:
+            // only objects with no dir should fall here
         }
-        // update frames
+        // update frames & position
         if (currEntity.vel === 0) {
-          console.log(currEntity.vel);
           currEntity.srcY = currEntity.stills;
           switch (currEntity.calcDir) {
             case "l":
@@ -100,12 +102,29 @@ var Game = {
               break;
             case "d":
               currEntity.frameIndex = 0;
+              currEntity.destY += currEntity.vel;
+              break;
+            default:
+              // if something is falling in here there is a problem
           }
         }
         else {
           switch (currEntity.calcDir) {
             case "l":
               currEntity.srcY = currEntity.L;
+              currEntity.destX -= currEntity.vel;
+              break;
+            case "u":
+              currEntity.srcY = currEntity.U;
+              currEntity.destY -= currEntity.vel;
+              break;
+            case "r":
+              currEntity.srcY = currEntity.R;
+              currEntity.destX += currEntity.vel;
+              break;
+              case "d":
+              currEntity.srcY = currEntity.D;
+              currEntity.destY += currEntity.vel;
               break;
             case "ul":
               if (currEntity.srcY === currEntity.U) {
@@ -113,6 +132,8 @@ var Game = {
               else {
                 currEntity.srcY = currEntity.L;
               }
+              currEntity.destY -= currEntity.vel;
+              currEntity.destX -= currEntity.vel;
               break;
             case "dl":
               if (currEntity.srcY === currEntity.D) {
@@ -120,12 +141,8 @@ var Game = {
               else {
                 currEntity.srcY = currEntity.L;
               }
-              break;
-            case "u":
-              currEntity.srcY = currEntity.U;
-              break;
-            case "r":
-              currEntity.srcY = currEntity.R;
+              currEntity.destY += currEntity.vel;
+              currEntity.destX -= currEntity.vel;
               break;
             case "ur":
               if (currEntity.srcY === currEntity.U) {
@@ -133,6 +150,8 @@ var Game = {
               else {
                 currEntity.srcY = currEntity.R;
               }
+              currEntity.destY -= currEntity.vel;
+              currEntity.destX += currEntity.vel;
               break;
             case "dr":
               if (currEntity.srcY === currEntity.D) {
@@ -140,66 +159,44 @@ var Game = {
               else {
                 currEntity.srcY = currEntity.R;
               }
-              break;
-            case "d":
-              currEntity.srcY = currEntity.D;
+              currEntity.destY += currEntity.vel;
+              currEntity.destX += currEntity.vel;
               break;
             default:
-              currEntity.srcY = 0;
+              // only objects with no calcDir should fall here
           }
-          currEntity.tickCount++;
-          if (currEntity.tickCount > currEntity.ticksPerFrame) {
-            currEntity.tickCount = 0;
-            if (currEntity.frameIndex < currEntity.numberOfFrames - 1) {
-              currEntity.frameIndex++;
+          // check that object has a tickCount
+          if ("tickCount" in currEntity) {
+            // check that object has a velocity
+            if (currEntity.vel) {
+              currEntity.tickCount = currEntity.tickCount + currEntity.vel;
             }
             else {
-              currEntity.frameIndex = 0;
+              currEntity.tickCount++;
+            }
+            if (currEntity.tickCount > currEntity.ticksPerFrame) {
+              currEntity.tickCount = 0;
+              if (currEntity.frameIndex < currEntity.numberOfFrames - 1) {
+                currEntity.frameIndex++;
+              }
+              else {
+                currEntity.frameIndex = 0;
+              }
             }
           }
-        }
-        // update position
-        switch (currEntity.calcDir) {
-          case "l":
-            currEntity.destX = Math.floor(currEntity.destX - (dt * currEntity.vel));
-            break;
-          case "u":
-            currEntity.destY = Math.floor(currEntity.destY - (dt * currEntity.vel));
-            break;
-          case "r":
-            currEntity.destX = Math.floor(currEntity.destX + (dt * currEntity.vel));
-            break;
-          case "d":
-            currEntity.destY = Math.floor(currEntity.destY + (dt * currEntity.vel));
-            break;
-          case "ul":
-            currEntity.destY = Math.floor(currEntity.destY - (dt * currEntity.vel));
-            currEntity.destX = Math.floor(currEntity.destX - (dt * currEntity.vel));
-            break;
-          case "ur":
-            currEntity.destY = Math.floor(currEntity.destY - (dt * currEntity.vel));
-            currEntity.destX = Math.floor(currEntity.destX + (dt * currEntity.vel));
-            break;
-          case "dr":
-            currEntity.destY = Math.floor(currEntity.destY + (dt * currEntity.vel));
-            currEntity.destX = Math.floor(currEntity.destX + (dt * currEntity.vel));
-            break;
-          case "dl":
-            currEntity.destY = Math.floor(currEntity.destY + (dt * currEntity.vel));
-            currEntity.destX = Math.floor(currEntity.destX - (dt * currEntity.vel));
         }
       }
     }
   },
 
-  render: function gameRender() {
+  render: function gameRender(dt) {
     // clear canvas
     Game.context.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
     //check if entity has its own render method. If not then render through default method
     for (var i = Game.entities.length - 1; i >= 0; i--) {
       var currEntity = Game.entities[i];
-      if (currEntity.render) {
-        currEntity.render(Game.context);
+      if ("render" in currEntity) {
+        currEntity.render(dt, Game.context);
       }
       else {
         Game.context.drawImage(
@@ -208,8 +205,8 @@ var Game = {
           currEntity.srcY || 0,
           currEntity.width,
           currEntity.height,
-          currEntity.destX || 0,
-          currEntity.destY || 0,
+          currEntity.destX + (currEntity.vel * dt) || currEntity.destX || 0,
+          currEntity.destY + (currEntity.vel * dt) || currEntity.destY || 0,
           currEntity.width * currEntity.scale || currEntity.width,
           currEntity.height * currEntity.scale || currEntity.height
         );

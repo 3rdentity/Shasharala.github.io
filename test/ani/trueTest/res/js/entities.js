@@ -18,12 +18,12 @@ function Link() {
   this.dir = "0 0 0 0";
   this.calcDir = "d";
   this.numberOfFrames = 8;
-  this.ticksPerFrame = 2;
+  this.ticksPerFrame = 10;
   this.frameIndex = 0;
   this.tickCount = 0;
   this.vel = 0;
   this.velMax = 4;
-  this.accel = 1;
+  this.accel = 100;
 }
 Link.quantity = 0;
 
