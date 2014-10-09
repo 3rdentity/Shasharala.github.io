@@ -1,0 +1,14 @@
+- rename physics to math and implement various maths
+- rename entities to assets and prepare it for loading multiple types of assets
+- add dom.js with var. functions to manipulate dom. make sure to use said functions in rest of code ( is this necessary? will it slow things down as it hunts for what you're trying to do with DOM? Would it be any slower than jQuery?)
+- consider merging options/player(controls?)/entities(maps, etc.) into one assets.js
+- ability to edit controls in-game? way to add "controls"/eventListeners easily when designing
+
+COPIED FROM DESKPAD
+- various comments in files denote things that need to be done
+- clipping
+- AI
+- idle/attack animations + dmg vals/reactions (this will involve death/spawning handling)
+- backgrounds/scenery?
+- fullscreen canvas/full window canvas
+- browser sniffing/fallback if browser is incompatible

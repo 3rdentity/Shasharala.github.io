@@ -1,13 +1,13 @@
-//entity removal should be handled by splice/return to pool and handled in each object if that handling exists, as some objects may handle death differently, ie: slimes spawn smaller slimes on death.
-//all objects need a life property, but only killable npc's need a reaction function to decrement life and visually react?
-//consider a way to handle inactive objects. second canvas? Only push updates on changes/invalidation?
-//add a way for sprites to have "idle" frames
-//double buffer AI? This relates back to double buffering/using a second canvas
-//pre-allocate objects to a heap/pool?
+//TODO entity removal should be handled by splice/return to pool and handled in each object if that handling exists, as some objects may handle death differently, ie: slimes spawn smaller slimes on death.
+//TODO all objects need a life property, but only killable npc's need a reaction function to decrement life and visually react?
+//TODO consider a way to handle inactive objects. second canvas? Only push updates on changes/invalidation?
+//TODO double buffer AI? This relates back to double buffering/using a second canvas
+//TODO pre-allocate objects to a heap/pool?
+//TODO base64 assets?
 var Game = {
   avatar: undefined,
   pause: false,
-  demo: false, // reading about state management before continuing implementing these
+  demo: false, // TODO reading about state management before continuing implementing these
 
   timestamp: function gameTimestamp() {
     return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
@@ -236,6 +236,8 @@ var Game = {
     Game.avatar = Game.entities[Game.entityNameSearch("Link0")];
 
     // gameLoop
+    //TODO consider waiting for onload of assets
+    //TODO consider loading data that would be in a JSON from a local JS file. This bypasses JSON not having local load & saves a HTTP Header
     var gameLoop = function gameLoop() {
       nowStamp = Game.timestamp();
       dt = dt + Math.min(1, (nowStamp - lastStamp) / 1000);
