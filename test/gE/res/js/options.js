@@ -12,12 +12,19 @@ var Options = {
     update: Game.update,
     render: Game.render
   },
+  //will isometry work with this engine?
   isometric: {
     fps: 60,
     slowScale: 1,
     update: undefined,
     render: undefined
+  },
+  //will an fps work with this engine?
+  fps: {
+    fps: 60,
+    slowScale: 1,
+    update: undefined,
+    render: undefined
   }
-  //fps?
 };
 
