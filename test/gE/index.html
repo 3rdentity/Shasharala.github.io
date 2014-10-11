@@ -14,15 +14,12 @@
   <body>
     <canvas id="viewport"></canvas>
     <script src="res/js/entities.js"></script>
-    <script src="res/js/stats.js"></script>
+    <script src="res/js/player.js"></script>
+    <script src="res/js/physics.js"></script>
     <script src="res/js/game.js"></script>
+    <script src="res/js/options.js"></script>
     <script>
-      var renderStats = new Stats();
-      document.body.appendChild(renderStats.domElement);
-
-      var updateStats = new Stats();
-      document.body.appendChild(updateStats.domElement);
-      Game.init(Game.loop);
+      Game.run(Options.topDown);
     </script>
   </body>
 </html>
