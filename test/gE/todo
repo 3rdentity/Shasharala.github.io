@@ -3,8 +3,6 @@
 - add dom.js with var. functions to manipulate dom. make sure to use said functions in rest of code ( is this necessary? will it slow things down as it hunts for what you're trying to do with DOM? Would it be any slower than jQuery?)
 - consider merging options/player(controls?)/entities(maps, etc.) into one assets.js
 - ability to edit controls in-game? way to add "controls"/eventListeners easily when designing
-
-COPIED FROM DESKPAD
 - various comments in files denote things that need to be done
 - clipping
 - AI
@@ -12,3 +10,4 @@ COPIED FROM DESKPAD
 - backgrounds/scenery?
 - fullscreen canvas/full window canvas
 - browser sniffing/fallback if browser is incompatible
+- type detection
