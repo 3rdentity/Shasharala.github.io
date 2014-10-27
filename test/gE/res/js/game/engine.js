@@ -4,10 +4,24 @@
 //TODO double buffer AI? This relates back to double buffering/using a second canvas
 //TODO pre-allocate objects to a heap/pool?
 //TODO base64 assets?
+//TODO fullscreen fixes
 var Game = {
   avatar: undefined,
   pause: false,
   demo: false, // TODO reading about state management before continuing implementing these
+
+  fullscreen: function gameFullscreen() {
+    var elem = this.canvas;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    }
+  },
 
   timestamp: function gameTimestamp() {
     return window.performance && window.performance.now ? window.performance.now() : new Date().getTime();
@@ -41,44 +55,44 @@ var Game = {
           case "1 0 0 0":
           case "1 1 0 1":
             currEntity.calcDir = "l";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 1 0 0":
           case "1 1 1 0":
             currEntity.calcDir = "u";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 0 1 0":
           case "0 1 1 1":
             currEntity.calcDir = "r";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 0 0 1":
           case "1 0 1 1":
             currEntity.calcDir = "d";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "1 1 0 0":
             currEntity.calcDir = "ul";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 1 1 0":
             currEntity.calcDir = "ur";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 0 1 1":
             currEntity.calcDir = "dr";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "1 0 0 1":
             currEntity.calcDir = "dl";
-            currEntity.vel = Physics.vel("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           case "0 0 0 0":
           case "0 1 0 1":
           case "1 0 1 0":
           case "1 1 1 1":
-            currEntity.vel = Physics.vel("-", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = Math.velocity("-", currEntity.vel, currEntity.velMax, currEntity.accel, step);
             break;
           default:
             // only objects with no dir should fall here
@@ -222,7 +236,7 @@ var Game = {
         slowScale = options.slowScale || 1, // slow motion scaling factor
         step = 1/options.fps,
         trueStep = slowScale * step,
-        update = options.update,
+        update = options.update;
         render = options.render;
     this.entities = [];
     this.canvas = document.getElementById("viewport");
@@ -252,3 +266,39 @@ var Game = {
     requestAnimationFrame(gameLoop);
   }
 };
+
+Game.options = {
+  sideScroll: {
+    fps: 60,
+    slowScale: 1,
+    update: undefined,
+    render: undefined
+  },
+  topDown: {
+    fps: 60,
+    slowScale: 1,
+    update: Game.update,
+    render: Game.render
+  },
+  //will isometry work with this engine?
+  isometric: {
+    fps: 60,
+    slowScale: 1,
+    update: undefined,
+    render: undefined
+  },
+  //will an fps work with this engine?
+  fps: {
+    fps: 60,
+    slowScale: 1,
+    update: undefined,
+    render: undefined
+  },
+  //will hex work with this engine?
+  hex: {
+    fps: 60,
+    slowScale: 1,
+    update: undefined,
+    render: undefined
+  }
+}

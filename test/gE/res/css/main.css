@@ -1,3 +1,9 @@
+/*see dom.js*/
+/*hidden attr fallback*/[hidden] {
+  display: none;
+}
+/*END JS RELATED CSS*/
+
 body {
   background-color: #591b1b;
   color: #808080;
@@ -10,4 +16,8 @@ body {
   border-width:1px;
   border-color:#808080;
   background-image: url("../img/grey.png");
+}
+
+teest {
+
 }

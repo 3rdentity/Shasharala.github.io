@@ -7,19 +7,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="author" content="Ryan Combes">
-    <meta name="description" content="Barfcade Entry">
+    <meta name="description" content="WIP">
     <link rel="stylesheet" type="text/css" href="res/css/main.css">
     <title>Untitled</title>
   </head>
   <body>
     <canvas id="viewport"></canvas>
-    <script src="res/js/entities.js"></script>
-    <script src="res/js/player.js"></script>
-    <script src="res/js/physics.js"></script>
-    <script src="res/js/game.js"></script>
-    <script src="res/js/options.js"></script>
+    <script src="res/js/game/assets.js"></script>
+    <script src="res/js/math.js"></script>
+    <script src="res/js/dom.js"></script>
+    <script src="res/js/game/engine.js"></script>
     <script>
-      Game.run(Options.topDown);
+      Game.run(Game.options.topDown);
     </script>
   </body>
 </html>
