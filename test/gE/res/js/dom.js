@@ -1,4 +1,10 @@
 var Dom = {
+  type: function domType(obj) {
+    return Object.prototype.toString.call(obj);
+  },
+  searchStr: function domSearchString(str, name) {
+    return str.indexOf(name);
+  },
   get: function domGet(id) {
     return document.getElementById(id);
   },
@@ -36,6 +42,9 @@ var Dom = {
   remAttr: function domRemAttr(elem, attr) {
     elem.removeAttribute(attr);
   },
+  query: function domQuery(selector, context) {
+    return (context || document).querySelectorAll(selector);
+  },
   on: function domOn(elem, type, fn, capture) {
     capture = (typeof capture == "undefined") ? false : capture;
     elem.addEventListener(type, fn, capture);
@@ -51,109 +60,65 @@ var Dom = {
   show: function domShow(elem) {
     this.remAttr(elem, "hidden");
   },
-  query: function domQuery(selector, context) {
-    return (context || document).querySelectorAll(selector);
+  replace: function domReplace(name1, name2) {
+    this.hide(name1);
+    this.show(name2);
+  },
+  // add "@keyframes domfadeIn {0% {opacity: 0;} 100% {opacity: 1;}}" & "@keyframes domFadeOut {0% {opacity: 1;} 100% {opacity: 0;}}" to CSS
+  fadeIn: function domFadeIn(name, time) {
+    var fadeTime = "1s"; //default fadeTime
+    //if user has set time then fadeTime will be modified to it
+    if (time) {
+      fadeTime = time + "s";
+    }
+    setTimeout(function domFadeInSetTimeoutDomShow(){show(name);}, 80);
+    name.style.animation = "domFadeIn" + " " + fadeTime + " " + "1 forwards";
+  },
+  fadeOut: function domFadeOut(name, time) {
+    var fadeTime = "1s"; //default fadeTime
+    var wait = 30; //default wait is 30 milliseconds
+    //if user has set time then fadeTime will be set to it. wait will be set to time in milliseconds
+    if (time) {
+      fadeTime = time + "s";
+      wait = Number(time) * 1000;
+    }
+      name.style.animation = "domFadeOut" + " " + fadeTime + " " + "1 forwards";
+      setTimeout(function domFadeOutSetTimeoutDomHide(){this.hide(name);}, wait); //object will disappear before fadeTime if hide is not delayed
+  },
+  replaceFade: function domReplaceFade(name1, name2, time1, time2) {
+    //fadeIN & fadeOut will handle time1 & time2 if they are not specified
+    this.fadeOut(name1, time1);
+    this.fadeIn(name2, time2);
   }
 };
 
-
-
-
-// consider onclick events/parent/childnode stuffs
-
-
-
-
-
-
-//functions that display, fade, and hide objects
-function replace(name1, name2) {
-  hide(name1);
-  show(name2);
+/*
+IMPLEMENT APPROPRIATLY
+is = {
+  'string':         function(obj) { return (typeof obj === 'string');                 },
+  'number':         function(obj) { return (typeof obj === 'number');                 },
+  'bool':           function(obj) { return (typeof obj === 'boolean');                },
+  'array':          function(obj) { return (obj instanceof Array);                    },
+  'undefined':      function(obj) { return (typeof obj === 'undefined');              },
+  'func':           function(obj) { return (typeof obj === 'function');               },
+  'null':           function(obj) { return (obj === null);                            },
+  'notNull':        function(obj) { return (obj !== null);                            },
+  'invalid':        function(obj) { return ( is['null'](obj) ||  is.undefined(obj));  },
+  'valid':          function(obj) { return (!is['null'](obj) && !is.undefined(obj));  },
+  'emptyString':    function(obj) { return (is.string(obj) && (obj.length == 0));     },
+  'nonEmptyString': function(obj) { return (is.string(obj) && (obj.length > 0));      },
+  'emptyArray':     function(obj) { return (is.array(obj) && (obj.length == 0));      },
+  'nonEmptyArray':  function(obj) { return (is.array(obj) && (obj.length > 0));       },
+  'document':       function(obj) { return (obj === document);                        },
+  'window':         function(obj) { return (obj === window);                          },
+  'element':        function(obj) { return (obj instanceof HTMLElement);              },
+  'event':          function(obj) { return (obj instanceof Event);                    },
+  'link':           function(obj) { return (is.element(obj) && (obj.tagName == 'A')); }
 }
 
-function replaceF(name1, name2, time1, time2) {
-  fadeOut(name1, time1);
-  fadeIn(name2, time2);
+to = {
+  'bool':   function(obj, def) { if (is.valid(obj)) return ((obj == 1) || (obj == true) || (obj == "1") || (obj == "y") || (obj == "Y") || (obj.toString().toLowerCase() == "true") || (obj.toString().toLowerCase() == 'yes')); else return (is.bool(def) ? def : false); },
+  'number': function(obj, def) { if (is.valid(obj)) { var x = parseFloat(obj); if (!isNaN(x)) return x; } return (is.number(def) ? def : 0); },
+  'string': function(obj, def) { if (is.valid(obj)) return obj.toString(); return (is.string(def) ? def : ''); }
 }
-
-function fadeIn(name, time) {
-  var nameStr = name + "";
-  var fadeTime = "1s"; //default fadeTime
-  //if user has set time then fadeTime will be modified to it
-  if (time) {
-    fadeTime = time + "s";
-  }
-  var searchFor = "object";
-  if (nameStr.indexOf(searchFor) != -1) {
-    setTimeout(function(){show(name);}, 80);
-    name.parentNode.style.animation = "invisToVis" + " " + fadeTime + " " + "1 forwards";
-    //Safari & Chromium
-    name.parentNode.style.WebkitAnimation = "invisToVis" + fadeTime + "1 forwards";
-  }
-  else {
-    setTimeout(function(){show(name);}, 80);
-    document.getElementById(name).style.animation = "invisToVis" + " " + fadeTime + " " + "1 forwards";
-    //Safari & Chromium
-    document.getElementById(name).style.WebkitAnimation = "invisToVis" + " " + fadeTime + " " + "1 forwards";
-  }
-}
-
-function fadeOut(name, time) {
-  var nameStr = name + "";
-  var fadeTime = "1s"; //default fadeTime
-  var wait = 30; //default wait is 30 milliseconds
-  //if user has set time then fadeTime will be set to it. wait will be set to time in milliseconds
-  if (time) {
-    fadeTime = time + "s";
-    wait = Number(time) * 1000;
-  }
-  var searchFor = "object";
-  if (nameStr.indexOf(searchFor) != -1) {
-    name.parentNode.style.animation = "visToInvis" + " " + fadeTime + " " + "1 forwards";
-    //Safari & Chromium
-    name.parentNode.style.WebkitAnimation = "visToInvis" + " " + fadeTime + " " + "1 forwards";
-    setTimeout(function(){hide(name);}, wait); //object will disappear before fadeTime if hide is not delayed
-  }
-  else {
-    document.getElementById(name).style.animation = "visToInvis" + " " + fadeTime + " " + "1 forwards";
-    //Safari & Chromium
-    document.getElementById(name).style.WebkitAnimation = "visToInvis" + " " + fadeTime + " " + "1 forwards";
-    setTimeout(function(){hide(name);}, wait); //object will disappear before fadeTime if hide is not delayed
-  }
-}
-
-function hide(name) {
-  var nameStr = name + "";
-  var searchFor = "object";
-  if (nameStr.indexOf(searchFor) != -1) {
-    name.parentNode.setAttribute("hidden", "true");
-  }
-  else {
-    document.getElementById(name).setAttribute("hidden", "true");
-  }
-}
-
-function show(name) {
-  var nameStr = name + "";
-  var searchFor = "object";
-  if (nameStr.indexOf(searchFor) != -1) {
-    name.parentNode.removeAttribute("hidden", "false");
-  }
-  else {
-    document.getElementById(name).removeAttribute("hidden", "false");
-  }
-}
-
-
-//function that injects data into an object
-function inject(name, content) {
-  var nameStr = name + "";
-  var searchFor = "object";
-  if (nameStr.indexOf(searchFor) != -1) {
-    name.innerHTML = content;
-  }
-  else {
-    document.getElementById(name).innerHTML = content;
-  }
-}
+*/

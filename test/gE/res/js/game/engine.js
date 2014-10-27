@@ -55,44 +55,44 @@ var Game = {
           case "1 0 0 0":
           case "1 1 0 1":
             currEntity.calcDir = "l";
-            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel >= currEntity.velMax) ? currEntity.velMax : Math.accelerate(currEntity.vel, currEntity.accel, step);
             break;
           case "0 1 0 0":
           case "1 1 1 0":
             currEntity.calcDir = "u";
-            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel >= currEntity.velMax) ? currEntity.velMax : Math.accelerate(currEntity.vel, currEntity.accel, step);
             break;
           case "0 0 1 0":
           case "0 1 1 1":
             currEntity.calcDir = "r";
-            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel >= currEntity.velMax) ? currEntity.velMax : Math.accelerate(currEntity.vel, currEntity.accel, step);
             break;
           case "0 0 0 1":
           case "1 0 1 1":
             currEntity.calcDir = "d";
-            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel >= currEntity.velMax) ? currEntity.velMax : Math.accelerate(currEntity.vel, currEntity.accel, step);
             break;
           case "1 1 0 0":
             currEntity.calcDir = "ul";
-            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel >= currEntity.velMax) ? currEntity.velMax : Math.accelerate(currEntity.vel, currEntity.accel, step);
             break;
           case "0 1 1 0":
             currEntity.calcDir = "ur";
-            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel >= currEntity.velMax) ? currEntity.velMax : Math.accelerate(currEntity.vel, currEntity.accel, step);
             break;
           case "0 0 1 1":
             currEntity.calcDir = "dr";
-            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel >= currEntity.velMax) ? currEntity.velMax : Math.accelerate(currEntity.vel, currEntity.accel, step);
             break;
           case "1 0 0 1":
             currEntity.calcDir = "dl";
-            currEntity.vel = Math.velocity("+", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel >= currEntity.velMax) ? currEntity.velMax : Math.accelerate(currEntity.vel, currEntity.accel, step);
             break;
           case "0 0 0 0":
           case "0 1 0 1":
           case "1 0 1 0":
           case "1 1 1 1":
-            currEntity.vel = Math.velocity("-", currEntity.vel, currEntity.velMax, currEntity.accel, step);
+            currEntity.vel = (currEntity.vel <= 0) ? 0 : Math.accelerate( currEntity.vel, -currEntity.accel, step);
             break;
           default:
             // only objects with no dir should fall here
@@ -302,3 +302,48 @@ Game.options = {
     render: undefined
   }
 }
+
+/*
+//PROPER RESOURCE LOADING?
+loadResources: function(images, sounds, callback) {
+    images    = images || [];
+    sounds    = sounds || [];
+    var count = images.length + sounds.length;
+    var resources = { images: {}, sounds: {} };
+    if (count == 0) {
+      callback(resources);
+    }
+    else {
+
+      var done = false;
+      var loaded = function() {
+        if (!done) {
+          done = true; // ensure only called once, either by onload, or by setTimeout
+          callback(resources);
+        }
+      }
+
+      var onload = function() {
+        if (--count == 0)
+          loaded();
+      };
+
+      for(var n = 0 ; n < images.length ; n++) {
+        var image = images[n];
+        image = is.string(image) ? { id: image, url: image } : image;
+        resources.images[image.id] = Game.createImage(image.url, { onload: onload });
+      }
+
+      for(var n = 0 ; n < sounds.length ; n++) {
+        var sound  = sounds[n];
+        sound = is.string(sound) ? { id: sound, name: sound } : sound;
+        resources.sounds[sound.id] = AudioFX(sound.name, sound, onload);
+      }
+
+      setTimeout(loaded, 15000); // need a timeout because HTML5 audio canplay event is VERY VERY FLAKEY (especially on slow connections)
+
+    }
+  }
+
+};
+*/

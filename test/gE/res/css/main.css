@@ -1,5 +1,11 @@
 /*see dom.js*/
-/*hidden attr fallback*/[hidden] {
+/*CSS animations*/
+@-webkit-keyframes domfadeIn {0% {opacity: 0;} 100% {opacity: 1;}}
+@keyframes domfadeIn {0% {opacity: 0;} 100% {opacity: 1;}}
+@-webkit-keyframes domFadeOut {0% {opacity: 1;} 100% {opacity: 0;}}
+@keyframes domFadeOut {0% {opacity: 1;} 100% {opacity: 0;}}
+/*hidden attr fallback*/
+[hidden] {
   display: none;
 }
 /*END JS RELATED CSS*/
@@ -16,8 +22,4 @@ body {
   border-width:1px;
   border-color:#808080;
   background-image: url("../img/grey.png");
-}
-
-teest {
-
 }
