@@ -92,6 +92,60 @@ var Dom = {
   }
 };
 
+/*CURRRY FUNCTION!*/
+
+/*
+EXTEND! ~ does this properly go into a DOM library? maybe a base.js or something?
+extend = function domExtend(dest, source) {
+  for (var prop in source)
+    dest[prop] = source[prop];
+  return dest;
+};
+DEEP EXTEND // this will extend the object so that props are not overwrit and modifying extended obj won't affect orig obj
+//CAVEATS:
+// - objects from other frames/pages will be copied by reference, because their version of Object will be different
+// - objects with a cyclic structure, will be traversed forever and overflow the JS stack
+deepExtend = function domDeepExtend(dest, source) {
+  for (var prop in source) {
+    if (source[prop] && source[prop].constructor &&
+     source[prop].constructor === Object) {
+      dest[prop] = dest[prop] || {};
+      domDeepExtend(dest[prop], source[prop]);
+    } else {
+      dest[prop] = source[prop];
+    }
+  }
+  return dest;
+};
+*/
+
+/*
+//NEW & BETTER FADE-IN FUNCTION?
+function fadeIn(el) {
+  var opacity = 0;
+
+  el.style.opacity = 0;
+  el.style.filter = '';
+
+  var last = +new Date();
+  var tick = function() {
+    opacity += (new Date() - last) / 400;
+    el.style.opacity = opacity;
+    el.style.filter = 'alpha(opacity=' + (100 * opacity)|0 + ')';
+
+    last = +new Date();
+
+    if (opacity < 1) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    }
+  };
+
+  tick();
+}
+
+fadeIn(el);
+*/
+
 /*
 IMPLEMENT APPROPRIATLY
 is = {

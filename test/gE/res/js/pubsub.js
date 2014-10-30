@@ -1,15 +1,11 @@
-Game.PubSub = {
-
+var PubSub = {
   enable: function(cfg, on) {
-
     var n, max;
-
     on.subscribe = function(event, callback) {
       this.subscribers = this.subscribers || {};
       this.subscribers[event] = this.subscribers[event] || [];
       this.subscribers[event].push(callback);
     },
-
     on.publish = function(event) {
       if (this.subscribers && this.subscribers[event]) {
         var subs = this.subscribers[event],
@@ -19,12 +15,11 @@ Game.PubSub = {
           subs[n].apply(on, args);
       }
     }
-
     if (cfg) {
       for(n = 0, max = cfg.length ; n < max ; n++)
         on.subscribe(cfg[n].event, cfg[n].action);
     }
-
   }
-
 }
+
+//WOULD CUSTOM EVENTS BE BETTER?
