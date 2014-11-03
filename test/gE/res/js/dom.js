@@ -47,11 +47,11 @@ var Dom = {
   },
   on: function domOn(elem, type, fn, capture) {
     capture = (typeof capture == "undefined") ? false : capture;
-    elem.addEventListener(type, fn, capture);
+    document.getElementById(elem).addEventListener(type, fn, capture);
   },
   un: function domUn(elem, type, fn, capture) {
     capture = (typeof capture == "undefined") ? false : capture;
-    elem.removeEventListener(type, fn, capture);
+    document.getElementById(elem).removeEventListener(type, fn, capture);
   },
   // add "[hidden] {display: none;} to CSS as a fallback
   hide: function domHide(elem) {
@@ -121,6 +121,16 @@ deepExtend = function domDeepExtend(dest, source) {
 
 /*
 //NEW & BETTER FADE-IN FUNCTION?
+//MAKE A WAY TO STOP FADE. MAYBE:
+
+cancelFade: function() {
+        if (this.fading) {
+          this.fading.stop();
+          delete this.fading;
+        }
+      }
+
+
 function fadeIn(el) {
   var opacity = 0;
 

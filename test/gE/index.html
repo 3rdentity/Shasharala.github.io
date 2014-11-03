@@ -7,18 +7,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="author" content="Ryan Combes">
-    <meta name="description" content="WIP">
+    <meta name="description" content="A work in progress. Teaching myself to make a game engine from scratch.">
     <link rel="stylesheet" type="text/css" href="res/css/main.css">
-    <title>Untitled</title>
+    <title>testGame</title>
   </head>
   <body>
     <canvas id="viewport"></canvas>
+    <script src="res/js/key.js"></script>
     <script src="res/js/math.js"></script>
     <script src="res/js/dom.js"></script>
-    <script src="res/js/game/assets.js"></script>
     <script src="res/js/game/engine.js"></script>
+    <script src="res/js/game/testGame.js"></script>
     <script>
-      Game.run(Game.options.topDown);
+      Engine.run(TestGame);
     </script>
   </body>
 </html>
