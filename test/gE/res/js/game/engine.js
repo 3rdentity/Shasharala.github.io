@@ -32,6 +32,7 @@ var Engine = {
   run: function engineRun(game) {
     // attach the game to the engine
     this.game = game();
+    this.game.run(); // THIS IS HERE AS A TEST FOR RUN
     this.game.cfg = this.game.cfg || {};
     // initialization
     var nowStamp,

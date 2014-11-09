@@ -93,7 +93,17 @@ var TestGame = function testGameInit() {
     cfg: {
       fps: 60,
       width: 500,
-      height: 500
+      height: 500,
+      state: {
+        onEnterState: function cfgOnEnterState() {
+          console.log("cfgOnEnterState");
+        },
+        initial: "booting",
+        events: [
+          { name: "ready", from: "booting", to: "menu", action: function readyAction() {console.log("readyAction"); } },
+          { name: "test", from: "menu", to: "booting", action: function testAction() {console.log("testAction"); } }
+        ]
+      }
     },
     entities: [],
     avatar: undefined,
@@ -102,6 +112,11 @@ var TestGame = function testGameInit() {
 
 
 
+    //test function
+    run: function gamRunTestFunc() {
+      Fsm.init(this, this.cfg.state);
+      this.ready();
+    },
 
     add: function engineAdd(Name) {
       this.entities.push(new Name());

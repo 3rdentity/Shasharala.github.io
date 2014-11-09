@@ -24,10 +24,8 @@ var Dom = {
     var classes = elem.className.split(' ');
     var n = classes.indexOf(name);
     on = (typeof on == "undefined") ? (n < 0) : on;
-    if (on && (n < 0))
-      classes.push(name);
-    else if (!on && (n >= 0))
-      classes.splice(n, 1);
+    if (on && (n < 0)) classes.push(name);
+    else if (!on && (n >= 0)) classes.splice(n, 1);
     elem.className = classes.join(' ');
   },
   hasAttr: function domHasAttr(elem, attr) {
@@ -53,7 +51,7 @@ var Dom = {
     capture = (typeof capture == "undefined") ? false : capture;
     document.getElementById(elem).removeEventListener(type, fn, capture);
   },
-  // add "[hidden] {display: none;} to CSS as a fallback
+  // add "[hidden] {display: none;}" to CSS as a fallback
   hide: function domHide(elem) {
     this.addAttr(elem, "hidden");
   },
@@ -64,125 +62,75 @@ var Dom = {
     this.hide(name1);
     this.show(name2);
   },
-  // add "@keyframes domfadeIn {0% {opacity: 0;} 100% {opacity: 1;}}" & "@keyframes domFadeOut {0% {opacity: 1;} 100% {opacity: 0;}}" to CSS
-  fadeIn: function domFadeIn(name, time) {
-    var fadeTime = "1s"; //default fadeTime
-    //if user has set time then fadeTime will be modified to it
-    if (time) {
-      fadeTime = time + "s";
-    }
-    setTimeout(function domFadeInSetTimeoutDomShow(){show(name);}, 80);
-    name.style.animation = "domFadeIn" + " " + fadeTime + " " + "1 forwards";
+  cancelFade: function domCancelFade(elem) {
+    if (elem.fading) delete elem.fading;
   },
-  fadeOut: function domFadeOut(name, time) {
-    var fadeTime = "1s"; //default fadeTime
-    var wait = 30; //default wait is 30 milliseconds
-    //if user has set time then fadeTime will be set to it. wait will be set to time in milliseconds
-    if (time) {
-      fadeTime = time + "s";
-      wait = Number(time) * 1000;
-    }
-      name.style.animation = "domFadeOut" + " " + fadeTime + " " + "1 forwards";
-      setTimeout(function domFadeOutSetTimeoutDomHide(){this.hide(name);}, wait); //object will disappear before fadeTime if hide is not delayed
+  fadeOut: function domFadeOut(elem, time) {
+    var fadeTime = 16;
+    if (time) fadeTime = time;
+    var opacity = 1;
+    elem.fading = undefined;
+    elem.style.opacity = 1;
+    elem.style.filter = "";
+    var last = new Date.getTime();
+    var tick = function fadeOutTick() {
+      opacity -= (new Date.getTime() - last) / 400;
+      elem.style.opacity = opacity;
+      elem.style.filter = "alpha(opacity=" + (100 * opacity)|0 + ")";
+      last = new Date.getTime();
+      (opacity > 0 && elem.fading) ? setTimeout(tick, fadeTime) : this.hide(elem);
+    };
+    tick();
   },
-  replaceFade: function domReplaceFade(name1, name2, time1, time2) {
-    //fadeIN & fadeOut will handle time1 & time2 if they are not specified
-    this.fadeOut(name1, time1);
-    this.fadeIn(name2, time2);
-  }
-};
-
-/*CURRRY FUNCTION!*/
-
-/*
-EXTEND! ~ does this properly go into a DOM library? maybe a base.js or something?
-extend = function domExtend(dest, source) {
-  for (var prop in source)
-    dest[prop] = source[prop];
-  return dest;
-};
-DEEP EXTEND // this will extend the object so that props are not overwrit and modifying extended obj won't affect orig obj
-//CAVEATS:
-// - objects from other frames/pages will be copied by reference, because their version of Object will be different
-// - objects with a cyclic structure, will be traversed forever and overflow the JS stack
-deepExtend = function domDeepExtend(dest, source) {
-  for (var prop in source) {
-    if (source[prop] && source[prop].constructor &&
-     source[prop].constructor === Object) {
-      dest[prop] = dest[prop] || {};
-      domDeepExtend(dest[prop], source[prop]);
-    } else {
+  fadeIn: function domFadeIn(elem, time) {
+    var fadeTime = 16;
+    if (time) fadeTime = time;
+    var opacity = 0;
+    elem.fading = undefined;
+    elem.style.opacity = 0;
+    elem.style.filter = "";
+    var last = new Date.getTime();
+    var tick = function fadeInTick() {
+      opacity += (new Date.getTime() - last) / 400;
+      elem.style.opacity = opacity;
+      elem.style.filter = "alpha(opacity=" + (100 * opacity)|0 + ")";
+      last = new Date.getTime();
+      if (opacity < 1 && elem.fading) setTimeout(tick, fadeTime);
+    };
+    this.show(elem);
+    tick();
+  },
+  replaceFade: function domReplaceFade(elem1, elem2, time1, time2) {
+    //fadeIn & fadeOut will handle time1 & time2 if they are not specified
+    this.fadeOut(elem1, time1);
+    this.fadeIn(elem2, time2);
+  },
+  // props may be overwrit and modifying extended obj will affect orig obj
+  // caveats:
+  // - objects from other frames/pages will be copied by reference, because their version of Object will be different
+  // - objects with a cyclic structure, will be traversed forever and overflow the JS stack
+  extend: function domExtend(dest, source) {
+    for (var prop in source)
       dest[prop] = source[prop];
-    }
-  }
-  return dest;
-};
-*/
-
-/*
-//NEW & BETTER FADE-IN FUNCTION?
-//MAKE A WAY TO STOP FADE. MAYBE:
-
-cancelFade: function() {
-        if (this.fading) {
-          this.fading.stop();
-          delete this.fading;
-        }
+    return dest;
+  },
+  // deepExtend will extend the object so that props are not overwrit and modifying extended obj won't affect orig obj
+  // caveats:
+  // - objects from other frames/pages will be copied by reference, because their version of Object will be different
+  // - objects with a cyclic structure, will be traversed forever and overflow the JS stack
+  deepExtend: function domDeepExtend(dest, source) {
+    for (var prop in source) {
+      if (source[prop] && source[prop].constructor &&
+       source[prop].constructor === Object) {
+        dest[prop] = dest[prop] || {};
+        domDeepExtend(dest[prop], source[prop]);
+      } else {
+        dest[prop] = source[prop];
       }
-
-
-function fadeIn(el) {
-  var opacity = 0;
-
-  el.style.opacity = 0;
-  el.style.filter = '';
-
-  var last = +new Date();
-  var tick = function() {
-    opacity += (new Date() - last) / 400;
-    el.style.opacity = opacity;
-    el.style.filter = 'alpha(opacity=' + (100 * opacity)|0 + ')';
-
-    last = +new Date();
-
-    if (opacity < 1) {
-      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
     }
-  };
+    return dest;
+  }
+  /*GENERAL CURRRY FUNCTION GOES HERE!*/
+};
 
-  tick();
-}
 
-fadeIn(el);
-*/
-
-/*
-IMPLEMENT APPROPRIATLY
-is = {
-  'string':         function(obj) { return (typeof obj === 'string');                 },
-  'number':         function(obj) { return (typeof obj === 'number');                 },
-  'bool':           function(obj) { return (typeof obj === 'boolean');                },
-  'array':          function(obj) { return (obj instanceof Array);                    },
-  'undefined':      function(obj) { return (typeof obj === 'undefined');              },
-  'func':           function(obj) { return (typeof obj === 'function');               },
-  'null':           function(obj) { return (obj === null);                            },
-  'notNull':        function(obj) { return (obj !== null);                            },
-  'invalid':        function(obj) { return ( is['null'](obj) ||  is.undefined(obj));  },
-  'valid':          function(obj) { return (!is['null'](obj) && !is.undefined(obj));  },
-  'emptyString':    function(obj) { return (is.string(obj) && (obj.length == 0));     },
-  'nonEmptyString': function(obj) { return (is.string(obj) && (obj.length > 0));      },
-  'emptyArray':     function(obj) { return (is.array(obj) && (obj.length == 0));      },
-  'nonEmptyArray':  function(obj) { return (is.array(obj) && (obj.length > 0));       },
-  'document':       function(obj) { return (obj === document);                        },
-  'window':         function(obj) { return (obj === window);                          },
-  'element':        function(obj) { return (obj instanceof HTMLElement);              },
-  'event':          function(obj) { return (obj instanceof Event);                    },
-  'link':           function(obj) { return (is.element(obj) && (obj.tagName == 'A')); }
-}
-
-to = {
-  'bool':   function(obj, def) { if (is.valid(obj)) return ((obj == 1) || (obj == true) || (obj == "1") || (obj == "y") || (obj == "Y") || (obj.toString().toLowerCase() == "true") || (obj.toString().toLowerCase() == 'yes')); else return (is.bool(def) ? def : false); },
-  'number': function(obj, def) { if (is.valid(obj)) { var x = parseFloat(obj); if (!isNaN(x)) return x; } return (is.number(def) ? def : 0); },
-  'string': function(obj, def) { if (is.valid(obj)) return obj.toString(); return (is.string(def) ? def : ''); }
-}
-*/
