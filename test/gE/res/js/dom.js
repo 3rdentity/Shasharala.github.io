@@ -43,9 +43,10 @@ var Dom = {
   query: function domQuery(selector, context) {
     return (context || document).querySelectorAll(selector);
   },
-  on: function domOn(elem, type, fn, capture) {
+  on: function domOn(on, elem, type, fn, capture) {
     capture = (typeof capture == "undefined") ? false : capture;
-    document.getElementById(elem).addEventListener(type, fn, capture);
+    if(on === "elem") document.getElementById(elem).addEventListener(type, fn, capture);
+    else if(on === "obj") elem.addEventListener(type, fn, capture);
   },
   un: function domUn(elem, type, fn, capture) {
     capture = (typeof capture == "undefined") ? false : capture;

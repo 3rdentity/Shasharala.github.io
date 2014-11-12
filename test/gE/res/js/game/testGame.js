@@ -73,8 +73,8 @@ twinJacksImg.src = "res/img/twinJacks.png";
 function TwinJacks() {
   this.uuid = "TwinJacks" + TwinJacks.quantity++;
   this.srcY = 0;
-  this.destX = Math.floor(Math.random() * (500 - 30));
-  this.destY = Math.floor(Math.random() * (500 - 30));
+  this.destX = 50;
+  this.destY = 50;
   this.width = 81;
   this.height = 28;
   this.scale = 2;
@@ -96,11 +96,11 @@ var TestGame = function testGameInit() {
       height: 500,
       state: {
         onEnterState: function cfgOnEnterState() {
-          console.log("cfgOnEnterState");
+          /* onEnterState here */
         },
         initial: "booting",
         events: [
-          { name: "ready", from: "booting", to: "menu", action: function readyAction() {console.log("readyAction"); } },
+          { name: "ready", from: ["booting", "testing"], to: "menu", action: function readyAction() {console.log("readyAction"); } },
           { name: "test", from: "menu", to: "booting", action: function testAction() {console.log("testAction"); } }
         ]
       }
@@ -131,7 +131,12 @@ var TestGame = function testGameInit() {
     },
 
 
-
+    collCheck: function() {
+      var TwinJacks0 = this.entities[this.entityNameSearch("TwinJacks0")];
+      console.log(Math.collBox(this.avatar, TwinJacks0));
+      var t = Math.collBox(this.avatar, TwinJacks0);
+      return t;
+    },
 
 
 
@@ -275,6 +280,7 @@ var TestGame = function testGameInit() {
               default:
                 // only objects with no calcDir should fall here
             }
+
             // check that object has a tickCount
             if ("tickCount" in currEntity) {
               // check that object has a velocity

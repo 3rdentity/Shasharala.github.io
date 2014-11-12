@@ -25,8 +25,8 @@ var Key = {
         }
       }
     };
-    document.on("keydown", function onKeyDown(evt) { return onKey(evt, "down"); });
-    document.on("keyup", function onKeyUp(evt) { return onKey(evt, "up"); });
+    Dom.on("obj", document, "keydown", function onKeyDown(evt) { return onKey(evt, "down"); });
+    Dom.on("obj", document, "keyup", function onKeyUp(evt) { return onKey(evt, "up"); });
   },
   match: function keyMatch(map, keyCode, mode, ctx, ctrl, shift) {
     if(map.mode === mode) {

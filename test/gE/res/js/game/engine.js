@@ -32,20 +32,15 @@ var Engine = {
   run: function engineRun(game) {
     // attach the game to the engine
     this.game = game();
-    this.game.run(); // THIS IS HERE AS A TEST FOR RUN
     this.game.cfg = this.game.cfg || {};
+    this.game.init();
     // initialization
     var nowStamp,
         dt = 0,
         lastStamp = this.timestamp(),
         slowScale = this.game.cfg.slowScale || 1, // slow motion scaling factor
-        step = 1/this.game.cfg.fps,
+        step = 1/this.game.cfg.fps || 1/60,
         trueStep = slowScale * step;
-    this.game.canvas = document.getElementById("viewport");
-    this.game.ctx = this.game.canvas.getContext("2d");
-    this.game.canvas.height = this.game.cfg.height;
-    this.game.canvas.width = this.game.cfg.height;
-    this.game.ctx.imageSmoothingEnabled = false;
     var engineLoop = function engineLoop() {
       nowStamp = this.timestamp();
       dt = dt + Math.min(1, (nowStamp - lastStamp) / 1000);

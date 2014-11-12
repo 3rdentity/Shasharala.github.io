@@ -35,26 +35,37 @@ Math.easeOut = function mathEaseOut(a, b, percent) {
 Math.easeInOut = function mathEaseInOut(a,b,percent) {
   return a + (b - a) * ((-Math.cos(percent * Math.PI)/2) + 0.5);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-// collision
-Math.colBox = function mathColBox(box1, box2) {
-  return !((box1.right  < box2.left)   ||
-           (box1.left   > box2.right)  ||
-           (box1.top    > box2.bottom) ||
-           (box1.bottom < box2.top));
+Math.collBox = function mathCollBox(ent1, ent2) {
+  return (ent1.x < ent2.x + ent2.width &&
+    ent1.x + ent1.width > ent2.x &&
+    ent1.y < ent2.y + ent2.width &&
+    ent1.y + ent1.width + ent2.y);
 };
-Math.colLineIntercept = function mathColLineIntercept(x1, y1, x2, y2, x3, y3, x4, y4, d) {
+Math.collCir = function mathCollCir(ent1, ent2) {
+  var dx = ent1.x - ent2.x;
+  var dy = ent1.y - ent2.y;
+  var d = (dx * dx) + (dy * dy);
+  return (d < (ent1.r + ent2.r) * (ent1.r + ent2.r));
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Math.collLineIntercept = function mathColLineIntercept(x1, y1, x2, y2, x3, y3, x4, y4, d) {
   var denom = ((y4-y3) * (x2-x1)) - ((x4-x3) * (y2-y1));
   if (denom != 0) {
     var ua = (((x4-x3) * (y1-y3)) - ((y4-y3) * (x1-x3))) / denom;
@@ -69,6 +80,7 @@ Math.colLineIntercept = function mathColLineIntercept(x1, y1, x2, y2, x3, y3, x4
   }
   return null;
 };
+*/
 //polygon collision??
 
 
