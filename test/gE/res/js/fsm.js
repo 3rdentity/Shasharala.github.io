@@ -1,18 +1,19 @@
 var Fsm = {
+  trans: false, // variable to check that Fsm is transitioning between states
   init: function fsmInit(obj, cfg) {
     obj.is = cfg.initial || "booting";
-    var onEnterState = cfg.onEnterState || function defOnEnterState() { /* default onEnterState here */ };
+    var onLeaveState = cfg.onLeaveState || function defOnLeaveState() { Fsm.trans = true; },
+    onEnterState = cfg.onEnterState || function defOnEnterState(i) { setTimeout( function setTimeoutDefOnEnterState() { obj.is = cfg.events[i].to; Fsm.trans = false; }, 0); }; // setTimeout is used to stop synchronous kepresses & events from occuring
     for (var i = 0; i < cfg.events.length; i++) {
-      obj[cfg.events[i].name] = this.compile(obj, cfg, i, onEnterState);
+      obj[cfg.events[i].name] = this.compile(obj, cfg, i, onLeaveState, onEnterState);
     }
   },
-  compile: function fsmCompile(obj, cfg, i, onEnterState) {
+  compile: function fsmCompile(obj, cfg, i, onLeaveState, onEnterState) {
     var func = function fsmEvent() {
-      if ((obj.is === cfg.events[i].from) || (Is.array(cfg.events[i].from) && cfg.events[i].from.indexOf(obj.is) >= 0)) {
-        obj.is = "trans"; // state is transitioning and cannot be changed while transitioning
+      if (obj.is === cfg.events[i].from && Fsm.trans === false || Is.array(cfg.events[i].from) && cfg.events[i].from.indexOf(obj.is) >= 0 && Fsm.trans === false) {
+        onLeaveState();
         cfg.events[i].action();
-        onEnterState();
-        setTimeout(function () { obj.is = cfg.events[i].to; }, 1);// promises to detect that events have finished executing? this doesn't seem to be an appropriate fix
+        onEnterState(i);
       }
     };
     return func;

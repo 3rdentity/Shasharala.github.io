@@ -3,13 +3,12 @@
 // Do not forget to clean up all your files at some point. Refactor and make readable.
 var aniCollTest = function aniCollTestInit() {
   var game = {
-    paused: false,
     cfg: {
       state: {
         events: [
           { name: "ready", from: "booting", to: "playing", action: function readyAction() { /*load game map/level?*/ } },
-          { name: "pause", from: "playing", to: "paused", action: function pauseAction() { console.log(game.is); setTimeout(function () { console.log(game.is); }, 10); } },
-          { name: "unPause", from: "paused", to: "playing", action: function unPauseAction() { console.log(game.is); setTimeout(function () { console.log(game.is); }, 10); } }
+          { name: "pause", from: "playing", to: "paused", action: function pauseAction() { /*pause screen here*/ } },
+          { name: "unPause", from: "paused", to: "playing", action: function unPauseAction() { /*remove pause screen here*/ } }
         ]
       },
       keys: [
@@ -30,14 +29,14 @@ var aniCollTest = function aniCollTestInit() {
       }
     },
     canvas: function gameCanvasInit() {
-      this.canvas = undefined;
       this.canvas = document.getElementById("viewport");
       this.canvas.ctx = this.canvas.getContext("2d");
       this.canvas.width = this.canvas.height = 500;
       this.canvas.ctx.imageSmoothingEnabled = false;
     },
+    entities: [],
     pool: {
-      npc: []
+      blocks: []
     },
     init: function gameInit() {
       Fsm.init(game, game.cfg.state);
@@ -45,6 +44,13 @@ var aniCollTest = function aniCollTestInit() {
       this.canvas();
       this.cfg.img();
       this.ready();
+    },
+    add: function gameAdd(x, y, pool) {
+      var ent = pool.pop();
+      ent.init
+    },
+    rem: function gameRem() {
+      // remove function here!
     },
     render: function gameRender(dt) {
       // clear the canvas
@@ -80,8 +86,12 @@ var aniCollTest = function aniCollTestInit() {
       // update method here
     },
     player: {
-      moving: {},
-      dir: Math.randInt(0, 7),
+      init: function playerInit() {
+        this.dead = false;
+        this.health = 1;
+        this.dir = Math.randInt(0, 7);
+        this.moving: {},
+      },
       moveLeft: function playerMoveLeft(on) { this.moving.left = on; this.setDir(); },
       moveUp: function playerMoveUp(on) { this.moving.up = on; this.setDir(); },
       moveRight: function playerMoveRight(on) { this.moving.right = on; this.setDir(); },
@@ -90,8 +100,14 @@ var aniCollTest = function aniCollTestInit() {
         // switch/if statements
       }
     },
-    npc: {
-      dir: Math.randInt(0, 7)
+    block: {
+      init: function blockInit() {
+        this.x = undefined;
+        this.y = undefined;
+      },
+      add: function npcAdd() {
+        game.add(10, 10, game.pool.blocks);
+      }
     }
   };
   return game;
