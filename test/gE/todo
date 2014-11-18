@@ -1,16 +1,6 @@
 - ability to edit controls in-game? way to add "controls"/eventListeners easily when designing
-- various comments in files denote things that need to be done
-- clipping
 - AI
 - idle/attack animations + dmg vals/reactions (this will involve death/spawning handling)
 - backgrounds/scenery?
 - browser sniffing/fallback if browser is incompatible
-
-QUICK & IMMEDIATE TODO:
-- finish working on dom.js and math.js
-- make a fsm
-- add collision/clipping
-- so on and so forth
-
-?DID I SEE LINK LAG AFTER THE GAME HAD BEEN OPEN FOR HOURS?
-- seperate libraries more? Keys/player being in assets seems off? Engine? PROBABLY GC
+- audio library

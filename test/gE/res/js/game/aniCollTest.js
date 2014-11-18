@@ -1,6 +1,10 @@
 // A whole new game here to test animation/collision.
 // After you test animation/collision to your liking then you might want to work on sounds, double buffering AI/C. rendering, not rendering objects/entities offscreen, and saving.
 // Do not forget to clean up all your files at some point. Refactor and make readable.
+
+// a way to handle inactive objects/objects offscreen? Don't push updates/check collision for these obj's. invalidation?
+// double buffer?
+// base64 assets?
 var aniCollTest = function aniCollTestInit() {
   var game = {
     cfg: {
@@ -12,6 +16,7 @@ var aniCollTest = function aniCollTestInit() {
         ]
       },
       keys: [
+        // fullscreen key? should fullscreen function be here or in engine?
         { key: Key.p, mode: "up", state: "playing", action: function keyPonUp() { this.pause(); } },
         { key: Key.p, mode: "up", state: "paused", action: function keyPOnUp() { this.unPause(); } },
         { key: Key.left, mode: "down", state: "playing", action: function keyLeftOnDown() { this.player.moveLeft(true); } },
@@ -23,90 +28,111 @@ var aniCollTest = function aniCollTestInit() {
         { key: Key.right, mode: "up", state: "playing", action: function keyRightOnUp() { this.player.moveRight(false); } },
         { key: Key.down, mode: "up", state: "playing", action: function keyDownOnUp() { this.player.moveDown(false); } }
       ],
-      img: function gameCfgImgInit() {
-        game.cfg.img.ent = new Image();
-        game.cfg.img.ent.src = "res/img/ent.png";
+      img: {
+        init: function gameCfgImgInit() {
+          game.cfg.img.ent = new Image();
+          game.cfg.img.ent.src = "res/img/ent.png";
+          delete this.init;
+        }
       }
     },
-    canvas: function gameCanvasInit() {
-      this.canvas = document.getElementById("viewport");
-      this.canvas.ctx = this.canvas.getContext("2d");
-      this.canvas.width = this.canvas.height = 500;
-      this.canvas.ctx.imageSmoothingEnabled = false;
+    canvas: {
+      init: function gameCanvasInit() {
+        game.canvas = document.getElementById("viewport");
+        game.canvas.ctx = game.canvas.getContext("2d");
+        game.canvas.width = game.canvas.height = 500;
+        game.canvas.ctx.imageSmoothingEnabled = false;
+      }
     },
     entities: [],
-    pool: {
-      blocks: []
-    },
     init: function gameInit() {
+      // promises for proper resource loading? should this be here or in the engine?
       Fsm.init(game, game.cfg.state);
       Key.map(game.cfg.keys, game);
-      this.canvas();
-      this.cfg.img();
+      this.canvas.init();
+      this.cfg.img.init();
+      this.blocks.preAlloc(10);
+      this.blocks.alloc();
       this.ready();
-    },
-    add: function gameAdd(x, y, pool) {
-      var ent = pool.pop();
-      ent.init
-    },
-    rem: function gameRem() {
-      // remove function here!
-    },
-    render: function gameRender(dt) {
-      // clear the canvas
-      this.canvas.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-
-      /*
-      //check if entity has its own render method. If not then render through default method
-      for (var i = this.entities.length - 1; i >= 0; i--) {
-        var currEntity = this.entities[i];
-        if ("render" in currEntity) {
-          currEntity.render(dt, Engine.ctx);
-        }
-        else {
-          this.ctx.drawImage(
-            currEntity.image,
-            currEntity.frameIndex * currEntity.width,
-            currEntity.srcY || 0,
-            currEntity.width,
-            currEntity.height,
-            currEntity.destX + (currEntity.vel * dt) || currEntity.destX || 0,
-            currEntity.destY + (currEntity.vel * dt) || currEntity.destY || 0,
-            currEntity.width * currEntity.scale || currEntity.width,
-            currEntity.height * currEntity.scale || currEntity.height
-          );
-        }
-      }
-      */
-
-
+      delete this.init;
     },
     update: function gameUpdate(step) {
-      // update method here
+      this.player.update(step);
+      for (var i = this.entities.length - 1; i >= 0; i--) {
+        this.entities[i].update(step);
+      }
+    },
+    defRender: function gameDefRender(obj, dt) {
+      /*
+      this needs some work. should placement updates happen here or in update?
+
+      this.canvas.ctx.drawImage(
+            obj.image,
+            currEntity.sX * width/specific size? * frame? || leave this to this.ani() to handle and just have sX here?,
+            currEntity.sY,
+            currEntity.w,
+            currEntity.h,
+            currEntity.dX + (currEntity.vel * dt) || currEntity.dX || 0,
+            currEntity.dY + (currEntity.vel * dt) || currEntity.dY || 0,
+            currEntity.w * currEntity.scale || currEntity.w,
+            currEntity.h * currEntity.scale || currEntity.h
+          );
+      */
+    },
+    render: function gameRender(dt) {
+      this.canvas.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      for (var i = this.entities.length - 1; i >= 0; i--) {
+        this.entities[i].render ? this.entities[i].render(dt) : this.defRender(this.entities[i], dt);
+      }
+      this.player.render ? this.player.render(dt) : this.defRender(this.player, dt);
     },
     player: {
       init: function playerInit() {
-        this.dead = false;
-        this.health = 1;
-        this.dir = Math.randInt(0, 7);
-        this.moving: {},
+        this.dir = Math.randChoice(["l", "u", "r", "d"]);
+        this.moving = {
+          left: undefined,
+          up: undefined,
+          right: undefined,
+          down: undefined
+        };
       },
-      moveLeft: function playerMoveLeft(on) { this.moving.left = on; this.setDir(); },
-      moveUp: function playerMoveUp(on) { this.moving.up = on; this.setDir(); },
-      moveRight: function playerMoveRight(on) { this.moving.right = on; this.setDir(); },
-      moveDown: function playerMoveDown(on) { this.moving.down = on; this.setDir(); },
-      setDir: function playerSetDir() {
-        // switch/if statements
+      update: function playerUpdate(step) {
+        this.ani();
+        if (!this.coll) {
+          // move player
+        }
+      },
+
+      ani: function playerAni() {
+        // animation functio here
+      },
+      moveLeft: function playerMoveLeft(on) { this.moving.left = on; },
+      moveUp: function playerMoveUp(on) { this.moving.up = on; },
+      moveRight: function playerMoveRight(on) { this.moving.right = on; },
+      moveDown: function playerMoveDown(on) { this.moving.down = on; },
+      coll: function playerColl() {
+        // collision tests here. return a boolean
       }
     },
-    block: {
-      init: function blockInit() {
-        this.x = undefined;
-        this.y = undefined;
+    blocks: {
+      pool: [],
+      preAlloc: function blocksPreAlloc(i) {
+        for (var n = 0; n < i; n++) {
+          this.pool[n] = {
+            update: function blocksUpdate() {
+              // update function here
+            }
+          };
+        }
       },
-      add: function npcAdd() {
-        game.add(10, 10, game.pool.blocks);
+      alloc: function blocksAlloc() {
+        game.entities.push(this.pool.pop());
+      },
+      deAlloc: function blockDeAlloc() {
+        // deAlloc function to rem obj from entities list goes here
+      },
+      coll: function blockColl() {
+        // collision tests here. return a boolean
       }
     }
   };

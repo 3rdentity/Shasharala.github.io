@@ -1,14 +1,14 @@
 Math.rand = function mathRand(min, max) {
-  return (min + (Math.random() * (max - min)));
+  return (min + (this.random() * (max - min)));
 };
 Math.randInt = function mathRandInt(min, max) {
-  return Math.round(this.random(min, max));
+  return Math.round(this.rand(min, max));
 };
-Math.randomChoice = function mathRandomChoice(choices) {
-  return choices[this.randomInt(0, choices.length - 1)];
+Math.randChoice = function mathRandChoice(choices) {
+  return choices[this.randInt(0, choices.length - 1)];
 };
-Math.randomBool = function mathRandomBool() {
-  return this.randomChoice([true, false]);
+Math.randBool = function mathRandBool() {
+  return this.randChoice([true, false]);
 };
 Math.limit = function mathLimit(x, min, max) {
   return Math.max(min, Math.min(max, x));
@@ -16,7 +16,7 @@ Math.limit = function mathLimit(x, min, max) {
 Math.between = function mathBetween(n, min, max) {
   return ((n >= min) && (n <= max));
 };
-Math.accelerate = function mathAccelerate(v, accel, dt) {
+Math.accel = function mathAccel(v, accel, dt) {
   return v + (accel * dt);
 };
 Math.lerp = function mathLerp(n, dn, dt) {
