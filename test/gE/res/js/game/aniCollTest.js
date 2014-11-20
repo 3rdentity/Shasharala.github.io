@@ -53,6 +53,7 @@ var aniCollTest = function aniCollTestInit() {
       this.cfg.img.init();
       this.blocks.preAlloc(10);
       this.blocks.alloc();
+      this.player.init();
       this.ready();
       delete this.init;
     },
@@ -63,21 +64,17 @@ var aniCollTest = function aniCollTestInit() {
       }
     },
     defRender: function gameDefRender(obj, dt) {
-      /*
-      this needs some work. should placement updates happen here or in update?
-
       this.canvas.ctx.drawImage(
-            obj.image,
-            currEntity.sX * width/specific size? * frame? || leave this to this.ani() to handle and just have sX here?,
-            currEntity.sY,
-            currEntity.w,
-            currEntity.h,
-            currEntity.dX + (currEntity.vel * dt) || currEntity.dX || 0,
-            currEntity.dY + (currEntity.vel * dt) || currEntity.dY || 0,
-            currEntity.w * currEntity.scale || currEntity.w,
-            currEntity.h * currEntity.scale || currEntity.h
+            this.cfg.img.ent,
+            obj.sX,
+            obj.sY,
+            obj.w,
+            obj.h,
+            Math.lerp(obj.dX, obj.vel, dt),
+            Math.lerp(obj.dY, obj.vel, dt),
+            obj.w * obj.scale || obj.w,
+            obj.h * obj.scale || obj.h
           );
-      */
     },
     render: function gameRender(dt) {
       this.canvas.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -90,11 +87,20 @@ var aniCollTest = function aniCollTestInit() {
       init: function playerInit() {
         this.dir = Math.randChoice(["l", "u", "r", "d"]);
         this.moving = {
-          left: undefined,
-          up: undefined,
-          right: undefined,
-          down: undefined
+          left: false,
+          up: false,
+          right: false,
+          down: false
         };
+        this.sX = 1;
+        this.sY = 1;
+        this.dX = 10;
+        this.dY = 10;
+        this.w = 18;
+        this.h = 24;
+        this.scale = 2;
+        this.f = 1; // out of five frames
+        this.vel = 0;
       },
       update: function playerUpdate(step) {
         this.ani();
@@ -102,14 +108,60 @@ var aniCollTest = function aniCollTestInit() {
           // move player
         }
       },
-
       ani: function playerAni() {
-        // animation functio here
+        // standing still
+        switch (this.dir) {
+          case "l":
+            this.sX;
+            break;
+          case "u":
+            this.sX = 1 * this.w;
+            break;
+          case "r":
+            this.sX = 1 *this.w * 2;
+            break;
+          case "d":
+            this.sX = 1 * this.w * 3;
+        }
+        // walking
+        // needs a test for doublePresses. Which key came first? which dir should char face in those cases?
+        switch (this.dir) {
+          case "l":
+
+        }
       },
-      moveLeft: function playerMoveLeft(on) { this.moving.left = on; },
-      moveUp: function playerMoveUp(on) { this.moving.up = on; },
-      moveRight: function playerMoveRight(on) { this.moving.right = on; },
-      moveDown: function playerMoveDown(on) { this.moving.down = on; },
+      // accel obj on keypress
+      moveLeft: function playerMoveLeft(on) { this.moving.left = on; this.setDir(); },
+      moveUp: function playerMoveUp(on) { this.moving.up = on; this.setDir(); },
+      moveRight: function playerMoveRight(on) { this.moving.right = on; this.setDir(); },
+      moveDown: function playerMoveDown(on) { this.moving.down = on; this.setDir(); },
+      setDir: function playerSetDir() {
+        switch (this.moving.left + "|" + this.moving.up + "|" + this.moving.right + "|" + this.moving.down) {
+          case "true|false|false|false":
+            this.dir = "l";
+            break;
+          case "false|true|false|false":
+            this.dir = "u";
+            break;
+          case "false|false|true|false":
+            this.dir = "r";
+            break;
+          case "false|false|false|true":
+            this.dir = "d";
+            break;
+          case "true|true|false|false":
+            this.dir = "ul";
+            break;
+          case "false|true|true|false":
+            this.dir = "ur";
+            break;
+          case "false|false|true|true":
+            this.dir = "dr";
+            break;
+          case "true|false|false|true":
+            this.dir = "dl";
+        }
+      },
       coll: function playerColl() {
         // collision tests here. return a boolean
       }
