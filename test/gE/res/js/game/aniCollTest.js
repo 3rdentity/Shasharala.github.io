@@ -92,42 +92,113 @@ var aniCollTest = function aniCollTestInit() {
           right: false,
           down: false
         };
-        this.sX = 1;
-        this.sY = 1;
+        this.sX = 0;
+        this.sY = 0;
         this.dX = 10;
         this.dY = 10;
         this.w = 18;
         this.h = 24;
         this.scale = 2;
-        this.f = 1; // out of five frames
+        this.frame = 0; // current animation frame
+        this.frameSpeed = 2; // speed at which to step through frames. higher is slower
+        this.frameStep = 0; // current step through frames
+        this.frameMax = 7; // eight animation frames
         this.vel = 0;
+        this.velMax = 5;
+        this.accel = 10;
+        this.coll = false;
+      },
+      coll: function playerColl() {
+        return false;
       },
       update: function playerUpdate(step) {
         this.ani();
-        if (!this.coll) {
-          // move player
+        if (!this.coll && (this.moving.left || this.moving.up || this.moving.right || this.moving.down)) {
+          this.vel = Math.min(Math.accel(this.vel, this.accel, step), this.velMax);
+          switch (this.dir) {
+            case "l":
+              this.dX -= this.vel;
+              break;
+            case "u":
+              this.dY -= this.vel;
+              break;
+            case "r":
+              this.dX += this.vel;
+              break;
+              case "d":
+              this.dY += this.vel;
+              break;
+            case "ul":
+              this.dY -= this.vel;
+              this.dX -= this.vel;
+              break;
+            case "dl":
+              this.dY += this.vel;
+              this.dX -= this.vel;
+              break;
+            case "ur":
+              this.dY -= this.vel;
+              this.dX += this.vel;
+              break;
+            case "dr":
+              this.dY += this.vel;
+              this.dX += this.vel;
+          }
+        }
+        else {
+          this.vel = Math.max(Math.accel(this.vel, -this.accel, step), 0);
         }
       },
-      ani: function playerAni() {
+      ani: function playerAni(step) {
         // standing still
-        switch (this.dir) {
-          case "l":
-            this.sX;
-            break;
-          case "u":
-            this.sX = 1 * this.w;
-            break;
-          case "r":
-            this.sX = 1 *this.w * 2;
-            break;
-          case "d":
-            this.sX = 1 * this.w * 3;
+        if (!this.moving.left && !this.moving.up && !this.moving.right && !this.moving.down) {
+          switch (this.dir) {
+            case "l":
+              this.sX = 0;
+              break;
+            case "u":
+              this.sX = 1 * this.w;
+              break;
+            case "r":
+              this.sX = 2 * this.w;
+              break;
+            case "d":
+              this.sX = 3 * this.w;
+          }
         }
         // walking
-        // needs a test for doublePresses. Which key came first? which dir should char face in those cases?
-        switch (this.dir) {
-          case "l":
-
+        else {
+          switch (this.dir) {
+            case "l":
+              this.sX = 4 * this.w + this.frame * this.w;
+              break;
+            case "u":
+              this.sX = 12 * this.w + this.frame * this.w;
+              break;
+            case "r":
+              this.sX = 20 * this.w + this.frame * this.w;
+              break;
+            case "d":
+              this.sX = 28 * this.w + this.frame * this.w;
+              break;
+            case "ul":
+              this.moving.left ? this.sX = 4 * this.w + this.frame * this.w : this.sX = 12 * this.w + this.frame * this.w;
+              break;
+            case "ur":
+              this.moving.right ? this.sX = 20 * this.w + this.frame * this.w : this.sX = 12 * this.w + this.frame * this.w;
+              break;
+            case "dr":
+              this.moving.right ? this.sX = 20 * this.w + this.frame * this.w : this.sX = 28 * this.w + this.frame * this.w;
+              break;
+            case "dl":
+              this.moving.left ? this.sX = 4 * this.w + this.frame * this.w : this.sX = 28 * this.w + this.frame * this.w;
+              break;
+          }
+          this.frameStep++;
+          if (this.frameStep > this.frameSpeed) {
+            this.frameStep = 0;
+            this.frame < this.frameMax ? this.frame++ : this.frame = 0;
+          }
         }
       },
       // accel obj on keypress
@@ -138,15 +209,19 @@ var aniCollTest = function aniCollTestInit() {
       setDir: function playerSetDir() {
         switch (this.moving.left + "|" + this.moving.up + "|" + this.moving.right + "|" + this.moving.down) {
           case "true|false|false|false":
+          case "true|true|false|true":
             this.dir = "l";
             break;
           case "false|true|false|false":
+          case "true|true|true|false":
             this.dir = "u";
             break;
           case "false|false|true|false":
+          case "false|true|true|true":
             this.dir = "r";
             break;
           case "false|false|false|true":
+          case "true|false|true|true":
             this.dir = "d";
             break;
           case "true|true|false|false":
@@ -160,10 +235,12 @@ var aniCollTest = function aniCollTestInit() {
             break;
           case "true|false|false|true":
             this.dir = "dl";
+            break;
+          case "true|false|true|false":
+          case "false|true|false|true":
+          case "true|true|true|true":
+            // stop motion in these case scenarios
         }
-      },
-      coll: function playerColl() {
-        // collision tests here. return a boolean
       }
     },
     blocks: {
@@ -182,9 +259,6 @@ var aniCollTest = function aniCollTestInit() {
       },
       deAlloc: function blockDeAlloc() {
         // deAlloc function to rem obj from entities list goes here
-      },
-      coll: function blockColl() {
-        // collision tests here. return a boolean
       }
     }
   };
