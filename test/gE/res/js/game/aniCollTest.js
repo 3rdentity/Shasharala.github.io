@@ -5,6 +5,7 @@
 // a way to handle inactive objects/objects offscreen? Don't push updates/check collision for these obj's. invalidation?
 // double buffer?
 // base64 assets?
+// iron out animation/movement issues
 var aniCollTest = function aniCollTestInit() {
   var game = {
     cfg: {
@@ -74,14 +75,14 @@ var aniCollTest = function aniCollTestInit() {
             Math.lerp(obj.dY, obj.vel, dt),
             obj.w * obj.scale || obj.w,
             obj.h * obj.scale || obj.h
-          );
+        );
     },
     render: function gameRender(dt) {
       this.canvas.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.player.render ? this.player.render(dt) : this.defRender(this.player, dt);
       for (var i = this.entities.length - 1; i >= 0; i--) {
         this.entities[i].render ? this.entities[i].render(dt) : this.defRender(this.entities[i], dt);
       }
-      this.player.render ? this.player.render(dt) : this.defRender(this.player, dt);
     },
     player: {
       init: function playerInit() {
@@ -106,14 +107,14 @@ var aniCollTest = function aniCollTestInit() {
         this.vel = 0;
         this.velMax = 5;
         this.accel = 10;
-        this.coll = false;
       },
-      coll: function playerColl() {
-        return false;
+      coll: function playerColl(obj1, obj2) {
+        // this actually needs to test for a collision in the direction the current obj is headed. NOT for where it is now.
+        return Math.collBox(obj1, obj2);
       },
       update: function playerUpdate(step) {
         this.ani();
-        if (!this.coll && (this.moving.left || this.moving.up || this.moving.right || this.moving.down)) {
+        if (!this.coll(this, game.entities[0]) && (this.moving.left || this.moving.up || this.moving.right || this.moving.down)) {
           this.vel = Math.min(Math.accel(this.vel, this.accel, step), this.velMax);
           switch (this.dir) {
             case "l":
@@ -245,9 +246,17 @@ var aniCollTest = function aniCollTestInit() {
     },
     blocks: {
       pool: [],
-      preAlloc: function blocksPreAlloc(i) {
+      preAlloc: function blocksPreAlloc(i) { // the way this is being allocated isn't great. try this.blah allocation
         for (var n = 0; n < i; n++) {
           this.pool[n] = {
+            h: 24,
+            w: 18,
+            sX: 0,
+            sY: 24,
+            dX: 50,
+            dY: 50,
+            scale: 2,
+            vel: 0,
             update: function blocksUpdate() {
               // update function here
             }
