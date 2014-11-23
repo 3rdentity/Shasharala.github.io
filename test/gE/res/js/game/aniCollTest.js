@@ -2,6 +2,7 @@
 // After you test animation/collision to your liking then you might want to work on sounds, double buffering AI/C. rendering, not rendering objects/entities offscreen, and saving.
 // Do not forget to clean up all your files at some point. Refactor and make readable.
 
+// THERE IS A MEMLEAK SOMEWHERE. CHECK CHROME TIMELINE. the way controls are handled is causing a lot of latency
 // a way to handle inactive objects/objects offscreen? Don't push updates/check collision for these obj's. invalidation?
 // double buffer?
 // base64 assets?
@@ -113,9 +114,11 @@ var aniCollTest = function aniCollTestInit() {
         this.accel = 10;
       },
       coll: function playerColl(obj1, obj2) {
-        console.log("obj1: cX = " + obj1.cX + ", cY = " + obj1.cY + ", wEndpoint = " + obj1.cW + obj1.cX + ", hEndpoint = " + obj1.cH + obj1.cY);
-        console.log("obj2: cX = " + obj2.cX + ", cY = " + obj2.cY + ", wEndpoint = " + obj2.cW + obj2.dX + ", hEndpoint = " + obj2.cH + obj2.cY);
+        obj1.cX = Math.floor(obj1.cX);
+        obj1.cY = Math.floor(obj1.cY);
+        // try a spatial grid instead of brute forcing this. it'll look cleaner, make more sense, and run more efficiently
         // this actually needs to test for a collision in the direction the current obj is headed. NOT for where it is now. it obviously has some issues and has some LAG
+        // floating point errors? Does everything need to be floored?
         switch (obj1.dir) {
           case "l":
               obj1.cX -= obj1.vel;
