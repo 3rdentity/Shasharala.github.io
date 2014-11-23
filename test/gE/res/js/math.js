@@ -36,10 +36,10 @@ Math.easeInOut = function mathEaseInOut(a,b,percent) {
   return a + (b - a) * ((-Math.cos(percent * Math.PI)/2) + 0.5);
 };
 Math.collBox = function mathCollBox(ent1, ent2) {
-  return (ent1.dX < ent2.dX + ent2.w &&
-    ent1.dX + ent1.w > ent2.dX &&
-    ent1.dY < ent2.dY + ent2.h &&
-    ent1.dY + ent1.h > ent2.dY);
+  return (ent1.cX < ent2.cX + ent2.cW &&
+    ent1.cX + ent1.cW > ent2.cX &&
+    ent1.cY < ent2.cY + ent2.cH &&
+    ent1.cY + ent1.cH > ent2.cY);
 };
 // Collcir may need some tweaking
 Math.collCir = function mathCollCir(ent1, ent2) {

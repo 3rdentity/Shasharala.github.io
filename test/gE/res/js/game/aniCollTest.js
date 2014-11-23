@@ -93,13 +93,17 @@ var aniCollTest = function aniCollTestInit() {
           right: false,
           down: false
         };
-        this.sX = 0;
+        this.scale = 2;
+        this.w = 18;
+        this.h = 24;
+        this.sX = 0; // animation seems to be off for one of the frames when moving to the right
         this.sY = 0;
         this.dX = 10;
         this.dY = 10;
-        this.w = 18;
-        this.h = 24;
-        this.scale = 2;
+        this.cX = this.sX;
+        this.cY = this.sY;
+        this.cW = this.w * this.scale;
+        this.cH = this.h * this.scale;
         this.frame = 0; // current animation frame
         this.frameSpeed = 2; // speed at which to step through frames. higher is slower
         this.frameStep = 0; // current step through frames
@@ -109,7 +113,38 @@ var aniCollTest = function aniCollTestInit() {
         this.accel = 10;
       },
       coll: function playerColl(obj1, obj2) {
-        // this actually needs to test for a collision in the direction the current obj is headed. NOT for where it is now.
+        console.log("obj1: cX = " + obj1.cX + ", cY = " + obj1.cY + ", wEndpoint = " + obj1.cW + obj1.cX + ", hEndpoint = " + obj1.cH + obj1.cY);
+        console.log("obj2: cX = " + obj2.cX + ", cY = " + obj2.cY + ", wEndpoint = " + obj2.cW + obj2.dX + ", hEndpoint = " + obj2.cH + obj2.cY);
+        // this actually needs to test for a collision in the direction the current obj is headed. NOT for where it is now. it obviously has some issues and has some LAG
+        switch (obj1.dir) {
+          case "l":
+              obj1.cX -= obj1.vel;
+              break;
+            case "u":
+              obj1.cY -= obj1.vel;
+              break;
+            case "r":
+              obj1.cX += obj1.vel;
+              break;
+              case "d":
+              obj1.cY += obj1.vel;
+              break;
+            case "ul":
+              obj1.cX -= obj1.vel;
+              obj1.cY -= obj1.vel;
+              break;
+            case "dl":
+              obj1.cX -= obj1.vel;
+              obj1.cY += obj1.vel;
+              break;
+            case "ur":
+              obj1.cX += obj1.vel;
+              obj1.cY -= obj1.vel;
+              break;
+            case "dr":
+              obj1.cX += obj1.vel;
+              obj1.cY += obj1.vel;
+        }
         return Math.collBox(obj1, obj2);
       },
       update: function playerUpdate(step) {
@@ -118,32 +153,32 @@ var aniCollTest = function aniCollTestInit() {
           this.vel = Math.min(Math.accel(this.vel, this.accel, step), this.velMax);
           switch (this.dir) {
             case "l":
-              this.dX -= this.vel;
+              this.cX = this.dX -= this.vel;
               break;
             case "u":
-              this.dY -= this.vel;
+              this.cY = this.dY -= this.vel;
               break;
             case "r":
-              this.dX += this.vel;
+              this.cX = this.dX += this.vel;
               break;
               case "d":
-              this.dY += this.vel;
+              this.cY = this.dY += this.vel;
               break;
             case "ul":
-              this.dY -= this.vel;
-              this.dX -= this.vel;
+              this.cX = this.dX -= this.vel;
+              this.cY = this.dY -= this.vel;
               break;
             case "dl":
-              this.dY += this.vel;
-              this.dX -= this.vel;
+              this.cX = this.dX -= this.vel;
+              this.cY = this.dY += this.vel;
               break;
             case "ur":
-              this.dY -= this.vel;
-              this.dX += this.vel;
+              this.cX = this.dX += this.vel;
+              this.cY = this.dY -= this.vel;
               break;
             case "dr":
-              this.dY += this.vel;
-              this.dX += this.vel;
+              this.cX = this.dX += this.vel;
+              this.cY = this.dY += this.vel;
           }
         }
         else {
@@ -245,22 +280,27 @@ var aniCollTest = function aniCollTestInit() {
       }
     },
     blocks: {
+      init: function blocksInit() {
+        this.scale = 2;
+        this.w = 18;
+        this.h = 24;
+        this.sX = 0;
+        this.sY = 24;
+        this.dX = 100;
+        this.dY = 100;
+        this.cX = this.dX;
+        this.cY = this.dY;
+        this.cW = this.w * this.scale;
+        this.cH = this.h * this.scale;
+        this.vel = 0;
+        this.update = function blocksUpdate() {
+          // update function here
+        };
+      },
       pool: [],
       preAlloc: function blocksPreAlloc(i) { // the way this is being allocated isn't great. try this.blah allocation
         for (var n = 0; n < i; n++) {
-          this.pool[n] = {
-            h: 24,
-            w: 18,
-            sX: 0,
-            sY: 24,
-            dX: 50,
-            dY: 50,
-            scale: 2,
-            vel: 0,
-            update: function blocksUpdate() {
-              // update function here
-            }
-          };
+          this.pool[n] = new this.init();
         }
       },
       alloc: function blocksAlloc() {
