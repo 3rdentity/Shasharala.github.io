@@ -59,11 +59,11 @@ var aniCollTest = function aniCollTestInit() {
         game.canvas.ctx.imageSmoothingEnabled = false;
       }
     },
-    entities: [],
     init: function gameInit() {
       // promises for proper resource loading? should this be here or in the engine?
       Fsm.init(game, game.cfg.state);
       Key.map(game.cfg.keys, game);
+      for (var i = 0; i < 400; i++) { game.map.cells[i] = { occupied: [] }; } // filling game.map.cells with arbitrary data. this is ONLY here for testing
       this.cfg.map.cell.init();
       this.cfg.img.init();
       this.canvas.init();
@@ -74,9 +74,30 @@ var aniCollTest = function aniCollTestInit() {
       delete this.init;
     },
     map: {
-      cells: [],
-      p2c: function mapC2T(n) { return Math.floor(n/this.cfg.map.cell.size); }, // pixel-to-cell conversion
-      c2p: function mapT2C(n) { return (n * this.cfg.map.cell.size); }, // cell-to-pixel conversion
+      temp: { // local var's to avoid gc
+        cX: null,
+        cY: null,
+        tX: null,
+        tY: null,
+        cellOverlap: {
+          cells: [],
+          cellsGet: function mapTempCellOverlapGet() {
+            game.map.setClear(this.cells);
+            return this.cells;
+          }
+        },
+        occupied: {
+          checked: [],
+          checkedGet: function mapTempOccupiedGet() {
+            game.map.setClear(this.checked);
+            return this.checked;
+          }
+        }
+      },
+      cells: [], // need a way to get "occupied" into here on various indexes. pull from levelmap/png or from json? if doing that, will need parsing functions & the like
+      entities: [],
+      p2c: function mapC2T(n) { return Math.floor(n/game.cfg.map.cell.size); }, // pixel-to-cell conversion
+      c2p: function mapT2C(n) { return (n * game.cfg.map.cell.size); }, // cell-to-pixel conversion
       setContains: function mapSetContains(arr, ent) { return arr.indexOf(ent) >= 0; },
       setAdd: function mapSetAdd(arr, ent) { arr.push(ent); },
       setRem: function mapSetRem(arr, ent) { arr.splice(arr.indexOf(ent), 1); },
@@ -87,38 +108,67 @@ var aniCollTest = function aniCollTestInit() {
         arr.push(source[n]);
       },
       cell: function mapCell(x, y) {
-        return this.cells[p2c(x) + (p2c(y) * game.cfg.map.width)]; // this may not work?
+        console.log(x + " " + y);
+        console.log(this.p2c(x) + (this.p2c(y) + game.cfg.map.width));
+        return this.cells[this.p2c(x) + (this.p2c(y) * game.cfg.map.width)]; // this may not work?
       },
       cellOverlap: function mapCellOverlap(x, y, w, h) {
-        var cells = [],
-            nX = ((x%game.cfg.map.cell.size) + w) > game.cfg.map.cell.size, // assumes all entities are smaller than cells
-            nY = ((y%game.cfg.map.cell.size) + h) > game.cfg.map.cell.size; // assumes all entities are smaller than cells
+        var cells = [];
+        this.temp.cX = ((x%game.cfg.map.cell.size) + w) > game.cfg.map.cell.size; // assumes all entities are smaller than cells
+        this.temp.cY = ((y%game.cfg.map.cell.size) + h) > game.cfg.map.cell.size; // assumes all entities are smaller than cells
         this.setAdd(cells, this.cell(x, y));
-        if (nX) this.setAdd(cells, this.cell(x + game.cfg.map.cell.size, y));
-        if (nY) this.setAdd(cells, this.cell(x, y + game.cfg.map.cell.size));
-        if ((nX) && (nY)) setAdd(cells, this.cell(x + game.cfg.map.cell.size, y + game.cfg.map.cell.size));
+        console.log(this.temp.cX + " " + this.temp.cY);
+        if (this.temp.cX) this.setAdd(cells, this.cell(x + game.cfg.map.cell.size, y));
+        if (this.temp.cY) this.setAdd(cells, this.cell(x, y + game.cfg.map.cell.size));
+        if ((this.temp.cX) && (this.temp.cY)) this.setAdd(cells, this.cell(x + game.cfg.map.cell.size, y + game.cfg.map.cell.size));
+        console.log(this.cell(x,y + game.cfg.map.cell.size));
+        console.log(cells);
         return cells;
       },
       occupied: function mapOccupied(x, y, w, h, ignore) {
-        // occupied function here
+        var cells = this.cellOverlap(x, y, w, h),
+            checked = this.temp.occupied.checkedGet(); // list of checked entities
+        for (var i = 0; i < cells.length; i++) {
+          cell = cells[i];
+          // wall check here? "if (cell.wall) return true;"
+          for (var n = 0; n < cell.occupied.length; n++) {
+            ent = cell.occupied[n];
+            if ((ent != ignore) && !this.setContains(checked, ent)) {
+              this.setAdd(checked, ent);
+              if (Math.collBox(x, y, w, h, ent.x, ent.y, ent.w, ent.h)) return ent;
+            }
+          }
+        }
+        return false;
       },
       tryMove: function mapTryMove(ent) {
-        var nX = ent.x + (ent.moving.left ? -ent.vel : ent.moving.right ? ent.vel : 0),
-            nY = ent.y + (ent.moving.up ? -ent.vel : ent.moving.down ? ent.vel : 0),
-            coll = this.occupied(nX, nY, ent.w, ent.h, ent);
-        if (!coll) this.occupy(nX, nY, ent);
+        this.temp.tX = ent.dX + (ent.moving.left ? -ent.vel : ent.moving.right ? ent.vel : 0);
+        this.temp.tY = ent.dY + (ent.moving.up ? -ent.vel : ent.moving.down ? ent.vel : 0),
+            coll = this.occupied(this.temp.tX, this.temp.tY, ent.w, ent.h, ent);
+        if (!coll) this.occupy(this.temp.tX, this.temp.tY, ent);
         return coll;
       },
       occupy: function mapOccupy(x, y, ent) {
-        ent.x = x;
-        ent.y = y;
-        // not finished
+        // assume caller took care to avoid collision
+        ent.dX = x;
+        ent.dY = y;
+        var before = ent.cells,
+            after = this.cellOverlap(x, y, ent.w, ent.h),
+            cell;
+        for (var i = 0; before.length; i++) {
+          cell = before[i];
+          if (!this.setContains(after, cell))
+            console.log(before[i]);
+            this.setAdd(cell.occupied, ent);
+        }
+        this.setCopy(before, after);
+        return ent;
       }
     },
     update: function gameUpdate(step) {
       this.player.update(step);
-      for (var i = this.entities.length - 1; i >= 0; i--) {
-        this.entities[i].update(step);
+      for (var i = this.map.entities.length - 1; i >= 0; i--) {
+        this.map.entities[i].update(step);
       }
     },
     defRender: function gameDefRender(obj, dt) {
@@ -137,8 +187,8 @@ var aniCollTest = function aniCollTestInit() {
     render: function gameRender(dt) {
       this.canvas.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.player.render ? this.player.render(dt) : this.defRender(this.player, dt);
-      for (var i = this.entities.length - 1; i >= 0; i--) {
-        this.entities[i].render ? this.entities[i].render(dt) : this.defRender(this.entities[i], dt);
+      for (var i = this.map.entities.length - 1; i >= 0; i--) {
+        this.map.entities[i].render ? this.map.entities[i].render(dt) : this.defRender(this.map.entities[i], dt);
       }
     },
     player: {
@@ -155,8 +205,8 @@ var aniCollTest = function aniCollTestInit() {
         this.h = 24;
         this.sX = 0; // animation seems to be off for one of the frames when moving to the right
         this.sY = 0;
-        this.dX = 10;
-        this.dY = 10;
+        this.dX = null;
+        this.dY = null;
         this.frame = 0; // current animation frame
         this.frameSpeed = 2; // speed at which to step through frames. higher is slower
         this.frameStep = 0; // current step through frames
@@ -164,12 +214,15 @@ var aniCollTest = function aniCollTestInit() {
         this.vel = 0;
         this.velMax = 5;
         this.accel = 10;
+        this.cells = []
+        game.map.occupy(10, 10, this);
       },
       update: function playerUpdate(step) {
         this.ani();
         if (this.moving.left || this.moving.up || this.moving.right || this.moving.down) {
+          console.log("meep!");
           this.vel = Math.min(Math.accel(this.vel, this.accel, step), this.velMax);
-          if (var !coll = game.map.tryMove(this)) game.map.occupy; // set to a var that can be tested to throw a pubsub condition on coll being true?
+          if (!game.map.tryMove(this)) game.map.occupy; // if game.map.tryMove(this) returns coll as false then occupy space in this.dir in accordance to this.vel
         }
         else {
           this.vel = Math.max(Math.accel(this.vel, -this.accel, step), 0);
@@ -276,12 +329,14 @@ var aniCollTest = function aniCollTestInit() {
         this.h = 24;
         this.sX = 0;
         this.sY = 24;
-        this.dX = 100;
-        this.dY = 100;
+        this.dX = null;
+        this.dY = null;
         this.vel = 0;
+        this.cells = [],
         this.update = function blocksUpdate() {
           // update function here
         };
+        game.map.occupy(100, 100, this);
       },
       pool: [],
       preAlloc: function blocksPreAlloc(i) { // the way this is being allocated isn't great. try this.blah allocation
@@ -290,7 +345,7 @@ var aniCollTest = function aniCollTestInit() {
         }
       },
       alloc: function blocksAlloc() {
-        game.entities.push(this.pool.pop());
+        game.map.entities.push(this.pool.pop());
       },
       deAlloc: function blockDeAlloc() {
         // deAlloc function to rem obj from entities list goes here

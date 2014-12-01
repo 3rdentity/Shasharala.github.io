@@ -4,3 +4,4 @@
 - backgrounds/scenery?
 - browser sniffing/fallback if browser is incompatible
 - audio library
+- refactor anon func's to be: thisIsWhereAnonFuncIsLocated_nameOfFunc
