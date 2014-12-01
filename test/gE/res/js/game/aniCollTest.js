@@ -10,6 +10,17 @@
 var aniCollTest = function aniCollTestInit() {
   var game = {
     cfg: {
+      map: {
+        scale: 1,
+        width: 10, // size in terms of cells
+        height: 10, // size in terms of cells
+        cell: {
+          init: function gameCfgCellInit() {
+            this.size = game.cfg.map.scale * 24; // matches avg. of largest sides of obj's aabb
+            delete this.init;
+          }
+        }
+      },
       state: {
         events: [
           { name: "ready", from: "booting", to: "playing", action: function readyAction() { /*load game map/level?*/ } },
@@ -38,11 +49,13 @@ var aniCollTest = function aniCollTestInit() {
         }
       }
     },
+    // make a canvas function outside of game to handle sizing etc?
     canvas: {
       init: function gameCanvasInit() {
         game.canvas = document.getElementById("viewport");
         game.canvas.ctx = game.canvas.getContext("2d");
-        game.canvas.width = game.canvas.height = 500;
+        game.canvas.width = game.cfg.map.cell.size * game.cfg.map.width;
+        game.canvas.height = game.cfg.map.cell.size * game.cfg.map.height;
         game.canvas.ctx.imageSmoothingEnabled = false;
       }
     },
@@ -51,13 +64,56 @@ var aniCollTest = function aniCollTestInit() {
       // promises for proper resource loading? should this be here or in the engine?
       Fsm.init(game, game.cfg.state);
       Key.map(game.cfg.keys, game);
-      this.canvas.init();
+      this.cfg.map.cell.init();
       this.cfg.img.init();
+      this.canvas.init();
       this.blocks.preAlloc(10);
       this.blocks.alloc();
       this.player.init();
       this.ready();
       delete this.init;
+    },
+    map: {
+      cells: [],
+      p2c: function mapC2T(n) { return Math.floor(n/this.cfg.map.cell.size); }, // pixel-to-cell conversion
+      c2p: function mapT2C(n) { return (n * this.cfg.map.cell.size); }, // cell-to-pixel conversion
+      setContains: function mapSetContains(arr, ent) { return arr.indexOf(ent) >= 0; },
+      setAdd: function mapSetAdd(arr, ent) { arr.push(ent); },
+      setRem: function mapSetRem(arr, ent) { arr.splice(arr.indexOf(ent), 1); },
+      setClear: function mapSetClear(arr) { arr.length = 0; },
+      setCopy: function mapSetCopy(arr, source) {
+        this.setClear(arr);
+        for(var n = 0, max = source.length ; n < max ; n++)
+        arr.push(source[n]);
+      },
+      cell: function mapCell(x, y) {
+        return this.cells[p2c(x) + (p2c(y) * game.cfg.map.width)]; // this may not work?
+      },
+      cellOverlap: function mapCellOverlap(x, y, w, h) {
+        var cells = [],
+            nX = ((x%game.cfg.map.cell.size) + w) > game.cfg.map.cell.size, // assumes all entities are smaller than cells
+            nY = ((y%game.cfg.map.cell.size) + h) > game.cfg.map.cell.size; // assumes all entities are smaller than cells
+        this.setAdd(cells, this.cell(x, y));
+        if (nX) this.setAdd(cells, this.cell(x + game.cfg.map.cell.size, y));
+        if (nY) this.setAdd(cells, this.cell(x, y + game.cfg.map.cell.size));
+        if ((nX) && (nY)) setAdd(cells, this.cell(x + game.cfg.map.cell.size, y + game.cfg.map.cell.size));
+        return cells;
+      },
+      occupied: function mapOccupied(x, y, w, h, ignore) {
+        // occupied function here
+      },
+      tryMove: function mapTryMove(ent) {
+        var nX = ent.x + (ent.moving.left ? -ent.vel : ent.moving.right ? ent.vel : 0),
+            nY = ent.y + (ent.moving.up ? -ent.vel : ent.moving.down ? ent.vel : 0),
+            coll = this.occupied(nX, nY, ent.w, ent.h, ent);
+        if (!coll) this.occupy(nX, nY, ent);
+        return coll;
+      },
+      occupy: function mapOccupy(x, y, ent) {
+        ent.x = x;
+        ent.y = y;
+        // not finished
+      }
     },
     update: function gameUpdate(step) {
       this.player.update(step);
@@ -94,17 +150,13 @@ var aniCollTest = function aniCollTestInit() {
           right: false,
           down: false
         };
-        this.scale = 2;
+        this.scale = game.cfg.map.scale;
         this.w = 18;
         this.h = 24;
         this.sX = 0; // animation seems to be off for one of the frames when moving to the right
         this.sY = 0;
         this.dX = 10;
         this.dY = 10;
-        this.cX = this.sX;
-        this.cY = this.sY;
-        this.cW = this.w * this.scale;
-        this.cH = this.h * this.scale;
         this.frame = 0; // current animation frame
         this.frameSpeed = 2; // speed at which to step through frames. higher is slower
         this.frameStep = 0; // current step through frames
@@ -113,76 +165,11 @@ var aniCollTest = function aniCollTestInit() {
         this.velMax = 5;
         this.accel = 10;
       },
-      coll: function playerColl(obj1, obj2) {
-        obj1.cX = Math.floor(obj1.cX);
-        obj1.cY = Math.floor(obj1.cY);
-        // try a spatial grid instead of brute forcing this. it'll look cleaner, make more sense, and run more efficiently
-        // this actually needs to test for a collision in the direction the current obj is headed. NOT for where it is now. it obviously has some issues and has some LAG
-        // floating point errors? Does everything need to be floored?
-        switch (obj1.dir) {
-          case "l":
-              obj1.cX -= obj1.vel;
-              break;
-            case "u":
-              obj1.cY -= obj1.vel;
-              break;
-            case "r":
-              obj1.cX += obj1.vel;
-              break;
-              case "d":
-              obj1.cY += obj1.vel;
-              break;
-            case "ul":
-              obj1.cX -= obj1.vel;
-              obj1.cY -= obj1.vel;
-              break;
-            case "dl":
-              obj1.cX -= obj1.vel;
-              obj1.cY += obj1.vel;
-              break;
-            case "ur":
-              obj1.cX += obj1.vel;
-              obj1.cY -= obj1.vel;
-              break;
-            case "dr":
-              obj1.cX += obj1.vel;
-              obj1.cY += obj1.vel;
-        }
-        return Math.collBox(obj1, obj2);
-      },
       update: function playerUpdate(step) {
         this.ani();
-        if (!this.coll(this, game.entities[0]) && (this.moving.left || this.moving.up || this.moving.right || this.moving.down)) {
+        if (this.moving.left || this.moving.up || this.moving.right || this.moving.down) {
           this.vel = Math.min(Math.accel(this.vel, this.accel, step), this.velMax);
-          switch (this.dir) {
-            case "l":
-              this.cX = this.dX -= this.vel;
-              break;
-            case "u":
-              this.cY = this.dY -= this.vel;
-              break;
-            case "r":
-              this.cX = this.dX += this.vel;
-              break;
-              case "d":
-              this.cY = this.dY += this.vel;
-              break;
-            case "ul":
-              this.cX = this.dX -= this.vel;
-              this.cY = this.dY -= this.vel;
-              break;
-            case "dl":
-              this.cX = this.dX -= this.vel;
-              this.cY = this.dY += this.vel;
-              break;
-            case "ur":
-              this.cX = this.dX += this.vel;
-              this.cY = this.dY -= this.vel;
-              break;
-            case "dr":
-              this.cX = this.dX += this.vel;
-              this.cY = this.dY += this.vel;
-          }
+          if (var !coll = game.map.tryMove(this)) game.map.occupy; // set to a var that can be tested to throw a pubsub condition on coll being true?
         }
         else {
           this.vel = Math.max(Math.accel(this.vel, -this.accel, step), 0);
@@ -284,17 +271,13 @@ var aniCollTest = function aniCollTestInit() {
     },
     blocks: {
       init: function blocksInit() {
-        this.scale = 2;
+        this.scale = game.cfg.map.scale;
         this.w = 18;
         this.h = 24;
         this.sX = 0;
         this.sY = 24;
         this.dX = 100;
         this.dY = 100;
-        this.cX = this.dX;
-        this.cY = this.dY;
-        this.cW = this.w * this.scale;
-        this.cH = this.h * this.scale;
         this.vel = 0;
         this.update = function blocksUpdate() {
           // update function here
