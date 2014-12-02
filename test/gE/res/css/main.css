@@ -1,3 +1,10 @@
+/*see dom.js*/
+/*hidden attr fallback*/
+[hidden] {
+  display: none;
+}
+/*END JS RELATED CSS*/
+
 body {
   background-color: #591b1b;
   color: #808080;
@@ -11,3 +18,14 @@ body {
   border-color:#808080;
   background-image: url("../img/grey.png");
 }
+
+/*
+EXAMPLE CANVAS. NOTE SHARP GRAPHICS
+canvas#gameBoard {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+*/
