@@ -94,6 +94,7 @@ hr {
   height: 100%;
   width: 100%;
   /*diamonds.gif*/
+  background-image:url("../img/bg/ani/dTest2.gif");
   background-size:405px 405px;
 }
 
