@@ -1,5 +1,5 @@
 ##############################################################################
-SHASHARALA.TK - TERMS OF USE - COPYRIGHT (c) 2014 Ryan Combes
+SHASHARALA.NET - TERMS OF USE - COPYRIGHT (c) 2014 Ryan Combes
 ##############################################################################
 
 If something isn't covered in these terms and conditions and you are considering
@@ -36,12 +36,12 @@ jQuery
 http://jquery.org/license
 
 Normalize -
-www.shasharala.tk/res/css/normalize/LICENSE.md
+www.shasharala.net/res/css/normalize/LICENSE.md
 
 Ubuntu Mono -
-www.shasharala.tk/res/fonts/UFL.txt
+www.shasharala.net/res/fonts/UFL.txt
 
 ==============================================================================
-08/31/2014 - This license may change at any time without notice. Please
+12/03/2014 - This license may change at any time without notice. Please
 check back regularly.
 ==============================================================================

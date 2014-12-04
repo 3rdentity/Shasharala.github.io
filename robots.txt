@@ -5,4 +5,4 @@ User-agent: *
 # except the following
 Disallow: /test/
 Disallow: /res/
-Disallow: /dl/
+Disallow: /files/
