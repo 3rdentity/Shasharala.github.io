@@ -3,7 +3,7 @@
   <title>shasharala's feed</title>
   <subtitle>shasharala's thoughts and games</subtitle>
   <link href="http://www.shasharala.net"/>
-  <updated>2014-12-03T18:43:33Z</updated>
+  <updated>2014-12-05T10:24:33Z</updated>
   <author>
     <name>Ryan Combes</name>
     <email>shasharala@outlook.com</email>
@@ -16,6 +16,12 @@
     <summary>xxx</summary>
   </entry>
 -->
+  <entry>
+    <title>What Am I?</title>
+    <link href="http://www.shasharala.tk/blog/groundZero.html"/>
+    <updated>2014-12-05T10:23:33Z</updated>
+    <summary>A tough question I find myself muttering under my breath repeatedly..</summary>
+  </entry>
   <entry>
     <title>Ludum Dare 30: Mirrors</title>
     <link href="http://www.shasharala.net/games/ld30/mirrors.html"/>
