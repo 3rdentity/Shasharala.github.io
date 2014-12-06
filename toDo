@@ -2,3 +2,4 @@
 - add old blog posts in a trash/locked bin of some sort
 - prepare/set things up for GameAWeek
 - make scrollbit clickable/slidable(phablets). some devices/people do not have scrollwheels
+- 404 page does not allow user to redirect themselves and is using old style

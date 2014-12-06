@@ -158,6 +158,8 @@ hr {
   font-size: 18px;
   box-shadow: 0px 0px 24px #AAAAAA;
   overflow: hidden;
+  -webkit-transition: height .5s;
+  transition: height .5s;
 }
 
 .scrollCont {
@@ -173,6 +175,8 @@ hr {
   height: 0px;
   font-size: 24px;
   line-height: 8px;
+  -webkit-transition: margin .5s;
+  transition: margin .5s;
 }
 
 .scrollArrow span {
