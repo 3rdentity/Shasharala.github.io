@@ -2,8 +2,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>shasharala's feed</title>
   <subtitle>shasharala's thoughts and games</subtitle>
-  <link href="http://www.shasharala.tk"/>
-  <updated>2014-10-03T13:55:33Z</updated>
+  <link href="http://www.shasharala.net"/>
+  <updated>2014-12-05T10:24:33Z</updated>
   <author>
     <name>Ryan Combes</name>
     <email>shasharala@outlook.com</email>
@@ -17,32 +17,26 @@
   </entry>
 -->
   <entry>
-    <title>Paint Me on Your Canvas</title>
-    <link href="http://www.shasharala.tk/blog/0001.html"/>
-    <updated>2014-10-03T13:55:33Z</updated>
-    <summary>A post about keeping up</summary>
+    <title>What Am I?</title>
+    <link href="http://www.shasharala.tk/blog/groundZero.html"/>
+    <updated>2014-12-05T10:23:33Z</updated>
+    <summary>A tough question I find myself muttering under my breath repeatedly..</summary>
   </entry>
   <entry>
     <title>Ludum Dare 30: Mirrors</title>
-    <link href="http://www.shasharala.tk/games/ld30/mirrors.html"/>
+    <link href="http://www.shasharala.net/games/ld30/mirrors.html"/>
     <updated>2014-08-31T12:57:33Z</updated>
     <summary>Second attempt at making a Ludum Dare entry. Lacks polish and is weird.</summary>
   </entry>
   <entry>
     <title>The Monty Hall Problem</title>
-    <link href="http://www.shasharala.tk/games/zoinks/theMontyHallProblem.html"/>
+    <link href="http://www.shasharala.net/games/zoinks/theMontyHallProblem.html"/>
     <updated>2014-08-31T12:57:33Z</updated>
     <summary>A quick demonstration of the Monty Hall problem.</summary>
   </entry>
   <entry>
-    <title>The Monster Inside Me</title>
-    <link href="http://www.shasharala.tk/blog/0000.html"/>
-    <updated>2014-08-18T00:00:00Z</updated>
-    <summary>A lengthy post regarding gender identity</summary>
-  </entry>
-  <entry>
     <title>Ludum Dare 29: Deeper</title>
-    <link href="http://www.shasharala.tk/games/ld29/deeper.html"/>
+    <link href="http://www.shasharala.net/games/ld29/deeper.html"/>
     <updated>2014-04-28T00:00:00Z</updated>
     <summary>First attempt at making a Ludum Dare entry. It was never finished and barely started.</summary>
   </entry>
