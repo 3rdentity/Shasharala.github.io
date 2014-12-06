@@ -53,8 +53,7 @@
       tests if "u" is pressed to bypass "under construction" screen
       function onKeyUp(evt) {
         if (evt = (evt) ? evt : (window.event) ? event : null) {
-          var unicode = evt.keyCode ? evt.keyCode : evt.charCode;
-          if (unicode == "85") {
+          if (evt.keyCode == "85") {
             document.location.href = "about.html";
           }
         }
