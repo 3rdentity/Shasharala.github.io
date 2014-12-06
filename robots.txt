@@ -3,6 +3,7 @@
 # Allow crawling of all content
 User-agent: *
 # except the following
-Disallow: /test/
-Disallow: /res/
 Disallow: /files/
+Disallow: /games/
+Disallow: /res/
+Disallow: /test/
