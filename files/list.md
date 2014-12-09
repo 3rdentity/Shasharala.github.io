@@ -1,1 +1,2 @@
 billy.gif
+baerOldestRageQuit.gif
