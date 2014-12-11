@@ -1,14 +1,18 @@
+// z-indexing! this is handled by drawing high z-indexes last
+// sliding! currently character collides and can't slide along the edge of things
+// need to have pubsub system detect collision and start pushing animation/movement of item&char that is pushing obj.
 var game = function gameInit() {
   var game = {
     cells: [], // moved up here temporarily? Needed to be above parseImg();
     cfg: {
       map: {
         scale: 5,
-        width: 8, // size in terms of cells
-        height: 8, // size in terms of cells
+        // size of map needs to be removed from here. size of map should be coming from map img's not from here
+        width: 16, // size in terms of cells
+        height: 16, // size in terms of cells
         cell: {
           init: function gameCfgCellInit() {
-            this.size = game.cfg.map.scale * 30; // matches avg. of largest sides of obj's aabb
+            this.size = game.cfg.map.scale * 16; // matches avg. of largest sides of obj's aabb. there is an issue with collision at the moment. it is detecting cells and stopping movement at that level. need to detect aabb's inside of cells that obj's share
             delete this.init;
           }
         }
@@ -47,7 +51,13 @@ var game = function gameInit() {
         game.canvas.ctx = game.canvas.getContext("2d");
         game.canvas.width = game.cfg.map.cell.size * game.cfg.map.width;
         game.canvas.height = game.cfg.map.cell.size * game.cfg.map.height;
-        game.canvas.ctx.imageSmoothingEnabled = false;
+        if (game.canvas.ctx.imageSmoothingEnabled) {
+            game.canvas.ctx.imageSmoothingEnabled = false;
+        } else if (game.canvas.ctx.webkitImageSmoothingEnabled) {
+            game.canvas.ctx.webkitImageSmoothingEnabled = false;
+        } else if (game.canvas.ctx.mozImageSmoothingEnabled) {
+            game.canvas.ctx.mozImageSmoothingEnabled = false;
+        }
       }
     },
     // needs fixes. firefox gets fuzzy
@@ -65,12 +75,13 @@ var game = function gameInit() {
     },
     init: function gameInit() {
       // need proper resource loading function here to make sure that 1. game does not go to ready state till all this is loaded and 2. game only actually begins once in ready state
+      // breaks in FF. prob. because resources are being loaded asynchronously
       Fsm.init(game, game.cfg.state);
       Key.map(game.cfg.keys, game);
       this.cfg.map.cell.init();
       this.cfg.img.init();
       this.canvas.init();
-      this.bob.preAlloc(10);
+      this.bob.preAlloc(61);
       this.map.src = Engine.createImg("res/img/lvl0.png", function imgLoad2Map() {
         game.map.setup(game.map.src);
       });
@@ -150,13 +161,14 @@ var game = function gameInit() {
       occupied: function mapOccupied(x, y, w, h, ignore) {
         var cells = this.cellOverlap(x, y, w, h),
             checked = this.temp.occupied.checkedGet();
+
         for (var i = 0; i < cells.length; i++) {
           cell = cells[i];
           for (var n = 0; n < cell.occupied.length; n++) {
             ent = cell.occupied[n];
             if ((ent != ignore) && !this.setContains(checked, ent)) {
               this.setAdd(checked, ent);
-              if (Math.collBox(x, y, w, h, ent.x, ent.y, ent.w, ent.h)) return ent;
+              if (Math.collBox(x, y, w, h, ent.x, ent.y, ent.dW, ent.dH)) return ent;
             }
           }
         }
@@ -165,14 +177,14 @@ var game = function gameInit() {
       tryMove: function mapTryMove(ent) {
         this.temp.tX = ent.dX + (ent.moving.left ? -ent.vel : ent.moving.right ? ent.vel : 0);
         this.temp.tY = ent.dY + (ent.moving.up ? -ent.vel : ent.moving.down ? ent.vel : 0),
-            coll = this.occupied(this.temp.tX, this.temp.tY, ent.w, ent.h, ent);
+            coll = this.occupied(this.temp.tX, this.temp.tY, ent.dW, ent.dH, ent);
         if (!coll) this.occupy(ent, this.temp.tX, this.temp.tY);
         return coll;
       },
       occupy: function mapOccupy(ent, x, y) {
         // assume caller took care to avoid collision
-        ent.dX = x || ent.dX;
-        ent.dY = y || ent.dY;
+        ent.dX = x;
+        ent.dY = y;
         var before = ent.cells,
             after = this.cellOverlap(x, y, game.cfg.map.cell.size, game.cfg.map.cell.size),
             c, cell;
@@ -184,7 +196,7 @@ var game = function gameInit() {
         // add object to new cells that were not previously occupied
         for(c = 0 ; c < after.length ; c++) {
           cell = after[c];
-          if (!this.setContains(before, cell)) this.setAdd(cell.occupied, entity);
+          if (!this.setContains(before, cell)) this.setAdd(cell.occupied, ent);
         }
         this.setCopy(before, after);
         return ent;
@@ -193,7 +205,7 @@ var game = function gameInit() {
     update: function gameUpdate(step) {
       this.player.update(step);
       for (var i = this.map.entities.length - 1; i >= 0; i--) {
-        this.map.entities[i].update(step); // or do nothing
+        this.map.entities[i].update(step); // or do nothing?
       }
     },
     defRender: function gameDefRender(obj, dt) {
@@ -230,17 +242,19 @@ var game = function gameInit() {
         this.h = 30;
         this.sX = 0;
         this.sY = 0;
+        this.dW = this.w * this.scale;
+        this.dH = this.h * this.scale;
         this.dX = dX;
         this.dY = dY;
         this.frame = 0; // current animation frame
-        this.frameSpeed = 5; // speed at which to step through frames. higher is slower
+        this.frameSpeed = 5; // speed at which to step through frames. higher is slower. TODO needs to be set to be modified by vel. of char.
         this.frameStep = 0; // current step through frames
         this.frameMax = 3; // four animation frames
         this.vel = 0;
         this.velMax = 5;
         this.accel = 10;
         this.cells = []
-        game.map.occupy(this);
+        game.map.occupy(this, dX, dY);
       },
       update: function playerUpdate(step) {
         this.ani();
@@ -353,6 +367,8 @@ var game = function gameInit() {
         this.h = 30;
         this.sX = 0;
         this.sY = 30;
+        this.dW = this.w * this.scale;
+        this.dH = this.h * this.scale;
         this.dX = null;
         this.dY = null;
         this.vel = 0;
