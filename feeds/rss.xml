@@ -4,7 +4,7 @@
     <title>shasharala's feed</title>
     <description>shasharala's thoughts and games</description>
     <link>http://www.shasharala.net</link>
-    <lastBuildDate>2014 12 05 10:15 GMT-8</lastBuildDate>
+    <lastBuildDate>2014 12 10 11:11 GMT-8</lastBuildDate>
     <managingEditor>shasharala@outlook.com (Ryan Combes)</managingEditor>
     <!--
     EXAMPLE
@@ -15,6 +15,12 @@
       <description>xxx</description>
     </item>
     -->
+    <item>
+      <title>Plotting for The Future</title>
+      <link>http://www.shasharala.tk/blog/0000.html</link>
+      <pubDate>2014 12 10 11:10 GMT-8</pubDate>
+      <description>I go into detail about what my plans are for the immediate Future!</description>
+    </item>
     <item>
       <title>What Am I?</title>
       <link>http://www.shasharala.tk/blog/groundZero.html</link>

@@ -1,7 +1,0 @@
-- ability to edit controls in-game? way to add "controls"/eventListeners easily when designing
-- AI
-- idle/attack animations + dmg vals/reactions (this will involve death/spawning handling)
-- backgrounds/scenery?
-- browser sniffing/fallback if browser is incompatible
-- audio library
-- refactor anon func's to be: thisIsWhereAnonFuncIsLocated_nameOfFunc
