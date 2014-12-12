@@ -13,7 +13,7 @@ body {
 }
 
 #viewport {
-  border-style:dotted;
+  /*border-style:dotted;*/
   border-width:1px;
   border-color:#808080;
 }

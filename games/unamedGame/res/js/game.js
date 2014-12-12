@@ -8,18 +8,18 @@ var game = function gameInit() {
       map: {
         scale: 5,
         // size of map needs to be removed from here. size of map should be coming from map img's not from here
-        width: 16, // size in terms of cells
-        height: 16, // size in terms of cells
+        width: null, // size in terms of cells
+        height: null, // size in terms of cells
         cell: {
           init: function gameCfgCellInit() {
-            this.size = game.cfg.map.scale * 16; // matches avg. of largest sides of obj's aabb. there is an issue with collision at the moment. it is detecting cells and stopping movement at that level. need to detect aabb's inside of cells that obj's share
+            this.size = game.cfg.map.scale * 14; // matches avg. of largest sides of obj's aabb. there is an issue with collision at the moment. it is detecting cells and stopping movement at that level. need to detect aabb's inside of cells that obj's share
             delete this.init;
           }
         }
       },
       state: {
         events: [
-          { name: "ready", from: "booting", to: "playing", action: function readyAction() { /*load game map/level?*/ } },
+          { name: "ready", from: "booting", to: "playing", action: function readyAction() { Engine.run(); } },
           { name: "pause", from: "playing", to: "paused", action: function pauseAction() { /*pause screen here*/ } },
           { name: "unPause", from: "paused", to: "playing", action: function unPauseAction() { /*remove pause screen here*/ } }
         ]
@@ -37,16 +37,16 @@ var game = function gameInit() {
         { key: Key.right, mode: "up", state: "playing", action: function keyRightOnUp() { this.player.moveRight(false); } },
         { key: Key.down, mode: "up", state: "playing", action: function keyDownOnUp() { this.player.moveDown(false); } }
       ],
-      img: {
-        init: function gameCfgImgInit() {
-          game.cfg.img.ent = new Image();
-          game.cfg.img.ent.src = "res/img/ent.png";
-          delete this.init;
-        }
-      }
+      imgs: [
+        // bg
+        { id: "entities", url: "res/img/entities.png" }
+      ],
+      lvls: [
+        { name: "test", url: "res/img/lvls/test.png" }
+      ]
     },
     canvas: {
-      init: function gameCanvasInit() {
+      init: function gameCanvasInit(callback) {
         game.canvas = document.getElementById("viewport");
         game.canvas.ctx = game.canvas.getContext("2d");
         game.canvas.width = game.cfg.map.cell.size * game.cfg.map.width;
@@ -58,9 +58,9 @@ var game = function gameInit() {
         } else if (game.canvas.ctx.mozImageSmoothingEnabled) {
             game.canvas.ctx.mozImageSmoothingEnabled = false;
         }
+        callback();
       }
     },
-    // needs fixes. firefox gets fuzzy
     fullscreen: function engineFullscreen() {
       var elem = this.canvas;
       if (elem.requestFullscreen) {
@@ -74,43 +74,50 @@ var game = function gameInit() {
       }
     },
     init: function gameInit() {
-      // need proper resource loading function here to make sure that 1. game does not go to ready state till all this is loaded and 2. game only actually begins once in ready state
-      // breaks in FF. prob. because resources are being loaded asynchronously
+      // FSM/Key and cell init need loading func?
       Fsm.init(game, game.cfg.state);
       Key.map(game.cfg.keys, game);
       this.cfg.map.cell.init();
-      this.cfg.img.init();
-      this.canvas.init();
-      this.bob.preAlloc(61);
-      this.map.src = Engine.createImg("res/img/lvl0.png", function imgLoad2Map() {
-        game.map.setup(game.map.src);
+      // promises would be nice here but implementing/using a polyfill would be annoying
+      Engine.loadPools([ { id: bob, num: 1 }, { id: block, num: 70 } ], function loadPoolsFin() {
+        Engine.loadRes(game.cfg.imgs, null, function loadResFin(res) {
+          game.cfg.imgs = res.imgs;
+          game.map.src = Engine.createImg("res/img/lvls/test.png", function imgLoad2Map() {
+            game.map.setup(game.map.src); // need level loading func. will activate whenever a level is completed
+            game.canvas.init(function canvasInitFin() {
+              game.ready();
+              delete this.init;
+            });
+          });
+        });
       });
-      this.ready();
-      delete this.init;
     },
     map: {
       setup: function gameMapSetup(src) {
-        var cW = src.width,
-            cH = src.height,
-            pixels = {
+        game.cfg.map.width = src.width;
+        game.cfg.map.height = src.height;
+        var pixels = {
               type: 0xFFFF00,
               subtype: 0x0000FF,
-              space: 0x000000,
+              nothing: 0x000000,
               player: 0x00FF00,
-              bob: 0xFF0000
+              bob: 0xFF0000,
+              block: 0x800000
             };
         function type(pixel, type) { return ((pixel & pixels.type) === type); };
         function subtype(pixel) { return (pixel & pixels.subtype); };
         function isPlayer(pixel) { return type(pixel, pixels.player); };
         function isBob(pixel) { return type(pixel, pixels.bob); };
+        function isBlock(pixel) { return type(pixel, pixels.block); }
         Engine.parseImg(src, function pixelTests(cX, cY, pixel) {
           var dX = game.map.c2p(cX),
               dY = game.map.c2p(cY),
-              n = cX + (cY * cW);
+              n = cX + (cY * game.cfg.map.width);
           game.cells[n] = { occupied: [] };
           // switch should go here when more tests are added
           if (isPlayer(pixel)) game.player.init(dX, dY);
-          else if (isBob(pixel)) game.bob.alloc(dX, dY);
+          else if (isBob(pixel)) game.obj[game.obj.indexOf(bob)].alloc(dX, dY);
+          else if (isBlock(pixel)) game.obj[game.obj.indexOf(block)].alloc(dX, dY);
         });
       },
       temp: { // local var's to avoid gc
@@ -210,7 +217,7 @@ var game = function gameInit() {
     },
     defRender: function gameDefRender(obj, dt) {
       this.canvas.ctx.drawImage(
-            this.cfg.img.ent,
+            this.cfg.imgs.entities,
             obj.sX,
             obj.sY,
             obj.w,
@@ -360,36 +367,68 @@ var game = function gameInit() {
         }
       }
     },
-    bob: {
-      init: function bobInit() {
-        this.scale = game.cfg.map.scale;
-        this.w = 16;
-        this.h = 30;
-        this.sX = 0;
-        this.sY = 30;
-        this.dW = this.w * this.scale;
-        this.dH = this.h * this.scale;
-        this.dX = null;
-        this.dY = null;
-        this.vel = 0;
-        this.cells = [],
-        this.update = function bobUpdate() {
-        };
-      },
-      pool: [],
-      preAlloc: function bobPreAlloc(i) {
-        for (var n = 0; n < i; n++) {
-          this.pool[n] = new this.init();
+    obj: [
+      bob = {
+        init: function bobInit() {
+          this.scale = game.cfg.map.scale;
+          this.w = 16;
+          this.h = 30;
+          this.sX = 0;
+          this.sY = 30;
+          this.dW = this.w * this.scale;
+          this.dH = this.h * this.scale;
+          this.dX = null;
+          this.dY = null;
+          this.vel = 0;
+          this.cells = [],
+          this.update = function bobUpdate() {
+          };
+        },
+        pool: [],
+        preAlloc: function bobPreAlloc(i) {
+          for (var n = 0; n < i; n++) {
+            this.pool[n] = new this.init();
+          }
+        },
+        alloc: function bobAlloc(dX, dY) {
+          game.map.entities.push(this.pool.pop());
+          game.map.occupy(game.map.entities[game.map.entities.length - 1], dX, dY);
+        },
+        deAlloc: function bobDeAlloc() {
+
         }
       },
-      alloc: function bobAlloc(dX, dY) {
-        game.map.entities.push(this.pool.pop());
-        game.map.occupy(game.map.entities[game.map.entities.length - 1], dX, dY);
-      },
-      deAlloc: function bobDeAlloc() {
+      block = {
+        init: function blockInit() {
+          this.scale = game.cfg.map.scale;
+          this.w = 15;
+          this.h = 15;
+          this.sX = 0;
+          this.sY = 60;
+          this.dW = this.w * this.scale;
+          this.dH = this.h * this.scale;
+          this.dX = null;
+          this.dY = null;
+          this.vel = 0;
+          this.cells = [],
+          this.update = function blockUpdate() {
+          };
+        },
+        pool: [],
+        preAlloc: function blockPreAlloc(i) {
+          for (var n = 0; n < i; n++) {
+            this.pool[n] = new this.init();
+          }
+        },
+        alloc: function bobAlloc(dX, dY) {
+          game.map.entities.push(this.pool.pop());
+          game.map.occupy(game.map.entities[game.map.entities.length - 1], dX, dY);
+        },
+        deAlloc: function blockDeAlloc() {
 
+        }
       }
-    }
+    ]
   };
   return game;
 };
