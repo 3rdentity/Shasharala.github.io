@@ -121,10 +121,10 @@ var game = function gameInit() {
         });
       },
       temp: { // local var's to avoid gc
+        x: null,
+        y: null,
         cX: null,
         cY: null,
-        tX: null,
-        tY: null,
         cellOverlap: {
           cells: [],
           cellsGet: function mapTempCellOverlapGet() {
@@ -168,7 +168,6 @@ var game = function gameInit() {
       occupied: function mapOccupied(x, y, w, h, ignore) {
         var cells = this.cellOverlap(x, y, w, h),
             checked = this.temp.occupied.checkedGet();
-
         for (var i = 0; i < cells.length; i++) {
           cell = cells[i];
           for (var n = 0; n < cell.occupied.length; n++) {
@@ -181,12 +180,21 @@ var game = function gameInit() {
         }
         return false;
       },
-      tryMove: function mapTryMove(ent) {
-        this.temp.tX = ent.dX + (ent.moving.left ? -ent.vel : ent.moving.right ? ent.vel : 0);
-        this.temp.tY = ent.dY + (ent.moving.up ? -ent.vel : ent.moving.down ? ent.vel : 0),
-            coll = this.occupied(this.temp.tX, this.temp.tY, ent.dW, ent.dH, ent);
-        if (!coll) this.occupy(ent, this.temp.tX, this.temp.tY);
-        return coll;
+      tryMove: function mapTryMove(ent, dir) {
+        if (!dir) {
+          this.temp.x = ent.dX + (ent.moving.left ? -ent.vel : ent.moving.right ? ent.vel : 0);
+          this.temp.y = ent.dY + (ent.moving.up ? -ent.vel : ent.moving.down ? ent.vel : 0);
+              coll = this.occupied(this.temp.x, this.temp.y, ent.dW, ent.dH, ent);
+          if (!coll) this.occupy(ent, this.temp.x, this.temp.y);
+          return !coll;
+        }
+        else { // if the user is moving diagonally
+          this.temp.x = ent.dX + ((dir === "l") ? -ent.vel : (dir === "r") ? ent.vel : 0);
+          this.temp.y = ent.dY + ((dir === "u") ? -ent.vel : (dir === "d") ? ent.vel : 0);
+              coll = this.occupied(this.temp.x, this.temp.y, ent.dW, ent.dH, ent);
+          if (!coll) this.occupy(ent, this.temp.x, this.temp.y);
+          return !coll; // returns the opposite of collision to reflect tryMove failing/being false if collision is true
+        }
       },
       occupy: function mapOccupy(ent, x, y) {
         // assume caller took care to avoid collision
@@ -267,7 +275,11 @@ var game = function gameInit() {
         this.ani();
         if (this.moving.left || this.moving.up || this.moving.right || this.moving.down) {
           this.vel = Math.min(Math.accel(this.vel, this.accel, step), this.velMax);
-          if (!game.map.tryMove(this)) game.map.occupy; // if game.map.tryMove(this) returns coll as false then occupy space in this.dir in accordance to this.vel
+          if (!game.map.tryMove(this) && this.dir.length > 1) {
+            for(var i = 0; i < this.dir.length; i++) {
+              game.map.tryMove(this, this.dir.substring(i, i + 1));
+            }
+          }
         }
         else {
           this.vel = Math.max(Math.accel(this.vel, -this.accel, step), 0);
@@ -305,6 +317,7 @@ var game = function gameInit() {
             case "d":
               this.sX = 16 * this.w + this.frame * this.w;
               break;
+            // consider using something like this.lastDir to detect what last dir was to affect diagonal movements
             case "ul":
               this.moving.left ? this.sX = 4 * this.w + this.frame * this.w : this.sX = 8 * this.w + this.frame * this.w;
               break;
@@ -316,7 +329,6 @@ var game = function gameInit() {
               break;
             case "dl":
               this.moving.left ? this.sX = 4 * this.w + this.frame * this.w : this.sX = 16 * this.w + this.frame * this.w;
-              break;
           }
           this.frameStep++;
           if (this.frameStep > this.frameSpeed) {
