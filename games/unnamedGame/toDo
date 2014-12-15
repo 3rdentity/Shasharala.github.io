@@ -8,3 +8,6 @@
 - refactor anon func's to be: thisIsWhereAnonFuncIsLocated_nameOfFunc
 - browser sniffing/fallback if browser is incompatible
 - cleanup animation code a tad and consider sperating it into its own lib
+
+
+- ORDER THESE BY ORDER OF IMPORTANCE AND THEN START THE WORK!
