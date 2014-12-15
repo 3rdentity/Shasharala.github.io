@@ -1,0 +1,10 @@
+body {
+  background-color: #484848;
+  color: #ADAADA;
+  text-align: center;
+}
+#viewport {
+  border-style: dotted;
+  border-color: #ADAADA;
+  border-width: 3px;
+}
