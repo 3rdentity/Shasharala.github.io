@@ -11,20 +11,32 @@
   <!--
   <entry>
     <title>xxx</title>
-    <link href="http://www.shasharala.tk/blog/XXXX.html"/>
+    <link href="http://www.shasharala.net/blog/XXXX.html"/>
     <updated>XXXX-XX-XXTXX:XX:XXZ</updated>
     <summary>xxx</summary>
   </entry>
 -->
   <entry>
+    <title>collisionGame: The Blog Post</title>
+    <link href="http://www.shasharala.net/blog/0002.html"/>
+    <updated>2014-12-15T2:00:33Z</updated>
+    <summary>Details regarding collisionGame.</summary>
+  </entry>
+  <entry>
+    <title>collisionGame</title>
+    <link href="http://www.shasharala.net/games/collisionGame/start.html"/>
+    <updated>2014-12-15T2:00:33Z</updated>
+    <summary>A technical demonstration for collision.</summary>
+  </entry>
+  <entry>
     <title>Plotting for The Future</title>
-    <link href="http://www.shasharala.tk/blog/0000.html"/>
+    <link href="http://www.shasharala.net/blog/0001.html"/>
     <updated>2014-12-10T11:10:33Z</updated>
     <summary>I go into detail about what my plans are for the immediate Future!</summary>
   </entry>
   <entry>
     <title>What Am I?</title>
-    <link href="http://www.shasharala.tk/blog/groundZero.html"/>
+    <link href="http://www.shasharala.net/blog/0000.html"/>
     <updated>2014-12-05T10:23:33Z</updated>
     <summary>A tough question I find myself muttering under my breath repeatedly..</summary>
   </entry>
