@@ -10,20 +10,32 @@
     EXAMPLE
     <item>
       <title>xxx</title>
-      <link>http://www.shasharala.tk/blog/XXXX.html</link>
+      <link>http://www.shasharala.net/blog/XXXX.html</link>
       <pubDate>YEAR MONTH DAY TIME GMT</pubDate>
       <description>xxx</description>
     </item>
     -->
     <item>
+      <title>collisionGame: The Blog Post</title>
+      <link>http://www.shasharala.net/blog/0002.html</link>
+      <pubDate>2014 12 15 2:00 GMT-8</pubDate>
+      <description>Details regarding collisionGame.</description>
+    </item>
+    <item>
+      <title>collisionGame</title>
+      <link>http://www.shasharala.net/games/collisionGame/start.html</link>
+      <pubDate>2014 12 15 2:00 GMT-8</pubDate>
+      <description>A technical demonstration for collision.</description>
+    </item>
+    <item>
       <title>Plotting for The Future</title>
-      <link>http://www.shasharala.tk/blog/0000.html</link>
+      <link>http://www.shasharala.net/blog/0001.html</link>
       <pubDate>2014 12 10 11:10 GMT-8</pubDate>
       <description>I go into detail about what my plans are for the immediate Future!</description>
     </item>
     <item>
       <title>What Am I?</title>
-      <link>http://www.shasharala.tk/blog/groundZero.html</link>
+      <link>http://www.shasharala.net/blog/0000.html</link>
       <pubDate>2014 12 05 10:14 GMT-8</pubDate>
       <description>A tough question I find myself muttering under my breath repeatedly...</description>
     </item>
@@ -31,7 +43,7 @@
       <title>Ludum Dare 30: Mirrors</title>
       <link>http://www.shasharala.net/games/ld30/mirrors.html</link>
       <pubDate>2014 08 31 13:38 GMT-8</pubDate>
-      <description>xxx</description>
+      <description>Second attempt at making a Ludum Dare entry. Lacks polish and is weird.</description>
     </item>
     <item>
       <title>The Monty Hall Problem</title>

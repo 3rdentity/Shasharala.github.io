@@ -42,6 +42,6 @@ Ubuntu Mono -
 www.shasharala.net/res/fonts/UFL.txt
 
 ==============================================================================
-12/03/2014 - This license may change at any time without notice. Please
+14/12/03 - This license may change at any time without notice. Please
 check back regularly.
 ==============================================================================
