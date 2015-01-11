@@ -1,5 +1,10 @@
 /*############UNIVERSAL############*/
 
+[draggable="false"] {
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+}
+
 body {
   background-color: #555a6c;
   font-family: sans-serif;
@@ -10,11 +15,11 @@ body {
 
 .left {
   position: absolute;
-  left: 0px;
   top: 10px;
+  left: 0px;
   margin-left: 2%;
+  margin-bottom: 10px;
   padding: 0px 10px 0px 10px;
-  display: inline-block;
   width: 44%;
   background-color: #413636;
   border-radius: 4px;
@@ -23,11 +28,11 @@ body {
 
 .right {
   position: absolute;
-  right: 0px;
   top: 10px;
+  right: 0px;
   margin-right: 2%;
+  margin-bottom: 10px;
   padding: 0px 10px 0px 10px;
-  display: inline-block;
   width: 44%;
   background-color: #a55656;
   border-radius: 4px;
