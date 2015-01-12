@@ -13,6 +13,28 @@ body {
   text-align: justify;
 }
 
+::-moz-selection {
+  background-color: #DEDEDE;
+  color: #010101;
+}
+
+::selection {
+  background-color: #DEDEDE;
+  color: #010101;
+}
+
+a {
+  color: #ad4242;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #bf6363;
+  text-decoration: none;
+  border-top: #0f0d0d dashed 1px;
+  border-bottom: #0f0d0d dashed 1px;
+}
+
 .left {
   position: absolute;
   top: 10px;
@@ -59,4 +81,10 @@ p {
   margin-left: 5%;
   padding: 10px;
   border-radius: 4px;
+}
+
+p.edited {
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
 }
