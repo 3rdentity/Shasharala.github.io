@@ -4,10 +4,3 @@ chchchanges.png
 larryJr.gif
 pfStrangeRelSearches.png
 safeSetUIDSuggestions.png
-df1.png
-df2.png
-df3.png
-df4.png
-df5.png
-df6.png
-df7.png
