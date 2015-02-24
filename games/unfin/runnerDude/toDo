@@ -1,0 +1,8 @@
+- fix collision
+- viewport should be seperate from level/map allowing a scrolling/moving viewport
+- make sure that calls to "game" are actually calling "Engine.game" and not "game"
+- this game needs a name
+- sprites for the game
+- refactor anon func's to be: thisIsWhereAnonFuncIsLocated_nameOfFunc
+- browser sniffing/fallback if browser is incompatible
+- cleanup animation code a tad and consider sperating it into its own lib
