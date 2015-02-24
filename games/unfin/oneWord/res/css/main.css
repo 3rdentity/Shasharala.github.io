@@ -1,0 +1,104 @@
+[hidden] {
+  display: none;
+}
+
+[draggable="false"] {
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+}
+
+body {
+    background-color: #3f3743;
+    font-family: sans-serif;
+    font-size: 44px;
+    color: #914a4a;
+    text-align: center;
+}
+
+::-moz-selection {
+  background-color: #ed0869;
+  color: #010101;
+}
+
+::selection {
+  background-color: #ed0869;
+  color: #DEDEDE;
+}
+
+.unselectable {
+  /*set selection color to transparent*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#prompt {
+    margin: 100px auto 0px auto;
+    padding: 10px;
+    width: 800px;
+    border-radius: 10px;
+    background-image: url("../img/solarBlack.png");
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#dataBox {
+    margin-top: 100px;
+    height: 100px;
+}
+
+#theFieldset {
+    margin: auto;
+    width: 800px;
+    border-style: dashed;
+    border-width: 3px;
+}
+
+.fieldset_off {
+    border-color: transparent;
+    box-shadow: 0px 0px 0px #a32121;
+}
+
+.fieldset_incorr {
+    border-color: #a32121;
+    box-shadow: 0px 0px 10px #a32121;
+}
+
+.fieldset_corr {
+    border-color: #21a371;
+    box-shadow: 0px 0px 10px #21a371;
+}
+
+#theLegend {
+    text-align: left;
+    font-size: 21px;
+}
+
+.legend_off {
+    color: #3f3743;
+    text-shadow: 0px 0px 0px #3f3743;
+}
+
+.legend_incorr {
+    color: #a32121;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+.legend_corr {
+    color: #21a371;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#dataEntry {
+    width: 400px;
+    height: 80px;
+    border-radius: 10px;
+    border-width: 0px;
+    background-color: rgba(124, 16, 16, 0.33);
+    text-align: center;
+    font-size: 33px;
+    color: #47806f;
+    text-shadow: 1px 1px 1px #000000;
+}

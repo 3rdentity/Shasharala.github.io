@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Ryan Combes">
+        <meta name="description" content="A game about password creation debacles">
+        <link rel="stylesheet" type="text/css" href="res/css/main.css">
+        <title>One Word</title>
+    </head>
+    <body class="unselectable">
+        <div id="prompt">
+            Take the letters in new door to make one word
+        </div>
+        <form id="dataBox" onsubmit="test()">
+            <fieldset id="theFieldset" class="fieldset_off">
+                <legend id="theLegend" class="legend_off">INCORRECT</legend>
+                <input id="dataEntry" type="text" name="pwd" placeholder="enter text here" autocomplete="off" autofocus required>
+            </fieldset>
+        </form>
+        <script src="res/js/main.js"></script>
+    </body>
+</html>
