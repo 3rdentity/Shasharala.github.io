@@ -6,3 +6,4 @@
 - site's layout breaks just slightly when windows get particularly skinny
 - 404.gif is missing noticeable frames and needs to be fixed. curses!
 - turn all left alignment to justify
+- ascii header does not appear correctly on multiple versions of firefox. is it something to do with "&nbsp;" or does it have something to do with "text-align: center"?
