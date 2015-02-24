@@ -1,0 +1,122 @@
+/*############UNIVERSAL############*/
+
+[draggable="false"] {
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+}
+
+body {
+  background-color: #CCCCCC;
+  font-family: sans-serif;
+  color: #000000;
+  font-size: 16px;
+  text-align: left;
+}
+
+::-moz-selection {
+  background-color: #DEDEDE;
+  color: #010101;
+}
+
+::selection {
+  background-color: #DEDEDE;
+  color: #010101;
+}
+
+a {
+  color: #EEEEEE;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #EEEEEE;
+  text-decoration: none;
+  border-bottom: #EEEEEE dashed 1px;
+}
+
+.container {
+  margin: 4px auto 4px auto;
+  width: 808px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0px 0px 12px #585858;
+}
+
+.cap {
+  padding: 4px;
+  background-color: #993366;
+  color: #EEEEEE;
+  font-size: 21px;
+}
+
+.capLeft {
+  float: left;
+  padding-left: 10px;
+  font-size: 66px;
+  font-weight: bold;
+}
+
+.capRight {
+  padding: 24px 0px 10px 30px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 16px;
+}
+
+.capRight span {
+  font-weight: bold;
+}
+
+.colLeft {
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 3%;
+  padding: 0px 10px 0px 10px;
+  width: 44%;
+  border-radius: 4px;
+  line-height: 160%;
+}
+
+.colRight {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px 10px 0px 10px;
+  overflow: hidden;
+  width: 44%;
+  border-radius: 4px;
+  line-height: 160%;
+}
+
+span.date {
+  font-style: italic;
+}
+
+span.header {
+  color: #993366;
+  font-size: 21px;
+}
+
+span.projStat {
+  text-decoration:  underline;
+}
+
+span.projName {
+  font-style: italic;
+}
+
+p.formats {
+  float: left;
+  margin-top: 10px;
+  margin-left: 5%;
+}
+
+p.edited {
+  margin-top: 10px;
+  margin-right: 5%;
+  margin-bottom: 21px;
+  overflow: hidden;
+  text-align: right;
+  font-size: 18px;
+  font-style: italic;
+}
