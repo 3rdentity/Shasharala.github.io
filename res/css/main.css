@@ -11,8 +11,6 @@ CSS FOR MOST OF SHASHARALA.NET
   display: none;
 }
 
-/*############ATTRIBUTES############*/
-
 [draggable="false"] {
   -khtml-user-drag: none;
   -webkit-user-drag: none;
