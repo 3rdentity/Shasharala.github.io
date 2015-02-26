@@ -13,4 +13,4 @@ Setting the game so that puzzles are randomly generated may be beneficial.
 - a correct interface
 - when incorrect set value in dataEntry to empty and then remove incorrect as typing starts
     OR when incorrect leave value in dataEntry alone and remove incorrect when backspace or typing starts
-- change wording of legend to tell player what rules they have broken, if any (one word puzzle has no rules)
+- hilight rules not being followed when incorrect
