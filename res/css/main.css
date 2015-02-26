@@ -126,6 +126,7 @@ hr {
   color: #f0e1c4;
   font-size: 16px;
   text-shadow: 1px -1px 8px #010101;
+  text-shadow: 1px 1px 1px #f0e1c4;
 }
 
 .intro {
