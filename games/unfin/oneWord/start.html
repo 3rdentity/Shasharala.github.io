@@ -8,14 +8,25 @@
         <title>One Word</title>
     </head>
     <body class="unselectable">
-        <div id="prompt">
-            Take the letters in new door to make one word
+        <div id="titleBar">
+            Welcome to SuperSecureSite<sup>TM</sup>
         </div>
         <form id="dataBox" onsubmit="test()">
-            <fieldset id="theFieldset" class="fieldset_off">
-                <legend id="theLegend" class="legend_off">INCORRECT</legend>
-                <input id="dataEntry" type="text" name="pwd" placeholder="enter text here" autocomplete="off" autofocus required>
-            </fieldset>
+            <p id="prompt">sign in to continue</p>
+            <br>
+            <input id="username" class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus required>
+            <br>
+            <br>
+            <input id="password" class="dataEntry" type="text" placeholder="password" autocomplete="off" required>
+            <br>
+            <br>
+            <img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false">
+            <span id="badLogin">
+                incorrect username
+                <br>
+                or password
+            </span>
+            <p id="forgotPass" onclick="startStupid()"><u>forgot password?</u></p>
         </form>
         <script src="res/js/main.js"></script>
     </body>

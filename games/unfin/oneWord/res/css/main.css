@@ -8,11 +8,22 @@
 }
 
 body {
+    margin: 0px;
     background-color: #3f3743;
     font-family: sans-serif;
     font-size: 44px;
     color: #914a4a;
     text-align: center;
+}
+
+sup {
+    font-size: 21px;
+}
+
+hr {
+    border-style: solid;
+    border-width: 1px;
+    color: #3e3e3e;
 }
 
 ::-moz-selection {
@@ -35,18 +46,45 @@ body {
   user-select: none;
 }
 
-#prompt {
-    margin: 100px auto 0px auto;
+#titleBar {
     padding: 10px;
-    width: 800px;
-    border-radius: 10px;
     background-image: url("../img/solarBlack.png");
+    border-style: outset;
+    border-width: 2px;
+    border-color: #3e3e3e;
     text-shadow: 1px 1px 1px #000000;
 }
 
-#dataBox {
+#prompt {
     margin-top: 100px;
-    height: 100px;
+    color: #47806f;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#req {
+    visibility: hidden;
+    margin: 30px 100px 0px 100px;
+    padding: 10px;
+    height: 242px;
+    border-radius: 10px;
+    border-style: dotted;
+    border-width: 3px;
+    border-color: #3e3e3e;
+    background-color: #b7ba6f;
+    font-size: 21px;
+    color: #404040;
+}
+
+#dataBox {
+    margin:  auto auto auto;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: rgba(124, 16, 16, 0.33);
+    font-size: 21px;
+    color: #47806f;
+    box-shadow: 1px 1px 13px #000000;
+    text-shadow: 1px 1px 1px #000000;
 }
 
 #theFieldset {
@@ -76,6 +114,29 @@ body {
     font-size: 21px;
 }
 
+#badLoginFace {
+    visibility: hidden;
+}
+
+#badLogin {
+    display: inline-block;
+    visibility: hidden;
+    vertical-align: super;
+    font-size: 16px;
+    color: #566f68;
+}
+
+#forgotPass {
+    margin-top: 171px;
+    padding: 30px;
+    text-align: right;
+}
+
+#forgotPass:hover {
+    color: #DEDEDE;
+    cursor: pointer;
+}
+
 .legend_off {
     color: #3f3743;
     text-shadow: 0px 0px 0px #3f3743;
@@ -91,14 +152,16 @@ body {
     text-shadow: 1px 1px 1px #000000;
 }
 
-#dataEntry {
-    width: 400px;
-    height: 80px;
+.dataEntry {
+    width: 300px;
+    height: 40px;
     border-radius: 10px;
-    border-width: 0px;
+    border-style: inset;
+    border-width: 2px;
+    border-color: #3e3e3e;
     background-color: rgba(124, 16, 16, 0.33);
     text-align: center;
-    font-size: 33px;
+    font-size: 24px;
     color: #47806f;
     text-shadow: 1px 1px 1px #000000;
 }
