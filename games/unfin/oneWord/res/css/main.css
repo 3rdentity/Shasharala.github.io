@@ -144,11 +144,11 @@ hr {
     bottom: 0px;
     width: 720px;
     height: 369px; /*9px & 369px*/
-    border-radius: 10px;
+    border-top-left-radius: 10px;
     border-style: solid;
     border-width: 1px;
     border-color: #000000;
-    box-shadow: 1px 1px 13px #000000;
+
 }
 
 #emailCont {
@@ -159,7 +159,7 @@ hr {
     padding: 10px 10px 0px 10px;
     width: 700px;
     height: 400px; /*40px & 400px*/
-    border-radius: 10px;
+    border-top-right-radius: 10px;
     border-right-style: solid;
     border-right-width: 1px;
     border-right-color: #000000;
@@ -172,6 +172,10 @@ hr {
 
 table {
     box-sizing: border-box;
+}
+
+#eCount {
+    padding-right: 30px;
 }
 
 #emailSys {
