@@ -9,7 +9,6 @@
         <title>One Word</title>
     </head>
     <body class="unselectable">
-        <!--
         <div id="mainInterface">
             <div id="titleBar">
                 Welcome to SuperSecureSite<sup>TM</sup>
@@ -32,13 +31,11 @@
                 <p id="forgotPass" onclick="startStupid()"><u>forgot password?</u></p>
             </form>
         </div>
-        -->
-
 
 
         <div id="emailContOutline" hidden>
             <div id="emailCont">
-                <img id="eCount" src="res/img/eCount.png"><span id="emailSys">Gozilla Lightningbird<sup>TM</sup></span>
+                <div id="emailSys" onclick="emailSlideUp()"><img id="eCount" src="res/img/eCount.png">Gozilla Lightningbird<sup>TM</sup></div>
                 <hr>
                 <table id="emailsTable">
                     <tr class="emailsHeader">
@@ -67,7 +64,7 @@
         </div>
         <script src="res/js/main.js"></script>
         <script>
-            startGame();
+            startEmail();
         </script>
     </body>
 </html>

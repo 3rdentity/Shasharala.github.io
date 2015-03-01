@@ -14,6 +14,7 @@ body {
     font-size: 44px;
     color: #914a4a;
     text-align: center;
+    cursor: default;
 }
 
 sup {
@@ -154,7 +155,7 @@ a:hover {
     right: 0px;
     bottom: 0px;
     width: 720px;
-    height: 409px; /*0px & 449px*/
+    height: 0px; /*0px & 409px*/
     border-top-left-radius: 10px;
     border-style: solid;
     border-width: 1px;
@@ -169,7 +170,7 @@ a:hover {
     bottom: 0px;
     padding: 10px 10px 0px 10px;
     width: 700px;
-    height: 440px; /*30px & 480px*/
+    height: 0px; /*30px & 440px*/
     border-top-right-radius: 10px;
     border-right-style: solid;
     border-right-width: 1px;
@@ -192,7 +193,7 @@ a:hover {
 
 .emailContentHeader {
     padding-left: 30px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 #backBtn {
@@ -211,18 +212,16 @@ a:hover {
     text-shadow: 1px 1px 1px #000000;
 }
 
+#emailSys:hover {
+    cursor: pointer;
+}
+
 #emailSys sup {
     font-size: 10px;
 }
 
 #emailsTable {
-    text-align: cente#passResetLink {
-    text-decoration: underline;
-}
-
-#passResetLink:hover {
-
-}r;
+    text-align: center;
 }
 
 .emailsHeader {
@@ -284,4 +283,12 @@ a:hover {
     font-size: 24px;
     color: #47806f;
     text-shadow: 1px 1px 1px #000000;
+}
+
+#resetLink {
+    color: #47806f;
+}
+
+#resetLink:hover {
+    color: #45a085;
 }
