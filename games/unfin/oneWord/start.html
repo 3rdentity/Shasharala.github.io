@@ -4,63 +4,70 @@
         <meta charset="utf-8">
         <meta name="author" content="Ryan Combes">
         <meta name="description" content="A game about password creation debacles">
+        <link rel="stylesheet" type="text/css" href="res/css/normalize/normalize.min.css">
         <link rel="stylesheet" type="text/css" href="res/css/main.css">
         <title>One Word</title>
     </head>
     <body class="unselectable">
-        <div id="titleBar">
-            Welcome to SuperSecureSite<sup>TM</sup>
-        </div>
-        <form id="dataBox" onsubmit="test()">
-            <p id="prompt">sign in to continue</p>
-            <br>
-            <input id="username" class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus required>
-            <br>
-            <br>
-            <input id="password" class="dataEntry" type="text" placeholder="password" autocomplete="off" required>
-            <br>
-            <br>
-            <img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false">
-            <span id="badLogin">
-                incorrect username
+        <!--
+        <div id="mainInterface">
+            <div id="titleBar">
+                Welcome to SuperSecureSite<sup>TM</sup>
+            </div>
+            <form id="dataBox" onsubmit="test()">
+                <p id="prompt">sign in to continue</p>
                 <br>
-                or password
-            </span>
-            <p id="forgotPass" onclick="startStupid()"><u>forgot password?</u></p>
-        </form>
-        <div id="emailContOutline">
+                <input id="username" class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus required>
+                <br>
+                <br>
+                <input id="password" class="dataEntry" type="text" placeholder="password" autocomplete="off" required>
+                <br>
+                <br>
+                <img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false">
+                <span id="badLogin">
+                    incorrect username
+                    <br>
+                    or password
+                </span>
+                <p id="forgotPass" onclick="startStupid()"><u>forgot password?</u></p>
+            </form>
+        </div>
+        -->
+
+
+
+        <div id="emailContOutline" hidden>
             <div id="emailCont">
                 <img id="eCount" src="res/img/eCount.png"><span id="emailSys">Gozilla Lightningbird<sup>TM</sup></span>
                 <hr>
-                <table>
-                    <tr id="emailsHeader">
+                <table id="emailsTable">
+                    <tr class="emailsHeader">
                         <th>Subject</th>
                         <th>From</th>
                         <th>Date</th>
                     </tr>
-                    <tr class="emails">
-                        <td>lorem ipsum dolor si amet</td>
-                        <td>Jeremy</td>
-                        <td>15/03/15</td>
+                    <tr id="emailNew" class="emails" onclick="emailRead(0)">
+                        <td>IMPORTANT: SSS Password Reset</td>
+                        <td>SSS</td>
                     </tr>
-                    <tr class="emails">
-                        <td>Taxes are due</td>
-                        <td>Robbie</td>
-                        <td>15/02/27</td>
+                    <tr class="emails" onclick="emailRead(1)">
+                        <td>What's Up?</td>
+                        <td>Robbin</td>
                     </tr>
-                    <tr class="emails">
-                        <td>asawdawdawd</td>
-                        <td>qwerty</td>
-                        <td>never</td>
+                    <tr class="emails" onclick="emailRead(2)">
+                        <td>Your Assistance is Needed</td>
+                        <td>Dr. William Hamford</td>
                     </tr>
-                    <tr class="emails">
-                        <td>asawdawdawd</td>
-                        <td>qwerty</td>
-                        <td>never</td>
+                    <tr class="emails" onclick="emailRead(3)">
+                        <td>Ladykiller!!!</td>
+                        <td>Matthew</td>
                     </tr>
                 </table>
             </div>
         </div>
         <script src="res/js/main.js"></script>
+        <script>
+            startGame();
+        </script>
     </body>
 </html>
