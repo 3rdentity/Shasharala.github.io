@@ -13,15 +13,15 @@
             <div id="titleBar">
                 Welcome to SuperSecureSite<sup>TM</sup>
             </div>
-            <form id="dataBox" onsubmit="test()">
+            <form id="dataBox" onsubmit="testLogin(event)">
                 <p id="prompt">sign in to continue</p>
-                <br>
-                <input id="username" class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus required>
-                <br>
-                <br>
-                <input id="password" class="dataEntry" type="text" placeholder="password" autocomplete="off" required>
+                <input class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus>
                 <br>
                 <br>
+                <input class="dataEntry" type="text" placeholder="password" autocomplete="off">
+                <br>
+                <br>
+                <input type="submit" value="submit" hidden>
                 <img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false">
                 <span id="badLogin">
                     incorrect username
@@ -49,7 +49,6 @@
         <script src="res/js/main.js"></script>
         <script>
             startGame();
-            startEmail();
         </script>
     </body>
 </html>

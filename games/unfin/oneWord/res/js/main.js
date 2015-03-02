@@ -16,11 +16,12 @@ var theDay = theDate.getDate();
 *TEMPLATES
 *#########
 */
-var temp_login = '<div id="titleBar">Welcome to SuperSecureSite<sup>TM</sup></div><form id="dataBox" onsubmit="test()"><p id="prompt">sign in to continue</p><br><input id="username" class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus required><br><br><input id="password" class="dataEntry" type="text" placeholder="password" autocomplete="off" required><br><br><img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false"><span id="badLogin">incorrect username<br>or password</span><p id="forgotPass" onclick="startStupid()"><u>forgot password?</u></p></form>';
-var temp_stupid = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="test()"><p id="prompt">You have forgotten your password.<br>How unfortunate.<br>Please prove that you are a human by answering the following question.</p><div id="req"></div><br><br><input class="dataEntry" id="stupidAns" type="text" placeholder="i do not know" autocomplete="off" autofocus required></form>';
-var temp_pwd = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="test()"><p id="prompt">Further authentication is required.<br>Create a password following the rules below.</p><div id="req"></div><br><br><br><input id="pwd" class="dataEntry" type="text" placeholder="w0rd5" autocomplete="off" required></form>';
+var temp_login = '<div id="titleBar">Welcome to SuperSecureSite<sup>TM</sup></div><form id="dataBox" onsubmit="testLogin(event)"><p id="prompt">sign in to continue</p><input class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus><br><br><input class="dataEntry" type="text" placeholder="password" autocomplete="off"><br><br><input type="submit" value="submit" hidden><img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false"><span id="badLogin">incorrect username<br>or password</span><p id="forgotPass" onclick="startStupid()"><u>forgot password?</u></p></form>';
+var temp_stupid = '';
+var temp_pwd = '';
 var temp_thanks = '<div id="titleBar">SSS<sup>TM</sup> Password Request</div><form id="dataBox"><p id="prompt">Thank you!<br><br>An e-mail has been sent to the e-mail address last associated with your current IP Address.<br><br>If you have any questions or do not receive an e-mail you must visit your nearest SSS establishment for further assistance.</p></form>';
 var temp_expired = '<div id="mainInterface"><div id="titleBar">SSS<sup>TM</sup> Password Reset Expired</div><form id="dataBox" onsubmit="test()"><p id="prompt">It appears that this session has expired.<br><br>We apologize for any inconvenience this has caused you.<br><br>Please <a id="resetLink" onclick="resetGame()">start a new session</a>.<br><br>If you need assistance or have any questions please visit the closest SSS establishment to you.</p></form></div>';
+var temp_emailsTable = '<tr class="emailsHeader"><th>Subject</th><th>From</th><th>Date</th></tr>';
 var temp_tempEmails = '';
 
 /*
@@ -34,7 +35,6 @@ var emails = [
     ["Your Assistance is Needed", "Dr. William Hamford", -3, "Good Day,<br><br>My name is Dr William Hamford, a staff in the Private Clients Section of a well-known bank, here in London, England. One of our accounts, with holding balance of £15,000,000 (Fifteen Million Pounds Sterling) has been dormant and last operated three years ago. From my investigations and confirmation, the owner of the said account, a foreigner by the name of Joe Shmoedja died in "+ month2Month(theMonth) + ", " + (theYear - 3) +" in a plane crash in Bristol.<br><br>Since then, nobody has done anything as regards the claiming of this money, as he has no family member that has any knowledge as to the existence of either the account or the funds; and also Information from the National Immigration also states that he was single on entry into the UK.<br>I have decided to find a reliable foreign partner to deal with. I therefore propose to do business with you, standing in as the next of kin of these funds from the deceased and funds released to you after necessary processes have been followed.<br><br>This transaction is totally free of risk and troubles as the fund is legitimate and does not originate from drug, money laundry, terrorism or any other illegal act.<br>On your interest, let me hear from you URGENTLY.<br><br>Best Regards,<br>Dr William Hamford, Financial Analysis and Remittance Manager"],
     ["Ladykiller!!!", "Matthew", -1, "Hey!<br><br>Have you seen <a href='https://www.youtube.com/watch?v=fEW2pdZ0qEE' target='_blank'>this</a> game? It looks amazing!<br>From what I have read about it it seems like it is not only particularly risqu&eacute;, hehe, but it will be very different from traditional visual novels! You know how in most visual novels wooing a specific chracter is done by doing things specifically for the character? Filling them up with charity like a vending machine till their adoration for you falls out? Well, this game ain't gonna take any of that shit from you. Your manipulation will have consequences.<br><br>Sounds exciting, huh?"]
 ];
-
 var usedEmails = "";
 
 /*
@@ -43,11 +43,10 @@ var usedEmails = "";
 *################
 */
 var stupidQues = [
-    ["What is the book number in which Albus Dumbledore of the Harry Potter series dies?", "6", "six"],
-    ["", ""]
+    ["What is the book number in which Albus Dumbledore of the Harry Potter series dies?", "six"],
+    ["What is the sum of 'two plus two'?", "four"]
 ];
-
-var usedStupidQues = "";
+var stupidQuesSol = "";
 
 /*
 *################
@@ -55,11 +54,8 @@ var usedStupidQues = "";
 *################
 */
 var passPuzzles = [
-    "",
-    ""
+    ["Take the letters from new door to make one word", "one word"]
 ];
-
-var usedPassPuzz = "";
 
 /*
 *####
@@ -363,12 +359,12 @@ var num2Word = {
 
 function startGame() {
     composeEmails(3);
-    //set stupid question
-    //set password test
+    composeStupidQues();
+    composePWD();
 }
 
 function composeEmails(num) {
-    document.getElementById("emailsTable").innerHTML += '<tr id="emailNew" class="emails" onclick="emailRead(0)"><td>IMPORTANT: SSS Password Reset</td><td>SSS</td></tr>';
+    document.getElementById("emailsTable").innerHTML += '<tr id="emailNew" class="emails" onclick="emailRead(0)"><td>IMPORTANT: SSS Password Reset</td><td>SSS</td><td>' + theMonth + "/" + theDay + "/" + theShortYear + '</td></tr>';
     for (i = 0; i < num; i++) { //compose emails in relation to number requested
         var chosenEmailNum = Math.randInt(1, (emails.length - 1));
         var chosenEmailStr = num2Word.conv(chosenEmailNum);
@@ -379,6 +375,16 @@ function composeEmails(num) {
         usedEmails += chosenEmailStr + ", ";
         document.getElementById("emailsTable").innerHTML += '<tr class="emails" onclick="emailRead(' + (chosenEmailNum) + ')"><td>' + (emails[chosenEmailNum][0]) + '</td><td>' + (emails[chosenEmailNum][1]) + '</td><td>' + (((theDay + (emails[chosenEmailNum][2])) >= 1) ? (theMonth + "/" + (theDay + (emails[chosenEmailNum][2])) + "/" + theShortYear) : ((theMonth - 1) + "/" + (theDay - (emails[chosenEmailNum][2])) + "/" + theShortYear)) + '</td></tr>';
     }
+}
+
+function composeStupidQues() {
+    var currStupidQues = Math.randInt(0, (stupidQues.length - 1));
+    temp_stupid = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="testStupid(event)"><p id="prompt">You have forgotten your password.<br>How unfortunate.<br>Please prove that you are a human by answering the following question.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + stupidQues[currStupidQues][0] + '</div></fieldset><input class="dataEntry" id="stupidAns" type="text" placeholder="a lowercase word" autocomplete="off" autofocus required></form>';
+    stupidQuesSol = stupidQues[currStupidQues][1];
+}
+
+function composePWD() {
+    temp_pwd = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="test()"><p id="prompt">Further authentication is required.<br>Create a password following the rules below.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + passPuzzles[Math.randInt(0, (passPuzzles.length - 1))][0] + '</div></fieldset><br><input id="pwd" class="dataEntry" type="text" placeholder="w0rd5" autocomplete="off" required></form>';
 }
 
 //assumes months are not being counted with zero-based numbering
@@ -411,22 +417,41 @@ function month2Month(val) {
     }
 }
 
-// needs to interact with FSM to respond with correct funcs
-// IE: first state is the login state. during login user cannot input
-//any data and must click "forgot password" to continue
-function test(val) {
-    var data = document.getElementById("dataEntry").value;
-    if(data === "one word") {
-        document.getElementById("theFieldset").className = "fieldset_corr";
-        document.getElementById("theLegend").className = "legend_corr";
-        document.getElementById("theLegend").innerHTML = "CORRECT";
+/*
+var data = document.getElementById("dataEntry").value;
+if(data === "one word") {
+    document.getElementById("theFieldset").className = "fieldset_corr";
+    document.getElementById("theLegend").className = "legend_corr";
+    document.getElementById("theLegend").innerHTML = "CORRECT";
+}
+else {
+    document.getElementById("theFieldset").className = "fieldset_incorr";
+    document.getElementById("theLegend").className = "legend_incorr";
+    document.getElementById("theLegend").innerHTML = "INCORRECT";
+}
+event.preventDefault();
+*/
+function testLogin(evt) {
+    evt.preventDefault();
+    document.getElementById("badLoginFace").style.visibility = "visible";
+    document.getElementById("badLogin").style.visibility = "visible";
+}
+
+function testStupid(evt) {
+    evt.preventDefault();
+    var data = document.getElementById("stupidAns").value;
+    if (data === stupidQuesSol) {
+        startPWD();
     }
     else {
-        document.getElementById("theFieldset").className = "fieldset_incorr";
-        document.getElementById("theLegend").className = "legend_incorr";
-        document.getElementById("theLegend").innerHTML = "INCORRECT";
+        document.getElementById("theFieldset").style.boxShadow = "0px 0px 10px #a32121";
+        document.getElementById("theFieldset").style.borderColor = "#a32121";
+        document.getElementById("theLegend").style.visibility = "visible";
     }
-    event.preventDefault();
+}
+
+function testPWD(val) {
+
 }
 
 function startStupid() {
@@ -471,7 +496,6 @@ function emailSlideUp() {
     }
 }
 
-//<div class='emailContent'><img id='backBtn' onclick='emailBack()' src='res/img/back.png'>&nbsp;<span class='emailContentHeader'><b>Subject:</b> SUBJECT_HERE <b>From:</b>  <b>Date:</b> " CALCS_HERE "</span><hr>CONTENT_HERE</div>
 function emailRead(num) {
     temp_tempEmails = document.getElementById("emailCont").innerHTML;
     var temp_email = '<img id="eCount" src="res/img/eCount.png"><span id="emailSys">Gozilla Lightningbird<sup>TM</sup></span><hr><div class="emailContent"><img id="backBtn" onclick="emailBack()" src="res/img/back.png">&nbsp;<span class="emailContentHeader"><b>Subject:</b>&nbsp;' + (emails[num][0]) + '&nbsp;<b>From:</b>&nbsp;' + (emails[num][1]) + '&nbsp;<b>Date:</b>&nbsp;' + (((theDay + (emails[num][2])) >= 1) ? (theMonth + "/" + (theDay + (emails[num][2])) + "/" + theShortYear) : ((theMonth + (emails[num][2])) + "/" + (theDay - (emails[num][2])) + "/" + theShortYear)) + '&nbsp;</span><hr>' + (emails[num][3]) + '</div>';
@@ -511,12 +535,21 @@ function startExpired() {
     document.getElementById("prompt").style.padding = "100px 0px 0px 0px";
 }
 
+function resetEmail() {
+    emailBack();
+    document.getElementById("emailContOutline").style.height = "0px";
+    document.getElementById("emailCont").style.height = "0px";
+    document.getElementById("emailsTable").innerHTML = temp_emailsTable;
+}
+
 function resetGame() {
     gozillaClick = false;
     newMailRead = false;
-    usedStupidQues = "";
-    usedPassPuzz = "";
-    usedEmails = [];
-    //startGame();
-    // should include a reset mainInterface and a reset emailContent ie: document.getElementById("mainInterface").innerHTML = temp_login; & etc.
+    usedEmails = "";
+    stupidQuesSol = "";
+    temp_stupid = '';
+    temp_pwd = '';
+    document.getElementById("mainInterface").innerHTML = temp_login;
+    resetEmail();
+    startGame();
 }

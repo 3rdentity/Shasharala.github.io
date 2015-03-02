@@ -74,8 +74,7 @@ a:hover {
 }
 
 #req {
-    visibility: hidden;
-    margin: 30px 100px 0px 100px;
+    margin: 0px;
     padding: 10px;
     height: 242px;
     border-radius: 10px;
@@ -100,30 +99,19 @@ a:hover {
 }
 
 #theFieldset {
-    margin: auto;
-    width: 800px;
+    margin: 0px;
+    width: auto;
     border-style: dashed;
     border-width: 3px;
-}
-
-.fieldset_off {
-    border-color: transparent;
-    box-shadow: 0px 0px 0px #a32121;
-}
-
-.fieldset_incorr {
-    border-color: #a32121;
-    box-shadow: 0px 0px 10px #a32121;
-}
-
-.fieldset_corr {
-    border-color: #21a371;
-    box-shadow: 0px 0px 10px #21a371;
+    border-color: transparent; /*#a32121*/
+    box-shadow: 0px 0px 0px #a32121; /*0px 0px 10px #a32121*/
 }
 
 #theLegend {
+    visibility: hidden;
     text-align: left;
     font-size: 21px;
+    color: #a32121;
 }
 
 #badLoginFace {
@@ -256,22 +244,8 @@ a:hover {
     color: #842121;
 }
 
-.legend_off {
-    color: #3f3743;
-    text-shadow: 0px 0px 0px #3f3743;
-}
-
-.legend_incorr {
-    color: #a32121;
-    text-shadow: 1px 1px 1px #000000;
-}
-
-.legend_corr {
-    color: #21a371;
-    text-shadow: 1px 1px 1px #000000;
-}
-
 .dataEntry {
+    margin-top: 10px;
     width: 300px;
     height: 40px;
     border-radius: 10px;
