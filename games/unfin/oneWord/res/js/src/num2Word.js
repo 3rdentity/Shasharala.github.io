@@ -4,6 +4,7 @@
 *########
 */
 var num2Word = {
+    reConv: /[\, ]/g,
     thousandsPlus: [
         "",
         "thousand",
@@ -47,7 +48,7 @@ var num2Word = {
     ],
     conv: function num2Word(num) {
         num = num.toString();
-        num = num.replace(/[\, ]/g,""); //get rid of spaces or commas globally
+        num = num.replace(this.reConv,""); //get rid of spaces or commas globally
         if (num != parseFloat(num)) return "NAN"; //make sure num is actually a number
         var x = num.indexOf("."); //holds length of num or length/indexOf a decimal point
         if (x == -1) {

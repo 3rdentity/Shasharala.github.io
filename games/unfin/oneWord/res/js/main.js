@@ -10,17 +10,23 @@ var theYear = "" + theDate.getFullYear();
 var theShortYear = theYear.substring(2);
 var theMonth = theDate.getMonth() + 1;
 var theDay = theDate.getDate();
+var reSym = /[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/\\]/g;
+var reNum = /\d/g
+var reUp = /[A-Z]/g;
+var reLow = /[a-z]/g;
+var reVow = /[aeiou]/gi;
+var reCon = /[bcdfghjklmnpqrstvwxz]/gi;
 
 /*
 *#########
 *TEMPLATES
 *#########
 */
-var temp_login = '<div id="titleBar">Welcome to SuperSecureSite<sup>TM</sup></div><form id="dataBox" onsubmit="testLogin(event)"><p id="prompt">sign in to continue</p><input class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus><br><br><input class="dataEntry" type="text" placeholder="password" autocomplete="off"><br><br><input type="submit" value="submit" hidden><img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false"><span id="badLogin">incorrect username<br>or password</span><p id="forgotPass" onclick="startStupid()"><u>forgot password?</u></p></form>';
+var temp_login = '<div id="titleBar">Welcome to SuperSecureSite<sup>TM</sup></div><form id="dataBox" onsubmit="testLogin(event);"><p id="prompt">sign in to continue</p><input class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus><br><br><input class="dataEntry" type="text" placeholder="password" autocomplete="off"><br><br><input type="submit" value="submit" hidden><img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false"><span id="badLogin">incorrect username<br>or password</span><p id="forgotPass" onclick="startStupid();"><u>forgot password?</u></p></form>';
 var temp_stupid = '';
 var temp_pwd = '';
 var temp_thanks = '<div id="titleBar">SSS<sup>TM</sup> Password Request</div><form id="dataBox"><p id="prompt">Thank you!<br><br>An e-mail has been sent to the e-mail address last associated with your current IP Address.<br><br>If you have any questions or do not receive an e-mail you must visit your nearest SSS establishment for further assistance.</p></form>';
-var temp_expired = '<div id="mainInterface"><div id="titleBar">SSS<sup>TM</sup> Password Reset Expired</div><form id="dataBox" onsubmit="test()"><p id="prompt">It appears that this session has expired.<br><br>We apologize for any inconvenience this has caused you.<br><br>Please <a id="resetLink" onclick="resetGame()">start a new session</a>.<br><br>If you need assistance or have any questions please visit the closest SSS establishment to you.</p></form></div>';
+var temp_expired = '<div id="mainInterface"><div id="titleBar">SSS<sup>TM</sup> Password Reset Expired</div><form id="dataBox"><p id="prompt">It appears that this session has expired.<br><br>We apologize for any inconvenience this has caused you.<br><br>Please <a id="resetLink" onclick="resetGame();">start a new session</a>.<br><br>If you need assistance or have any questions please visit the closest SSS establishment to you.</p></form></div>';
 var temp_emailsTable = '<tr class="emailsHeader"><th>Subject</th><th>From</th><th>Date</th></tr>';
 var temp_tempEmails = '';
 
@@ -30,7 +36,7 @@ var temp_tempEmails = '';
 *######
 */
 var emails = [
-    ["IMPORTANT: SSS Password Reset", "SSS", 0, "Dear userNameHere,<br><br>You are receiving this e-mail because someone (Was it you?) requested a password reset from the IP Address associated with this e-mail in our records.<br>If you did not request a password reset then please visit the closest SSS establishment to you immediatly, your account may be vulnerable.<br><br>If you did request a password resest please click <a id='passResetLink' onclick='startExpired()'>here</a>."],
+    ["IMPORTANT: SSS Password Reset", "SSS", 0, "Dear userNameHere,<br><br>You are receiving this e-mail because someone (Was it you?) requested a password reset from the IP Address associated with this e-mail in our records.<br>If you did not request a password reset then please visit the closest SSS establishment to you immediatly, your account may be vulnerable.<br><br>If you did request a password resest please click <a id='passResetLink' onclick='startExpired();'>here</a>."],
     ["What's Up?", "Robbin", -2, "Helllooo, anyone in there?<br>I haven't heard from you in a while!<br>What are you up to? Do you not like me anymore or something? I know you're busy with your \"projects\" or whatever, but we havn't hung out in ages! What's up with that?<br>Let's go out somewhere. I don't care where. Let's break something, do something, talk, c'mon, anything! I miss you!<br><br>Call me or something, ASAP, pleaasse?"],
     ["Your Assistance is Needed", "Dr. William Hamford", -3, "Good Day,<br><br>My name is Dr William Hamford, a staff in the Private Clients Section of a well-known bank, here in London, England. One of our accounts, with holding balance of £15,000,000 (Fifteen Million Pounds Sterling) has been dormant and last operated three years ago. From my investigations and confirmation, the owner of the said account, a foreigner by the name of Joe Shmoedja died in "+ month2Month(theMonth) + ", " + (theYear - 3) +" in a plane crash in Bristol.<br><br>Since then, nobody has done anything as regards the claiming of this money, as he has no family member that has any knowledge as to the existence of either the account or the funds; and also Information from the National Immigration also states that he was single on entry into the UK.<br>I have decided to find a reliable foreign partner to deal with. I therefore propose to do business with you, standing in as the next of kin of these funds from the deceased and funds released to you after necessary processes have been followed.<br><br>This transaction is totally free of risk and troubles as the fund is legitimate and does not originate from drug, money laundry, terrorism or any other illegal act.<br>On your interest, let me hear from you URGENTLY.<br><br>Best Regards,<br>Dr William Hamford, Financial Analysis and Remittance Manager"],
     ["Ladykiller!!!", "Matthew", -1, "Hey!<br><br>Have you seen <a href='https://www.youtube.com/watch?v=fEW2pdZ0qEE' target='_blank'>this</a> game? It looks amazing!<br>From what I have read about it it seems like it is not only particularly risqu&eacute;, hehe, but it will be very different from traditional visual novels! You know how in most visual novels wooing a specific chracter is done by doing things specifically for the character? Filling them up with charity like a vending machine till their adoration for you falls out? Well, this game ain't gonna take any of that shit from you. Your manipulation will have consequences.<br><br>Sounds exciting, huh?"]
@@ -54,8 +60,9 @@ var stupidQuesSol = "";
 *################
 */
 var passPuzzles = [
-    ["Take the letters from new door to make one word", "one word"]
+    ["<ul id='pwdList'><li>less than eleven characters</li><li>upper/lowercase letters</li><li>one symbol</li><li>two numbers whose sum is ten</li><li>two vowels</li><li>five consonants</li></ul>", "lt11, upper, lower, 01sym, 10sum, 02vow, 05con"]
 ];
+var usedPassPuzz = "";
 
 /*
 *####
@@ -193,6 +200,7 @@ var Dom = {
         dest[prop] = source[prop];
       }
     }
+    return false;
     return dest;
   }
 };
@@ -255,6 +263,7 @@ Math.collBox = function mathCollBox(x1, y1, w1, h1, x2, y2, w2, h2) {
 *########
 */
 var num2Word = {
+    reConv: /[\, ]/g,
     thousandsPlus: [
         "",
         "thousand",
@@ -298,7 +307,7 @@ var num2Word = {
     ],
     conv: function num2Word(num) {
         num = num.toString();
-        num = num.replace(/[\, ]/g,""); //get rid of spaces or commas globally
+        num = num.replace(this.reConv,""); //get rid of spaces or commas globally
         if (num != parseFloat(num)) return "NAN"; //make sure num is actually a number
         var x = num.indexOf("."); //holds length of num or length/indexOf a decimal point
         if (x == -1) {
@@ -352,6 +361,7 @@ var num2Word = {
 };
 
 /*
+    return false;
 *#########
 *FUNCTIONS
 *#########
@@ -379,12 +389,13 @@ function composeEmails(num) {
 
 function composeStupidQues() {
     var currStupidQues = Math.randInt(0, (stupidQues.length - 1));
-    temp_stupid = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="testStupid(event)"><p id="prompt">You have forgotten your password.<br>How unfortunate.<br>Please prove that you are a human by answering the following question.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + stupidQues[currStupidQues][0] + '</div></fieldset><input class="dataEntry" id="stupidAns" type="text" placeholder="a lowercase word" autocomplete="off" autofocus required></form>';
+    temp_stupid = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="testStupid(event);"><p id="prompt">You have forgotten your password.<br>How unfortunate.<br>Please prove that you are a human by answering the following question.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + stupidQues[currStupidQues][0] + '</div></fieldset><input class="dataEntry" id="stupidAns" type="text" placeholder="a lowercase word" autocomplete="off" autofocus required></form>';
     stupidQuesSol = stupidQues[currStupidQues][1];
 }
 
 function composePWD() {
-    temp_pwd = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="test()"><p id="prompt">Further authentication is required.<br>Create a password following the rules below.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + passPuzzles[Math.randInt(0, (passPuzzles.length - 1))][0] + '</div></fieldset><br><input id="pwd" class="dataEntry" type="text" placeholder="w0rd5" autocomplete="off" required></form>';
+    usedPassPuzz = Math.randInt(0, (passPuzzles.length - 1));
+    temp_pwd = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="testPWD(event);"><p id="prompt">Further authentication is required.<br>Create a password following the rules below.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + passPuzzles[usedPassPuzz][0] + '</div></fieldset><br><input id="pwd" class="dataEntry" type="password" placeholder="w0rd5" autocomplete="off" required></form>';
 }
 
 //assumes months are not being counted with zero-based numbering
@@ -417,20 +428,6 @@ function month2Month(val) {
     }
 }
 
-/*
-var data = document.getElementById("dataEntry").value;
-if(data === "one word") {
-    document.getElementById("theFieldset").className = "fieldset_corr";
-    document.getElementById("theLegend").className = "legend_corr";
-    document.getElementById("theLegend").innerHTML = "CORRECT";
-}
-else {
-    document.getElementById("theFieldset").className = "fieldset_incorr";
-    document.getElementById("theLegend").className = "legend_incorr";
-    document.getElementById("theLegend").innerHTML = "INCORRECT";
-}
-event.preventDefault();
-*/
 function testLogin(evt) {
     evt.preventDefault();
     document.getElementById("badLoginFace").style.visibility = "visible";
@@ -450,8 +447,114 @@ function testStupid(evt) {
     }
 }
 
-function testPWD(val) {
+function testPWD(evt) {
+    evt.preventDefault();
+    var data = document.getElementById("pwd").value;
+    if(pwdParse(data)) {
+        startEmail();
+    }
+    else {
+        document.getElementById("theFieldset").style.boxShadow = "0px 0px 10px #a32121";
+        document.getElementById("theFieldset").style.borderColor = "#a32121";
+        document.getElementById("theLegend").style.visibility = "visible";
+    }
+}
 
+function pwdParse(data) {
+    var t = ""; //used to test what rules data passes or does not pass
+    if(passPuzzles[usedPassPuzz][1].match(/lt/g)) {
+        var x = data.length;
+        var v = passPuzzles[usedPassPuzz][1].match(/lt\d\d/g);
+        v = Number(v[0].match(/\d\d/g));
+        if (x <= v) {
+            t = t + "1";
+        }
+        else {
+            t = t+ "0";
+        }
+    }
+    if (passPuzzles[usedPassPuzz][1].match(/upper/g)) {
+        var upArr = (data.match(reUp) || []); //array of uppercase characters in data
+        if (upArr.length > 0) {
+            t = t + "1";
+        }
+        else {
+            t = t + "0";
+        }
+    }
+    if (passPuzzles[usedPassPuzz][1].match(/lower/g)) {
+        var lowArr = (data.match(reLow) || []); //array of lowercase characters in data
+        if(lowArr.length > 0) {
+            t = t + "1";
+        }
+        else {
+            t = t + "0";
+        }
+    }
+    if (passPuzzles[usedPassPuzz][1].match(/sym/g)) {
+        var sArr = (data.match(reSym) || []); //array of symbols in data
+        var v = passPuzzles[usedPassPuzz][1].match(/\d\dsym/g);
+        v = Number(v[0].match(/\d\d/g));
+        if (sArr.length === v) {
+            t = t + "1";
+        }
+        else {
+            t = t + "0";
+        }
+    }
+    if (passPuzzles[usedPassPuzz][1].match(/vow/g)) {
+        var vArr = (data.match(reVow) || []); //array of vowels in data
+        var v = passPuzzles[usedPassPuzz][1].match(/\d\dvow/g);
+        v = Number(v[0].match(/\d\d/g));
+        if (vArr.length === v) {
+            t = t + "1";
+        }
+        else {
+            t = t + "0";
+        }
+    }
+    if (passPuzzles[usedPassPuzz][1].match(/con/g)) {
+        var cArr = (data.match(reCon) || []); //array of consonants in data
+        var v = passPuzzles[usedPassPuzz][1].match(/\d\dcon/g);
+        v = Number(v[0].match(/\d\d/g));
+        if (cArr.length === v) {
+            t = t + "1";
+        }
+        else {
+            t = t + "0";
+        }
+    }
+    if (passPuzzles[usedPassPuzz][1].match(/sum/g)) {
+        var nArr = (data.match(reNum) || []); //array of numbers in data in string form
+        nArr.forEach(function toNum(element, index, array) { array[index] = Number(element); }); //changes all strings in nArr to numbers
+        var sum = nArr.reduce(function dataSum(previousValue, currentValue) { return previousValue + currentValue; }, 0);
+        var v = passPuzzles[usedPassPuzz][1].match(/\d\dsum/g);
+        v = Number(v[0].match(/\d\d/g));
+        if (sum === v) {
+            t = t + "1";
+        }
+        else t = t + "0";
+    }
+    if (passPuzzles[usedPassPuzz][1].match(/prod/g)) {
+        var nArr = (data.match(reNum) || []); //array of numbers in data in string form
+        nArr.forEach(function toNum(element, index, array) { array[index] = Number(element); }); //changes all strings in nArr to numbers
+        var prod = (nArr.reduce(function dataProd(previousValue, currentValue) { return previousValue * currentValue; }, 1) === 1) ? 0 : nArr.reduce(function dataProd(previousValue, currentValue) { return previousValue * currentValue; }, 1);
+        var v = passPuzzles[usedPassPuzz][1].match(/\d\dprod/g);
+        v = Number(v[0].match(/\d\d/g));
+        if (prod === v) {
+            t = t + "1";
+        }
+        else {
+            t = t + "0";
+        }
+    }
+    //final test to continue gameplay or not
+    if (t.indexOf(0) === -1) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 function startStupid() {
@@ -467,7 +570,7 @@ function startEmail() {
     document.getElementById("prompt").style.padding = "100px 0px 0px 0px";
     setTimeout(function displayEmail() {
         var i = 0;
-        document.getElementById('emailContOutline').removeAttribute('hidden');
+        Dom.show(emailContOutline);
         var emailSpoolInt = setInterval( function spoolEmail() {
             document.getElementById('emailCont').style.height = (i++) + 'px';
             if (i === 30) {
@@ -530,7 +633,7 @@ function emailBack() {
 }
 
 function startExpired() {
-    document.getElementById("emailContOutline").setAttribute("hidden", "true");
+    Dom.hide(emailContOutline);
     document.getElementById("mainInterface").innerHTML = temp_expired;
     document.getElementById("prompt").style.padding = "100px 0px 0px 0px";
 }
@@ -547,6 +650,7 @@ function resetGame() {
     newMailRead = false;
     usedEmails = "";
     stupidQuesSol = "";
+    usedPassPuzz = "";
     temp_stupid = '';
     temp_pwd = '';
     document.getElementById("mainInterface").innerHTML = temp_login;

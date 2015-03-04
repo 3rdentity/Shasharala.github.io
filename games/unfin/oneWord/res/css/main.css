@@ -259,6 +259,10 @@ a:hover {
     text-shadow: 1px 1px 1px #000000;
 }
 
+#pwdList {
+    text-align: left;
+}
+
 #resetLink {
     color: #47806f;
 }
