@@ -1,7 +1,0 @@
-- collision/mapping code
-- iron out small animation issues?
-- the actual game?
-- etc, etc
-- browser sniffing/fallback if browser is incompatible
-- refactor anon func's to be: thisIsWhereAnonFuncIsLocated_nameOfFunc
-- check for memleaks

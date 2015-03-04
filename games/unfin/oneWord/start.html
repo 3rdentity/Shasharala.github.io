@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Ryan Combes">
+        <meta name="description" content="A game about password creation debacles">
+        <link rel="stylesheet" type="text/css" href="res/css/normalize/normalize.min.css">
+        <link rel="stylesheet" type="text/css" href="res/css/main.css">
+        <title>One Word</title>
+    </head>
+    <body class="unselectable">
+        <!--[if lte IE10]>
+            <div id="oldIE">
+                Please update Internet Explorer to the most recent version available to play this game
+            </div>
+        <![endif]-->
+        <div id="noJS">
+            Please enable Javascript to play this game
+        </div>
+        <img id="loadIMG" src="res/img/loading.gif" hidden>
+        <div id="mainInterface" hidden>
+            <div id="titleBar">
+                Welcome to SuperSecureSite<sup>TM</sup>
+            </div>
+            <form id="dataBox" onsubmit="testLogin(event);">
+                <p id="prompt">sign in to continue</p>
+                <input class="dataEntry" type="text" placeholder="username" autocomplete="off" autofocus>
+                <br>
+                <br>
+                <input class="dataEntry" type="text" placeholder="password" autocomplete="off">
+                <br>
+                <br>
+                <input type="submit" value="submit" hidden>
+                <img id="badLoginFace" src="res/img/incorrFace.png" width="50px" draggable="false">
+                <span id="badLogin">
+                    incorrect username
+                    <br>
+                    or password
+                </span>
+                <p id="forgotPass" onclick="startStupid();"><u>forgot password?</u></p>
+            </form>
+        </div>
+
+
+        <div id="emailContOutline" hidden>
+            <div id="emailCont">
+                <div id="emailSys" onclick="emailSlideUp();"><img id="eCount" src="res/img/eCount.png">Gozilla Lightningbird<sup>TM</sup></div>
+                <hr>
+                <table id="emailsTable">
+                    <tr class="emailsHeader">
+                        <th>Subject</th>
+                        <th>From</th>
+                        <th>Date</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <script src="res/js/main.js"></script>
+        <script>
+            Dom.hide(noJS);
+            Dom.show(mainInterface);
+            startGame();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,293 @@
+[hidden] {
+  display: none;
+}
+
+[draggable="false"] {
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+}
+
+body {
+    margin: 0px;
+    background-color: #3f3743;
+    font-family: sans-serif;
+    font-size: 44px;
+    color: #914a4a;
+    text-align: center;
+    cursor: default;
+}
+
+sup {
+    font-size: 21px;
+}
+
+hr {
+    border-style: solid;
+    border-width: 1px;
+    color: #3e3e3e;
+}
+
+a {
+    color: #842121;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #a31a1a;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+::-moz-selection {
+  background-color: #ed0869;
+  color: #010101;
+}
+
+::selection {
+  background-color: #ed0869;
+  color: #DEDEDE;
+}
+
+.unselectable {
+  /*set selection color to transparent*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#titleBar {
+    padding: 10px;
+    background-image: url("../img/solarBlack.png");
+    border-style: outset;
+    border-width: 2px;
+    border-color: #3e3e3e;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#prompt {
+    margin-top: 100px;
+    color: #47806f;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#req {
+    margin: 0px;
+    padding: 10px;
+    height: 242px;
+    border-radius: 10px;
+    border-style: dotted;
+    border-width: 3px;
+    border-color: #3e3e3e;
+    background-color: #b7ba6f;
+    font-size: 21px;
+    color: #404040;
+}
+
+#dataBox {
+    margin:  auto auto auto;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: rgba(124, 16, 16, 0.33);
+    font-size: 21px;
+    color: #47806f;
+    box-shadow: 1px 1px 13px #000000;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#theFieldset {
+    margin: 0px;
+    width: auto;
+    border-style: dashed;
+    border-width: 3px;
+    border-color: transparent; /*#a32121*/
+    box-shadow: 0px 0px 0px #a32121; /*0px 0px 10px #a32121*/
+}
+
+#theLegend {
+    visibility: hidden;
+    text-align: left;
+    font-size: 21px;
+    color: #a32121;
+}
+
+#badLoginFace {
+    visibility: hidden;
+}
+
+#badLogin {
+    display: inline-block;
+    visibility: hidden;
+    vertical-align: super;
+    font-size: 16px;
+    color: #566f68;
+}
+
+#forgotPass {
+    margin-top: 171px;
+    padding: 30px;
+    text-align: right;
+}
+
+#forgotPass:hover {
+    color: #DEDEDE;
+    cursor: pointer;
+}
+
+#emailContOutline {
+    position: absolute;
+    margin: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 720px;
+    height: 0px; /*0px & 409px*/
+    border-top-left-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+
+}
+
+#emailCont {
+    position: absolute;
+    margin: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 10px 10px 0px 10px;
+    width: 700px;
+    height: 0px; /*30px & 440px*/
+    border-top-right-radius: 10px;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #000000;
+    background-image: url("../img/emailSysbg.png");
+    text-align: right;
+    font-size: 21px;
+    box-shadow: 1px 1px 0px #000000;
+    overflow: hidden;
+}
+
+.emailContent {
+    padding: 10px;
+    height: 400px;
+    background-image: url("../img/white.png");
+    text-align: left;
+    font-size: 14px;
+    color: #842121;
+}
+
+.emailContentHeader {
+    padding-left: 30px;
+    font-size: 16px;
+}
+
+#backBtn {
+    cursor: pointer;
+}
+
+#eCount {
+    margin-top: -1px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+#emailSys {
+    padding-right: 10px;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#emailSys:hover {
+    cursor: pointer;
+}
+
+#emailSys sup {
+    font-size: 10px;
+}
+
+#emailsTable {
+    text-align: center;
+}
+
+.emailsHeader {
+    height: 40px;
+    background-image: url("../img/solarBlack.png");
+}
+
+.emails {
+    height: 30px;
+    font-size: 16px;
+    background-image: url("../img/white.png");
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #000000;
+}
+
+.emails:hover {
+    background-color: #000000;
+    color: #842121;
+    cursor: pointer;
+}
+
+.emailsHeader th {
+    min-width: 234px;
+}
+
+.emails td {
+    min-width: 234px;
+}
+
+#emailNew {
+    color: #842121;
+}
+
+.dataEntry {
+    margin-top: 10px;
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 2px;
+    border-color: #3e3e3e;
+    background-color: rgba(124, 16, 16, 0.33);
+    text-align: center;
+    font-size: 24px;
+    color: #47806f;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#pwdList {
+    text-align: left;
+}
+
+#resetLink {
+    color: #47806f;
+}
+
+#resetLink:hover {
+    color: #45a085;
+}
+
+#noJS {
+    margin: 300px auto 100px auto;
+    padding: 10px 0px 10px 0px;
+    width: 800px;
+    border-top: solid;
+    border-bottom: solid;
+}
+
+#oldIE {
+    margin: 300px auto 0px auto;
+    width: 800px;
+    border-top: solid;
+    border-bottom: solid;
+    padding: 10px 0px 10px 0px;
+}
+
+#loadIMG {
+    position: absolute;
+    margin: 300px auto 0px auto;
+}
