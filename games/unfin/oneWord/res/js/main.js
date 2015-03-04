@@ -395,7 +395,7 @@ function composeStupidQues() {
 
 function composePWD() {
     usedPassPuzz = Math.randInt(0, (passPuzzles.length - 1));
-    temp_pwd = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="testPWD(event);"><p id="prompt">Further authentication is required.<br>Create a password following the rules below.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + passPuzzles[usedPassPuzz][0] + '</div></fieldset><br><input id="pwd" class="dataEntry" type="password" placeholder="w0rd5" autocomplete="off" required></form>';
+    temp_pwd = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="testPWD(event);"><p id="prompt">Further authentication is required.<br>Create a password following the rules below.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + passPuzzles[usedPassPuzz][0] + '</div></fieldset><br><input id="pwd" class="dataEntry" type="password" placeholder="w0rd5" autofocus autocomplete="off" required></form>';
 }
 
 //assumes months are not being counted with zero-based numbering
@@ -634,8 +634,14 @@ function emailBack() {
 
 function startExpired() {
     Dom.hide(emailContOutline);
-    document.getElementById("mainInterface").innerHTML = temp_expired;
-    document.getElementById("prompt").style.padding = "100px 0px 0px 0px";
+    Dom.hide(dataBox);
+    Dom.show(loadIMG);
+    setTimeout(function loadExpired() {
+        Dom.hide(loadIMG);
+        Dom.show(dataBox);
+        document.getElementById("mainInterface").innerHTML = temp_expired;
+        document.getElementById("prompt").style.padding = "100px 0px 0px 0px";
+    },1000);
 }
 
 function resetEmail() {

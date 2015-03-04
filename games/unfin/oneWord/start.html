@@ -9,7 +9,16 @@
         <title>One Word</title>
     </head>
     <body class="unselectable">
-        <div id="mainInterface">
+        <!--[if lte IE10]>
+            <div id="oldIE">
+                Please update Internet Explorer to the most recent version available to play this game
+            </div>
+        <![endif]-->
+        <div id="noJS">
+            Please enable Javascript to play this game
+        </div>
+        <img id="loadIMG" src="res/img/loading.gif" hidden>
+        <div id="mainInterface" hidden>
             <div id="titleBar">
                 Welcome to SuperSecureSite<sup>TM</sup>
             </div>
@@ -48,6 +57,8 @@
         </div>
         <script src="res/js/main.js"></script>
         <script>
+            Dom.hide(noJS);
+            Dom.show(mainInterface);
             startGame();
         </script>
     </body>
