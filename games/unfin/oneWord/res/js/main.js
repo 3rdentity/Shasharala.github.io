@@ -60,7 +60,7 @@ var stupidQuesSol = "";
 *################
 */
 var passPuzzles = [
-    ["<ul id='pwdList'><li>less than eleven characters</li><li>upper/lowercase letters</li><li>one symbol</li><li>two numbers whose sum is ten</li><li>two vowels</li><li>five consonants</li></ul>", "lt11, upper, lower, 01sym, 10sum, 02vow, 05con"]
+    ["lt11, upper, lower, 01sym, 10sum, 02vow, 05con"]
 ];
 var usedPassPuzz = "";
 
@@ -395,7 +395,45 @@ function composeStupidQues() {
 
 function composePWD() {
     usedPassPuzz = Math.randInt(0, (passPuzzles.length - 1));
-    temp_pwd = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="testPWD(event);"><p id="prompt">Further authentication is required.<br>Create a password following the rules below.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + passPuzzles[usedPassPuzz][0] + '</div></fieldset><br><input id="pwd" class="dataEntry" type="password" placeholder="w0rd5" autofocus autocomplete="off" required></form>';
+    var passPrompt = "<ul id='pwdList'>";
+    if(passPuzzles[usedPassPuzz][0].match(/lt/g)) {
+        var v = passPuzzles[usedPassPuzz][0].match(/lt\d\d/g);
+        v = Number(v[0].match(/\d\d/g));
+        passPrompt = passPrompt + "<li id='ppChar'>less than " + v + " characters</li>";
+    }
+    if (passPuzzles[usedPassPuzz][0].match(/upper/g)) {
+        passPrompt = passPrompt + "<li id='ppUp'>upper case characters</li>";
+    }
+    if (passPuzzles[usedPassPuzz][0].match(/lower/g)) {
+        passPrompt = passPrompt + "<li id='ppLow'>lower case characters</li>";
+    }
+    if (passPuzzles[usedPassPuzz][0].match(/sym/g)) {
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dsym/g);
+        v = Number(v[0].match(/\d\d/g));
+        passPrompt = passPrompt + "<li id='ppSym'>" + v + " symbol(s)";
+    }
+    if (passPuzzles[usedPassPuzz][0].match(/vow/g)) {
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dvow/g);
+        v = Number(v[0].match(/\d\d/g));
+        passPrompt = passPrompt + "<li id='ppVow'>" + v + " vowel(s)";
+    }
+    if (passPuzzles[usedPassPuzz][0].match(/con/g)) {
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dcon/g);
+        v = Number(v[0].match(/\d\d/g));
+        passPrompt = passPrompt + "<li id='ppCon'>" + v + " consonant(s)";
+    }
+    if (passPuzzles[usedPassPuzz][0].match(/sum/g)) {
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dsum/g);
+        v = Number(v[0].match(/\d\d/g));
+        passPrompt = passPrompt + "<li id='ppSum'>a sum of " + v;
+    }
+    if (passPuzzles[usedPassPuzz][0].match(/prod/g)) {
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dprod/g);
+        v = Number(v[0].match(/\d\d/g));
+        passPrompt = passPrompt + "<li id='ppProd'>a product of " + v;
+    }
+    passPrompt = passPrompt + '</ul>';
+    temp_pwd = '<div id="titleBar">SuperSecureSite<sup>TM</sup> Authentication</div><form id="dataBox" onsubmit="testPWD(event);"><p id="prompt">Further authentication is required.<br>Create a password following the rules below.</p><fieldset id="theFieldset"><legend id="theLegend">INCORRECT</legend><div id="req">' + passPrompt + '</div></fieldset><br><input id="pwd" class="dataEntry" type="password" placeholder="w0rd5" autofocus autocomplete="off" required></form>';
 }
 
 //assumes months are not being counted with zero-based numbering
@@ -462,9 +500,9 @@ function testPWD(evt) {
 
 function pwdParse(data) {
     var t = ""; //used to test what rules data passes or does not pass
-    if(passPuzzles[usedPassPuzz][1].match(/lt/g)) {
+    if(passPuzzles[usedPassPuzz][0].match(/lt/g)) {
         var x = data.length;
-        var v = passPuzzles[usedPassPuzz][1].match(/lt\d\d/g);
+        var v = passPuzzles[usedPassPuzz][0].match(/lt\d\d/g);
         v = Number(v[0].match(/\d\d/g));
         if (x <= v) {
             t = t + "1";
@@ -473,7 +511,7 @@ function pwdParse(data) {
             t = t+ "0";
         }
     }
-    if (passPuzzles[usedPassPuzz][1].match(/upper/g)) {
+    if (passPuzzles[usedPassPuzz][0].match(/upper/g)) {
         var upArr = (data.match(reUp) || []); //array of uppercase characters in data
         if (upArr.length > 0) {
             t = t + "1";
@@ -482,7 +520,7 @@ function pwdParse(data) {
             t = t + "0";
         }
     }
-    if (passPuzzles[usedPassPuzz][1].match(/lower/g)) {
+    if (passPuzzles[usedPassPuzz][0].match(/lower/g)) {
         var lowArr = (data.match(reLow) || []); //array of lowercase characters in data
         if(lowArr.length > 0) {
             t = t + "1";
@@ -491,9 +529,9 @@ function pwdParse(data) {
             t = t + "0";
         }
     }
-    if (passPuzzles[usedPassPuzz][1].match(/sym/g)) {
+    if (passPuzzles[usedPassPuzz][0].match(/sym/g)) {
         var sArr = (data.match(reSym) || []); //array of symbols in data
-        var v = passPuzzles[usedPassPuzz][1].match(/\d\dsym/g);
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dsym/g);
         v = Number(v[0].match(/\d\d/g));
         if (sArr.length === v) {
             t = t + "1";
@@ -502,9 +540,9 @@ function pwdParse(data) {
             t = t + "0";
         }
     }
-    if (passPuzzles[usedPassPuzz][1].match(/vow/g)) {
+    if (passPuzzles[usedPassPuzz][0].match(/vow/g)) {
         var vArr = (data.match(reVow) || []); //array of vowels in data
-        var v = passPuzzles[usedPassPuzz][1].match(/\d\dvow/g);
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dvow/g);
         v = Number(v[0].match(/\d\d/g));
         if (vArr.length === v) {
             t = t + "1";
@@ -513,9 +551,9 @@ function pwdParse(data) {
             t = t + "0";
         }
     }
-    if (passPuzzles[usedPassPuzz][1].match(/con/g)) {
+    if (passPuzzles[usedPassPuzz][0].match(/con/g)) {
         var cArr = (data.match(reCon) || []); //array of consonants in data
-        var v = passPuzzles[usedPassPuzz][1].match(/\d\dcon/g);
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dcon/g);
         v = Number(v[0].match(/\d\d/g));
         if (cArr.length === v) {
             t = t + "1";
@@ -524,22 +562,24 @@ function pwdParse(data) {
             t = t + "0";
         }
     }
-    if (passPuzzles[usedPassPuzz][1].match(/sum/g)) {
+    if (passPuzzles[usedPassPuzz][0].match(/sum/g)) {
         var nArr = (data.match(reNum) || []); //array of numbers in data in string form
         nArr.forEach(function toNum(element, index, array) { array[index] = Number(element); }); //changes all strings in nArr to numbers
         var sum = nArr.reduce(function dataSum(previousValue, currentValue) { return previousValue + currentValue; }, 0);
-        var v = passPuzzles[usedPassPuzz][1].match(/\d\dsum/g);
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dsum/g);
         v = Number(v[0].match(/\d\d/g));
         if (sum === v) {
             t = t + "1";
         }
-        else t = t + "0";
+        else {
+            t = t + "0";
+        }
     }
-    if (passPuzzles[usedPassPuzz][1].match(/prod/g)) {
+    if (passPuzzles[usedPassPuzz][0].match(/prod/g)) {
         var nArr = (data.match(reNum) || []); //array of numbers in data in string form
         nArr.forEach(function toNum(element, index, array) { array[index] = Number(element); }); //changes all strings in nArr to numbers
         var prod = (nArr.reduce(function dataProd(previousValue, currentValue) { return previousValue * currentValue; }, 1) === 1) ? 0 : nArr.reduce(function dataProd(previousValue, currentValue) { return previousValue * currentValue; }, 1);
-        var v = passPuzzles[usedPassPuzz][1].match(/\d\dprod/g);
+        var v = passPuzzles[usedPassPuzz][0].match(/\d\dprod/g);
         v = Number(v[0].match(/\d\d/g));
         if (prod === v) {
             t = t + "1";

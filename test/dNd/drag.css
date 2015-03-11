@@ -1,0 +1,43 @@
+/*Safari compatability w/ Drag and Drop*/
+[draggable="true"] {
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+[draggable="false"] {
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+}
+
+body {
+  background-color: #3a3f4d;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#dragCon .dragItem {
+  height: 160px;
+  width: 160px;
+  border-style: solid;
+  border-color: #DEDEDE;
+  border-width: 2px;
+  cursor: move;
+  background-color: #272822;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -moz-transition: -moz-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  -ms-transition: -ms-transform 0.3s ease-out;
+}
+#dragCon .dragItem.over {
+  border-style: dashed;
+  border-color: #DEDEDE;
+  border-width: 2px;
+}
+#dragCon .dragItem.moving {
+  opacity: 0.25;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  -o-transform: scale(0.8);
+}
