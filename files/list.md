@@ -6,3 +6,4 @@ pfStrangeRelSearches.png
 safeSetUIDSuggestions.png
 example_firefox.png
 example_chrome.png
+lain_otherHalf.png
