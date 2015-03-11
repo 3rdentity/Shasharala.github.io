@@ -1,3 +1,8 @@
+/*
+*######
+*COOKIE
+*######
+*/
 var Cookie = {
   front: "sha_",
   check: function cookieCheck(name, value) {

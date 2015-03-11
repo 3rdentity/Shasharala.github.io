@@ -1,3 +1,5 @@
+//this is undoubtedly outdated and could be updated with new skills that have been learned since it was written
+//see drag.css as well
 /*
 #################################
 ############DRAG#################
