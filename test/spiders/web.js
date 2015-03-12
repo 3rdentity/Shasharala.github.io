@@ -147,23 +147,12 @@
         requestAnimationFrame( animate );
     }
 
-    function shiftPoint( p ) { //an entire tween library just for this one function? try implementing one yourself and maybe cleaning up this entire self-executing anon function
-        //new way
+    function shiftPoint( p ) {
         p.tweenA = new TWEEN.Tween(p)
-            .to({ x: p.originX - 50 + Math.random() * 100, y: p.originY - 50 + Math.random() * 100 }, 2 * Math.random() * 1000)
+            .to({ x: p.originX - 50 + Math.random() * 100, y: p.originY - 50 + Math.random() * 100 }, 2 * Math.random() * 2000)
+            .easing(TWEEN.Easing.Elastic.InOut)
             .onComplete(function c_shiftPoint() { shiftPoint(p); } )
             .start();
-
-        //old way
-        /*
-        TweenLite.to( p, 1 + 1 * Math.random(), {
-            x: p.originX - 50 + Math.random() * 100,
-            y: p.originY - 50 + Math.random() * 100,
-            onComplete: function() {
-                shiftPoint( p );
-            }
-        } );
-        */
     }
 
     // Canvas manipulation
