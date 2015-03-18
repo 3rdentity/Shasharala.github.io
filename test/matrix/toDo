@@ -4,3 +4,4 @@
 - fix tweening updates
 - modifable during runtime. sliders?
 - strokeStyle outlines?
+- memcache for multiple page loads?
