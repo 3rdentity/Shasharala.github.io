@@ -15,10 +15,11 @@
   </head>
   <body>
     <canvas id="matrix"></canvas>
-    <script src="vendor/tween.min.js"></script>
     <script src="matrix.js"></script>
     <script>
-        var test = new Matrix(null, null, null, 70, 4);
+        var m = new Matrix()
+        .point(null, function newCirRadCalc() { return (8 + Math.random() * 8); }, "ac1354")
+        .start();
     </script>
   </body>
 </html>
