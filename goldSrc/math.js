@@ -24,6 +24,9 @@ Math.between = function mathBetween(n, min, max) {
 Math.countdown = function mathCountdown(n, dn) {
   return Math.max(0, n - (dn || 1));
 };
+Math.dist = function mathDist(p1, p2) {
+  return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
+};
 Math.accel = function mathAccel(v, accel, dt) {
   return v + (accel * dt);
 };
