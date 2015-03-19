@@ -3,7 +3,7 @@
   <title>shasharala's feed</title>
   <subtitle>shasharala's thoughts and games</subtitle>
   <link href="http://www.shasharala.net"/>
-  <updated>2015-02-23T23:11:33Z</updated>
+  <updated>2015-03-18T22:11:33Z</updated>
   <author>
     <name>Ryan Combes</name>
     <email>shasharala@outlook.com</email>
@@ -16,6 +16,30 @@
     <summary>xxx</summary>
   </entry>
 -->
+  <entry>
+    <title>I Am So Sorry For This: Please Help Me</title>
+    <link href="http://www.shasharala.net/blog/i_am_so_sorry_pls_help.html"/>
+    <updated>2015-03-18T20:49:33Z</updated>
+    <summary>I am so very sorry for this... but I need help!</summary>
+  </entry>
+  <entry>
+    <title>Matrix Creator</title>
+    <link href="http://www.shasharala.net/projects/unfin/matrix/start.html"/>
+    <updated>2015-03-18T20:49:33Z</updated>
+    <summary>A script that creates a matrix of points animated through tweening on a canvas. Needs more work.</summary>
+  </entry>
+  <entry>
+    <title>One Word</title>
+    <link href="http://www.shasharala.net/games/unfin/oneWord/start.html"/>
+    <updated>2015-03-18T20:49:33Z</updated>
+    <summary>An unfinished (needs more content & polish) game about the horrors of account management/logins.</summary>
+  </entry>
+  <entry>
+    <title>Tech Demo: Drag n' Drop</title>
+    <link href="http://www.shasharala.net/projects/unfin/dNd/example.html"/>
+    <updated>2015-03-18T20:49:33Z</updated>
+    <summary>A simple drag n' drop script. I think it has some issues to work out still.</summary>
+  </entry>
   <entry>
     <title>U-U-Updates</title>
     <link href="http://www.shasharala.net/blog/0003.html"/>

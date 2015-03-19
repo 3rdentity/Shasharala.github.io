@@ -4,7 +4,7 @@
     <title>shasharala's feed</title>
     <description>shasharala's thoughts and games</description>
     <link>http://www.shasharala.net</link>
-    <lastBuildDate>2015 02 23 23:11 GMT-8</lastBuildDate>
+    <lastBuildDate>2015 03 18 23:11 GMT-8</lastBuildDate>
     <managingEditor>shasharala@outlook.com (Ryan Combes)</managingEditor>
     <!--
     EXAMPLE
@@ -16,9 +16,33 @@
     </item>
     -->
     <item>
+      <title>I Am So Sorry For This: Please Help Me</title>
+      <link>http://www.shasharala.net/blog/i_am_so_sorry_pls_help.html</link>
+      <pubDate>2015 03 18 20:49 GMT-8</pubDate>
+      <description>I am so very sorry for this... but I need help!</description>
+    </item>
+    <item>
+      <title>Matrix Creator</title>
+      <link>http://www.shasharala.net/projects/unfin/matrix/start.html</link>
+      <pubDate>2015 03 18 20:49 GMT-8</pubDate>
+      <description>A script that creates a matrix of points animated through tweening on a canvas. Needs more work.</description>
+    </item>
+    <item>
+      <title>One Word</title>
+      <link>http://www.shasharala.net/games/unfin/oneWord/start.html</link>
+      <pubDate>2015 03 18 20:49 GMT-8</pubDate>
+      <description>An unfinished (needs more content & polish) game about the horrors of account management/logins.</description>
+    </item>
+    <item>
+      <title>Tech Demo: Drag n' Drop</title>
+      <link>http://www.shasharala.net/projects/unfin/dNd/example.html</link>
+      <pubDate>2015 03 18 20:49 GMT-8</pubDate>
+      <description>A simple drag n' drop script. I think it has some issues to work out still.</description>
+    </item>
+    <item>
       <title>U-U-Updates</title>
       <link>http://www.shasharala.net/blog/0003.html</link>
-      <pubDate>2015 02 23 GMT-8</pubDate>
+      <pubDate>2015 02 23 00:00 GMT-8</pubDate>
       <description>Some updates as to what I have been up to and what I intend to be up to.</description>
     </item>
     <item>

@@ -94,7 +94,7 @@ var Matrix = function matrix() {
     this.point = function matrixPoint(shape, size, size2, color) {
         pType = shape || "circle";
         pRad[0] = size || pRad[0]; //mind that a function works best here
-        pRad2[1] = size2 || pRad[1];
+        pRad[1] = size2 || pRad[1];
         pColor = Color.hex2RGB(color) || pColor;
         return this;
     };
@@ -107,6 +107,7 @@ var Matrix = function matrix() {
     //such as: [[4000, 0.3, 0.6], [20000, 0.1, 0.3], [40000, 0.02, 0.1], [0, 0]]
     this.actives = function matrixActives(a) {
         activesArr = a;
+        return this;
     };
     this.tween = function matrixTween(/*tweenHere*/) {
         //setTween will set a variable that is set here
@@ -175,7 +176,7 @@ var Matrix = function matrix() {
                 points[i].type = new star(points[i], null)
             }
             else {
-                points[i].type = new circle(points[i], pRad() || pRad);
+                points[i].type = new circle(points[i], pRad[0]() || pRad[0]);
             }
         }
         addListeners();

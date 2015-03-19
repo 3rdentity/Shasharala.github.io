@@ -383,7 +383,8 @@ hr {
   font-size: 30px;
 }
 
-.gameDate{
+.gameDate {
+  visibility: hidden; /*temporary*/
   padding: 10px;
   font-style: italic;
   vertical-align: middle;
