@@ -7,3 +7,6 @@
 - site's layout breaks just slightly when windows get particularly skinny
 - 404.gif is missing noticeable frames and needs to be fixed. curses!
 - general cleanup bad tabbing and inline CSS is not nice stuff
+- change website background for mobile to something less laggy
+
+- with more money in pocket, seriously consider setting up a complete server on a host somewhere complete with dynamic elements (PHP, etc)
