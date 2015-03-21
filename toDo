@@ -1,7 +1,7 @@
 - make a blow up everything button/key
 - add old blog posts in a trash/locked bin of some sort
-- consider better meta settings for css. throwing window to the side of screen on smaller screens makes some things not fit properly
-- make website work on phones?
+- consider media queries for css. throwing window to the side of screen on smaller screens makes some things not fit properly
+    + make website work on phones?
 - site's layout breaks just slightly when windows get particularly skinny
 - 404.gif is missing noticeable frames and needs to be fixed. curses!
 - general cleanup bad tabbing and inline CSS is not nice stuff

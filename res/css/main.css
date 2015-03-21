@@ -34,7 +34,7 @@ CSS FOR MOST OF SHASHARALA.NET
 body {
   background-color: #8fd4cb;
   font-family: "ubuntu_mono", sans-serif;
-  font-size: 16px;
+  font-size: 100%;
   color: #f0e1c4;
   text-align: center;
   /*matrix_dark.png*/
@@ -108,11 +108,11 @@ hr {
 .copyright {
   z-index: 1;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0em;
+  right: 0em;
   height: auto;
   width: auto;
-  font-size: 24px;
+  font-size: 1.5em;
 }
 
 .banner {
@@ -142,7 +142,7 @@ hr {
   margin: auto auto 30px auto;
   padding: 8px 0px 0px 0px;
   height: auto;
-  width: 700px;
+  width: 36em;
   /*clear/black.png*/
   background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABHNCSVQICAgIfAhkiAAAABhJREFUGJVjFBQU3MxABGAiRtGoQuopBAB+1wD6KrApLAAAAABJRU5ErkJggg==");
   border-color: #DEDEDE;
@@ -150,12 +150,13 @@ hr {
   border-style: solid;
   border-radius: 4px;
   text-align: left;
-  font-size: 18px;
+  font-size: 1.2em;
   box-shadow: 0px 0px 24px #f0e1c4;
   -webkit-transition: height .5s;
   transition: height .5s;
 }
 
+/*KEPT FOR HISTORICAL REASONS
 .scrollCont {
   height: 100%;
   width: 717px;
@@ -177,12 +178,12 @@ hr {
   font-size: 29px;
   margin: 0px 0px 0px -.6px;
 }
-
+*/
 .content {
   margin: -10px auto 100px auto;
   padding: 0px 0px 11px 0px;
-  width: 600px;
-  font-size: 16px;
+  width: 88%;
+  font-size: 1em;
   text-align: left;
 }
 
