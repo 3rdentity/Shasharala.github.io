@@ -4,7 +4,7 @@
     <title>shasharala's feed</title>
     <description>shasharala's thoughts and games</description>
     <link>http://www.shasharala.net</link>
-    <lastBuildDate>2015 03 18 23:11 GMT-8</lastBuildDate>
+    <lastBuildDate>2015 03 28 15:33 GMT-8</lastBuildDate>
     <managingEditor>shasharala@outlook.com (Ryan Combes)</managingEditor>
     <!--
     EXAMPLE
@@ -15,12 +15,6 @@
       <description>xxx</description>
     </item>
     -->
-    <item>
-      <title>I Am So Sorry For This: Please Help Me</title>
-      <link>http://www.shasharala.net/blog/i_am_so_sorry_pls_help.html</link>
-      <pubDate>2015 03 18 20:49 GMT-8</pubDate>
-      <description>I am so very sorry for this... but I need help!</description>
-    </item>
     <item>
       <title>Matrix Creator</title>
       <link>http://www.shasharala.net/projects/unfin/matrix/start.html</link>
