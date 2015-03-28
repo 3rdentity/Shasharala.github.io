@@ -112,7 +112,7 @@ hr {
   right: 0em;
   height: auto;
   width: auto;
-  font-size: 1.5em;
+  font-size: 24px;
 }
 
 .banner {
@@ -121,7 +121,7 @@ hr {
   width: auto;
   height: auto;
   color: #f0e1c4;
-  font-size: 1em;
+  font-size: 16px;
   text-shadow: 1px -1px 8px #010101;
   text-shadow: 1px 1px 1px #f0e1c4;
 }
