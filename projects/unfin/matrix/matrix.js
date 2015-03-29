@@ -56,9 +56,60 @@ var Color = {
         }
     }
 };
-//borrowed from math.js. www.shasharala.net/goldSrc/math.js
+/*
+*#####
+*MATH#
+*#####
+*/
+Math.rand = function mathRand(min, max) {
+  return (min + (this.random() * (max - min)));
+};
+Math.randInt = function mathRandInt(min, max) {
+  return Math.round(this.rand(min, max));
+};
+Math.randChoice = function mathRandChoice(choices) {
+  return choices[this.randInt(0, choices.length - 1)];
+};
+Math.randBool = function mathRandBool() {
+  return this.randChoice([true, false]);
+};
+Math.limit = function mathLimit(x, min, max) {
+  return Math.max(min, Math.min(max, x));
+};
+Math.between = function mathBetween(n, min, max) {
+  return ((n >= min) && (n <= max));
+};
+Math.countdown = function mathCountdown(n, dn) {
+  return Math.max(0, n - (dn || 1));
+};
 Math.dist = function mathDist(p1, p2) {
   return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
+};
+Math.accel = function mathAccel(v, accel, dt) {
+  return v + (accel * dt);
+};
+Math.lerp = function mathLerp(n, dn, dt) {
+  return n + (dn * dt);
+};
+// easing functions
+Math.easeLerp = function mathEaseLerp(a ,b, percent) {
+  return a + (b - a) * percent;
+};
+Math.easeIn = function mathEaseIn(a, b, percent) {
+  return a + (b - a) * Math.pow(percent, 2);
+};
+Math.easeOut = function mathEaseOut(a, b, percent) {
+  return a + (b - a) * (1 - Math.pow(1 - percent, 2));
+};
+Math.easeInOut = function mathEaseInOut(a,b,percent) {
+  return a + (b - a) * ((-Math.cos(percent * Math.PI)/2) + 0.5);
+};
+//collision functions
+Math.collBox = function mathCollBox(x1, y1, w1, h1, x2, y2, w2, h2) {
+  return !(((x1 + w1 - 1) < x2) ||
+           ((x2 + w2 - 1) < x1) ||
+           ((y1 + h1 - 1) < y2) ||
+           ((y2 + h2 - 1) < y1));
 };
 var Matrix = function matrix() {
     //default values
@@ -73,12 +124,13 @@ var Matrix = function matrix() {
     var pColor = Color.hex2RGB("FFFFFF");
     var pRad = [
         function pRadCalc() {
-            return (2 + Math.random() * 2);
+            return Math.rand(2, 4);
         },
         function pRad2Calc() {
-            return (4 + Math.random() * 4);
+            return Math.rand(.3, .7);
         }
     ];
+    var pNum = 5;
     var activesArr = [[4000, 0.3, 0.6], [20000, 0.1, 0.3], [40000, 0.02, 0.1], [0, 0]];
     var points = [];
     var animate = true;
@@ -94,7 +146,7 @@ var Matrix = function matrix() {
     this.point = function matrixPoint(shape, size, size2, color) {
         pType = shape || "circle";
         pRad[0] = size || pRad[0]; //mind that a function works best here
-        pRad[1] = size2 || pRad[1];
+        pRad[1] = size2 || pRad[1]; //mind that a function works best here
         pColor = Color.hex2RGB(color) || pColor;
         return this;
     };
@@ -173,7 +225,7 @@ var Matrix = function matrix() {
         // assign a circle to each point
         for (var i in points) {
             if (pType === "star") {
-                points[i].type = new star(points[i], null)
+                points[i].type = new star(points[i], pRad[0]() || pRad[0], pRad[1]() || pRad[1], pNum)
             }
             else {
                 points[i].type = new circle(points[i], pRad[0]() || pRad[0]);
@@ -283,19 +335,40 @@ var Matrix = function matrix() {
                 ctx.arc(that.pos.x, that.pos.y, that.rad, 0, 2 * Math.PI, false);
                 ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
                 ctx.fill();
+                ctx.closePath();
             };
         }
-        function star(pos, rad, rad2, p) {
+        function star(pos, rad, inset, p) {
             var that = this;
             this.pos = pos || null;
             this.rad = rad || null;
-            this.rad2 = rad2 || null;
+            this.inset = inset || null;
             this.points = p || null;
             this.draw = function webStarDraw() {
                 if (!this.active) {
                     return;
                 }
-                //star function here
+                ctx.save();
+                ctx.beginPath();
+                ctx.translate(that.pos.x, that.pos.y);
+                ctx.moveTo(0, 0 - that.rad) // moveTo that.pos.x & that.pos.y but on the outer radius/the first point of the star
+                for (i = 0; i < that.points; i++) {
+                    ctx.rotate(Math.PI / that.points);
+                    ctx.lineTo(0, 0 - (that.rad * that.inset));
+                    ctx.rotate(Math.PI / that.points);
+                    ctx.lineTo(0, 0 - that.rad);
+                }
+                ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
+                ctx.fill();
+                ctx.closePath();
+                ctx.restore();
+            };
+        }
+        function heart(pos, rad, blah) {
+            var that = this;
+            this.pos = pos || null;
+            this.draw = function webHeartDraw() {
+
             };
         }
         return this;
