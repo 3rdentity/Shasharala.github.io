@@ -22,8 +22,8 @@ var Color = {
             return (h.charAt(0) == "#") ? h.substring(1,7) : h
         }
     },
-    rgb2Hex: function rgb2Hex(r, g, b, n) {
-        if (n) {
+    rgb2Hex: function rgb2Hex(r, g, b, h) {
+        if (h) {
             return "#" + toHex(r) + toHex(g) + toHex(b);
         }
         else {
