@@ -118,7 +118,7 @@ var Matrix = function matrix() {
     var height = null;
     var spacing = 69;
     var nClosest = 4;
-    var lineColor = Color.hex2RGB("FFFFFF");"rgba(255, 255, 255, 0)";
+    var lineColor = Color.hex2RGB("FFFFFF");
     var lineWidth = 1;
     var pType = "circle";
     var pColor = Color.hex2RGB("FFFFFF");
@@ -222,10 +222,13 @@ var Matrix = function matrix() {
             }
             p1.closest = closest;
         }
-        // assign a circle to each point
+        // assign a shape to each point
         for (var i in points) {
             if (pType === "star") {
-                points[i].type = new star(points[i], pRad[0]() || pRad[0], pRad[1]() || pRad[1], pNum)
+                points[i].type = new star(points[i], pRad[0]() || pRad[0], pRad[1]() || pRad[1], pNum);
+            }
+            else if (pType === "heart") {
+                points[i].type = new heart(points[i], pRad[0]() || pRad[0]);
             }
             else {
                 points[i].type = new circle(points[i], pRad[0]() || pRad[0]);
@@ -315,12 +318,15 @@ var Matrix = function matrix() {
                 return;
             }
             for (var i in p.closest) {
+                ctx.save();
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(p.closest[i].x, p.closest[i].y);
                 ctx.lineWidth = lineWidth;
                 ctx.strokeStyle = "rgba(" + lineColor + ", " + p.active + ")";
                 ctx.stroke();
+                ctx.closePath();
+                ctx.restore();
             }
         }
         function circle(pos, rad) {
@@ -331,11 +337,13 @@ var Matrix = function matrix() {
                 if (!this.active) {
                     return;
                 }
+                ctx.save();
                 ctx.beginPath();
                 ctx.arc(that.pos.x, that.pos.y, that.rad, 0, 2 * Math.PI, false);
                 ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
                 ctx.fill();
                 ctx.closePath();
+                ctx.restore();
             };
         }
         function star(pos, rad, inset, p) {
@@ -364,11 +372,26 @@ var Matrix = function matrix() {
                 ctx.restore();
             };
         }
-        function heart(pos, rad, blah) {
+        function heart(pos, rad) {
             var that = this;
             this.pos = pos || null;
+            this.rad = rad || null;
             this.draw = function webHeartDraw() {
-
+                ctx.save();
+                ctx.beginPath();
+                ctx.translate(that.pos.x, that.pos.y);
+                ctx.rotate(0); //position heart correctly
+                ctx.moveTo(-that.rad, 0);
+                ctx.arc(0, 0, that.rad, 0, Math.PI, false); // first/left heart arc
+                ctx.lineTo(that.rad, 0); // line to first/left heart arc
+                ctx.arc(that.rad, -that.rad, that.rad, Math.PI * 90 / 180, Math.PI * 270 / 180, true);
+                ctx.lineTo(that.rad, -that.rad * 2);
+                ctx.lineTo(-that.rad, -that.rad * 2);
+                ctx.lineTo(-that.rad, 0);
+                ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
+                ctx.fill();
+                ctx.closePath();
+                ctx.restore();
             };
         }
         return this;
