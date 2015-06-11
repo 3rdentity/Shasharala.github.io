@@ -1,5 +1,5 @@
 ##############################################################################
-SHASHARALA.NET - TERMS OF USE - COPYRIGHT (c) 2014 Ryan Combes
+SHASHARALA.NET - TERMS OF USE - COPYRIGHT (c) 20XX Tace
 ##############################################################################
 
 If something isn't covered in these terms and conditions and you are considering
@@ -42,6 +42,5 @@ Ubuntu Mono -
 www.shasharala.net/res/fonts/UFL.txt
 
 ==============================================================================
-14/12/03 - This license may change at any time without notice. Please
-check back regularly.
+15/06/11 - This license may change at any time without notice.
 ==============================================================================
