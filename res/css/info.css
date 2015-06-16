@@ -89,36 +89,40 @@ a:hover {
   line-height: 160%;
 }
 
-span.header {
+.header {
   color: #339966;
   font-size: 21px;
 }
 
-p.content {
+.cont {
     padding-left: 16px;
-    line-height: 30px;
+    line-height: 24px;
 }
 
-span.projStat {
+.spacedCont {
+    margin-bottom: 7px;
+}
+
+.projStat {
   text-decoration:  underline;
 }
 
-p.projName {
+.projName {
   padding-left: 16px;
 }
 
-p.projContent {
+.projCont {
     margin: 0px;
     padding-left: 24px;
 }
 
-p.formats {
+.formats {
   float: left;
   margin-top: 10px;
   margin-left: 5%;
 }
 
-p.edited {
+.edited {
   margin-top: 10px;
   margin-right: 5%;
   margin-bottom: 21px;
