@@ -380,7 +380,7 @@ var Matrix = function matrix() {
                 ctx.save();
                 ctx.beginPath();
                 ctx.translate(that.pos.x, that.pos.y);
-                ctx.rotate(0); //position heart correctly
+                ctx.rotate(4); //position heart correctly
                 ctx.moveTo(-that.rad, 0);
                 ctx.arc(0, 0, that.rad, 0, Math.PI, false); // first/left heart arc
                 ctx.lineTo(that.rad, 0); // line to first/left heart arc

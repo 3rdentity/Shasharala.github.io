@@ -1,18 +1,24 @@
-<!doctype html>
-<html>
-	<head>
-		<title>heart</title>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<canvas id="c"></canvas>
-		<script>
-			var b = document.body;
-			var c = document.getElementsByTagName('canvas')[0];
-			var a = c.getContext('2d');
-			document.body.clientWidth;
-		</script>
-		<script src="https://raw.github.com/gist/1579671/7f515ade253afbc860dac1f84e21998d54359d79/rAF.js"></script>
-		<script src="heart.js"></script>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Ryan Combes">
+        <meta name="description" content="matrix test">
+        <style>
+            body {
+                margin: 0px;
+                padding: 0px;
+                background-color: #add0d0;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="matrix"></canvas>
+        <script src="matrix2.js"></script>
+        <script>
+            var m = new Matrix()
+            .start();
+        </script>
+    </body>
 </html>
