@@ -1,0 +1,30 @@
+/*see dom.js*/
+/*hidden attr fallback*/
+[hidden] {
+  display: none;
+}
+/*END JS RELATED CSS*/
+
+body {
+  background-color: #212121;
+  color: #808080;
+  font-size: 40px;
+  text-align: center;
+}
+
+#viewport {
+  /*border-style:dotted;*/
+  border-width:1px;
+  border-color:#808080;
+}
+
+/*
+EXAMPLE CANVAS. NOTE SHARP GRAPHICS
+canvas#gameBoard {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+*/
