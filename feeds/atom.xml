@@ -3,9 +3,9 @@
   <title>shasharala's feed</title>
   <subtitle>shasharala's thoughts and games</subtitle>
   <link href="http://www.shasharala.net"/>
-  <updated>2015-03-28T15:33:33Z</updated>
+  <updated>2015-05-15T23:00:33Z</updated>
   <author>
-    <name>Ryan Combes</name>
+    <name>Tace</name>
     <email>shasharala@outlook.com</email>
   </author>
   <!--
@@ -16,6 +16,12 @@
     <summary>xxx</summary>
   </entry>
 -->
+  <entry>
+    <title>Long Time No See</title>
+    <link href="http://www.shasharala.net/blog/0004.html"/>
+    <updated>2015-05-15T22:00:33Z</updated>
+    <summary>Time to have some fun and finish some projects!</summary>
+  </entry>
   <entry>
     <title>Matrix Creator</title>
     <link href="http://www.shasharala.net/projects/unfin/matrix/start.html"/>
