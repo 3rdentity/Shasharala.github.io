@@ -1,7 +1,4 @@
-- more shapes
-- change tweens
-- point plotter
-- fix tweening updates
+- loading canvas
+- fix tweening updates?
 - modifable during runtime. sliders?
 - strokeStyle outlines?
-- memcache for multiple page loads?

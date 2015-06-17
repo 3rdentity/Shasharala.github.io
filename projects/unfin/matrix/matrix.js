@@ -146,6 +146,11 @@ var Matrix = function matrix() {
     var points = [];
     var stopped = false;
     var animate = true;
+    function loading() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.
+        return this;
+    };
     function stop() {
         stopped = true;
         remListeners();
@@ -263,7 +268,7 @@ var Matrix = function matrix() {
         var that = this;
         this.pos = pos || null;
         this.rad = rad || null;
-        this.draw = function webCircleDraw() {
+        this.draw = function shapeCircleDraw() {
             if (!this.active) {
                 return;
             }
@@ -282,7 +287,7 @@ var Matrix = function matrix() {
         this.rad = rad || null;
         this.inset = inset || null;
         this.points = p || null;
-        this.draw = function webStarDraw() {
+        this.draw = function shapeStarDraw() {
             if (!this.active) {
                 return;
             }
@@ -306,7 +311,7 @@ var Matrix = function matrix() {
         var that = this;
         this.pos = pos || null;
         this.rad = rad || null;
-        this.draw = function webHeartDraw() {
+        this.draw = function shapeHeartDraw() {
             ctx.save();
             ctx.beginPath();
             ctx.translate(that.pos.x, that.pos.y);
