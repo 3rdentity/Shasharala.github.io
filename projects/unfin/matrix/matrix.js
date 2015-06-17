@@ -114,6 +114,17 @@ Math.collBox = function mathCollBox(x1, y1, w1, h1, x2, y2, w2, h2) {
 var Matrix = function matrix() {
     //default values
     var canvas = document.getElementById("matrix") || null;
+    if(canvas) {
+        var ctx = canvas.getContext("2d")
+        var target = {
+            x: canvas.width / 2,
+            y: canvas.height / 3
+        }
+    }
+    else {
+        var ctx = null;
+        var target = null;
+    }
     var width = null;
     var height = null;
     var spacing = 69;
@@ -133,7 +144,186 @@ var Matrix = function matrix() {
     var pNum = 5;
     var activesArr = [[4000, 0.3, 0.6], [20000, 0.1, 0.3], [40000, 0.02, 0.1], [0, 0]];
     var points = [];
+    var stopped = false;
     var animate = true;
+    function stop() {
+        stopped = true;
+        remListeners();
+    };
+    function restart() {
+        stopped = false;
+        addListeners();
+        animation();
+    };
+    function addListeners() {
+        window.addEventListener("mousemove", mouseMove);
+        window.addEventListener("scroll", scrollCheck);
+        window.addEventListener("resize", resize);
+    }
+    function remListeners() {
+        window.addEventListener("mousemove", mouseMove, false);
+        window.addEventListener("scroll", scrollCheck, false);
+        window.addEventListener("resize", resize, false);
+    }
+    //if using more than one matrix this may need to be modified to handle mouseOver's seperately
+    function mouseMove(e) {
+        target.x = e.pageX || (e.client + document.body.scrollLeft + document.documentElement.scrollLeft);
+        target.y = e.pageY || (e.client + document.body.scrollTop + document.documentElement.scrollTop);
+    }
+    function scrollCheck() {
+        if (document.body.scrollTop > canvas.height) {
+            animate = false;
+        }
+        else {
+            animate = true;
+        }
+    }
+    function resize() {
+        if (width) {
+        }
+        else {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+    }
+    function animation() {
+        for (var i in points) {
+            setTween(points[i]);
+        }
+        function run() {
+            if (stopped) {
+                //matrix stops
+            }
+            else if (animate) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (var i in points) {
+                    // detect points in range
+                    if (Math.abs(Math.dist(target, points[i])) < activesArr[0][0]) {
+                        points[i].active = activesArr[0][1];
+                        points[i].type.active = activesArr[0][2];
+                    }
+                    else {
+                        if (Math.abs(Math.dist(target, points[i])) < activesArr[1][0]) {
+                            points[i].active = activesArr[1][1];
+                            points[i].type.active = activesArr[1][2];
+                        }
+                        else {
+                            if (Math.abs(Math.dist(target, points[i])) < activesArr[2][0]) {
+                                points[i].active = activesArr[2][1];
+                                points[i].type.active = activesArr[2][2];
+                            }
+                            else {
+                                points[i].active = activesArr[3][0];
+                                points[i].type.active = activesArr[3][1];
+                            }
+                        }
+                    }
+                    drawLines(points[i]);
+                    points[i].type.draw();
+                }
+                TWEEN.update(); //needs to update only tweens from this object
+                requestAnimationFrame(run);
+            }
+            else {
+                requestAnimationFrame(run);
+            }
+        };
+        requestAnimationFrame(run);
+    }
+    //make this modifiable somehow
+    function setTween(p) {
+        p.tween = new TWEEN.Tween(p)
+        .to({
+            x: p.originX - 50 + Math.random() * 100,
+            y: p.originY - 50 + Math.random() * 100
+        }, 2 * Math.random() * 2000)
+        //.easing(TWEEN.Easing.Elastic.InOut)
+        .onComplete(function repeatSetTween() {
+            setTween(p);
+        })
+        .start();
+    }
+    function drawLines(p) {
+        if (!p.active) {
+            return;
+        }
+        for (var i in p.closest) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p.closest[i].x, p.closest[i].y);
+            ctx.lineWidth = lineWidth;
+            ctx.strokeStyle = "rgba(" + lineColor + ", " + p.active + ")";
+            ctx.stroke();
+            ctx.closePath();
+            ctx.restore();
+        }
+    }
+    function circle(pos, rad) {
+        var that = this;
+        this.pos = pos || null;
+        this.rad = rad || null;
+        this.draw = function webCircleDraw() {
+            if (!this.active) {
+                return;
+            }
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(that.pos.x, that.pos.y, that.rad, 0, 2 * Math.PI, false);
+            ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
+            ctx.fill();
+            ctx.closePath();
+            ctx.restore();
+        };
+    }
+    function star(pos, rad, inset, p) {
+        var that = this;
+        this.pos = pos || null;
+        this.rad = rad || null;
+        this.inset = inset || null;
+        this.points = p || null;
+        this.draw = function webStarDraw() {
+            if (!this.active) {
+                return;
+            }
+            ctx.save();
+            ctx.beginPath();
+            ctx.translate(that.pos.x, that.pos.y);
+            ctx.moveTo(0, 0 - that.rad) // moveTo that.pos.x & that.pos.y but on the outer radius/the first point of the star
+            for (i = 0; i < that.points; i++) {
+                ctx.rotate(Math.PI / that.points);
+                ctx.lineTo(0, 0 - (that.rad * that.inset));
+                ctx.rotate(Math.PI / that.points);
+                ctx.lineTo(0, 0 - that.rad);
+            }
+            ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
+            ctx.fill();
+            ctx.closePath();
+            ctx.restore();
+        };
+    }
+    function heart(pos, rad) {
+        var that = this;
+        this.pos = pos || null;
+        this.rad = rad || null;
+        this.draw = function webHeartDraw() {
+            ctx.save();
+            ctx.beginPath();
+            ctx.translate(that.pos.x, that.pos.y);
+            ctx.rotate(4); //position heart correctly
+            ctx.moveTo(-that.rad, 0);
+            ctx.arc(0, 0, that.rad, 0, Math.PI, false); // first/left heart arc
+            ctx.lineTo(that.rad, 0); // line to first/left heart arc
+            ctx.arc(that.rad, -that.rad, that.rad, Math.PI * 90 / 180, Math.PI * 270 / 180, true);
+            ctx.lineTo(that.rad, -that.rad * 2);
+            ctx.lineTo(-that.rad, -that.rad * 2);
+            ctx.lineTo(-that.rad, 0);
+            ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
+            ctx.fill();
+            ctx.closePath();
+            ctx.restore();
+        };
+    }
     this.canvas = function matrixCanvas(c) {
         canvas = document.getElementById(c);
         return this;
@@ -172,11 +362,18 @@ var Matrix = function matrix() {
         return this;
     };
     this.start = function matrixStart() {
+        if(!canvas) {
+            var c = document.createElement("canvas");
+            c.id = "matrix";
+            document.body.appendChild(c);
+            canvas = document.getElementById("matrix");
+        }
+        stopped = false;
         //these variables are declared here so they are not set before modifiers are set
         canvas.width = width || 1920;
         canvas.height = height || 1080;
-        var ctx = canvas.getContext("2d");
-        var target = {
+        ctx = canvas.getContext("2d");
+        target = {
             x: canvas.width / 2,
             y: canvas.height / 3
         };
@@ -236,168 +433,28 @@ var Matrix = function matrix() {
         }
         addListeners();
         animation();
-        function addListeners() {
-            window.addEventListener("mousemove", mouseMove);
-            window.addEventListener("scroll", scrollCheck);
-            window.addEventListener("resize", resize);
-        }
-        //if using more than one matrix this may need to be modified to handle mouseOver's seperately
-        function mouseMove(e) {
-            target.x = e.pageX || (e.client + document.body.scrollLeft + document.documentElement.scrollLeft);
-            target.y = e.pageY || (e.client + document.body.scrollTop + document.documentElement.scrollTop);
-        }
-        function scrollCheck() {
-            if (document.body.scrollTop > canvas.height) {
-                animate = false;
-            }
-            else {
-                animate = true;
-            }
-        }
-        function resize() {
-            if (width) {
-            }
-            else {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-        }
-        function animation() {
-            for (var i in points) {
-                setTween(points[i]);
-            }
-            function run() {
-                if (animate) {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    for (var i in points) {
-                        // detect points in range
-                        if (Math.abs(Math.dist(target, points[i])) < activesArr[0][0]) {
-                            points[i].active = activesArr[0][1];
-                            points[i].type.active = activesArr[0][2];
-                        }
-                        else {
-                            if (Math.abs(Math.dist(target, points[i])) < activesArr[1][0]) {
-                                points[i].active = activesArr[1][1];
-                                points[i].type.active = activesArr[1][2];
-                            }
-                            else {
-                                if (Math.abs(Math.dist(target, points[i])) < activesArr[2][0]) {
-                                    points[i].active = activesArr[2][1];
-                                    points[i].type.active = activesArr[2][2];
-                                }
-                                else {
-                                    points[i].active = activesArr[3][0];
-                                    points[i].type.active = activesArr[3][1];
-                                }
-                            }
-                        }
-                        drawLines(points[i]);
-                        points[i].type.draw();
-                    }
-                    TWEEN.update(); //needs to update only tweens from this object
-                    requestAnimationFrame(run);
-                }
-            };
-            requestAnimationFrame(run);
-        }
-        //make this modifiable somehow
-        function setTween(p) {
-            p.tween = new TWEEN.Tween(p)
-            .to({
-                x: p.originX - 50 + Math.random() * 100,
-                y: p.originY - 50 + Math.random() * 100
-            }, 2 * Math.random() * 2000)
-            //.easing(TWEEN.Easing.Elastic.InOut)
-            .onComplete(function repeatSetTween() {
-                setTween(p);
-            })
-            .start();
-        }
-        function drawLines(p) {
-            if (!p.active) {
-                return;
-            }
-            for (var i in p.closest) {
-                ctx.save();
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-                ctx.lineTo(p.closest[i].x, p.closest[i].y);
-                ctx.lineWidth = lineWidth;
-                ctx.strokeStyle = "rgba(" + lineColor + ", " + p.active + ")";
-                ctx.stroke();
-                ctx.closePath();
-                ctx.restore();
-            }
-        }
-        function circle(pos, rad) {
-            var that = this;
-            this.pos = pos || null;
-            this.rad = rad || null;
-            this.draw = function webCircleDraw() {
-                if (!this.active) {
-                    return;
-                }
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(that.pos.x, that.pos.y, that.rad, 0, 2 * Math.PI, false);
-                ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
-                ctx.fill();
-                ctx.closePath();
-                ctx.restore();
-            };
-        }
-        function star(pos, rad, inset, p) {
-            var that = this;
-            this.pos = pos || null;
-            this.rad = rad || null;
-            this.inset = inset || null;
-            this.points = p || null;
-            this.draw = function webStarDraw() {
-                if (!this.active) {
-                    return;
-                }
-                ctx.save();
-                ctx.beginPath();
-                ctx.translate(that.pos.x, that.pos.y);
-                ctx.moveTo(0, 0 - that.rad) // moveTo that.pos.x & that.pos.y but on the outer radius/the first point of the star
-                for (i = 0; i < that.points; i++) {
-                    ctx.rotate(Math.PI / that.points);
-                    ctx.lineTo(0, 0 - (that.rad * that.inset));
-                    ctx.rotate(Math.PI / that.points);
-                    ctx.lineTo(0, 0 - that.rad);
-                }
-                ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
-                ctx.fill();
-                ctx.closePath();
-                ctx.restore();
-            };
-        }
-        function heart(pos, rad) {
-            var that = this;
-            this.pos = pos || null;
-            this.rad = rad || null;
-            this.draw = function webHeartDraw() {
-                ctx.save();
-                ctx.beginPath();
-                ctx.translate(that.pos.x, that.pos.y);
-                ctx.rotate(4); //position heart correctly
-                ctx.moveTo(-that.rad, 0);
-                ctx.arc(0, 0, that.rad, 0, Math.PI, false); // first/left heart arc
-                ctx.lineTo(that.rad, 0); // line to first/left heart arc
-                ctx.arc(that.rad, -that.rad, that.rad, Math.PI * 90 / 180, Math.PI * 270 / 180, true);
-                ctx.lineTo(that.rad, -that.rad * 2);
-                ctx.lineTo(-that.rad, -that.rad * 2);
-                ctx.lineTo(-that.rad, 0);
-                ctx.fillStyle = "rgba(" + pColor + ", " + this.active + ")";
-                ctx.fill();
-                ctx.closePath();
-                ctx.restore();
-            };
-        }
         return this;
     };
-    //this actually breaks everything currently
-    this.stop = function matrixStop() {
+    this.update = function update() {
+        stop();
+        //needs to modify a variable
+        restart();
+        return this;
+    };
+    this.stop = function _stop() {
+        stop();
+        return this;
+    };
+    this.restart = function _restart() {
+        restart();
+        return this;
+    };
+    this.pause = function pause() {
         animate = false;
-    }
+        return this;
+    };
+    this.resume = function resume() {
+        animate = true;
+        return this;
+    };
 };
