@@ -135,13 +135,13 @@ var Dom = {
     elem.fading = undefined;
     elem.style.opacity = 1;
     elem.style.filter = "";
-    var last = new Date.getTime();
+    var last = new Date().getTime();
     var tick = function fadeOutTick() {
-      opacity -= (new Date.getTime() - last) / 400;
+      opacity -= (new Date().getTime() - last) / 400;
       elem.style.opacity = opacity;
       elem.style.filter = "alpha(opacity=" + (100 * opacity)|0 + ")";
-      last = new Date.getTime();
-      (opacity > 0 && elem.fading) ? setTimeout(tick, fadeTime) : this.hide(elem);
+      last = new Date().getTime();
+      (opacity > 0 && elem.fading) ? setTimeout(tick, fadeTime) : Dom.hide(elem);
     };
     tick();
   },
@@ -152,15 +152,15 @@ var Dom = {
     elem.fading = undefined;
     elem.style.opacity = 0;
     elem.style.filter = "";
-    var last = new Date.getTime();
+    var last = new Date().getTime();
     var tick = function fadeInTick() {
-      opacity += (new Date.getTime() - last) / 400;
+      opacity += (new Date().getTime() - last) / 400;
       elem.style.opacity = opacity;
       elem.style.filter = "alpha(opacity=" + (100 * opacity)|0 + ")";
-      last = new Date.getTime();
+      last = new Date().getTime();
       if (opacity < 1 && elem.fading) setTimeout(tick, fadeTime);
     };
-    this.show(elem);
+    Dom.show(elem);
     tick();
   },
   replaceFade: function domReplaceFade(elem1, elem2, time1, time2) {
@@ -193,49 +193,6 @@ var Dom = {
     }
     return dest;
   }
-};
-/*
-*#######
-*LOADING
-*#######
-*/
-function loading(size, color) {
-    var canvas = document.getElementById('loading') || null;
-    canvas ? canvas.ctx = canvas.getContext('2d') : null;
-    var circles = 12;
-    var size = size || 128;
-    var color = color || '242, 242, 242';
-    if (!canvas) {
-        var canvas = document.createElement('canvas');
-        canvas.ctx = canvas.getContext('2d');
-        canvas.id = 'loading';
-        canvas.width = size;
-        canvas.height = size;
-        canvas.style.position = 'absolute';
-        canvas.style.top = '45%';
-        canvas.style.left = '50%';
-        canvas.style.marginLeft = '-' + size / 3 + 'px'; // to position correctly on screen
-        canvas.style.backgroundColor = 'rgba(1, 1, 1, 0.4)';
-        canvas.style.borderRadius = '8px';
-        document.body.appendChild(canvas);
-    }
-
-    canvas.ctx.translate(size / 2, size / 2);
-
-    function run() {
-        canvas.ctx.clearRect(-size / 2, -size / 2, size, size);
-        canvas.ctx.rotate(Math.PI * 2 / circles);
-        for (var i = 0; i < circles; i++) {
-            canvas.ctx.beginPath();
-            canvas.ctx.arc(0, size / 4, size / 32, 0, 2 * Math.PI, false);
-            canvas.ctx.fillStyle = 'rgba(' + color + ', ' + i / circles + ')';
-            canvas.ctx.fill();
-            canvas.ctx.closePath();
-            canvas.ctx.rotate(Math.PI * 2 / circles);
-        }
-        requestAnimationFrame(run);
-    }
-    requestAnimationFrame(run);
 };
 /*
 *#####
@@ -331,6 +288,78 @@ var Matrix = function matrix() {
         stopped = true;
         remListeners();
     };
+    function setup(callback) {
+        if(!canvas) {
+            var c = document.createElement("canvas");
+            c.id = "matrix";
+            document.body.appendChild(c);
+            canvas = document.getElementById("matrix");
+        }
+        stopped = false;
+        //these variables are declared here so they are not set before modifiers are set
+        canvas.width = width || 1920;
+        canvas.height = height || 1080;
+        ctx = canvas.getContext("2d");
+        target = {
+            x: canvas.width / 2,
+            y: canvas.height / 3
+        };
+        //plot points across the largest canvas possible so if resizing happens we have more points to display
+        for (var x = 0; x < canvas.width; x = x + canvas.width / spacing) {
+            for (var y = 0; y < canvas.height; y = y + canvas.height / spacing) {
+                var pX = x + Math.random() * canvas.width / spacing;
+                var pY = y + Math.random() * canvas.height / spacing;
+                var p = {
+                    x: pX,
+                    originX: pX,
+                    y: pY,
+                    originY: pY
+                };
+                points.push(p);
+            }
+        }
+        //for each point find the closest points
+        for (var i = 0; i < points.length; i++) {
+            var closest = [];
+            var p1 = points[i];
+            for (var j = 0; j < points.length; j++) {
+                var p2 = points[j];
+                if (!(p1 == p2)) {
+                    var placed = false;
+                    for (var k = 0; k < nClosest; k++) {
+                        if (!placed) {
+                            if (closest[k] == undefined) {
+                                closest[k] = p2;
+                                placed = true;
+                            }
+                        }
+                    }
+                    for (var l = 0; l < nClosest; l++) {
+                        if (!placed) {
+                            if (Math.dist(p1, p2) < Math.dist(p1, closest[l])) {
+                                closest[l] = p2;
+                                placed = true;
+                            }
+                        }
+                    }
+                }
+            }
+            p1.closest = closest;
+        }
+        // assign a shape to each point
+        for (var i in points) {
+            if (pType === "star") {
+                points[i].type = new star(points[i], pRad[0]() || pRad[0], pRad[1]() || pRad[1], pNum);
+            }
+            else if (pType === "heart") {
+                points[i].type = new heart(points[i], pRad[0]() || pRad[0]);
+            }
+            else {
+                points[i].type = new circle(points[i], pRad[0]() || pRad[0]);
+            }
+        }
+        callback();
+    }
     function restart() {
         stopped = false;
         addListeners();
@@ -541,78 +570,12 @@ var Matrix = function matrix() {
         return this;
     };
     this.start = function matrixStart() {
-        if(!canvas) {
-            var c = document.createElement("canvas");
-            c.id = "matrix";
-            document.body.appendChild(c);
-            canvas = document.getElementById("matrix");
-        }
-        stopped = false;
-        //these variables are declared here so they are not set before modifiers are set
-        canvas.width = width || 1920;
-        canvas.height = height || 1080;
-        ctx = canvas.getContext("2d");
-        target = {
-            x: canvas.width / 2,
-            y: canvas.height / 3
-        };
-        //plot points across the largest canvas possible so if resizing happens we have more points to display
-        for (var x = 0; x < canvas.width; x = x + canvas.width / spacing) {
-            for (var y = 0; y < canvas.height; y = y + canvas.height / spacing) {
-                var pX = x + Math.random() * canvas.width / spacing;
-                var pY = y + Math.random() * canvas.height / spacing;
-                var p = {
-                    x: pX,
-                    originX: pX,
-                    y: pY,
-                    originY: pY
-                };
-                points.push(p);
-            }
-        }
-        //for each point find the closest points
-        for (var i = 0; i < points.length; i++) {
-            var closest = [];
-            var p1 = points[i];
-            for (var j = 0; j < points.length; j++) {
-                var p2 = points[j];
-                if (!(p1 == p2)) {
-                    var placed = false;
-                    for (var k = 0; k < nClosest; k++) {
-                        if (!placed) {
-                            if (closest[k] == undefined) {
-                                closest[k] = p2;
-                                placed = true;
-                            }
-                        }
-                    }
-                    for (var l = 0; l < nClosest; l++) {
-                        if (!placed) {
-                            if (Math.dist(p1, p2) < Math.dist(p1, closest[l])) {
-                                closest[l] = p2;
-                                placed = true;
-                            }
-                        }
-                    }
-                }
-            }
-            p1.closest = closest;
-        }
-        // assign a shape to each point
-        for (var i in points) {
-            if (pType === "star") {
-                points[i].type = new star(points[i], pRad[0]() || pRad[0], pRad[1]() || pRad[1], pNum);
-            }
-            else if (pType === "heart") {
-                points[i].type = new heart(points[i], pRad[0]() || pRad[0]);
-            }
-            else {
-                points[i].type = new circle(points[i], pRad[0]() || pRad[0]);
-            }
-        }
-        addListeners();
-        animation();
-        return this;
+        setup(function setCB() {
+            var e = document.getElementById('loading');
+            Dom.hide(e);
+            addListeners();
+            animation();
+        });
     };
     this.update = function update() {
         stop();
@@ -622,18 +585,14 @@ var Matrix = function matrix() {
     };
     this.stop = function _stop() {
         stop();
-        return this;
     };
     this.restart = function _restart() {
         restart();
-        return this;
     };
     this.pause = function pause() {
         animate = false;
-        return this;
     };
     this.resume = function resume() {
         animate = true;
-        return this;
     };
 };
