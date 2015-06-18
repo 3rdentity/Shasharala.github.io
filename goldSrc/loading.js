@@ -20,7 +20,7 @@ function loading(size, color) {
         canvas.style.left = '50%';
         canvas.style.marginLeft = '-' + size / 3 + 'px'; // to position correctly on screen
         canvas.style.backgroundColor = 'rgba(1, 1, 1, 0.4)';
-        canvas.style.borderRadius = '8px';
+        canvas.style.borderRadius = '16px';
         document.body.appendChild(canvas);
     }
 
@@ -31,7 +31,7 @@ function loading(size, color) {
         canvas.ctx.rotate(Math.PI * 2 / circles);
         for (var i = 0; i < circles; i++) {
             canvas.ctx.beginPath();
-            canvas.ctx.arc(0, size / 4, size / 32, 0, 2 * Math.PI, false);
+            canvas.ctx.arc(0, size / 4, size / 20, 0, 2 * Math.PI, false);
             canvas.ctx.fillStyle = 'rgba(' + color + ', ' + i / circles + ')';
             canvas.ctx.fill();
             canvas.ctx.closePath();
