@@ -5,6 +5,7 @@
     <meta name="author" content="Tace">
     <meta name="description" content="matrix">
     <style>
+        [hidden] {display: none;}
           body {
               margin: 0px;
               padding: 0px;
@@ -14,9 +15,9 @@
     </style>
   </head>
   <body>
-    <canvas id="matrix"></canvas>
     <script src="matrix.js"></script>
     <script>
+        loading();
         var m = new Matrix()
         .point("heart", null, null, "ac1354")
         .actives([[4000, 0, 0.6], [20000, 0, 0.3], [40000, 0, 0.1], [0, 0]])
