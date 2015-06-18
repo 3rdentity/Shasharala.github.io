@@ -78,13 +78,13 @@ var Dom = {
     elem.fading = undefined;
     elem.style.opacity = 1;
     elem.style.filter = "";
-    var last = new Date.getTime();
+    var last = new Date().getTime();
     var tick = function fadeOutTick() {
-      opacity -= (new Date.getTime() - last) / 400;
+      opacity -= (new Date().getTime() - last) / 400;
       elem.style.opacity = opacity;
       elem.style.filter = "alpha(opacity=" + (100 * opacity)|0 + ")";
-      last = new Date.getTime();
-      (opacity > 0 && elem.fading) ? setTimeout(tick, fadeTime) : this.hide(elem);
+      last = new Date().getTime();
+      (opacity > 0 && elem.fading) ? setTimeout(tick, fadeTime) : Dom.hide(elem);
     };
     tick();
   },
@@ -95,15 +95,15 @@ var Dom = {
     elem.fading = undefined;
     elem.style.opacity = 0;
     elem.style.filter = "";
-    var last = new Date.getTime();
+    var last = new Date().getTime();
     var tick = function fadeInTick() {
-      opacity += (new Date.getTime() - last) / 400;
+      opacity += (new Date().getTime() - last) / 400;
       elem.style.opacity = opacity;
       elem.style.filter = "alpha(opacity=" + (100 * opacity)|0 + ")";
-      last = new Date.getTime();
+      last = new Date().getTime();
       if (opacity < 1 && elem.fading) setTimeout(tick, fadeTime);
     };
-    this.show(elem);
+    Dom.show(elem);
     tick();
   },
   replaceFade: function domReplaceFade(elem1, elem2, time1, time2) {
