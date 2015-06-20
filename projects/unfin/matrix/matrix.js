@@ -110,6 +110,11 @@ Math.collBox = function mathCollBox(x1, y1, w1, h1, x2, y2, w2, h2) {
            ((y2 + h2 - 1) < y1));
 };
 
+//used for inputs
+function output(id, value, detail) {
+    $(id).val(detail + ": " + value);
+}
+
 /*
  *######
  *MATRIX
@@ -137,7 +142,7 @@ var Matrix = function matrix() {
     var lineColor = Color.hex2RGB("FFFFFF");
     var lineWidth = 1;
     var pType = "circle";
-    var pColor = Color.hex2RGB("FFFFFF");
+    var pColor = Color.hex2RGB("ac1354");
     var pRad = [
         function pRadCalc() {
             return Math.rand(2, 4);
@@ -166,46 +171,91 @@ var Matrix = function matrix() {
             canvas.style.zIndex = '-1';
         }
         if (!ui) {
-            var ui = document.createElement('div');
-            ui.id = 'ui';
-            document.body.appendChild(ui);
-            $('#ui').css({
-                'position': 'absolute',
-                'top': '0px',
-                'left': '0px',
-                'width': '25%',
-                'height': '100%',
-                'backgroundColor': 'rgba(64, 64, 64, 0.4)',
-                'boxShadow': '0px 0px 10px #dedede'
-            });
-            var uiBtn = document.createElement('div');
-            uiBtn.id = 'uiBtn';
-            document.getElementById('ui').appendChild(uiBtn);
-            $('#uiBtn').css({
-                'padding': '5px',
-                'width': '1.5%',
-                'height': '5%',
-                'background-color': 'rgba(64, 64, 64, 0.4)',
-                'box-shadow': '0px 0px 10px #dedede'
-            });
-            $('#uiBtn').html('<hr><hr><hr>');
-            $('#uiBtn hr').css({height: '2px'});
-            $('#ui').hide();
+            $('<div/>')
+                .attr('id', 'ui')
+                .css({
+                    'position': 'absolute',
+                    'top': '0px',
+                    'left': '0px',
+                    'width': '300px',
+                    'height': '100%',
+                    'padding-top': '80px',
+                    'background-color': 'rgba(64, 64, 64, 0.4)',
+                    'boxShadow': '0px 0px 10px #dedede'
+                })
+                .appendTo('body');
+            $('<div/>')
+                .attr('id', 'title')
+                .css({
+                    'margin': '-80px 0px 10px 0px',
+                    'padding': '30px',
+                    'text-align': 'center',
+                    'background-color': 'rgba(64, 64, 64, 0.4)',
+                    'color': '#dedede',
+                    'font-size': '21px',
+                    'font-weight': 'bold'
+                })
+                .html('Settings')
+                .appendTo('#ui');
+            $('<input/>')
+                .attr({
+                    'id': 'size',
+                    'type': 'range',
+                    'min': '0',
+                    'value': '50',
+                    'max': '99',
+                    'step': '1',
+                    'oninput': 'output("#sizeOut", value, "Size")'
+                })
+                .css({
+                    'float': 'right',
+                    'margin-right': '10px',
+                    'width': '55%'
+                })
+                .appendTo('#ui');
+            $('<output/>')
+                .attr({
+                    'id': 'sizeOut',
+                    'for': 'size'
+                })
+                .css({
+                    'margin-left': '3%',
+                    'padding': '5px',
+                    'background-color': 'rgba(64, 64, 64, 0.4)',
+                    'color': '#dedede',
+                    'font-size': '18px',
+                })
+                .html('Size: 50')
+                .appendTo('#ui');
+            $('<input value="#ac1354"/>') //declaring value here to display properly in chrome
+                .attr({
+                    'id': 'color',
+                    'type': 'color',
+                })
+                .css({
+                    'float': 'right',
+                    'margin': '20px 25% 0px 0px',
+                    'width': '55%'
+                })
+                .appendTo('#ui');
+            //TODO radials here
+            //TODO more options here?
+            //$('#ui').hide();
             
-            var btn = document.createElement('div');
-            btn.id = 'btn';
-            document.body.appendChild(btn);
-            $('#btn').css({
-                'position': 'absolute',
-                'top': '45%',
-                'left': '0px',
-                'padding': '5px',
-                'width': '1.5%',
-                'height': '5%',
-                'background-color': 'rgba(64, 64, 64, 0.4)',
-                'box-shadow': '0px 0px 10px #dedede'
-            });
-            $('#btn').html('<hr><hr><hr>');
+            $('<div/>')
+                .attr('id', 'btn')
+                .css({
+                    'position': 'absolute',
+                    'top': '0px',
+                    'left': '0px',
+                    'padding': '5px',
+                    'width': '10px',
+                    'height': '45px',
+                    'background-color': 'rgba(64, 64, 64, 0.4)',
+                    'box-shadow': '0px 0px 10px #dedede'
+                })
+                .html('<hr><hr><hr>')
+                .appendTo('body');
             $('#btn hr').css({height: '2px'});
             $('#btn').hide();
         }
@@ -289,14 +339,7 @@ var Matrix = function matrix() {
         window.addEventListener("scroll", scrollCheck);
         window.addEventListener("resize", resize);
         $('#btn').on('click', function btnClick() {
-            $('#btn').fadeOut( function () {
-                $('#ui').fadeIn();
-            });
-        });
-        $('#uiBtn').on('click', function uiBtnClick() {
-            $('#ui').fadeOut( function () {
-                $('#btn').fadeIn();
-            });
+            $('#ui').toggle(200);
         });
     }
     function remListeners() {
@@ -409,7 +452,7 @@ var Matrix = function matrix() {
         pType = shape || "circle";
         pRad[0] = size || pRad[0]; //mind that a function works best here
         pRad[1] = size2 || pRad[1]; //mind that a function works best here
-        pColor = Color.hex2RGB(color) || pColor;
+        color ? pColor = Color.hex2RGB(color) : pColor = pColor;
     }
     function actives(a) {
         activesArr = a;

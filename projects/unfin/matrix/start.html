@@ -7,12 +7,18 @@
     <link rel='stylesheet' href='../../../res/css/normalize/normalize.min.css'>
     <style>
         [hidden] {display: none;}
-          body {
-              margin: 0px;
-              padding: 0px;
-              background-color: cadetblue;
-              overflow: hidden;
-          }
+        ::-moz-selection {
+            background-color: transparent;
+        }
+        ::selection {
+            background-color: transparent;
+        }
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-color: cadetblue;
+            overflow: hidden;
+        }
     </style>
   </head>
   <body>
@@ -21,7 +27,7 @@
       <script src='matrix.js'></script>
     <script>
         var m = new Matrix()
-        .point('heart', null, null, 'ac1354')
+        .point('heart')
         .actives([[4000, 0, 0.6], [20000, 0, 0.3], [40000, 0, 0.1], [0, 0]]);
         $('window').load(m.start());
     </script>
