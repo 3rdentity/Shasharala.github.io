@@ -238,7 +238,37 @@ var Matrix = function matrix() {
                     'width': '55%'
                 })
                 .appendTo('#ui');
-            //TODO radials here
+            $('<form/>')
+                .attr({
+                    'id': 'shape'
+                })
+                .css({
+                    'margin': '70px 15px 0px 15px',
+                    'padding': '7px 0px 5px 80px',
+                    'background-color': 'rgba(64, 64, 64, 0.4)',
+                    'text-align': 'left',
+                    'color': '#dedede'
+                })
+                .html('<span>Shape</span>' + 
+                      '<br>' + 
+                      '<br>' + 
+                      '<input id="circles" type="radio" name="shape"/>' + 
+                      '&nbsp;&nbsp;&nbsp;' + 
+                      '<label for="circles">Circles</label>' + 
+                      '<br>' + 
+                      '<input id="hearts" type="radio" name="shape"/>' + 
+                      '&nbsp;&nbsp;&nbsp;' + 
+                      '<label for="hearts">Hearts</label>' + 
+                      '<br>' + 
+                      '<input id="stars" type="radio" name="shape"/>' + 
+                      '&nbsp;&nbsp;&nbsp;' + 
+                      '<label for="stars">Stars</label>'
+                )
+                .appendTo('#ui');
+            $('#shape span').css({
+                'font-weight': 'bold',
+                'font-size': '18px'
+            });
             //TODO more options here?
             //$('#ui').hide();
             
@@ -327,7 +357,7 @@ var Matrix = function matrix() {
     function update() {
         stop();
         //needs to modify a variable
-        restart();
+        setTimeout(restart(), 3000);
     }
     function restart() {
         stopped = false;
@@ -340,6 +370,9 @@ var Matrix = function matrix() {
         window.addEventListener("resize", resize);
         $('#btn').on('click', function btnClick() {
             $('#ui').toggle(200);
+        });
+        $('#size').on('input', function () {
+            // something?
         });
     }
     function remListeners() {
