@@ -149,7 +149,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
     	}
 
     currContents = arr[ind].substring(0, currPos);
-    	document.getElementById(obj).innerHTML = contents + currContents + "|";
+    	document.getElementById(obj).innerHTML = currContents + "|";
     	//checks if currPos is at the end of the current string/ind and moves currPos to the next character if not
     	if (currPos != lineLength) {
     		currPos++;
@@ -165,7 +165,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
     //checks if ind if at the end of arr and moves ind to the next string/index if not
     else if (ind != (arr.length - 1)) {
       setTimeout(blinkOut, typewrite.blinkSpeed); //starts blinkOut to keep 'insertion point/cursor' blinking till the move to the next string/index is complete
-      contents += arr[ind];
+      contents = arr[ind];
       currPos = 1;
       ind++;
       row++;
@@ -174,7 +174,7 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
     }
     //the 'insertion point/cursor' will blink forever
     else {
-      contents += arr[ind];
+      contents = arr[ind];
       blinks = typewrite.blinksMax + 1;
       blinkOut();
       return;
