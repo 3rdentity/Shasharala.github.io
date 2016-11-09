@@ -36,7 +36,7 @@
               <h1 id="name">Sybil</h1>
               <hr>
               <img src="res/img/misc/me.png" width="141px;" style="float: left; padding-right: 10px;"> <!--inline CSS-->
-              <p>Hi, my name is &#9633;&#9633;&#9633;&#9633;&#9633;, but I prefer to be called Sybil. I am a transgender monster girl that wanders through reality trying to do something. Whether that be developing front and back-ends to websites, attempting to create a video game or two, or taking a catnap, I don't know what I do.</p>
+              <p id="content"></p>
             </div>
             <div class="col-xs-1">
             </div>
@@ -46,5 +46,12 @@
         </div>
       </div>
     </div>
+    <script src="goldSrc/typewrite.js"></script>
+    <script>
+      var words = [
+        "Hi, my name is &#9633;&#9633;&#9633;&#9633;&#9633;, but I prefer to be called Sybil. I am a transgender human that prefers she/they pronouns."
+      ]
+      typewrite("content", words);
+    </script>
   </body>
 </html>
