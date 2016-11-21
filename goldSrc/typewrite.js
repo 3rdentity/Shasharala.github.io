@@ -15,9 +15,9 @@ var typewrite = function typewrite(obj, arr, name1, name2) {
   //these speeds and settings can be changed by events to control how quickly typewrite 'types'. note that all current instances of typewrite will be affected
   typewrite.writeSpeed = 40; //will be used to control speed of text pushed to object/obj
   typewrite.blinkSpeed = 400; //will be used by blinkIn() & blinkOut() to control the 'blinking' speed of the 'insertion point/cursor. if changing blinkSpeed, consider changing blinksMax. keep far below newlineSpeed
-  typewrite.blinksMax = 3; //will be used to limit blinkIn()'s' & blinkOut()'s number of 'blinks'. if changing blinksMax, consider changing blinkSpeed. keep far below typeW()'s newlineSpeed
+  typewrite.blinksMax = 4; //will be used to limit blinkIn()'s' & blinkOut()'s number of 'blinks'. if changing blinksMax, consider changing blinkSpeed. keep far below typeW()'s newlineSpeed
   //blinksMax also has the effect of slowing down incremenation to the next index of an array, by forcing blinksMax # of blinks before progressing
-  
+
   //used to empty the current objct and pass a new arry. if using this, objct must be available to hide() without casing visual problems for user
   typewrite.nxt = function twNext(objct, arry, name3, name4) {
     hide(objct);
